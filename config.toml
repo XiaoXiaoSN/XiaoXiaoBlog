@@ -7,5 +7,5 @@ theme = "hugo-theme-m10c"
 paginate = 10
 [params]
   author = "Xiao Xiao"
-  description = "XiaoXiao's note"
+  description = "XiaoXiao 的筆記書"
 

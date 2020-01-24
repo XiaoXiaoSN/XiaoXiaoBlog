@@ -4,7 +4,7 @@ date: 2020-01-24T23:02:16+08:00
 tags: ["hugo"]
 ---
 
-## 開始之前
+### 一、開始之前
 
 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
 
@@ -18,7 +18,7 @@ $ hugo version
 Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown
 ```
 
-## 開跑囉
+### 二、開跑囉
 
 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
 ```
@@ -46,8 +46,10 @@ $ cd xiaoxiao
 $ git clone https://github.com/vaga/hugo-theme-m10c.git themes/hugo-theme-m10c
 ```
 
-再來，開啟文字編輯器修改 `config.toml` ，最主要是第六行的 `theme` 
-第四行的 `publishDir = "docs"` 也不能改，是 githubPage 規定的喔
+再來，開啟文字編輯器修改 `config.toml`，
+最主要是第六行的 `theme` 
+和第四行的 `publishDir = "docs"`，docs 是 GithubPage 規定的喔不能改
+
 我的改完長這樣:
 ```toml=
 baseURL = "https://xiaoxiaosn.github.io"
@@ -59,7 +61,7 @@ theme = "hugo-theme-m10c"
 paginate = 10
 [params]
   author = "Xiao Xiao"
-  description = "XiaoXiao's note"
+  description = "XiaoXiao 的筆記書"
 ```
 
 跑跑看，是不是能看到頁面啦? 服務會在 http://localhost:1313
@@ -71,7 +73,7 @@ $ hugo server -D   # -D 表示我們想看到草稿文章(draft)
 ![](https://i.imgur.com/aHQCWn7.png)
 
 
-## 來寫文章r
+### 三、來寫文章r
 
 這邊的 make-a-hugo-blog 可以換成你想要的文章名字，等等會被用在網址上喔
 ```
@@ -99,12 +101,13 @@ tags: ["hugo"]
 
 輸入 `hugo` 指令，讓他跑編譯囉
 ```
-hugo
+$ hugo
 ```
 
-## 來部署r
+### 四、來部署r
 
-打開你的 github 新增一個 repo 
+打開你的 github 按下 new 來新增一個 repo
+
 ![](https://i.imgur.com/eZalJYom.png)
 ![](https://i.imgur.com/dDxBq4s.png)
 
@@ -141,20 +144,25 @@ $ git push origin master
 
 
 更新上去後，我們回到 github，選擇 Setting 後往下拉找到 Github Page
+
 ![](https://i.imgur.com/kqawzJ9.png)
+
 選那個 master branch /docs floder
+
 ![](https://i.imgur.com/baEgG5z.png)
 
 
-## 收割囉~~
+### 五、收割囉~~
 等待 10 秒，然後誠心地把連結給按下去 XD
 `https://帳號.github.io/專案`
 
 
+---
+
 ## References
-#### hugo
+**hugo**
 https://gohugo.io/documentation/
 https://siddharam.com.tw/post/20190418/
-#### github page
+**github page**
 https://gohugo.io/hosting-and-deployment/hosting-on-github/#deployment-of-project-pages-from-docs-folder-on-master-branch
 https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/
