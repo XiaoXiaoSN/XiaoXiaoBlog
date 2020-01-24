@@ -1,0 +1,11 @@
+baseURL = "https://xiaoxiaosn.github.io/docs"
+languageCode = "en-us"
+title = "XiaoXiao Notes"
+publishDir = "docs"
+
+theme = "hugo-theme-m10c"
+paginate = 10
+[params]
+  author = "Xiao Xiao"
+  description = "XiaoXiao's note"
+

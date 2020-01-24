@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on XiaoXiao Notes</title>
+    <link>https://xiaoxiaosn.github.io/docs/tags/</link>
+    <description>Recent content in Tags on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Jan 2020 23:02:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiaoxiaosn.github.io/docs/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hugo</title>
+      <link>https://xiaoxiaosn.github.io/docs/tags/hugo/</link>
+      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
+      
+      <guid>https://xiaoxiaosn.github.io/docs/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
