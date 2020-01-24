@@ -1,4 +1,4 @@
-baseURL = "https://xiaoxiaosn.github.io/XiaoXiaoBlog"
+baseURL = "https://blog.10oz.tw"
 languageCode = "en-us"
 title = "XiaoXiao Notes"
 publishDir = "docs"
