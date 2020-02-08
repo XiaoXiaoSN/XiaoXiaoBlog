@@ -3,9 +3,24 @@ languageCode = "en-us"
 title = "XiaoXiao Notes"
 publishDir = "docs"
 
-theme = "hugo-theme-m10c"
+theme = "m10c-plus"
 paginate = 10
 [params]
   author = "Xiao Xiao"
   description = "XiaoXiao 的筆記書"
+#   [[params.social]]
+#     name = "github"
+#     url = "https://github.com/gohugoio"
 
+[params.style]
+  profileBackground = "#333333"
+  profileFontColor = "#f5e3e0"
+  profileTitleColor = "#f5f5f5"
+  contentBackground = "#fafafa"
+  contentFontColor = "#212121"
+  contentTitleColor = "#111111"
+  codeBackground = "#efefef"
+  primaryColor = "#0366d6"
+
+[markup.highlight]
+  style = "friendly"

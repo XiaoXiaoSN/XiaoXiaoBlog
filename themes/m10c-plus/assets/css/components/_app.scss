@@ -1,0 +1,51 @@
+.app-header {
+  padding: 1em;
+  background: $profile-background;
+  text-align: center;
+
+  .title {
+    margin-top: 1rem;
+    margin-bottom: -.5rem;
+    color: $profile-title-color;
+  }
+
+  .sub-title {
+    color: $profile-font-color;
+  }
+}
+
+.app-header-avatar {
+  max-width: 10rem;
+  max-height: 10rem;
+  border-radius: 100%;
+  border: 0.4rem solid $profile-title-color;
+}
+
+.app-container {
+  padding: 2.5rem;
+}
+
+.app-header-social {
+  font-size: 2em;
+  color: $content-title-color;
+
+  a {
+    margin: 0 0.1em;
+  }
+}
+
+@media (min-width: 940px) {
+  .app-header {
+    padding: 2.5em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20rem;
+    min-height: 100vh;
+  }
+
+  .app-container {
+    max-width: 65rem;
+    margin-left: 20rem;
+  }
+}

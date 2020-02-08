@@ -1,0 +1,18 @@
+.post-title {
+  color: $content-title-color;
+  font-size: 2rem;
+}
+
+.post-content {
+  pre {
+    border-left: 0.4em solid rgba($primary-color, .8);
+    padding-left: 1em;
+  }
+  img {
+    max-width: 100%;
+  }
+}
+
+.post-meta {
+  font-size: 0.8em;
+}

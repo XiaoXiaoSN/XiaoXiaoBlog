@@ -13,7 +13,7 @@ tags: ["hugo"]
 2. 安裝 hugo [點我看教學](https://gohugo.io/getting-started/installing#quick-install)
 3. 挑選喜歡的 hugo 模板 [點我參觀](https://themes.gohugo.io/tags/blog/)
 
-```bash
+```sh
 $ hugo version
 Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown
 ```
@@ -21,7 +21,7 @@ Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown
 ### 二、開跑囉
 
 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
-```
+```sh
 $ hugo new site xiaoxiao
 $ cd xiaoxiao
 ```
@@ -42,7 +42,7 @@ $ cd xiaoxiao
 ```
 
 接著挑選一個漂亮的 hugo 模板來下載，我用人家教學[示範的模板](https://themes.gohugo.io/hugo-theme-m10c/)
-```
+```sh
 $ git clone https://github.com/vaga/hugo-theme-m10c.git themes/hugo-theme-m10c
 ```
 
@@ -51,7 +51,7 @@ $ git clone https://github.com/vaga/hugo-theme-m10c.git themes/hugo-theme-m10c
 和第四行的 `publishDir = "docs"`，docs 是 GithubPage 規定的喔不能改
 
 我的改完長這樣:
-```toml=
+```toml
 baseURL = "https://xiaoxiaosn.github.io"
 languageCode = "en-us"
 title = "XiaoXiao Notes"
@@ -65,7 +65,7 @@ paginate = 10
 ```
 
 跑跑看，是不是能看到頁面啦? 服務會在 http://localhost:1313
-```
+```sh
 $ hugo server -D   # -D 表示我們想看到草稿文章(draft)
 ```
 
@@ -76,14 +76,14 @@ $ hugo server -D   # -D 表示我們想看到草稿文章(draft)
 ### 三、來寫文章r
 
 這邊的 make-a-hugo-blog 可以換成你想要的文章名字，等等會被用在網址上喔
-```
+```sh
 $ hugo new make-a-hugo-blog
 ```
 
 這個指令會幫你在 `content` 目錄下新增一個 `make-a-hugo-blog.md` 檔案，
 接著我們寫點內容上去，像這樣:
 要注意的是 `draft: true` 這行在正式上線的時候記得刪掉喔~
-```
+```markdown
 ---
 title: "製造一個 hugo 部落格"
 date: 2020-01-24T23:02:16+08:00
@@ -100,7 +100,7 @@ tags: ["hugo"]
 ```
 
 輸入 `hugo` 指令，讓他跑編譯囉
-```
+```sh
 $ hugo
 ```
 
@@ -117,24 +117,24 @@ $ hugo
 
 我們要先到 `config.toml` 修改域名
 這邊的規則是 `https://帳號.github.io/專案`
-```toml=
+```toml
 # 修改 config.toml 的這一行
 baseURL = "https://xiaoxiaosn.github.io/XiaoXiaoBlog"
 ```
 
 然後下指令重新產生一下
-```
+```sh
 $ hugo
 ```
 
 回到專案，是時候該讓 git 加入了
 第二行這邊記得換成你自己的 github 專案喔
-```
+```sh
 $ git init
 $ git remote add origin git@github.com:XiaoXiaoSN/XiaoXiaoBlog.git
 ```
 
-```
+```sh
 $ git add --all 
 $ git commit -m "init my hugo blog"
 $ git push origin master
@@ -147,7 +147,7 @@ $ git push origin master
 
 ![](https://i.imgur.com/kqawzJ9.png)
 
-選那個 master branch /docs floder
+選那個 master branch /docs folder
 
 ![](https://i.imgur.com/baEgG5z.png)
 
@@ -161,8 +161,9 @@ $ git push origin master
 
 ## References
 **hugo**
-https://gohugo.io/documentation/
-https://siddharam.com.tw/post/20190418/
+* https://gohugo.io/documentation/
+* https://siddharam.com.tw/post/20190418/
+
 **github page**
-https://gohugo.io/hosting-and-deployment/hosting-on-github/#deployment-of-project-pages-from-docs-folder-on-master-branch
-https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/
+* https://gohugo.io/hosting-and-deployment/hosting-on-github/#deployment-of-project-pages-from-docs-folder-on-master-branch
+* https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/
