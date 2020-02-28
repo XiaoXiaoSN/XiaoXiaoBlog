@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>XiaoXiao Notes</title>
-    <link>https://blog.10oz.tw/</link>
-    <description>Recent content on XiaoXiao Notes</description>
+    <title>json on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/json/</link>
+    <description>Recent content in json on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 28 Feb 2020 23:22:36 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.10oz.tw/tags/json/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,19 +19,6 @@
       <guid>https://blog.10oz.tw/golang-json-marshal/</guid>
       <description>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成常用處理json、自定義處理 json和多層處理 三個 part， GOGO
 一、常用方法 package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) // Box 是個箱子 type Box struct { Name string `json:&amp;#34;name&amp;#34;` Color string `json:&amp;#34;color&amp;#34;` } func main() { jsonStr := `{&amp;#34;name&amp;#34;: &amp;#34;喵喵&amp;#34;, &amp;#34;color&amp;#34;: &amp;#34;blue&amp;#34; }` box := new(Box) // 把 bytes 寫進去 Box 物件裡面 	_ = json.Unmarshal([]byte(jsonStr), box) fmt.Printf(&amp;#34;%+v\n&amp;#34;, box) // {Name:喵喵 Color:blue}  // 再把物件寫回去 binary json 	box.Color = &amp;#34;黃色的&amp;#34; byteJSON, _ := json.</description>
-    </item>
-    
-    <item>
-      <title>製造一個 hugo 部落格</title>
-      <link>https://blog.10oz.tw/make-a-hugo-blog/</link>
-      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/make-a-hugo-blog/</guid>
-      <description>一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
-所以我們需要:
- 一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
-$ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
-├── archetypes │ └── default.md # 產生新文章時的模板 ├── config.toml # 最主要的設定檔案 ├── content # Markdown 的文章在這邊 ├── data ├── layouts ├── resources │ └── _gen ├── static └── themes # 套用的主題包們 └── hugo-theme-m10c 接著挑選一個漂亮的 hugo 模板來下載，我用人家教學示範的模板</description>
     </item>
     
   </channel>
