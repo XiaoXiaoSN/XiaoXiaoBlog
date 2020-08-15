@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/casbin/</loc>
+    <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</loc>
+    <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/go/</loc>
+    <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/</loc>
+    <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/</loc>
+    <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/golang/</loc>
+    <lastmod>2020-02-29T16:18:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200229-golang-pretty-print/</loc>
+    <lastmod>2020-02-29T16:18:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/json/</loc>
+    <lastmod>2020-02-29T16:18:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/%E6%8E%92%E7%89%88/</loc>
+    <lastmod>2020-02-29T16:18:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200228-golang-json-marshal/</loc>
+    <lastmod>2020-02-28T23:22:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/hugo/</loc>
+    <lastmod>2020-01-24T23:02:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200124-make-a-hugo-blog/</loc>
+    <lastmod>2020-01-24T23:02:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/categories/</loc>
+  </url>
+  
+</urlset>

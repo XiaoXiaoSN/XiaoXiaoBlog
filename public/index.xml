@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/</link>
+    <description>Recent content on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Aug 2020 00:33:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Casbin 權限管理模組</title>
+      <link>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</link>
+      <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</guid>
+      <description>Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c++, rust
+所以學學看應該很不錯吧！
+Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
+首先要了解 Model, Policy 是什麼呢?
+  Policy 是規則，裡面寫了一系列的權限像是 {小明} 可以對 {文件} {查看} {小明} 可以對 {程式} {查看} {小明} 可以對 {程式} {修改}
+  Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
+  Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)</description>
+    </item>
+    
+    <item>
+      <title>Golang 漂亮的輸出 JSON</title>
+      <link>https://blog.10oz.tw/20200229-golang-pretty-print/</link>
+      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200229-golang-pretty-print/</guid>
+      <description>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！
+我需要排版！！趕快筆記一下
+一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &amp;#34;&amp;#34;, &amp;#34; &amp;#34;) if err != nil { fmt.Println(&amp;#34;&amp;#34;) } fmt.Printf(&amp;#34;%s\n&amp;#34;, jsonByte) } 二、我有一個 json byte func prettyPrintByte(jsonByte []byte) { var buf bytes.Buffer err := json.Indent(&amp;amp;buf, jsonByte, &amp;#34;&amp;#34;, &amp;#34; &amp;#34;) if err == nil { jsonByte = buf.Bytes() } fmt.Printf(&amp;#34;%s\n&amp;#34;, jsonByte) } 參考 https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889</description>
+    </item>
+    
+    <item>
+      <title>Golang 怎麼處理 JSON</title>
+      <link>https://blog.10oz.tw/20200228-golang-json-marshal/</link>
+      <pubDate>Fri, 28 Feb 2020 23:22:36 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200228-golang-json-marshal/</guid>
+      <description>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成常用處理json、自定義處理 json和多層處理 三個 part， GOGO
+一、常用方法 package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) // Box 是個箱子 type Box struct { Name string `json:&amp;#34;name&amp;#34;` Color string `json:&amp;#34;color&amp;#34;` } func main() { jsonStr := `{&amp;#34;name&amp;#34;: &amp;#34;喵喵&amp;#34;, &amp;#34;color&amp;#34;: &amp;#34;blue&amp;#34; }` box := new(Box) // 把 bytes 寫進去 Box 物件裡面 	_ = json.Unmarshal([]byte(jsonStr), box) fmt.Printf(&amp;#34;%+v\n&amp;#34;, box) // {Name:喵喵 Color:blue}  // 再把物件寫回去 binary json 	box.Color = &amp;#34;黃色的&amp;#34; byteJSON, _ := json.</description>
+    </item>
+    
+    <item>
+      <title>製造一個 hugo 部落格</title>
+      <link>https://blog.10oz.tw/20200124-make-a-hugo-blog/</link>
+      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200124-make-a-hugo-blog/</guid>
+      <description>步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
+所以我們需要:
+ 一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
+$ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
+├── archetypes │ └── default.md # 產生新文章時的模板 ├── config.toml # 最主要的設定檔案 ├── content # Markdown 的文章在這邊 ├── data ├── layouts ├── resources │ └── _gen ├── static └── themes # 套用的主題包們 └── hugo-theme-m10c 接著挑選一個漂亮的 hugo 模板來下載，我用人家教學示範的模板</description>
+    </item>
+    
+  </channel>
+</rss>

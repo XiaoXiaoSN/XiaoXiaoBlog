@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Golang 漂亮的輸出 JSON // XiaoXiao Notes</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Xiao Xiao" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b0a12d6e8e3c4a54769279fd471c253dfdcd43ca00298762e5e402702cbfd20f.css" />
+    <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Golang 漂亮的輸出 JSON"/>
+<meta name="twitter:description" content="偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！
+我需要排版！！趕快筆記一下
+一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &#34;&#34;, &#34; &#34;) if err != nil { fmt.Println(&#34;&#34;) } fmt.Printf(&#34;%s\n&#34;, jsonByte) } 二、我有一個 json byte func prettyPrintByte(jsonByte []byte) { var buf bytes.Buffer err := json.Indent(&amp;buf, jsonByte, &#34;&#34;, &#34; &#34;) if err == nil { jsonByte = buf.Bytes() } fmt.Printf(&#34;%s\n&#34;, jsonByte) } 參考 https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889"/>
+
+    <meta property="og:title" content="Golang 漂亮的輸出 JSON" />
+<meta property="og:description" content="偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！
+我需要排版！！趕快筆記一下
+一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &#34;&#34;, &#34; &#34;) if err != nil { fmt.Println(&#34;&#34;) } fmt.Printf(&#34;%s\n&#34;, jsonByte) } 二、我有一個 json byte func prettyPrintByte(jsonByte []byte) { var buf bytes.Buffer err := json.Indent(&amp;buf, jsonByte, &#34;&#34;, &#34; &#34;) if err == nil { jsonByte = buf.Bytes() } fmt.Printf(&#34;%s\n&#34;, jsonByte) } 參考 https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200229-golang-pretty-print/" />
+<meta property="article:published_time" content="2020-02-29T16:18:09+08:00" />
+<meta property="article:modified_time" content="2020-02-29T16:18:09+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+      <h1 class="title">XiaoXiao Notes</h1>
+      <p class="sub-title"> XiaoXiao 的筆記書</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">Golang 漂亮的輸出 JSON</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Feb 29, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/json/">json</a><a class="tag" href="https://blog.10oz.tw/tags/%E6%8E%92%E7%89%88/">排版</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一我有一個-struct">一、我有一個 struct</a></li>
+    <li><a href="#二我有一個-json-byte">二、我有一個 json byte</a></li>
+    <li><a href="#參考">參考</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <p>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！</p>
+<p>我需要排版！！趕快筆記一下</p>
+<h2 id="一我有一個-struct">一、我有一個 struct</h2>
+<p>stack overflow 上有重點！！
+<img src="https://i.imgur.com/xGFhCHW.png" alt=""></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">prettyPrint</span>(data <span style="color:#007020;font-weight:bold">interface</span>{}) {
+	jsonByte, err <span style="color:#666">:=</span> json.<span style="color:#06287e">MarshalIndent</span>(data, <span style="color:#4070a0">&#34;&#34;</span>, <span style="color:#4070a0">&#34;    &#34;</span>)
+	<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;&#34;</span>)
+	}
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;%s\n&#34;</span>, jsonByte)
+}
+</code></pre></div><h2 id="二我有一個-json-byte">二、我有一個 json byte</h2>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">prettyPrintByte</span>(jsonByte []<span style="color:#902000">byte</span>) {
+	<span style="color:#007020;font-weight:bold">var</span> buf bytes.Buffer
+	err <span style="color:#666">:=</span> json.<span style="color:#06287e">Indent</span>(<span style="color:#666">&amp;</span>buf, jsonByte, <span style="color:#4070a0">&#34;&#34;</span>, <span style="color:#4070a0">&#34;    &#34;</span>)
+	<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">==</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		jsonByte = buf.<span style="color:#06287e">Bytes</span>()
+	}
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;%s\n&#34;</span>, jsonByte)
+}
+</code></pre></div><h2 id="參考">參考</h2>
+<p><a href="https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889">https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/</link>
+    <description>Recent content in Tags on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Aug 2020 00:33:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>casbin</title>
+      <link>https://blog.10oz.tw/tags/casbin/</link>
+      <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/casbin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://blog.10oz.tw/tags/go/</link>
+      <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://blog.10oz.tw/tags/golang/</link>
+      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>json</title>
+      <link>https://blog.10oz.tw/tags/json/</link>
+      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/json/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>排版</title>
+      <link>https://blog.10oz.tw/tags/%E6%8E%92%E7%89%88/</link>
+      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/%E6%8E%92%E7%89%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://blog.10oz.tw/tags/hugo/</link>
+      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
