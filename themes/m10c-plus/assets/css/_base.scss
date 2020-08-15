@@ -35,6 +35,8 @@ code {
   font-family: monospace,monospace;
   font-size: 1em;
   color: rgba($content-font-color, .8);
+  background-color: $code-background;
+  padding: 0.2rem;
 }
 
 pre {
@@ -46,6 +48,13 @@ pre {
   }
   background-color: $code-background;
   overflow: auto;
+}
+
+blockquote {
+  padding: 0 1em;
+  margin-left: 0;
+  color: #777;
+  border-left: 0.25em solid #ddd;
 }
 
 ::selection {

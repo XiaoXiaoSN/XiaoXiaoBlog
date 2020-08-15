@@ -5,6 +5,7 @@ publishDir = "docs"
 
 theme = "m10c-plus"
 paginate = 10
+
 [params]
   author = "Xiao Xiao"
   description = "XiaoXiao 的筆記書"
@@ -24,3 +25,6 @@ paginate = 10
 
 [markup.highlight]
   style = "friendly"
+
+[blackfriday]
+  extensions = ["hardLineBreak"]

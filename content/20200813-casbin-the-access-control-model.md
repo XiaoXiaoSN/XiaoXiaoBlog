@@ -232,8 +232,6 @@ func main() {
 
 # Ref
 https://darjun.github.io/2020/06/12/godailylib/casbin/
-
 https://github.com/casbin/xorm-adapter/tree/v2.0.1
-
 https://casbin.org/docs/en/overview
 

@@ -178,6 +178,15 @@ $ git push origin master
 baseURL = "https://blog.10oz.tw"
 ```
 
+## 補充設定
+### md 換行格式
+由於很多人從 hackmd 或是其他的平台轉過來
+發現他們原來的 md 貼過來換行符號沒有被保留在 html 上，也就是兩行連起來啦
+
+```toml
+[blackfriday]
+  extensions = ["hardLineBreak"]
+```
 
 ---
 
