@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Xiao Xiao" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.36f0fbe4c6529c85441b9125ee7302404b873bbdfd73533240078ba4fa121e92.css" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b0a12d6e8e3c4a54769279fd471c253dfdcd43ca00298762e5e402702cbfd20f.css" />
     <link rel="shortcut icon" href="https://blog.10oz.tw.favicon.ico">
 
     
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="製造一個 hugo 部落格"/>
-<meta name="twitter:description" content="一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
+<meta name="twitter:description" content="步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
 所以我們需要:
  一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
 $ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
 ├── archetypes │ └── default.md # 產生新文章時的模板 ├── config.toml # 最主要的設定檔案 ├── content # Markdown 的文章在這邊 ├── data ├── layouts ├── resources │ └── _gen ├── static └── themes # 套用的主題包們 └── hugo-theme-m10c 接著挑選一個漂亮的 hugo 模板來下載，我用人家教學示範的模板"/>
 
     <meta property="og:title" content="製造一個 hugo 部落格" />
-<meta property="og:description" content="一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
+<meta property="og:description" content="步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
 所以我們需要:
  一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
 $ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
@@ -43,25 +43,45 @@ $ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
     </header>
     <main class="app-container">
       
-  <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">製造一個 hugo 部落格</h1>
-      <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">製造一個 hugo 部落格</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Jan 24, 2020
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+        Jan 24, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
 </svg>
-          <a class="tag" href="https://blog.10oz.tw/tags/hugo/">hugo</a></div></div>
-    </header>
-    <div class="post-content">
-      <h3 id="一開始之前">一、開始之前</h3>
+        <a class="tag" href="https://blog.10oz.tw/tags/hugo/">hugo</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#步驟教學">步驟教學</a>
+      <ul>
+        <li><a href="#一開始之前">一、開始之前</a></li>
+        <li><a href="#二開跑囉">二、開跑囉</a></li>
+        <li><a href="#三來寫文章r">三、來寫文章r</a></li>
+        <li><a href="#四來部署r">四、來部署r</a></li>
+        <li><a href="#五收割囉">五、收割囉~~</a></li>
+      </ul>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="步驟教學">步驟教學</h2>
+<h3 id="一開始之前">一、開始之前</h3>
 <p>目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！</p>
 <p>所以我們需要:</p>
 <ol>
@@ -154,7 +174,7 @@ $ git push origin master
 <p>選那個 master branch /docs folder</p>
 <p><img src="https://i.imgur.com/baEgG5z.png" alt=""></p>
 <h3 id="五收割囉">五、收割囉~~</h3>
-<p>等待 10 秒，然後誠心地把連結給按下去 XD
+<p>等待 10 秒，然後帶著一顆誠摯的新把連結給按下去 XD
 <code>https://帳號.github.io/專案</code></p>
 <hr>
 <h2 id="references">References</h2>
@@ -169,11 +189,13 @@ $ git push origin master
 <li><a href="https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/">https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/</a></li>
 </ul>
 
-    </div>
-    <div class="post-footer">
-      
-    </div>
-  </article>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
 
     </main>
   </body>

@@ -5,7 +5,8 @@ tags: ["go", "casbin"]
 ---
 
 
-## [<i class="fa fa-home"></i>](https://casbin.org/en/)  [<i class="fa fa-github"></i>](https://github.com/casbin/casbin)
+[<i class="fa fa-home"></i>](https://casbin.org/en/)  
+[<i class="fa fa-github"></i>](https://github.com/casbin/casbin)
 
 ## Casbin 是什麼
 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 `RBAC` `ABAC`

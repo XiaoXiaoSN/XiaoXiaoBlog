@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Xiao Xiao" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.36f0fbe4c6529c85441b9125ee7302404b873bbdfd73533240078ba4fa121e92.css" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b0a12d6e8e3c4a54769279fd471c253dfdcd43ca00298762e5e402702cbfd20f.css" />
     <link rel="shortcut icon" href="https://blog.10oz.tw.favicon.ico">
 
     
@@ -37,25 +37,39 @@
     </header>
     <main class="app-container">
       
-  <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">Golang 怎麼處理 JSON</h1>
-      <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">Golang 怎麼處理 JSON</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Feb 28, 2020
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+        Feb 28, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
 </svg>
-          <a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/json/">json</a></div></div>
-    </header>
-    <div class="post-content">
-      <p>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！
+        <a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/json/">json</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一常用方法">一、常用方法</a></li>
+    <li><a href="#二更多方法">二、更多方法</a></li>
+    <li><a href="#三多層的方法">三、多層的方法</a></li>
+    <li><a href="#結論">結論</a></li>
+    <li><a href="#參考資料">參考資料</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <p>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！
 內文會分成<code>常用處理json</code>、<code>自定義處理 json</code>和<code>多層處理</code> 三個 part， GOGO</p>
 <h2 id="一常用方法">一、常用方法</h2>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">package</span> main
@@ -377,11 +391,13 @@
 <p><a href="https://medium.com/@xfstart07/go-json-%E7%9A%84%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81-e689522a1f1f">https://medium.com/@xfstart07/go-json-%E7%9A%84%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81-e689522a1f1f</a></p>
 <p><a href="https://github.com/line/line-bot-sdk-go/blob/362880a2e613ce24eb32e1b72cd345370578b6df/linebot/flex_unmarshal.go#L23">https://github.com/line/line-bot-sdk-go/blob/362880a2e613ce24eb32e1b72cd345370578b6df/linebot/flex_unmarshal.go#L23</a></p>
 
-    </div>
-    <div class="post-footer">
-      
-    </div>
-  </article>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
 
     </main>
   </body>

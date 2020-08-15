@@ -53,7 +53,7 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
       <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200124-make-a-hugo-blog/</guid>
-      <description>一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
+      <description>步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
 所以我們需要:
  一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
 $ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:

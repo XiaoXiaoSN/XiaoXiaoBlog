@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Xiao Xiao" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.36f0fbe4c6529c85441b9125ee7302404b873bbdfd73533240078ba4fa121e92.css" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b0a12d6e8e3c4a54769279fd471c253dfdcd43ca00298762e5e402702cbfd20f.css" />
     <link rel="shortcut icon" href="https://blog.10oz.tw.favicon.ico">
 
     
@@ -39,25 +39,37 @@
     </header>
     <main class="app-container">
       
-  <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">Golang 漂亮的輸出 JSON</h1>
-      <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">Golang 漂亮的輸出 JSON</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Feb 29, 2020
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+        Feb 29, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
 </svg>
-          <a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/json/">json</a><a class="tag" href="https://blog.10oz.tw/tags/%E6%8E%92%E7%89%88/">排版</a></div></div>
-    </header>
-    <div class="post-content">
-      <p>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！</p>
+        <a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/json/">json</a><a class="tag" href="https://blog.10oz.tw/tags/%E6%8E%92%E7%89%88/">排版</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一我有一個-struct">一、我有一個 struct</a></li>
+    <li><a href="#二我有一個-json-byte">二、我有一個 json byte</a></li>
+    <li><a href="#參考">參考</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <p>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！</p>
 <p>我需要排版！！趕快筆記一下</p>
 <h2 id="一我有一個-struct">一、我有一個 struct</h2>
 <p>stack overflow 上有重點！！
@@ -81,11 +93,13 @@
 </code></pre></div><h2 id="參考">參考</h2>
 <p><a href="https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889">https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889</a></p>
 
-    </div>
-    <div class="post-footer">
-      
-    </div>
-  </article>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
 
     </main>
   </body>

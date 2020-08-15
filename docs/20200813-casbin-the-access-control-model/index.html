@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Xiao Xiao" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.36f0fbe4c6529c85441b9125ee7302404b873bbdfd73533240078ba4fa121e92.css" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b0a12d6e8e3c4a54769279fd471c253dfdcd43ca00298762e5e402702cbfd20f.css" />
     <link rel="shortcut icon" href="https://blog.10oz.tw.favicon.ico">
 
     
@@ -47,25 +47,44 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
     </header>
     <main class="app-container">
       
-  <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">Casbin 權限管理模組</h1>
-      <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">Casbin 權限管理模組</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Aug 13, 2020
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+        Aug 13, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
 </svg>
-          <a class="tag" href="https://blog.10oz.tw/tags/go/">go</a><a class="tag" href="https://blog.10oz.tw/tags/casbin/">casbin</a></div></div>
-    </header>
-    <div class="post-content">
-      <h2 id="i-classfa-fa-homeihttpscasbinorgen--i-classfa-fa-githubihttpsgithubcomcasbincasbin"><a href="https://casbin.org/en/"><!-- raw HTML omitted --><!-- raw HTML omitted --></a>  <a href="https://github.com/casbin/casbin"><!-- raw HTML omitted --><!-- raw HTML omitted --></a></h2>
+        <a class="tag" href="https://blog.10oz.tw/tags/go/">go</a><a class="tag" href="https://blog.10oz.tw/tags/casbin/">casbin</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#casbin-是什麼">Casbin 是什麼</a></li>
+    <li><a href="#model-policy-語法">Model, Policy 語法</a>
+      <ul>
+        <li><a href="#model-權限模組">Model 權限模組</a></li>
+        <li><a href="#policy-權限規則">Policy 權限規則</a></li>
+      </ul>
+    </li>
+    <li><a href="#來看扣">來看扣</a></li>
+    <li><a href="#存進去-sql-裡面">存進去 SQL 裡面</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <p><a href="https://casbin.org/en/"><!-- raw HTML omitted --><!-- raw HTML omitted --></a><br>
+<a href="https://github.com/casbin/casbin"><!-- raw HTML omitted --><!-- raw HTML omitted --></a></p>
 <h2 id="casbin-是什麼">Casbin 是什麼</h2>
 <p>casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 <code>RBAC</code> <code>ABAC</code>
 他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c++, rust</p>
@@ -268,11 +287,13 @@ data2 是 data_group
 <p><a href="https://github.com/casbin/xorm-adapter/tree/v2.0.1">https://github.com/casbin/xorm-adapter/tree/v2.0.1</a></p>
 <p><a href="https://casbin.org/docs/en/overview">https://casbin.org/docs/en/overview</a></p>
 
-    </div>
-    <div class="post-footer">
-      
-    </div>
-  </article>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
 
     </main>
   </body>
