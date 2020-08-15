@@ -1,7 +1,6 @@
 ---
 title: "Golang 漂亮的輸出 JSON"
 date: 2020-02-29T16:18:09+08:00
-draft: true
 tags: ["golang", "json", "排版"]
 ---
 
@@ -38,6 +37,6 @@ func prettyPrintByte(jsonByte []byte) {
 }
 ```
 
-
 ## 參考
 https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889
+

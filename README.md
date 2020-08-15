@@ -6,12 +6,12 @@ https://blog.10oz.tw
 hugo server -D
 ```
 
+產生新的文章
+```
+hugo new 20200816-make-a-hugo-blog.md
+```
+
 輸出部落格 html
 ```
 hugo
-```
-
-新的文章
-```
-hugo new make-a-hugo-blog.md
 ```
