@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>製造一個 hugo 部落格 // XiaoXiao Notes</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Xiao Xiao" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.36f0fbe4c6529c85441b9125ee7302404b873bbdfd73533240078ba4fa121e92.css" />
+    <link rel="shortcut icon" href="https://blog.10oz.tw.favicon.ico">
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="製造一個 hugo 部落格"/>
+<meta name="twitter:description" content="一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
+所以我們需要:
+ 一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
+$ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
+├── archetypes │ └── default.md # 產生新文章時的模板 ├── config.toml # 最主要的設定檔案 ├── content # Markdown 的文章在這邊 ├── data ├── layouts ├── resources │ └── _gen ├── static └── themes # 套用的主題包們 └── hugo-theme-m10c 接著挑選一個漂亮的 hugo 模板來下載，我用人家教學示範的模板"/>
+
+    <meta property="og:title" content="製造一個 hugo 部落格" />
+<meta property="og:description" content="一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
+所以我們需要:
+ 一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
+$ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
+├── archetypes │ └── default.md # 產生新文章時的模板 ├── config.toml # 最主要的設定檔案 ├── content # Markdown 的文章在這邊 ├── data ├── layouts ├── resources │ └── _gen ├── static └── themes # 套用的主題包們 └── hugo-theme-m10c 接著挑選一個漂亮的 hugo 模板來下載，我用人家教學示範的模板" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200124-make-a-hugo-blog/" />
+<meta property="article:published_time" content="2020-01-24T23:02:16+08:00" />
+<meta property="article:modified_time" content="2020-01-24T23:02:16+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+      <h1 class="title">XiaoXiao Notes</h1>
+      <p class="sub-title"> XiaoXiao 的筆記書</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">製造一個 hugo 部落格</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 24, 2020
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://blog.10oz.tw/tags/hugo/">hugo</a></div></div>
+    </header>
+    <div class="post-content">
+      <h3 id="一開始之前">一、開始之前</h3>
+<p>目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！</p>
+<p>所以我們需要:</p>
+<ol>
+<li>一人份的 github 帳號</li>
+<li>安裝 hugo <a href="https://gohugo.io/getting-started/installing#quick-install">點我看教學</a></li>
+<li>挑選喜歡的 hugo 模板 <a href="https://themes.gohugo.io/tags/blog/">點我參觀</a></li>
+</ol>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ hugo version
+Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown
+</code></pre></div><h3 id="二開跑囉">二、開跑囉</h3>
+<p>開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ hugo new site xiaoxiao
+$ <span style="color:#007020">cd</span> xiaoxiao
+</code></pre></div><p>會看到目錄長這樣:</p>
+<pre><code>├── archetypes
+│   └── default.md         # 產生新文章時的模板
+├── config.toml            # 最主要的設定檔案
+├── content                # Markdown 的文章在這邊
+├── data
+├── layouts
+├── resources
+│   └── _gen
+├── static
+└── themes                 # 套用的主題包們
+    └── hugo-theme-m10c
+</code></pre><p>接著挑選一個漂亮的 hugo 模板來下載，我用人家教學<a href="https://themes.gohugo.io/hugo-theme-m10c/">示範的模板</a></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/vaga/hugo-theme-m10c.git themes/hugo-theme-m10c
+</code></pre></div><p>再來，開啟文字編輯器修改 <code>config.toml</code>，
+最主要是第六行的 <code>theme</code>
+和第四行的 <code>publishDir = &quot;docs&quot;</code>，docs 是 GithubPage 規定的喔不能改</p>
+<p>我的改完長這樣:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">baseURL = <span style="color:#4070a0">&#34;https://xiaoxiaosn.github.io&#34;</span>
+languageCode = <span style="color:#4070a0">&#34;en-us&#34;</span>
+title = <span style="color:#4070a0">&#34;XiaoXiao Notes&#34;</span>
+publishDir = <span style="color:#4070a0">&#34;docs&#34;</span>
+
+theme = <span style="color:#4070a0">&#34;hugo-theme-m10c&#34;</span>
+paginate = <span style="color:#40a070">10</span>
+[params]
+  author = <span style="color:#4070a0">&#34;Xiao Xiao&#34;</span>
+  description = <span style="color:#4070a0">&#34;XiaoXiao 的筆記書&#34;</span>
+</code></pre></div><p>跑跑看，是不是能看到頁面啦? 服務會在 http://localhost:1313</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ hugo server -D   <span style="color:#60a0b0;font-style:italic"># -D 表示我們想看到草稿文章(draft)</span>
+</code></pre></div><p>看到有安捏就對了!
+<img src="https://i.imgur.com/aHQCWn7.png" alt=""></p>
+<h3 id="三來寫文章r">三、來寫文章r</h3>
+<p>這邊的 make-a-hugo-blog 可以換成你想要的文章名字，等等會被用在網址上喔</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ hugo new make-a-hugo-blog
+</code></pre></div><p>這個指令會幫你在 <code>content</code> 目錄下新增一個 <code>make-a-hugo-blog.md</code> 檔案，
+接著我們寫點內容上去，像這樣:
+要注意的是 <code>draft: true</code> 這行在正式上線的時候記得刪掉喔~</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">---
+title: &#34;製造一個 hugo 部落格&#34;
+date: 2020-01-24T23:02:16+08:00
+tags: [&#34;hugo&#34;]
+---
+
+<span style="color:#800080;font-weight:bold">## 開始之前
+</span><span style="color:#800080;font-weight:bold"></span>目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
+
+所以我們需要:
+<span style="color:#007020;font-weight:bold">1.</span> 一人份的 github 帳號
+<span style="color:#007020;font-weight:bold">2.</span> 安裝 hugo [<span style="color:#062873;font-weight:bold">點我看教學</span>](<span style="color:#4070a0">https://gohugo.io/getting-started/installing#quick-install</span>)
+<span style="color:#007020;font-weight:bold">3.</span> 挑選喜歡的 hugo 模板 [<span style="color:#062873;font-weight:bold">點我參觀</span>](<span style="color:#4070a0">https://themes.gohugo.io/tags/blog/</span>)
+</code></pre></div><p>輸入 <code>hugo</code> 指令，讓他跑編譯囉</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ hugo
+</code></pre></div><h3 id="四來部署r">四、來部署r</h3>
+<p>打開你的 github 按下 new 來新增一個 repo</p>
+<p><img src="https://i.imgur.com/eZalJYom.png" alt="">
+<img src="https://i.imgur.com/dDxBq4s.png" alt=""></p>
+<p>接下來會進到這個畫面，先不急著跟他操作
+<img src="https://i.imgur.com/psPPTwb.png" alt=""></p>
+<p>我們要先到 <code>config.toml</code> 修改域名
+這邊的規則是 <code>https://帳號.github.io/專案</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#60a0b0;font-style:italic"># 修改 config.toml 的這一行</span>
+baseURL = <span style="color:#4070a0">&#34;https://xiaoxiaosn.github.io/XiaoXiaoBlog&#34;</span>
+</code></pre></div><p>然後下指令重新產生一下</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ hugo
+</code></pre></div><p>回到專案，是時候該讓 git 加入了
+第二行這邊記得換成你自己的 github 專案喔</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git init
+$ git remote add origin git@github.com:XiaoXiaoSN/XiaoXiaoBlog.git
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git add --all 
+$ git commit -m <span style="color:#4070a0">&#34;init my hugo blog&#34;</span>
+$ git push origin master
+</code></pre></div><p>在 add 的時候出現 warn 不擔心，他只是提醒你在這個 git 專案下還有包含了另一個 git 專案 (theme裡面那個)
+<img src="https://i.imgur.com/zIZreex.png" alt=""></p>
+<p>更新上去後，我們回到 github，選擇 Setting 後往下拉找到 Github Page</p>
+<p><img src="https://i.imgur.com/kqawzJ9.png" alt=""></p>
+<p>選那個 master branch /docs folder</p>
+<p><img src="https://i.imgur.com/baEgG5z.png" alt=""></p>
+<h3 id="五收割囉">五、收割囉~~</h3>
+<p>等待 10 秒，然後誠心地把連結給按下去 XD
+<code>https://帳號.github.io/專案</code></p>
+<hr>
+<h2 id="references">References</h2>
+<p><strong>hugo</strong></p>
+<ul>
+<li><a href="https://gohugo.io/documentation/">https://gohugo.io/documentation/</a></li>
+<li><a href="https://siddharam.com.tw/post/20190418/">https://siddharam.com.tw/post/20190418/</a></li>
+</ul>
+<p><strong>github page</strong></p>
+<ul>
+<li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#deployment-of-project-pages-from-docs-folder-on-master-branch">https://gohugo.io/hosting-and-deployment/hosting-on-github/#deployment-of-project-pages-from-docs-folder-on-master-branch</a></li>
+<li><a href="https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/">https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Casbin 權限管理模組 // XiaoXiao Notes</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Xiao Xiao" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.36f0fbe4c6529c85441b9125ee7302404b873bbdfd73533240078ba4fa121e92.css" />
+    <link rel="shortcut icon" href="https://blog.10oz.tw.favicon.ico">
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Casbin 權限管理模組"/>
+<meta name="twitter:description" content="Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c&#43;&#43;, rust
+所以學學看應該很不錯吧！
+Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
+首先要了解 Model, Policy 是什麼呢?
+  Policy 是規則，裡面寫了一系列的權限像是 {小明} 可以對 {文件} {查看} {小明} 可以對 {程式} {查看} {小明} 可以對 {程式} {修改}
+  Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
+  Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)"/>
+
+    <meta property="og:title" content="Casbin 權限管理模組" />
+<meta property="og:description" content="Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c&#43;&#43;, rust
+所以學學看應該很不錯吧！
+Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
+首先要了解 Model, Policy 是什麼呢?
+  Policy 是規則，裡面寫了一系列的權限像是 {小明} 可以對 {文件} {查看} {小明} 可以對 {程式} {查看} {小明} 可以對 {程式} {修改}
+  Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
+  Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200813-casbin-the-access-control-model/" />
+<meta property="article:published_time" content="2020-08-13T00:33:03+08:00" />
+<meta property="article:modified_time" content="2020-08-13T00:33:03+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+      <h1 class="title">XiaoXiao Notes</h1>
+      <p class="sub-title"> XiaoXiao 的筆記書</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Casbin 權限管理模組</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Aug 13, 2020
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://blog.10oz.tw/tags/go/">go</a><a class="tag" href="https://blog.10oz.tw/tags/casbin/">casbin</a></div></div>
+    </header>
+    <div class="post-content">
+      <h2 id="i-classfa-fa-homeihttpscasbinorgen--i-classfa-fa-githubihttpsgithubcomcasbincasbin"><a href="https://casbin.org/en/"><!-- raw HTML omitted --><!-- raw HTML omitted --></a>  <a href="https://github.com/casbin/casbin"><!-- raw HTML omitted --><!-- raw HTML omitted --></a></h2>
+<h2 id="casbin-是什麼">Casbin 是什麼</h2>
+<p>casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 <code>RBAC</code> <code>ABAC</code>
+他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c++, rust</p>
+<p>所以學學看應該很不錯吧！</p>
+<h2 id="model-policy-語法">Model, Policy 語法</h2>
+<p>開啟編輯器的畫面 <a href="https://casbin.org/editor/">https://casbin.org/editor/</a> 實際操作更好了解！</p>
+<p>首先要了解 Model, Policy 是什麼呢?</p>
+<ul>
+<li>
+<p>Policy 是規則，裡面寫了一系列的權限像是
+<code>{小明} 可以對 {文件} {查看}</code>
+<code>{小明} 可以對 {程式} {查看}</code>
+<code>{小明} 可以對 {程式} {修改}</code></p>
+</li>
+<li>
+<p>Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法
+像是前面 Policy 的寫法就是在這裡來定義</p>
+</li>
+</ul>
+<h3 id="model-權限模組">Model 權限模組</h3>
+<h4 id="r-request_definition"><code>r</code> request_definition</h4>
+<p>用來表示輸入，例如說 <code>r = sub, obj, act</code> 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)</p>
+<h4 id="p-policy_definition"><code>p</code> policy_definition</h4>
+<p>用來表示規則的形狀，等一下在設定 Policy 的時候就要按這這個規則
+範例像是 <code>p = sub, act</code> 就可以設定只和人、動作有關的規則 (alice 可以 read)
+也可以同時設定第二條 Policy 格式 <code>p2 = sub, act, act2</code>，就可以把更多的資訊納入規則的建立，前提當然你的 r(輸入)要有帶入 act2</p>
+<h4 id="g-role_definition"><code>g</code> (role_definition)</h4>
+<p>也就是 RBAC 裡面的 R(role)，可以想像成是一個群組(group)裡面有很多的人，當你定義該群組有什麼權限，那麼在該群組裡面的人也就同時擁有這些權限。</p>
+<h4 id="e-policy_effect"><code>e</code> (policy_effect)</h4>
+<p>定義規則公式的結果，最常見的是
+<code>e = some(where (p.eft == allow))</code> 表示只要有一條 match 結果通過就通過了
+<code>!some(where (p.eft == deny))</code> 表示只要有一條沒有通過，那就不通過
+這裡 casbin 還有預設一些函數可以使用，像是用 <code>keyMatch</code> 來比對， * 表示全過，或是進一步的 regexMatch，還有 eval 可以動態的輸入規則
+甚至可以自己寫 function 綁定進去，非常有用！可以去官網看看 <a href="https://casbin.org/docs/en/function">更多function</a></p>
+<h4 id="m-matchers"><code>m</code> (matchers)</h4>
+<p>就是使用前面設定檔來寫規則公式的地方</p>
+<p>來看一個範例模型 ACL (Access Control List) 也就是白名單模式
+看到 <code>matchers</code> 很明顯說明了，你的 sub, obj, act 人、物、動作 都要相同才會是 allow</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#007020;font-weight:bold">[request_definition]</span>
+<span style="color:#4070a0">r</span> <span style="color:#666">=</span> <span style="color:#4070a0">sub, obj, act</span>
+
+<span style="color:#007020;font-weight:bold">[policy_definition]</span>
+<span style="color:#4070a0">p</span> <span style="color:#666">=</span> <span style="color:#4070a0">sub, obj, act</span>
+
+<span style="color:#007020;font-weight:bold">[policy_effect]</span>
+<span style="color:#4070a0">e</span> <span style="color:#666">=</span> <span style="color:#4070a0">some(where (p.eft == allow))</span>
+
+<span style="color:#007020;font-weight:bold">[matchers]</span>
+<span style="color:#4070a0">m</span> <span style="color:#666">=</span> <span style="color:#4070a0">r.sub == p.sub &amp;&amp; r.obj == p.obj &amp;&amp; r.act == p.act</span>
+</code></pre></div><h3 id="policy-權限規則">Policy 權限規則</h3>
+<p>定義好模型之後，還需要資料才可以開始跑，跟上面的 Model 模型可以搭配著看
+這裏 Policy 的寫法需符合 model 裡面 p(policy_definition) 的規範</p>
+<pre><code>p, alice, data1, read
+p, bob, data2, write
+</code></pre><h2 id="來看扣">來看扣</h2>
+<p>複製了範例的 RBAC 模式，可以在剛剛的 <a href="https://casbin.org/editor/">editor</a> 上選擇 RBAC with resource roles 來看看執行結果是否相同</p>
+<p>這邊在看的時候可以先看 policy g 定義的 group，</p>
+<blockquote>
+<p>alice 是 admin
+data1 是 data_group
+data2 是 data_group
+然後 admin 可以 write data_group</p>
+</blockquote>
+<p>這樣應該相當容易理解了～</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">package</span> main
+
+<span style="color:#007020;font-weight:bold">import</span> (
+	<span style="color:#4070a0">&#34;fmt&#34;</span>
+
+	<span style="color:#4070a0">&#34;github.com/casbin/casbin/v2&#34;</span>
+	<span style="color:#4070a0">&#34;github.com/casbin/casbin/v2/model&#34;</span>
+	scas <span style="color:#4070a0">&#34;github.com/qiangmzsx/string-adapter/v2&#34;</span>
+)
+
+<span style="color:#007020;font-weight:bold">var</span> modelStr = <span style="color:#4070a0">`</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">[request_definition]
+</span><span style="color:#4070a0">r = sub, obj, act
+</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">[policy_definition]
+</span><span style="color:#4070a0">p = sub, obj, act
+</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">[role_definition]
+</span><span style="color:#4070a0">g = _, _
+</span><span style="color:#4070a0">g2 = _, _
+</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">[policy_effect]
+</span><span style="color:#4070a0">e = some(where (p.eft == allow))
+</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">[matchers]
+</span><span style="color:#4070a0">m = g(r.sub, p.sub) &amp;&amp; g2(r.obj, p.obj) &amp;&amp; r.act == p.act
+</span><span style="color:#4070a0"></span><span style="color:#4070a0">`</span>
+
+<span style="color:#007020;font-weight:bold">var</span> policyStr = <span style="color:#4070a0">`</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">p, alice, data1, read
+</span><span style="color:#4070a0">p, bob, data2, write
+</span><span style="color:#4070a0">p, admin, data_group, write
+</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">g, alice, admin
+</span><span style="color:#4070a0">g2, data1, data_group
+</span><span style="color:#4070a0">g2, data2, data_group
+</span><span style="color:#4070a0"></span><span style="color:#4070a0">`</span>
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	<span style="color:#60a0b0;font-style:italic">// 設定 Model 模型
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// 參考 https://casbin.org/docs/en/model-storage
+</span><span style="color:#60a0b0;font-style:italic"></span>	m, _ <span style="color:#666">:=</span> model.<span style="color:#06287e">NewModelFromString</span>(modelStr)
+
+	<span style="color:#60a0b0;font-style:italic">// 設定 Policy 具體規則
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// 可以參考 https://casbin.org/docs/en/adapters
+</span><span style="color:#60a0b0;font-style:italic"></span>	p <span style="color:#666">:=</span> scas.<span style="color:#06287e">NewAdapter</span>(policyStr)
+
+	<span style="color:#60a0b0;font-style:italic">// 建立 Enforcer 需要輸入 Model 和 Policy
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// casbin 提供很多的 adapter 讓開發者用自己適合的方式填充資料 (file, db, redis, cloud...)
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// 範例選擇了最方便的直接讀文字 XDD
+</span><span style="color:#60a0b0;font-style:italic"></span>	enforcer, _ <span style="color:#666">:=</span> casbin.<span style="color:#06287e">NewEnforcer</span>(m, p)
+
+	<span style="color:#60a0b0;font-style:italic">// 實際測試時間:
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// 在 model [request_definition] 設定了三個變數輸入
+</span><span style="color:#60a0b0;font-style:italic"></span>	sub, obj, act <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;alice&#34;</span>, <span style="color:#4070a0">&#34;data2&#34;</span>, <span style="color:#4070a0">&#34;write&#34;</span>
+	result, _ <span style="color:#666">:=</span> enforcer.<span style="color:#06287e">Enforce</span>(sub, obj, act)
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;enforce1: %t\n&#34;</span>, result) <span style="color:#60a0b0;font-style:italic">// true
+</span><span style="color:#60a0b0;font-style:italic"></span>
+	sub, obj, act = <span style="color:#4070a0">&#34;alice&#34;</span>, <span style="color:#4070a0">&#34;data2&#34;</span>, <span style="color:#4070a0">&#34;read&#34;</span>
+	result, _ = enforcer.<span style="color:#06287e">Enforce</span>(sub, obj, act)
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;enforce1: %t\n&#34;</span>, result) <span style="color:#60a0b0;font-style:italic">// false (因為 admin 對 data_group 沒有 read)
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+</code></pre></div><hr>
+<p>再來偷偷推薦每日一庫的 casbin 文章  <a href="https://darjun.github.io/2020/06/12/godailylib/casbin/">https://darjun.github.io/2020/06/12/godailylib/casbin/</a>
+裡面提到 ABAC（attribute base access list）模型的用法，相當有趣
+需求是這樣的：</p>
+<blockquote>
+<p>正常工作時間9:00-18:00所有人都可以讀寫data，其他時間只有數據所有者能讀寫。</p>
+</blockquote>
+<p>Model 如下</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#007020;font-weight:bold">[request_definition]</span>
+<span style="color:#4070a0">r</span> <span style="color:#666">=</span> <span style="color:#4070a0">sub, obj, act</span>
+
+<span style="color:#007020;font-weight:bold">[policy_definition]</span>
+<span style="color:#4070a0">p</span> <span style="color:#666">=</span> <span style="color:#4070a0">sub, obj, act</span>
+
+<span style="color:#007020;font-weight:bold">[matchers]</span>
+<span style="color:#4070a0">m</span> <span style="color:#666">=</span> <span style="color:#4070a0">r.sub.Hour &gt;= 9 &amp;&amp; r.sub.Hour &lt; 18 || r.sub.Name == r.obj.Owner</span>
+
+<span style="color:#007020;font-weight:bold">[policy_effect]</span>
+<span style="color:#4070a0">e</span> <span style="color:#666">=</span> <span style="color:#4070a0">some(where (p.eft == allow))</span>
+</code></pre></div><p>該規則不需要策略文件：</p>
+<h2 id="存進去-sql-裡面">存進去 SQL 裡面</h2>
+<p>實際上在使用 casbin 的時候我們不會用字串來寫 model, policy
+更多會存在 file 或是 db 裡面，這時候 adapter 就派上用場啦~</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">package</span> main
+
+<span style="color:#007020;font-weight:bold">import</span> (
+	<span style="color:#4070a0">&#34;fmt&#34;</span>
+
+	<span style="color:#4070a0">&#34;github.com/casbin/casbin/v2&#34;</span>
+	xormadapter <span style="color:#4070a0">&#34;github.com/casbin/xorm-adapter/v2&#34;</span>
+	_ <span style="color:#4070a0">&#34;github.com/lib/pq&#34;</span>
+)
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	<span style="color:#60a0b0;font-style:italic">// 初始化 xorm adpater，在這裡與 DB 連線
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// 沒有指定 db 的話會幫你建立一個 casbin (加入 dbname=abc 可以指定使用 DB abc)
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// 進去會幫你檢查有沒有 casbin_rule 的資料表，沒有的話也會幫你加進去
+</span><span style="color:#60a0b0;font-style:italic"></span>	driverName <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;postgres&#34;</span>
+	pgUser, pgPassWd <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;root&#34;</span>, <span style="color:#4070a0">&#34;root&#34;</span>
+	dataSource <span style="color:#666">:=</span> fmt.<span style="color:#06287e">Sprintf</span>(<span style="color:#4070a0">&#34;user=%s password=%s host=127.0.0.1 port=5432 sslmode=disable&#34;</span>, pgUser, pgPassWd)
+	a, _ <span style="color:#666">:=</span> xormadapter.<span style="color:#06287e">NewAdapter</span>(driverName, dataSource) <span style="color:#60a0b0;font-style:italic">// Your driver and data source.
+</span><span style="color:#60a0b0;font-style:italic"></span>
+	<span style="color:#60a0b0;font-style:italic">// 直接讀檔案最快啦
+</span><span style="color:#60a0b0;font-style:italic"></span>	enforcer, _ <span style="color:#666">:=</span> casbin.<span style="color:#06287e">NewEnforcer</span>(<span style="color:#4070a0">&#34;model_rbac.conf&#34;</span>, a)
+
+	<span style="color:#60a0b0;font-style:italic">// 第一次跑的話會需要 Policy 資料，讓他幫忙寫進去吧
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// enforcer.EnableAutoSave(false) // 關閉自動同步
+</span><span style="color:#60a0b0;font-style:italic"></span>	{
+		<span style="color:#60a0b0;font-style:italic">// 如果是 enforcer.AddPolicy 的話會幫你填第一個 &#34;p&#34;
+</span><span style="color:#60a0b0;font-style:italic"></span>		enforcer.<span style="color:#06287e">AddNamedPolicy</span>(<span style="color:#4070a0">&#34;p&#34;</span>, <span style="color:#4070a0">&#34;alice&#34;</span>, <span style="color:#4070a0">&#34;data1&#34;</span>, <span style="color:#4070a0">&#34;read&#34;</span>)
+		enforcer.<span style="color:#06287e">AddNamedPolicy</span>(<span style="color:#4070a0">&#34;p&#34;</span>, <span style="color:#4070a0">&#34;bob&#34;</span>, <span style="color:#4070a0">&#34;data2&#34;</span>, <span style="color:#4070a0">&#34;write&#34;</span>)
+		enforcer.<span style="color:#06287e">AddNamedPolicy</span>(<span style="color:#4070a0">&#34;p&#34;</span>, <span style="color:#4070a0">&#34;data_group_admin&#34;</span>, <span style="color:#4070a0">&#34;data_group&#34;</span>, <span style="color:#4070a0">&#34;write&#34;</span>)
+		<span style="color:#60a0b0;font-style:italic">// enforcer.AddGroupingPolicies 的話會幫你填第一個 &#34;g&#34;
+</span><span style="color:#60a0b0;font-style:italic"></span>		enforcer.<span style="color:#06287e">AddNamedGroupingPolicy</span>(<span style="color:#4070a0">&#34;g&#34;</span>, <span style="color:#4070a0">&#34;alice&#34;</span>, <span style="color:#4070a0">&#34;data_group_admin&#34;</span>)
+		enforcer.<span style="color:#06287e">AddNamedGroupingPolicy</span>(<span style="color:#4070a0">&#34;g2&#34;</span>, <span style="color:#4070a0">&#34;data1&#34;</span>, <span style="color:#4070a0">&#34;data_group&#34;</span>)
+		enforcer.<span style="color:#06287e">AddNamedGroupingPolicy</span>(<span style="color:#4070a0">&#34;g2&#34;</span>, <span style="color:#4070a0">&#34;data2&#34;</span>, <span style="color:#4070a0">&#34;data_group&#34;</span>)
+	}
+
+	<span style="color:#60a0b0;font-style:italic">// Load the policy from DB.
+</span><span style="color:#60a0b0;font-style:italic"></span>	enforcer.<span style="color:#06287e">LoadPolicy</span>()
+
+	<span style="color:#60a0b0;font-style:italic">// 實際測試時間:
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// 在 model [request_definition] 設定了三個變數輸入
+</span><span style="color:#60a0b0;font-style:italic"></span>	sub, obj, act <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;alice&#34;</span>, <span style="color:#4070a0">&#34;data2&#34;</span>, <span style="color:#4070a0">&#34;write&#34;</span>
+	result, _ <span style="color:#666">:=</span> enforcer.<span style="color:#06287e">Enforce</span>(sub, obj, act)
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;enforce1: %t\n&#34;</span>, result) <span style="color:#60a0b0;font-style:italic">// true
+</span><span style="color:#60a0b0;font-style:italic"></span>
+	sub, obj, act = <span style="color:#4070a0">&#34;alice&#34;</span>, <span style="color:#4070a0">&#34;data2&#34;</span>, <span style="color:#4070a0">&#34;read&#34;</span>
+	result, _ = enforcer.<span style="color:#06287e">Enforce</span>(sub, obj, act)
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;enforce2: %t\n&#34;</span>, result) <span style="color:#60a0b0;font-style:italic">// false (因為 data_group_admin 對 data_group 沒有 read)
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+</code></pre></div><h1 id="ref">Ref</h1>
+<p><a href="https://darjun.github.io/2020/06/12/godailylib/casbin/">https://darjun.github.io/2020/06/12/godailylib/casbin/</a></p>
+<p><a href="https://github.com/casbin/xorm-adapter/tree/v2.0.1">https://github.com/casbin/xorm-adapter/tree/v2.0.1</a></p>
+<p><a href="https://casbin.org/docs/en/overview">https://casbin.org/docs/en/overview</a></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Golang 怎麼處理 JSON // XiaoXiao Notes</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Xiao Xiao" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.36f0fbe4c6529c85441b9125ee7302404b873bbdfd73533240078ba4fa121e92.css" />
+    <link rel="shortcut icon" href="https://blog.10oz.tw.favicon.ico">
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Golang 怎麼處理 JSON"/>
+<meta name="twitter:description" content="json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成常用處理json、自定義處理 json和多層處理 三個 part， GOGO
+一、常用方法 package main import ( &#34;encoding/json&#34; &#34;fmt&#34; ) // Box 是個箱子 type Box struct { Name string `json:&#34;name&#34;` Color string `json:&#34;color&#34;` } func main() { jsonStr := `{&#34;name&#34;: &#34;喵喵&#34;, &#34;color&#34;: &#34;blue&#34; }` box := new(Box) // 把 bytes 寫進去 Box 物件裡面 	_ = json.Unmarshal([]byte(jsonStr), box) fmt.Printf(&#34;%&#43;v\n&#34;, box) // {Name:喵喵 Color:blue}  // 再把物件寫回去 binary json 	box.Color = &#34;黃色的&#34; byteJSON, _ := json."/>
+
+    <meta property="og:title" content="Golang 怎麼處理 JSON" />
+<meta property="og:description" content="json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成常用處理json、自定義處理 json和多層處理 三個 part， GOGO
+一、常用方法 package main import ( &#34;encoding/json&#34; &#34;fmt&#34; ) // Box 是個箱子 type Box struct { Name string `json:&#34;name&#34;` Color string `json:&#34;color&#34;` } func main() { jsonStr := `{&#34;name&#34;: &#34;喵喵&#34;, &#34;color&#34;: &#34;blue&#34; }` box := new(Box) // 把 bytes 寫進去 Box 物件裡面 	_ = json.Unmarshal([]byte(jsonStr), box) fmt.Printf(&#34;%&#43;v\n&#34;, box) // {Name:喵喵 Color:blue}  // 再把物件寫回去 binary json 	box.Color = &#34;黃色的&#34; byteJSON, _ := json." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200228-golang-json-marshal/" />
+<meta property="article:published_time" content="2020-02-28T23:22:36+08:00" />
+<meta property="article:modified_time" content="2020-02-28T23:22:36+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+      <h1 class="title">XiaoXiao Notes</h1>
+      <p class="sub-title"> XiaoXiao 的筆記書</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Golang 怎麼處理 JSON</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 28, 2020
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/json/">json</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！
+內文會分成<code>常用處理json</code>、<code>自定義處理 json</code>和<code>多層處理</code> 三個 part， GOGO</p>
+<h2 id="一常用方法">一、常用方法</h2>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">package</span> main
+
+<span style="color:#007020;font-weight:bold">import</span> (
+	<span style="color:#4070a0">&#34;encoding/json&#34;</span>
+	<span style="color:#4070a0">&#34;fmt&#34;</span>
+)
+
+<span style="color:#60a0b0;font-style:italic">// Box 是個箱子
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Box <span style="color:#007020;font-weight:bold">struct</span> {
+	Name  <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;name&#34;</span><span style="color:#4070a0">`</span>
+	Color <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;color&#34;</span><span style="color:#4070a0">`</span>
+}
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	jsonStr <span style="color:#666">:=</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">
+</span><span style="color:#4070a0"></span><span style="color:#4070a0">{</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">	&#34;name&#34;: &#34;喵喵&#34;,
+</span><span style="color:#4070a0">	&#34;color&#34;: &#34;blue&#34;
+</span><span style="color:#4070a0">}</span><span style="color:#4070a0">`</span>
+
+	box <span style="color:#666">:=</span> <span style="color:#007020">new</span>(Box)
+
+	<span style="color:#60a0b0;font-style:italic">// 把 bytes 寫進去 Box 物件裡面
+</span><span style="color:#60a0b0;font-style:italic"></span>	_ = json.<span style="color:#06287e">Unmarshal</span>([]<span style="color:#007020">byte</span>(jsonStr), box)
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;%+v\n&#34;</span>, box) <span style="color:#60a0b0;font-style:italic">// {Name:喵喵 Color:blue}
+</span><span style="color:#60a0b0;font-style:italic"></span>
+  	<span style="color:#60a0b0;font-style:italic">// 再把物件寫回去 binary json
+</span><span style="color:#60a0b0;font-style:italic"></span>	box.Color = <span style="color:#4070a0">&#34;黃色的&#34;</span>
+	byteJSON, _ <span style="color:#666">:=</span> json.<span style="color:#06287e">Marshal</span>(box)
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;%s\n&#34;</span>, <span style="color:#007020">string</span>(byteJSON)) <span style="color:#60a0b0;font-style:italic">// {&#34;name&#34;:&#34;喵喵&#34;,&#34;color&#34;:&#34;黃色的&#34;}
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+</code></pre></div><h2 id="二更多方法">二、更多方法</h2>
+<p>當我傻傻的以為，json 就這麼結束了的時候</p>
+<p>燈愣！！ 還有兩個 interface 可以實作</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">// Unmarshaler is the interface implemented by types
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// that can unmarshal a JSON description of themselves.
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// The input can be assumed to be a valid encoding of
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// a JSON value. UnmarshalJSON must copy the JSON data
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// if it wishes to retain the data after returning.
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">//
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// By convention, to approximate the behavior of Unmarshal itself,
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// Unmarshalers implement UnmarshalJSON([]byte(&#34;null&#34;)) as a no-op.
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Unmarshaler <span style="color:#007020;font-weight:bold">interface</span> {
+	<span style="color:#06287e">UnmarshalJSON</span>([]<span style="color:#902000">byte</span>) <span style="color:#902000">error</span>
+}
+
+<span style="color:#60a0b0;font-style:italic">// Marshaler is the interface implemented by types that
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// can marshal themselves into valid JSON.
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Marshaler <span style="color:#007020;font-weight:bold">interface</span> {
+	<span style="color:#06287e">MarshalJSON</span>() ([]<span style="color:#902000">byte</span>, <span style="color:#902000">error</span>)
+}
+</code></pre></div><p>當你傳進去的物件有實作了這兩個 function 時，他會改用物件自己的方法
+看看下面的範例他已經完全地掌握了 json.Marshal 的輸出啦</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">// Box 是個箱子
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Box <span style="color:#007020;font-weight:bold">struct</span> {
+	Name  <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;name&#34;</span><span style="color:#4070a0">`</span>
+	Color <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;color&#34;</span><span style="color:#4070a0">`</span>
+}
+
+<span style="color:#60a0b0;font-style:italic">// UnmarshalJSON 實作箱子的 json.Unmarshaler
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> (b <span style="color:#666">*</span>Box) <span style="color:#06287e">UnmarshalJSON</span>(byteData []<span style="color:#902000">byte</span>) (err <span style="color:#902000">error</span>) {
+	<span style="color:#60a0b0;font-style:italic">// 臨時變數，不直接用 Box 物件，會遞迴
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">type</span> _box Box
+	newBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span>{ <span style="color:#666">*</span>_box }{
+		_box: (<span style="color:#666">*</span>_box)(b),
+	}
+
+	newBox.Color = <span style="color:#4070a0">&#34;會被蓋掉&#34;</span>
+	<span style="color:#007020;font-weight:bold">return</span> json.<span style="color:#06287e">Unmarshal</span>(byteData, newBox)
+}
+
+<span style="color:#60a0b0;font-style:italic">// MarshalJSON 實作箱子的 json.Marshaler
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> (b <span style="color:#666">*</span>Box) <span style="color:#06287e">MarshalJSON</span>() (byteData []<span style="color:#902000">byte</span>, err <span style="color:#902000">error</span>) {
+	<span style="color:#60a0b0;font-style:italic">// 臨時變數，不直接用 Box 物件，會遞迴
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">type</span> _box Box
+	newBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span>{ <span style="color:#666">*</span>_box }{
+		_box: (<span style="color:#666">*</span>_box)(b),
+	}
+
+	newBox.Name = b.Name <span style="color:#666">+</span> <span style="color:#4070a0">&#34;~~⭐️&#34;</span>
+	<span style="color:#007020;font-weight:bold">return</span> json.<span style="color:#06287e">Marshal</span>(newBox)
+}
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	jsonStr <span style="color:#666">:=</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">	</span><span style="color:#4070a0">{</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">		&#34;name&#34;: &#34;喵喵&#34;,
+</span><span style="color:#4070a0">		&#34;color&#34;: &#34;blue&#34;
+</span><span style="color:#4070a0">	}</span><span style="color:#4070a0">`</span>
+
+	box <span style="color:#666">:=</span> <span style="color:#007020">new</span>(Box)
+	_ = json.<span style="color:#06287e">Unmarshal</span>([]<span style="color:#007020">byte</span>(jsonStr), box)
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;%+v\n&#34;</span>, box) <span style="color:#60a0b0;font-style:italic">// &amp;{Name:喵喵 Color:你只能是黑色}
+</span><span style="color:#60a0b0;font-style:italic"></span>
+	box.Color = <span style="color:#4070a0">&#34;黃色的&#34;</span>
+	byteJSON, _ <span style="color:#666">:=</span> json.<span style="color:#06287e">Marshal</span>(box)
+	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;%s\n&#34;</span>, <span style="color:#007020">string</span>(byteJSON)) <span style="color:#60a0b0;font-style:italic">// {&#34;name&#34;:&#34;喵喵~~⭐️&#34;,&#34;color&#34;:&#34;黃色的&#34;}
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+</code></pre></div><h2 id="三多層的方法">三、多層的方法</h2>
+<p>再來就是混合表演啦，要根據不同的格式回傳不同的 struct 類型</p>
+<p>例子是箱子裡面還可以再裝箱子，還可以裝各種不同的箱子～</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">package</span> main
+
+<span style="color:#007020;font-weight:bold">import</span> (
+	<span style="color:#4070a0">&#34;encoding/json&#34;</span>
+	<span style="color:#4070a0">&#34;errors&#34;</span>
+	<span style="color:#4070a0">&#34;fmt&#34;</span>
+)
+
+<span style="color:#007020;font-weight:bold">type</span> iBox <span style="color:#007020;font-weight:bold">interface</span>{}
+
+<span style="color:#60a0b0;font-style:italic">// Box 是個箱子
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Box <span style="color:#007020;font-weight:bold">struct</span> {
+	Type  <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;type&#34;</span><span style="color:#4070a0">`</span>
+	Name  <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;name&#34;</span><span style="color:#4070a0">`</span>
+	Color <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;color&#34;</span><span style="color:#4070a0">`</span>
+	Box   iBox   <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box,omitempty&#34;</span><span style="color:#4070a0">`</span>
+}
+
+<span style="color:#60a0b0;font-style:italic">// UnmarshalJSON 實作箱子的 json.Unmarshaler
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> (b <span style="color:#666">*</span>Box) <span style="color:#06287e">UnmarshalJSON</span>(byteData []<span style="color:#902000">byte</span>) (err <span style="color:#902000">error</span>) {
+	<span style="color:#60a0b0;font-style:italic">// 臨時變數，不要直接用 Box 物件，會遞迴
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">type</span> _box Box
+	newBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span>{ <span style="color:#666">*</span>_box }{
+		_box: (<span style="color:#666">*</span>_box)(b),
+	}
+	err = json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>newBox)
+	<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		<span style="color:#007020;font-weight:bold">return</span>
+	}
+
+	<span style="color:#60a0b0;font-style:italic">// 上面處理完了其他變數，再來依照 newBox 的 type 來包裝裡面的 box
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">if</span> newBox.Box <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		<span style="color:#007020;font-weight:bold">switch</span> newBox.Type {
+		<span style="color:#007020;font-weight:bold">case</span> <span style="color:#4070a0">&#34;box&#34;</span>:
+			innerBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span> {
+				InnerBox Box <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box&#34;</span><span style="color:#4070a0">`</span>
+			}{}
+			err = json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>innerBox)
+			<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+				<span style="color:#007020;font-weight:bold">return</span>
+			}
+			newBox.Box = innerBox.InnerBox
+		<span style="color:#007020;font-weight:bold">case</span> <span style="color:#4070a0">&#34;xbox&#34;</span>:
+			innerBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span> {
+				InnerBox xBox <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box&#34;</span><span style="color:#4070a0">`</span>
+			}{}
+			err = json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>innerBox)
+			<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+				<span style="color:#007020;font-weight:bold">return</span>
+			}
+			newBox.Box = innerBox.InnerBox
+		}
+	}
+
+	<span style="color:#007020;font-weight:bold">return</span>
+}
+
+<span style="color:#60a0b0;font-style:italic">// xBox 是特別的箱子
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> xBox <span style="color:#007020;font-weight:bold">struct</span> {
+	Type <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;type&#34;</span><span style="color:#4070a0">`</span>
+	Name <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;xName&#34;</span><span style="color:#4070a0">`</span>
+	Foo  <span style="color:#902000">string</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;foo&#34;</span><span style="color:#4070a0">`</span>
+	Box  iBox   <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box,omitempty&#34;</span><span style="color:#4070a0">`</span>
+}
+
+<span style="color:#60a0b0;font-style:italic">// UnmarshalJSON 實作 x箱子的 json.Unmarshaler
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> (b <span style="color:#666">*</span>xBox) <span style="color:#06287e">UnmarshalJSON</span>(byteData []<span style="color:#902000">byte</span>) (err <span style="color:#902000">error</span>) {
+	<span style="color:#007020;font-weight:bold">type</span> _box xBox
+	newBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span>{ <span style="color:#666">*</span>_box }{
+		_box: (<span style="color:#666">*</span>_box)(b),
+	}
+	err = json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>newBox)
+	<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		<span style="color:#007020;font-weight:bold">return</span>
+	}
+
+	<span style="color:#007020;font-weight:bold">if</span> newBox.Box <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		<span style="color:#007020;font-weight:bold">switch</span> newBox.Type {
+		<span style="color:#007020;font-weight:bold">case</span> <span style="color:#4070a0">&#34;box&#34;</span>:
+			innerBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span> {
+				InnerBox Box <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box&#34;</span><span style="color:#4070a0">`</span>
+			}{}
+			err = json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>innerBox)
+			<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+				<span style="color:#007020;font-weight:bold">return</span>
+			}
+			newBox.Box = innerBox.InnerBox
+		<span style="color:#007020;font-weight:bold">case</span> <span style="color:#4070a0">&#34;xbox&#34;</span>:
+			innerBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span> {
+				InnerBox xBox <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box&#34;</span><span style="color:#4070a0">`</span>
+			}{}
+			err = json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>innerBox)
+			<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+				<span style="color:#007020;font-weight:bold">return</span>
+			}
+			newBox.Box = innerBox.InnerBox
+		}
+	}
+
+	<span style="color:#007020;font-weight:bold">return</span>
+}
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">getInnerBox</span>(boxType <span style="color:#902000">string</span>, byteData []<span style="color:#902000">byte</span>) (iBox, <span style="color:#902000">error</span>) {
+	<span style="color:#007020;font-weight:bold">switch</span> boxType {
+	<span style="color:#007020;font-weight:bold">case</span> <span style="color:#4070a0">&#34;box&#34;</span>:
+		innerBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span> {
+			InnerBox Box <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box&#34;</span><span style="color:#4070a0">`</span>
+		}{}
+		err <span style="color:#666">:=</span> json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>innerBox)
+		<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>, err
+		}
+		<span style="color:#007020;font-weight:bold">return</span> innerBox.InnerBox, <span style="color:#007020;font-weight:bold">nil</span>
+
+	<span style="color:#007020;font-weight:bold">case</span> <span style="color:#4070a0">&#34;xbox&#34;</span>:
+		innerBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span> {
+			InnerBox xBox <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box&#34;</span><span style="color:#4070a0">`</span>
+		}{}
+		err <span style="color:#666">:=</span> json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>innerBox)
+		<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>, err
+		}
+		<span style="color:#007020;font-weight:bold">return</span> innerBox.InnerBox, <span style="color:#007020;font-weight:bold">nil</span>
+	}
+
+	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>, errors.<span style="color:#06287e">New</span>(<span style="color:#4070a0">&#34;unknown type of box&#34;</span>)
+}
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	jsonStr <span style="color:#666">:=</span> <span style="color:#4070a0">`</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">	</span><span style="color:#4070a0">{</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">		&#34;type&#34;: &#34;box&#34;,
+</span><span style="color:#4070a0">		&#34;name&#34;: &#34;喵喵&#34;,
+</span><span style="color:#4070a0">		&#34;color&#34;: &#34;藍色&#34;,
+</span><span style="color:#4070a0">		&#34;box&#34;: </span><span style="color:#4070a0">{</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">			&#34;type&#34;: &#34;xbox&#34;,
+</span><span style="color:#4070a0">			&#34;name&#34;: &#34;裡面的&#34;,
+</span><span style="color:#4070a0">			&#34;foo&#34;: &#34;bar&#34;,
+</span><span style="color:#4070a0">			&#34;box&#34;: </span><span style="color:#4070a0">{</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">				&#34;type&#34;: &#34;box&#34;,
+</span><span style="color:#4070a0">				&#34;color&#34;: &#34;更裡面的&#34;,
+</span><span style="color:#4070a0">				&#34;box&#34;: </span><span style="color:#4070a0">{</span><span style="color:#4070a0">
+</span><span style="color:#4070a0">					&#34;type&#34;: &#34;box&#34;,
+</span><span style="color:#4070a0">					&#34;name&#34;: &#34;最裡面&#34;
+</span><span style="color:#4070a0">				}
+</span><span style="color:#4070a0">			}
+</span><span style="color:#4070a0">		}
+</span><span style="color:#4070a0">	}</span><span style="color:#4070a0">`</span>
+
+	box <span style="color:#666">:=</span> <span style="color:#007020">new</span>(Box)
+	_ = json.<span style="color:#06287e">Unmarshal</span>([]<span style="color:#007020">byte</span>(jsonStr), box)
+
+	<span style="color:#60a0b0;font-style:italic">// 然後你可以這樣!
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// layer 1 全部
+</span><span style="color:#60a0b0;font-style:italic"></span>	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;layer 1:\n%#v\n\n&#34;</span>, box)
+	<span style="color:#60a0b0;font-style:italic">// layer 2 &#34;name=喵喵&#34;
+</span><span style="color:#60a0b0;font-style:italic"></span>	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;layer 2:\n%#v\n\n&#34;</span>, box.Box.(Box))
+	<span style="color:#60a0b0;font-style:italic">// layer 3 &#34;name=裡面的&#34;
+</span><span style="color:#60a0b0;font-style:italic"></span>	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;layer 3:\n%#v\n\n&#34;</span>, box.Box.(Box).Box.(xBox))
+	<span style="color:#60a0b0;font-style:italic">// layer 4 &#34;name=&#34;更裡面的&#34;
+</span><span style="color:#60a0b0;font-style:italic"></span>	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;layer 4:\n%#v\n\n&#34;</span>, box.Box.(Box).Box.(xBox).Box)
+	<span style="color:#60a0b0;font-style:italic">// layer 5 &#34;name=最裡面&#34; 這層沒有 box，所以是 nil
+</span><span style="color:#60a0b0;font-style:italic"></span>	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;layer 5:\n%#v\n\n&#34;</span>, box.Box.(Box).Box.(xBox).Box.(Box).Box)
+}
+</code></pre></div><p>也可以把重複的部份抽出來，不然豈不是每次新增新的 box 時都要改以前的 code？</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">// UnmarshalJSON 實作 x箱子的 json.Unmarshaler
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> (b <span style="color:#666">*</span>xBox) <span style="color:#06287e">UnmarshalJSON</span>(byteData []<span style="color:#902000">byte</span>) (err <span style="color:#902000">error</span>) {
+	<span style="color:#007020;font-weight:bold">type</span> _box xBox
+	newBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span>{ <span style="color:#666">*</span>_box }{
+		_box: (<span style="color:#666">*</span>_box)(b),
+	}
+	err = json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>newBox)
+	<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		<span style="color:#007020;font-weight:bold">return</span>
+	}
+
+	<span style="color:#60a0b0;font-style:italic">// 上面處理完了其他變數，再來依照 newBox 的 type 來包裝裡面的 box
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">if</span> newBox.Box <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		newBox.Box, err = <span style="color:#06287e">getInnerBox</span>(newBox.Type, byteData)
+		<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			<span style="color:#007020;font-weight:bold">return</span>
+		}
+	}
+
+	<span style="color:#007020;font-weight:bold">return</span>
+}
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">getInnerBox</span>(boxType <span style="color:#902000">string</span>, byteData []<span style="color:#902000">byte</span>) (iBox, <span style="color:#902000">error</span>) {
+	<span style="color:#007020;font-weight:bold">switch</span> boxType {
+	<span style="color:#007020;font-weight:bold">case</span> <span style="color:#4070a0">&#34;box&#34;</span>:
+		innerBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span> {
+			InnerBox Box <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box&#34;</span><span style="color:#4070a0">`</span>
+		}{}
+		err <span style="color:#666">:=</span> json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>innerBox)
+		<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>, err
+		}
+		<span style="color:#007020;font-weight:bold">return</span> innerBox.InnerBox, <span style="color:#007020;font-weight:bold">nil</span>
+
+	<span style="color:#007020;font-weight:bold">case</span> <span style="color:#4070a0">&#34;xbox&#34;</span>:
+		innerBox <span style="color:#666">:=</span> <span style="color:#666">&amp;</span><span style="color:#007020;font-weight:bold">struct</span> {
+			InnerBox xBox <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;box&#34;</span><span style="color:#4070a0">`</span>
+		}{}
+		err <span style="color:#666">:=</span> json.<span style="color:#06287e">Unmarshal</span>(byteData, <span style="color:#666">&amp;</span>innerBox)
+		<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>, err
+		}
+		<span style="color:#007020;font-weight:bold">return</span> innerBox.InnerBox, <span style="color:#007020;font-weight:bold">nil</span>
+	}
+
+	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>, errors.<span style="color:#06287e">New</span>(<span style="color:#4070a0">&#34;unknown type of box&#34;</span>)
+}
+</code></pre></div><h2 id="結論">結論</h2>
+<p>原本傻傻的不會用 <code>Unmarshaler</code> <code>Marshaler</code>，很難去做到多層的實作，現在會惹QQ</p>
+<h2 id="參考資料">參考資料</h2>
+<p><a href="https://medium.com/@xfstart07/go-json-%E7%9A%84%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81-e689522a1f1f">https://medium.com/@xfstart07/go-json-%E7%9A%84%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81-e689522a1f1f</a></p>
+<p><a href="https://github.com/line/line-bot-sdk-go/blob/362880a2e613ce24eb32e1b72cd345370578b6df/linebot/flex_unmarshal.go#L23">https://github.com/line/line-bot-sdk-go/blob/362880a2e613ce24eb32e1b72cd345370578b6df/linebot/flex_unmarshal.go#L23</a></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

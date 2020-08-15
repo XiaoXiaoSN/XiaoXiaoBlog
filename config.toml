@@ -1,7 +1,7 @@
 baseURL = "https://blog.10oz.tw"
 languageCode = "en-us"
 title = "XiaoXiao Notes"
-publishDir = "docs"
+publishDir = "public"
 
 theme = "m10c-plus"
 paginate = 10
