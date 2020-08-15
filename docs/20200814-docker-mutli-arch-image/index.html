@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Docker 建立不同架構的 Image // XiaoXiao Notes</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Xiao Xiao" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b0a12d6e8e3c4a54769279fd471c253dfdcd43ca00298762e5e402702cbfd20f.css" />
+    <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker 建立不同架構的 Image"/>
+<meta name="twitter:description" content="問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境  » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental: true Server: Docker Engine - Community Engine: Version: 19.03.12 API version: 1.40 (minimum version 1.12) Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:49:27 2020 OS/Arch: linux/amd64 Experimental: true containerd: Version: v1.2.13 GitCommit: 7ad184331fa3e55e52b890ea95e65ba581ae3429 runc: Version: 1."/>
+
+    <meta property="og:title" content="Docker 建立不同架構的 Image" />
+<meta property="og:description" content="問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境  » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental: true Server: Docker Engine - Community Engine: Version: 19.03.12 API version: 1.40 (minimum version 1.12) Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:49:27 2020 OS/Arch: linux/amd64 Experimental: true containerd: Version: v1.2.13 GitCommit: 7ad184331fa3e55e52b890ea95e65ba581ae3429 runc: Version: 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200814-docker-mutli-arch-image/" />
+<meta property="article:published_time" content="2020-08-14T23:11:03+08:00" />
+<meta property="article:modified_time" content="2020-08-14T23:11:03+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+      <h1 class="title">XiaoXiao Notes</h1>
+      <p class="sub-title"> XiaoXiao 的筆記書</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">Docker 建立不同架構的 Image</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Aug 14, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/docker/">docker</a><a class="tag" href="https://blog.10oz.tw/tags/multi-arch/">multi-arch</a><a class="tag" href="https://blog.10oz.tw/tags/buildx/">buildx</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#問題起源">問題起源</a></li>
+    <li><a href="#執行環境">執行環境</a></li>
+    <li><a href="#開始正題-buildx-快速版">開始正題 (buildx 快速版)</a>
+      <ul>
+        <li><a href="#設定環節">設定環節</a></li>
+        <li><a href="#編譯-image">編譯 Image</a></li>
+      </ul>
+    </li>
+    <li><a href="#開始正題-懷舊版">開始正題 (懷舊版)</a>
+      <ul>
+        <li><a href="#編譯-images">編譯 Images</a></li>
+        <li><a href="#包裝-manifest-檔案">包裝 manifest 檔案</a></li>
+      </ul>
+    </li>
+    <li><a href="#一言不合就-cicd-example-for-buildx">一言不合就 CI/CD (example for buildx)</a></li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="問題起源">問題起源</h2>
+<p>看看人家，一個 <code>latest</code> 有這麼多種架構的版本
+羨慕耶 我也想要編一個給我的樹莓派
+<img src="https://i.imgur.com/2f2SBiR.png" alt=""></p>
+<h2 id="執行環境">執行環境</h2>
+<pre><code> » docker version
+Client: Docker Engine - Community
+ Version:           19.03.12
+ API version:       1.40
+ Go version:        go1.13.10
+ Git commit:        48a66213fe
+ Built:             Mon Jun 22 15:41:33 2020
+ OS/Arch:           darwin/amd64
+ Experimental:      true
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.12
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.13.10
+  Git commit:       48a66213fe
+  Built:            Mon Jun 22 15:49:27 2020
+  OS/Arch:          linux/amd64
+  Experimental:     true
+ containerd:
+  Version:          v1.2.13
+  GitCommit:        7ad184331fa3e55e52b890ea95e65ba581ae3429
+ runc:
+  Version:          1.0.0-rc10
+  GitCommit:        dc9208a3303feef5b3839f4323d9beb36df0a9dd
+ docker-init:
+  Version:          0.18.0
+  GitCommit:        fec3683
+</code></pre><h2 id="開始正題-buildx-快速版">開始正題 (buildx 快速版)</h2>
+<p>這是實驗性功能~
+Mac &amp; Windows 請進，linux 先來這看看 &gt; <a href="https://github.com/docker/buildx">https://github.com/docker/buildx</a> ，或是下滑懷舊版</p>
+<h3 id="設定環節">設定環節</h3>
+<p>首先我們要開啟 docker 實驗功能
+<code>vim ~/.docker/config.json</code> 加上 16 行的 <code>experimental: &quot;enabled&quot;</code></p>
+<pre><code class="language-json=" data-lang="json=">{
+    &quot;auths&quot;: {
+        &quot;474872403908.dkr.ecr.us-east-1.amazonaws.com&quot;: {},
+        &quot;917719776018.dkr.ecr.ap-northeast-1.amazonaws.com&quot;: {},
+        &quot;https://917719776018.dkr.ecr.ap-northeast-1.amazonaws.com&quot;: {},
+        &quot;https://index.docker.io/v1/&quot;: {},
+        &quot;https://registry.tenoz.tw&quot;: {},
+        &quot;registry.heroku.com&quot;: {},
+        &quot;registry.tenoz.tw&quot;: {}
+    },
+    &quot;HttpHeaders&quot;: {
+        &quot;User-Agent&quot;: &quot;Docker-Client/19.03.1 (darwin)&quot;
+    },
+    &quot;credsStore&quot;: &quot;desktop&quot;,
+    &quot;stackOrchestrator&quot;: &quot;swarm&quot;,
+    &quot;experimental&quot;: &quot;enabled&quot;,
+    &quot;debug&quot;: true
+}
+</code></pre><p>這樣就可以下指令查看 image 的相關資料
+<code>docker manifest inspect --verbose xiao4011/toolbox:latest</code>
+再來下個指令看看別人的多架構版
+<code>docker manifest inspect --verbose redis:latest</code>
+一看不得了，人家是 array 阿！！ 帥吧</p>
+<h3 id="編譯-image">編譯 Image</h3>
+<p>拿出你的 Dockerfile 在 From 前面加上你要執行的 target
+像這樣 <code>--platform=$TARGETPLATFORM</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#60a0b0;font-style:italic"># Build code</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> --platform=$TARGETPLATFORM golang:alpine as builder</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">ENV</span> <span style="color:#bb60d5">GO111MODULE</span><span style="color:#666">=</span>on
+
+<span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> /app</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> apk add --update git ca-certificates<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> go mod download <span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> go build -o app .<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># pull the binary file and service work really in the layer</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> --platform=$TARGETPLATFORM alpine:latest</span><span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> /srv/application</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span>builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span>builder /app/app /srv/application/toolbox<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span>builder /app/public /srv/application/public<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">ENTRYPOINT</span> [<span style="color:#4070a0">&#34;./toolbox&#34;</span>]<span style="">
+</span></code></pre></div><p>改好了之後呢
+編譯給他跑下去，可以選擇幾個你喜歡的 &ndash;platform 內容來跑</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker buildx build <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>--push <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>--platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 --tag xiao4011/toolbox:latest .
+</code></pre></div><p>如果不知道你的環境有什麼 platform 可以編譯的話
+可以輸入<code>docker buildx inspect --bootstrap</code>
+<img src="https://i.imgur.com/euLWtTW.png" alt=""></p>
+<p>因為我們有加上 <code>--push</code> 所以直接出發到 docker hub 上面看一下狀況
+直接完成，484很快～
+<img src="https://i.imgur.com/s0R6raP.png" alt=""></p>
+<h2 id="開始正題-懷舊版">開始正題 (懷舊版)</h2>
+<p>方法是利用 docker manifest 將多個 docker images 整合在一起
+因此首先我們要準備編譯多個 images</p>
+<h3 id="編譯-images">編譯 Images</h3>
+<ul>
+<li>方法1： 指定架構拉取 image
+這個方法是建立在別人的 mutli-arch image 上的，用不同架構直接來編譯</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># 編譯 amd64 架構</span>
+docker build --platform linux/amd64 --pull . -t xiao4011/toolbox:amd64
+docker push xiao4011/toolbox:amd64
+
+<span style="color:#60a0b0;font-style:italic"># 編譯 armv7 架構</span>
+docker build --platform linux/arm/v7 --pull . -t xiao4011/toolbox:armv7
+docker push xiao4011/toolbox:armv7
+</code></pre></div><ul>
+<li>方法2： 手動更換編譯平台架構 image
+在 Dockerfile 中加入 <code>ARG ARCH</code> 加入一個編譯變數叫做 ARCH 來指定編譯的架構</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#007020;font-weight:bold">ARG</span> ARCH<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> $ARCH/golang:alpine as builder</span><span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span>// 更多操作 dockerfile...<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># 執行編譯</span>
+<span style="color:#007020">export</span> <span style="color:#bb60d5">ARCH</span><span style="color:#666">=</span>arm32v7; docker build --build-arg <span style="color:#bb60d5">ARCH</span><span style="color:#666">=</span><span style="color:#bb60d5">$ARCH</span> . -t xiao4011/toolbox:<span style="color:#bb60d5">$ARCH</span>
+docker push xiao4011/toolbox:<span style="color:#bb60d5">$ARCH</span>
+</code></pre></div><h3 id="包裝-manifest-檔案">包裝 manifest 檔案</h3>
+<p>發出去~~</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker manifest create xiao4011/toolbox:manifest <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>    --amend xiao4011/toolbox:amd64 <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>    --amend xiao4011/toolbox:armv7
+
+docker manifest push xiao4011/toolbox:manifest
+</code></pre></div><h2 id="一言不合就-cicd-example-for-buildx">一言不合就 CI/CD (example for buildx)</h2>
+<p>更新 images 這種事情當然要自動化一下啊！這次跟著 docker 官方介紹第一次認識了 github actions，他是 github 內建的 pipeline 工具
+有個有趣的地方是可以插入別人寫的 actions，幾乎每個步驟都有人給你包好了，只要 call function 就對了</p>
+<p>首先我們建立檔案 <code>vim .github/workflows/cicd.yml</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#60a0b0;font-style:italic"># .github/workflows/cicd.yml</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>name:<span style="color:#bbb"> </span>build<span style="color:#bbb"> </span>our<span style="color:#bbb"> </span>image<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>on:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>push:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>branches:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>master<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>jobs:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>build:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>runs-on:<span style="color:#bbb"> </span>ubuntu-latest<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>steps:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>install<span style="color:#bbb"> </span>Go<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>uses:<span style="color:#bbb"> </span>actions/setup-go@v1<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>with:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>go-version:<span style="color:#bbb"> </span>${{<span style="color:#bbb"> </span>matrix.go-version<span style="color:#bbb"> </span>}}<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>check<span style="color:#bbb"> </span>out<span style="color:#bbb"> </span>path<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>uses:<span style="color:#bbb"> </span>actions/checkout@v2<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>testing<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>run:<span style="color:#bbb"> </span>go<span style="color:#bbb"> </span>test<span style="color:#bbb"> </span>./...<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>install<span style="color:#bbb"> </span>buildx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>id:<span style="color:#bbb"> </span>buildx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>uses:<span style="color:#bbb"> </span>crazy-max/ghaction-docker-buildx@v1<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>with:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>version:<span style="color:#bbb"> </span>latest<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>login<span style="color:#bbb"> </span>to<span style="color:#bbb"> </span>docker<span style="color:#bbb"> </span>hub<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>run:<span style="color:#bbb"> </span>echo<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;${{ secrets.DOCKER_PASSWORD }}&#34;</span><span style="color:#bbb"> </span>|<span style="color:#bbb"> </span>docker<span style="color:#bbb"> </span>login<span style="color:#bbb"> </span>-u<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;${{ secrets.DOCKER_USERNAME }}&#34;</span><span style="color:#bbb"> </span>--password-stdin<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>build<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>image<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>run:<span style="color:#bbb"> </span><span style="color:#4070a0;font-style:italic">|
+</span><span style="color:#4070a0;font-style:italic">         </span><span style="color:#4070a0;font-style:italic"> </span><span style="color:#4070a0;font-style:italic">docker buildx build \</span><span style="color:#bbb">
+</span><span style="color:#bbb">            </span>--push<span style="color:#bbb"> </span>\<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>--tag<span style="color:#bbb"> </span>xiao4011/toolbox:latest<span style="color:#bbb"> </span>\<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>--platform<span style="color:#bbb"> </span>linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6<span style="color:#bbb">  </span>.<span style="color:#bbb">
+</span></code></pre></div><p>接下來要去 github 設定 Secrets，開啟專案頁面後選擇 Setting &gt; Secrets 選擇 <code>New secret</code>
+加入 docker 的帳號密碼，等一下 pipeline 在 push image 的時候會使用到</p>
+<blockquote>
+<p>也可以額外設定除錯模式
+<code>ACTIONS_RUNNER_DEBUG=true</code>
+<code>ACTIONS_STEP_DEBUG=true</code></p>
+</blockquote>
+<p><img src="https://i.imgur.com/PfCUyh4.png" alt=""></p>
+<h2 id="ref">Ref</h2>
+<p><a href="https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/">https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/</a></p>
+<p><a href="https://hub.docker.com/r/ckulka/multi-arch-example">https://hub.docker.com/r/ckulka/multi-arch-example</a></p>
+<p><a href="https://docs.docker.com/buildx/working-with-buildx/">https://docs.docker.com/buildx/working-with-buildx/</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+    </main>
+  </body>
+</html>

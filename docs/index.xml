@@ -6,10 +6,19 @@
     <description>Recent content on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Aug 2020 00:33:03 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2020 23:11:03 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker 建立不同架構的 Image</title>
+      <link>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</link>
+      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</guid>
+      <description>問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境  » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental: true Server: Docker Engine - Community Engine: Version: 19.03.12 API version: 1.40 (minimum version 1.12) Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:49:27 2020 OS/Arch: linux/amd64 Experimental: true containerd: Version: v1.2.13 GitCommit: 7ad184331fa3e55e52b890ea95e65ba581ae3429 runc: Version: 1.</description>
+    </item>
     
     <item>
       <title>Casbin 權限管理模組</title>
@@ -24,6 +33,19 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
   Policy 是規則，裡面寫了一系列的權限像是 {小明} 可以對 {文件} {查看} {小明} 可以對 {程式} {查看} {小明} 可以對 {程式} {修改}
   Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
   Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)</description>
+    </item>
+    
+    <item>
+      <title>出發尋找 WSL2 的旅程</title>
+      <link>https://blog.10oz.tw/20200728-journey-in-wsl2/</link>
+      <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200728-journey-in-wsl2/</guid>
+      <description>步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &amp;raquo; https://www.microsoft.com/en-us/software-download/windows10
+開啟環境設定 用系統管理員身分開啟 PowerShell 後，輸入指令開啟 Linux Subsystem 的支援和 HyperV 的虛擬機器平台 用 HyperV 要記得到 BIOS 開啟虛擬機器的支援喔
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 這時候你需要重啟一下電腦~
+然後要更新 linux subsystem kernel https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel
+安裝 Linux 發行版 按一下 Windows 鍵輸入 Microsoft Store 後開啟商店選擇你要的 Linux 版本，在這裡我選擇 Ubuntu1804 另外偷偷下載了 windows terminal，有比較漂亮R 看一看 WSL2 的設定 更新完後開啟 PowerShell 將 WSL 預設版本改為 2</description>
     </item>
     
     <item>

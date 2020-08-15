@@ -1,7 +1,6 @@
 ---
 title: "出發尋找 WSL2 的旅程"
 date: 2020-07-28T10:29:08+08:00
-draft: true
 tags: ["wsl2", "windows"]
 ---
 

@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.10oz.tw/tags/buildx/</loc>
+    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/docker/</loc>
+    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</loc>
+    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/multi-arch/</loc>
+    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/</loc>
+    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/</loc>
+    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.10oz.tw/tags/casbin/</loc>
     <lastmod>2020-08-13T00:33:03+08:00</lastmod>
   </url>
@@ -18,13 +48,18 @@
   </url>
   
   <url>
-    <loc>https://blog.10oz.tw/tags/</loc>
-    <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+    <loc>https://blog.10oz.tw/tags/windows/</loc>
+    <lastmod>2020-07-28T10:29:08+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blog.10oz.tw/</loc>
-    <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+    <loc>https://blog.10oz.tw/tags/wsl2/</loc>
+    <lastmod>2020-07-28T10:29:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200728-journey-in-wsl2/</loc>
+    <lastmod>2020-07-28T10:29:08+08:00</lastmod>
   </url>
   
   <url>

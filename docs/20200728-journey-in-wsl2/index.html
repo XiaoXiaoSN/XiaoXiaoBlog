@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>出發尋找 WSL2 的旅程 // XiaoXiao Notes</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Xiao Xiao" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b0a12d6e8e3c4a54769279fd471c253dfdcd43ca00298762e5e402702cbfd20f.css" />
+    <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="出發尋找 WSL2 的旅程"/>
+<meta name="twitter:description" content="步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &raquo; https://www.microsoft.com/en-us/software-download/windows10
+開啟環境設定 用系統管理員身分開啟 PowerShell 後，輸入指令開啟 Linux Subsystem 的支援和 HyperV 的虛擬機器平台 用 HyperV 要記得到 BIOS 開啟虛擬機器的支援喔
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 這時候你需要重啟一下電腦~
+然後要更新 linux subsystem kernel https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel
+安裝 Linux 發行版 按一下 Windows 鍵輸入 Microsoft Store 後開啟商店選擇你要的 Linux 版本，在這裡我選擇 Ubuntu1804 另外偷偷下載了 windows terminal，有比較漂亮R 看一看 WSL2 的設定 更新完後開啟 PowerShell 將 WSL 預設版本改為 2"/>
+
+    <meta property="og:title" content="出發尋找 WSL2 的旅程" />
+<meta property="og:description" content="步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &raquo; https://www.microsoft.com/en-us/software-download/windows10
+開啟環境設定 用系統管理員身分開啟 PowerShell 後，輸入指令開啟 Linux Subsystem 的支援和 HyperV 的虛擬機器平台 用 HyperV 要記得到 BIOS 開啟虛擬機器的支援喔
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 這時候你需要重啟一下電腦~
+然後要更新 linux subsystem kernel https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel
+安裝 Linux 發行版 按一下 Windows 鍵輸入 Microsoft Store 後開啟商店選擇你要的 Linux 版本，在這裡我選擇 Ubuntu1804 另外偷偷下載了 windows terminal，有比較漂亮R 看一看 WSL2 的設定 更新完後開啟 PowerShell 將 WSL 預設版本改為 2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200728-journey-in-wsl2/" />
+<meta property="article:published_time" content="2020-07-28T10:29:08+08:00" />
+<meta property="article:modified_time" content="2020-07-28T10:29:08+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+      <h1 class="title">XiaoXiao Notes</h1>
+      <p class="sub-title"> XiaoXiao 的筆記書</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">出發尋找 WSL2 的旅程</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Jul 28, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/wsl2/">wsl2</a><a class="tag" href="https://blog.10oz.tw/tags/windows/">windows</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#步驟說明時間">步驟說明時間</a>
+      <ul>
+        <li><a href="#確認-windows-版本">確認 Windows 版本</a></li>
+        <li><a href="#開啟環境設定">開啟環境設定</a></li>
+        <li><a href="#安裝-linux-發行版">安裝 Linux 發行版</a></li>
+        <li><a href="#看一看-wsl2-的設定">看一看 WSL2 的設定</a></li>
+        <li><a href="#docker-time">Docker Time</a></li>
+        <li><a href="#任性的個人化時間">任性的個人化時間</a></li>
+        <li><a href="#golang-環境-gvm">Golang 環境 (gvm)</a></li>
+        <li><a href="#紀錄一點問題">紀錄一點問題</a></li>
+        <li><a href="#microk8s-time-請勿參考">MicroK8s Time (請勿參考)</a></li>
+      </ul>
+    </li>
+    <li><a href="#for-win10-2004">for Win10 2004</a></li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="步驟說明時間">步驟說明時間</h2>
+<h3 id="確認-windows-版本">確認 Windows 版本</h3>
+<p>首先按一下 Windows 鍵輸入 <code>winver</code> 來確認目前版本，版本必須是 19041 或是 2004 才可以喔
+<img src="https://i.imgur.com/tsFoWzJ.png" alt=""></p>
+<p>如果版本不夠的話，更新器下載 &raquo;
+<a href="https://www.microsoft.com/en-us/software-download/windows10">https://www.microsoft.com/en-us/software-download/windows10</a></p>
+<h3 id="開啟環境設定">開啟環境設定</h3>
+<p>用系統管理員身分開啟 PowerShell 後，輸入指令開啟 Linux Subsystem 的支援和 HyperV 的虛擬機器平台
+用 HyperV 要記得到 BIOS 開啟虛擬機器的支援喔</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">dism.exe /online /<span style="color:#007020">enable-feature</span> /featurename<span style="">:</span>Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /<span style="color:#007020">enable-feature</span> /featurename<span style="">:</span>VirtualMachinePlatform /all /norestart
+</code></pre></div><p>這時候你需要重啟一下電腦~</p>
+<p>然後要更新 linux subsystem kernel
+<a href="https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel">https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel</a></p>
+<h3 id="安裝-linux-發行版">安裝 Linux 發行版</h3>
+<p>按一下 Windows 鍵輸入 <code>Microsoft Store</code> 後開啟商店選擇你要的 Linux 版本，在這裡我選擇 Ubuntu1804
+<img src="https://i.imgur.com/yHDq1Nj.png" alt=""></p>
+<p>另外偷偷下載了 windows terminal，有比較漂亮R
+<img src="https://i.imgur.com/h2yRjHx.png" alt=""></p>
+<h3 id="看一看-wsl2-的設定">看一看 WSL2 的設定</h3>
+<p>更新完後開啟 PowerShell 將 WSL 預設版本改為 2</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">wsl --set-default-version 2
+</code></pre></div><p>可以用 <code>wsl -l</code> 來列出你的 Linux 們，把原本存在的 WSL 升級成 WSL2</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">wsl --set-version Ubuntu-18.04 2
+</code></pre></div><p><img src="https://i.imgur.com/6xAOuz3.png" alt=""></p>
+<p>輸入 <code>wsl -l -v</code> 應該可以看見 Version 2，那這樣就對啦~
+<img src="https://i.imgur.com/K8vuPfJ.png" alt=""></p>
+<h3 id="docker-time">Docker Time</h3>
+<p>首先在 Win10 下載桌面版 Docker，
+<a href="https://docs.docker.com/docker-for-windows/wsl/">https://docs.docker.com/docker-for-windows/wsl/</a></p>
+<p>下載好了嗎? 打開來選擇 WSL2 作為 backend
+<img src="https://i.imgur.com/S1n7hXh.png" alt=""></p>
+<p>安裝好之後他會請你重新登入你的 Win10，
+完成後選擇 Settings(上方的小齒輪) &gt; General 來確認一下 <code>Use the WSL2 based engine</code> 選項
+<img src="https://i.imgur.com/TsL6oUe.png" alt=""></p>
+<p>再來到 Resources &gt; WSL Integartion，把你的 WSL linux 發行版選起來
+<img src="https://i.imgur.com/SOn3G1M.png" alt=""></p>
+<p>點右下角的 Apply &amp; Restart</p>
+<p>開啟你的 terminal，輸入 <code>wsl -d &lt;你的系統&gt;</code> 進入 WSL 的系統內
+輸入 <code>docker ps</code> 確認有抓到 docker ~
+<img src="https://i.imgur.com/6gf7LGm.png" alt=""></p>
+<p>開個服務吧</p>
+<ul>
+<li><code>-d</code> 在背景執行</li>
+<li><code>-p</code> port 導出</li>
+<li><code>--name</code> 幫 container 取名字</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker run -d -p 8080:80 --name docker_time docker/getting-started
+</code></pre></div><p>看看你的 http://localhost:8080 服務開起來囉
+<img src="https://i.imgur.com/hw2kNUn.png" alt=""></p>
+<p>測試完 docker 可以工作了，所以刪掉</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker <span style="color:#007020">kill</span> docker_time
+</code></pre></div><p><img src="https://i.imgur.com/bgHEO9e.png" alt=""></p>
+<h3 id="任性的個人化時間">任性的個人化時間</h3>
+<pre><code># 更新一下
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# git 設定
+git config --global core.ignorecase false
+git config --global alias.co 'checkout'
+git config --global alias.chekcout 'checkout'
+git config --global alias.log1 'log --oneline -n 10'
+git config --global alias.logg 'log --oneline --graph'
+git config --global alias.cm 'commit -m'
+git config --global alias.cmamend '!git add $1 &amp;&amp; git commit --amend --no-edit'
+
+# shell 設定
+sudo apt install fish -y
+curl -L https://get.oh-my.fish | fish
+omf install godfather
+
+# 開專案資料夾
+mkdir projects
+ln -s (pwd)/projects ~/projects 
+</code></pre><h3 id="golang-環境-gvm">Golang 環境 (gvm)</h3>
+<p>不囉嗦直接抄 &raquo; <a href="https://blog.miniasp.com/post/2020/07/27/Build-Golang-Dev-Box-in-Windows?utm_source=Facebook_PicSee">https://blog.miniasp.com/post/2020/07/27/Build-Golang-Dev-Box-in-Windows?utm_source=Facebook_PicSee</a></p>
+<pre><code>sudo apt install binutils bison gcc make build-essential -y
+
+curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash -E
+source ~/.gvm/scripts/gvm
+
+set GOVER go1.14
+gvm install go1.14 --binary
+gvm use go1.14 --default
+
+# 確認我們的工作~~
+go version
+</code></pre><h3 id="紀錄一點問題">紀錄一點問題</h3>
+<blockquote>
+<p>[time=Sat, Aug 8, 2020 1:07 PM]</p>
+</blockquote>
+<p>開啟工作管理員時發現，有一個叫做 vmmem 的佔用了很多的 memory 和 CPU
+發現很多人都有這樣的問題，紀錄一下解決方法
+移駕到 <code>c:\users\{{your profile name}}</code> 開啟或新增 <code>.wslconfig</code></p>
+<p>{%gist lewcianci/d09ef5e6741fe0eff61935d39e9667ee %}</p>
+<p>使用系統管理員身分開啟 PowerShell</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#007020">Restart-Service</span> LxssManager
+</code></pre></div><p>參考<a href="https://medium.com/@lewwybogus/how-to-stop-wsl2-from-hogging-all-your-ram-with-docker-d7846b9c5b37">文章</a></p>
+<hr>
+<hr>
+<hr>
+<h3 id="microk8s-time-請勿參考"><del>MicroK8s Time</del> (請勿參考)</h3>
+<p>直接遇到問題了，snapd 是不可用的狀態
+<img src="https://i.imgur.com/96BU8YL.png" alt=""></p>
+<pre><code>sudo apt-get update &amp;&amp; sudo apt-get install -yqq daemonize dbus-user-session fontconfig
+sudo daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target
+exec sudo nsenter -t $(pidof systemd) -a su - $LOGNAME
+
+snap version
+</code></pre><p>還需要開啟 Systemd 把這一段貼上去後關掉視窗重開</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#60a0b0;font-style:italic">## /etc/profile.d/00-wsl2-systemd.sh</span>
+
+<span style="color:#60a0b0;font-style:italic"># Create the starting script for SystemD</span>
+<span style="color:#bb60d5">SYSTEMD_PID</span><span style="color:#666">=</span><span style="color:#007020;font-weight:bold">$(</span>ps -ef | grep <span style="color:#4070a0">&#39;/lib/systemd/systemd --system-unit=basic.target$&#39;</span> | grep -v unshare | awk <span style="color:#4070a0">&#39;{print $2}&#39;</span><span style="color:#007020;font-weight:bold">)</span>
+
+<span style="color:#007020;font-weight:bold">if</span> <span style="color:#666">[</span> -z <span style="color:#4070a0">&#34;</span><span style="color:#bb60d5">$SYSTEMD_PID</span><span style="color:#4070a0">&#34;</span> <span style="color:#666">]</span>; <span style="color:#007020;font-weight:bold">then</span>
+   sudo /usr/bin/daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit<span style="color:#666">=</span>basic.target
+   <span style="color:#bb60d5">SYSTEMD_PID</span><span style="color:#666">=</span><span style="color:#007020;font-weight:bold">$(</span>ps -ef | grep <span style="color:#4070a0">&#39;/lib/systemd/systemd --system-unit=basic.target$&#39;</span> | grep -v unshare | awk <span style="color:#4070a0">&#39;{print $2}&#39;</span><span style="color:#007020;font-weight:bold">)</span>
+<span style="color:#007020;font-weight:bold">fi</span>
+
+<span style="color:#007020;font-weight:bold">if</span> <span style="color:#666">[</span> -n <span style="color:#4070a0">&#34;</span><span style="color:#bb60d5">$SYSTEMD_PID</span><span style="color:#4070a0">&#34;</span> <span style="color:#666">]</span> <span style="color:#666">&amp;&amp;</span> <span style="color:#666">[</span> <span style="color:#4070a0">&#34;</span><span style="color:#bb60d5">$SYSTEMD_PID</span><span style="color:#4070a0">&#34;</span> !<span style="color:#666">=</span> <span style="color:#4070a0">&#34;1&#34;</span> <span style="color:#666">]</span>; <span style="color:#007020;font-weight:bold">then</span>
+    <span style="color:#007020">exec</span> sudo /usr/bin/nsenter -t <span style="color:#bb60d5">$SYSTEMD_PID</span> -a su - <span style="color:#bb60d5">$LOGNAME</span>
+<span style="color:#007020;font-weight:bold">fi</span>
+</code></pre></div><p>好，問題解決來安裝吧</p>
+<pre><code># 安裝 microk8s
+sudo snap install microk8s --classic
+
+# 嘗試一下指令，他會提醒你要給權限照著做吧~記得要把 user 換掉喔
+microk8s.status
+
+sudo usermod -a -G microk8s arios
+sudo chown -f -R arios ~/.kube
+</code></pre><p>完成後離開重新登入，就可以開始開服務囉</p>
+<pre><code>microk8s.enable dns dashboard
+</code></pre><h2 id="for-win10-2004">for Win10 2004</h2>
+<p>你各位阿~!這個中文輸入阿，很不ok阿
+當輸入中文的時候需要切換成英文就會爆炸?</p>
+<p>往右下角的 中/A 點一下右鍵
+<img src="https://i.imgur.com/eiEZ7gP.png" alt=""></p>
+<p>一般 &gt; 輸入設定 &gt; &ldquo;自動將中文模式中的按鍵順序切換為英數字元&rdquo; 開起來
+<img src="https://i.imgur.com/pFwB7TA.png" alt=""></p>
+<p>恩~是稍微好點了，不過這個選項也有毛病&hellip;&hellip;
+你一按錯注音他給你改成英文阿QQ
+哪個比較困擾需要個人評估了</p>
+<h2 id="ref">Ref</h2>
+<p><a href="https://docs.microsoft.com/zh-tw/windows/wsl/install-win10">https://docs.microsoft.com/zh-tw/windows/wsl/install-win10</a></p>
+<p><a href="https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/">https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/</a></p>
+<p><a href="https://blog.miniasp.com/post/2020/07/26/Multiple-Linux-Dev-Environment-build-on-WSL-2">https://blog.miniasp.com/post/2020/07/26/Multiple-Linux-Dev-Environment-build-on-WSL-2</a></p>
+<p><a href="https://docs.docker.com/docker-for-windows/wsl/">https://docs.docker.com/docker-for-windows/wsl/</a></p>
+<p><a href="https://github.com/microsoft/WSL/issues/5126#issuecomment-653715201">https://github.com/microsoft/WSL/issues/5126#issuecomment-653715201</a></p>
+<p><a href="https://wsl.dev/wsl2-microk8s">https://wsl.dev/wsl2-microk8s</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+    </main>
+  </body>
+</html>

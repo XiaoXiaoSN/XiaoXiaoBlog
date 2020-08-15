@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/docker/</link>
+    <description>Recent content in docker on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 14 Aug 2020 23:11:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker 建立不同架構的 Image</title>
+      <link>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</link>
+      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</guid>
+      <description>問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境  » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental: true Server: Docker Engine - Community Engine: Version: 19.03.12 API version: 1.40 (minimum version 1.12) Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:49:27 2020 OS/Arch: linux/amd64 Experimental: true containerd: Version: v1.2.13 GitCommit: 7ad184331fa3e55e52b890ea95e65ba581ae3429 runc: Version: 1.</description>
+    </item>
+    
+  </channel>
+</rss>

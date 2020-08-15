@@ -1,7 +1,6 @@
 ---
 title: "Docker 建立不同架構的 Image"
 date: 2020-08-14T23:11:03+08:00
-draft: true
 tags: ["docker", "multi-arch", "buildx"]
 ---
 

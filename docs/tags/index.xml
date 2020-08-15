@@ -6,10 +6,37 @@
     <description>Recent content in Tags on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Aug 2020 00:33:03 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2020 23:11:03 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>buildx</title>
+      <link>https://blog.10oz.tw/tags/buildx/</link>
+      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/buildx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://blog.10oz.tw/tags/docker/</link>
+      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multi-arch</title>
+      <link>https://blog.10oz.tw/tags/multi-arch/</link>
+      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/multi-arch/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>casbin</title>
@@ -26,6 +53,24 @@
       <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows</title>
+      <link>https://blog.10oz.tw/tags/windows/</link>
+      <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wsl2</title>
+      <link>https://blog.10oz.tw/tags/wsl2/</link>
+      <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/wsl2/</guid>
       <description></description>
     </item>
     
