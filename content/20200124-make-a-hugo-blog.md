@@ -157,6 +157,27 @@ $ git push origin master
 等待 10 秒，然後帶著一顆誠摯的新把連結給按下去 XD
 `https://帳號.github.io/專案`
 
+## 選修 - 使用自己的 domain
+回到前面部署時候的頁面，Setting 往下滑到 GitHub Pages
+![](https://i.imgur.com/ICR6di6.png)
+
+填寫 Custom domain 的這個欄位
+
+這裡我已經有 domain，然後是交給 cloudflare 管理，因此接下來會以此介紹
+開啟 cloudflare 選到 `DNS` 後，設定 CNAME 把你的網址導引到 githubPage
+![](https://i.imgur.com/czihvqT.png)
+
+接下來到 `Page Rules` 新增一筆強制使用 https 的選項
+![](https://i.imgur.com/1Bqyugo.png)
+![](https://i.imgur.com/l3G09A1.png)
+
+這樣就設定好囉～ 
+記得要回到專案的 `config.toml` 設定新的 url 喔
+
+```toml
+baseURL = "https://blog.10oz.tw"
+```
+
 
 ---
 
