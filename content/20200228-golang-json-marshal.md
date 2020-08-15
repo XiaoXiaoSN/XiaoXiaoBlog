@@ -350,4 +350,5 @@ func getInnerBox(boxType string, byteData []byte) (iBox, error) {
 
 ## 參考資料
 https://medium.com/@xfstart07/go-json-%E7%9A%84%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81-e689522a1f1f
+
 https://github.com/line/line-bot-sdk-go/blob/362880a2e613ce24eb32e1b72cd345370578b6df/linebot/flex_unmarshal.go#L23
