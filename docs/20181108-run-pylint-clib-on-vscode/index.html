@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 解決VSCode上pylint無法解析c函式庫的內容 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 解決VSCode上pylint無法解析c函式庫的內容"/>
+<meta name="twitter:description" content="問題 當你的函示庫底層使用C語言而不是純python編寫時 pylint可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
+解決方法 加入以下至白名單 $vim ~/.pylintrc
+extension-pkg-whitelist=MySQLdb "/>
+
+  <meta property="og:title" content="筆記 解決VSCode上pylint無法解析c函式庫的內容" />
+<meta property="og:description" content="問題 當你的函示庫底層使用C語言而不是純python編寫時 pylint可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
+解決方法 加入以下至白名單 $vim ~/.pylintrc
+extension-pkg-whitelist=MySQLdb " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/" />
+<meta property="article:published_time" content="2018-11-08T12:04:17+08:00" />
+<meta property="article:modified_time" content="2018-11-08T12:04:17+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 解決VSCode上pylint無法解析c函式庫的內容</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Nov 8, 2018
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/python/">python</a><a class="tag" href="https://blog.10oz.tw/tags/vscode/">vscode</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#問題">問題</a></li>
+    <li><a href="#解決方法">解決方法</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="問題">問題</h2>
+<p><img src="https://i.imgur.com/fczhIaz.png" alt="">
+當你的函示庫底層使用<strong>C語言</strong>而不是純python編寫時
+pylint可能會無法正確的找到他，此問題可能出現在<code>numpy</code>或是本例的<code>mysqlclient</code>上</p>
+<h2 id="解決方法">解決方法</h2>
+<p>加入以下至白名單
+$<code>vim ~/.pylintrc</code></p>
+<pre><code>extension-pkg-whitelist=MySQLdb
+</code></pre>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

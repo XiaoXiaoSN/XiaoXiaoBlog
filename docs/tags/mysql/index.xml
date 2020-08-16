@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/mysql/</link>
+    <description>Recent content in mysql on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Nov 2018 14:11:06 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 mysqlclient 安裝, error: python setup.py egg_info </title>
+      <link>https://blog.10oz.tw/20181117-install-mysqlclient/</link>
+      <pubDate>Sat, 17 Nov 2018 14:11:06 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20181117-install-mysqlclient/</guid>
+      <description>錯誤: 目標是成功執行它：
+pip3 install mysqlclient arios@AriosMac: pymysql_pool » pip3 install mysqlclient Collecting mysqlclient Using cached https://files.pythonhosted.org/packages/ec/fd/83329b9d3e14f7344d1cb31f128e6dbba70c5975c9e57896815dbb1988ad/mysqlclient-1.3.13.tar.gz Complete output from command python setup.py egg_info: /bin/sh: mysql_config: command not found Traceback (most recent call last): File &amp;#34;&amp;lt;string&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; File &amp;#34;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup.py&amp;#34;, line 18, in &amp;lt;module&amp;gt; metadata, options = get_config() File &amp;#34;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;#34;, line 53, inget_config libs = mysql_config(&amp;#34;libs_r&amp;#34;) File &amp;#34;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;#34;, line 28, inmysql_config raise EnvironmentError(&amp;#34;%s not found&amp;#34; % (mysql_config.path,)) OSError: mysql_config not found ---------------------------------------- Command &amp;#34;python setup.</description>
+    </item>
+    
+  </channel>
+</rss>

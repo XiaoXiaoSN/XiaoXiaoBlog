@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 laravel 真新手時間 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 laravel 真新手時間"/>
+<meta name="twitter:description" content="新手入門 結構介紹 我們現在在 laravel v5.7
+一起來看一下 laravel 專案的結構吧
+app 大部份的網頁後端主要程式碼 也就是說他很重要
+  (Model)放在外面的大寫開頭們～
+例如說 User.php 就是， 他們是 Model，定義了資料庫的物件模式
+  Http/
+ Controllers/
+controller可以作為路由進來後的流程控制器，可以想像它負責告訴大家要做什麼 Middleware/
+middleware叫做中間層，用來包著你的程式內容，request 進出都會經過    bootstrap 程式啟動第一個執行的套件
+config 所有應用的設定檔們
+database 顧名思義：資料庫～
+ migrations/
+紀錄了資料庫的心路歷程
+其中定義了up跟down，模擬建立資料還有需要rollback回去時的動作 fatories/
+定義了一些資料的模式，可以使用seeder批量製造 seeds/
+他是一顆會長出資料的種子，當你需要產生測試用的資料的時候很常遇到他  public 對外公開給使用者看得到的資源
+ Ex: 圖片、webpack包裝過的檔案  resources 本地資源
+  Ex: js的原始碼、CSS&hellip;
+  /assets
+ /js/components
+裡面寫了好多 vue component 們，他們是前端主力!    /views"/>
+
+  <meta property="og:title" content="筆記 laravel 真新手時間" />
+<meta property="og:description" content="新手入門 結構介紹 我們現在在 laravel v5.7
+一起來看一下 laravel 專案的結構吧
+app 大部份的網頁後端主要程式碼 也就是說他很重要
+  (Model)放在外面的大寫開頭們～
+例如說 User.php 就是， 他們是 Model，定義了資料庫的物件模式
+  Http/
+ Controllers/
+controller可以作為路由進來後的流程控制器，可以想像它負責告訴大家要做什麼 Middleware/
+middleware叫做中間層，用來包著你的程式內容，request 進出都會經過    bootstrap 程式啟動第一個執行的套件
+config 所有應用的設定檔們
+database 顧名思義：資料庫～
+ migrations/
+紀錄了資料庫的心路歷程
+其中定義了up跟down，模擬建立資料還有需要rollback回去時的動作 fatories/
+定義了一些資料的模式，可以使用seeder批量製造 seeds/
+他是一顆會長出資料的種子，當你需要產生測試用的資料的時候很常遇到他  public 對外公開給使用者看得到的資源
+ Ex: 圖片、webpack包裝過的檔案  resources 本地資源
+  Ex: js的原始碼、CSS&hellip;
+  /assets
+ /js/components
+裡面寫了好多 vue component 們，他們是前端主力!    /views" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190123-a-new-in-laravel/" />
+<meta property="article:published_time" content="2019-01-23T20:36:55+08:00" />
+<meta property="article:modified_time" content="2019-01-23T20:36:55+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 laravel 真新手時間</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Jan 23, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#新手入門">新手入門</a>
+      <ul>
+        <li><a href="#結構介紹">結構介紹</a></li>
+        <li><a href="#簡單操作-by-xiao--andrew--dagg">簡單操作 (by Xiao & Andrew & Dagg)</a></li>
+      </ul>
+    </li>
+    <li><a href="#blog---實作時間-by-dagg">BLOG - 實作時間 (by Dagg)</a>
+      <ul>
+        <li><a href="#建立article的model">建立Article的Model</a></li>
+        <li><a href="#管理article的model">管理Article的Model</a></li>
+        <li><a href="#建立migration文件中資料表的欄位格式">建立Migration文件中資料表的欄位格式</a></li>
+        <li><a href="#controller">Controller</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="新手入門">新手入門</h2>
+<h3 id="結構介紹">結構介紹</h3>
+<p>我們現在在 laravel v5.7<br>
+一起來看一下 laravel 專案的結構吧</p>
+<h4 id="app">app</h4>
+<p>大部份的網頁<strong>後端主要程式碼</strong> 也就是說他很重要</p>
+<ul>
+<li>
+<p>(Model)放在外面的大寫開頭們～<br>
+例如說 <code>User.php</code> 就是，
+他們是 <code>Model</code>，定義了資料庫的物件模式</p>
+</li>
+<li>
+<p>Http/</p>
+<ul>
+<li>Controllers/<br>
+<code>controller</code>可以作為路由進來後的流程控制器，可以想像它負責告訴大家要做什麼</li>
+<li>Middleware/<br>
+<code>middleware</code>叫做中間層，用來包著你的程式內容，request 進出都會經過</li>
+</ul>
+</li>
+</ul>
+<h4 id="bootstrap">bootstrap</h4>
+<p>程式啟動第一個執行的套件</p>
+<h4 id="config">config</h4>
+<p>所有應用的設定檔們</p>
+<h4 id="database">database</h4>
+<p>顧名思義：資料庫～</p>
+<ul>
+<li>migrations/<br>
+紀錄了資料庫的心路歷程<br>
+其中定義了<code>up</code>跟<code>down</code>，模擬建立資料還有需要rollback回去時的動作</li>
+<li>fatories/<br>
+定義了一些資料的模式，可以使用seeder批量製造</li>
+<li>seeds/<br>
+他是一顆會長出資料的種子，當你需要產生測試用的資料的時候很常遇到他</li>
+</ul>
+<h4 id="public">public</h4>
+<p>對外公開給使用者看得到的資源</p>
+<ul>
+<li>Ex: 圖片、webpack包裝過的檔案</li>
+</ul>
+<h4 id="resources">resources</h4>
+<p>本地資源</p>
+<ul>
+<li>
+<p>Ex: js的原始碼、CSS&hellip;</p>
+</li>
+<li>
+<p>/assets</p>
+<ul>
+<li>/js/components<br>
+裡面寫了好多 vue component 們，他們是前端主力!</li>
+</ul>
+</li>
+<li>
+<p>/views<br>
+這邊放了 <code>blade</code> ，他是 laravel選用的模板引擎，幫你更智慧的寫你的html</p>
+</li>
+</ul>
+<h4 id="routes">routes</h4>
+<ul>
+<li>api.php 裡面註冊API</li>
+<li>web.php 裡面註冊網頁</li>
+</ul>
+<p>他們最大的差別就是套用了不同的<code>middleware</code></p>
+<h4 id="storage">storage</h4>
+<p>網頁被儲存的資源</p>
+<ul>
+<li>Ex: log日誌檔案(紀錄檔)、檔案快取</li>
+</ul>
+<h4 id="tests">tests</h4>
+<p>測試單元、整合測試<br>
+大家都說用TDD比較快ㄛ</p>
+<h4 id="vender">vender</h4>
+<p>放別人code的地方<br>
+拿別人的code來用</p>
+<h4 id="laradock">laradock</h4>
+<p>它幫助我們使用<code>docker</code>來建制服務</p>
+<ul>
+<li><code>laradock/.env</code> 存放 laradock的設定參數</li>
+</ul>
+<h4 id="其他檔案">其他檔案</h4>
+<ul>
+<li><code>.env</code>
+在這個網頁會用到的參數，像是資料庫的密碼</li>
+<li><code>artisan</code>
+放了些 laravel 的工作指令</li>
+<li><code>composer.json</code>
+composer 用在 php 的套件管理
+當你需要幫你的 php 程式裝點別人的套件的時候，你會進來這邊看看</li>
+<li><code>package.json</code>
+javascript 的套件版本管理，還有 npm 指令喔</li>
+<li><code>webpack.min.js</code>
+webpack 會幫你打包前端的資源們</li>
+</ul>
+<h3 id="簡單操作-by-xiao--andrew--dagg">簡單操作 (by Xiao &amp; Andrew &amp; Dagg)</h3>
+<h4 id="註冊路由">註冊路由</h4>
+<p>寫在 routes/web.php</p>
+<p>這邊可以試著用你的路由連上預設的welcome首頁了</p>
+<blockquote>
+<p>你要在postman測試的話
+要關掉csrf防禦
+app/Http/Middleware/VerifyCsrfToken.php</p>
+</blockquote>
+<h4 id="migrate---開個資料表">migrate - 開個資料表</h4>
+<pre><code>php artisan make:migration crete_todoList_table
+</code></pre><p>檔案會在 ./database/migration/
+檔名範例: 2018_01_22_170244_crete_todoList_table</p>
+<p>column 建立說明
+<a href="https://laravel.com/docs/5.5/migrations#creating-columns">https://laravel.com/docs/5.5/migrations#creating-columns</a></p>
+<h4 id="寫個controller">寫個Controller</h4>
+<pre><code>php artisan make:controller TodoListController
+</code></pre><p>在 ./app/Http/Controller/ 會長出來</p>
+<h4 id="resource">resource</h4>
+<blockquote>
+<p>如果你加上 &ndash;resource 的話,它會長出預設的幾個功能框框
+而你可以在route裡面 Route::resource() 來管理他們
+<a href="https://laravel.com/docs/5.5/controllers#resource-controllers">https://laravel.com/docs/5.5/controllers#resource-controllers</a></p>
+</blockquote>
+<pre><code>不得已用简体中文输入法的补充：
+关于controller:
+    中层的class，管理http之间的行為（ ex: get and post method ）
+    另一种则是管理资源的class,管理对于资源的事件（ex: 图片的新增、修改、删除）,
+    称為resource controller
+    每一个controller都可以注册一个路由方便管理
+    如果想要resourcecontroller继承特定model特性的话,
+    可以在指令后方加上 --model=[model name]
+</code></pre><p>所以我們的結論:<br>
+API Controller + Model 的產生方法</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php artisan make:controller TodoListController --resource --model<span style="color:#666">=</span>TodoList
+</code></pre></div><p>如果不需要頁面的話　<code>--resource</code> 可以換成加上 <code>--api</code> 喔</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php artisan make:controller API/TodoListController --api
+</code></pre></div><h4 id="用個model裝起來">用個model裝起來</h4>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php artisan make:model TodoList
+</code></pre></div><p>會長出 ./app/TodoList.php<br>
+在裡面寫你跟資料庫的互動等等(static function)<br>
+然後你可以在controller裡面呼叫他們</p>
+<h4 id="resource-打包你的資料">Resource 打包你的資料</h4>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php artisan make:resource TodoList
+</code></pre></div><p>:::info
+app/Providers/AppServiceProvider 裡面的 boot() 可以加上
+use Illuminate\Http\Resources\Json\Resource;
+Resource::withoutWrapping();
+它會不包裝你的response
+:::</p>
+<h4 id="collection-打包你的資料們">Collection 打包你的資料們</h4>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php artisan make:resource TodoListCollection
+</code></pre></div><h4 id="來灌些假資料">來灌些假資料</h4>
+<p>factory製造出假的資料、資料型態, seeder把他們寫起來</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php artisan make:seeder TodoListSeeder
+php artisan make:factory TodoListFactory
+</code></pre></div><p>首先去DatabaseSeeder 的 run 裡面, 把你要跑的seeder註冊個</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$this-&gt;call([
+    TodoListSeeder::class,
+    //other seeder
+]);
+</code></pre></div><p>再來是目標的TodoListSeeder
+會用到factory回傳資料, 到 TodoListFactory 設計
+這樣它會回傳5筆 fake 資料到資料庫</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">//call factory to fake data
+factory(App\TodoList::class, 5)-&gt;create();
+</code></pre></div><p>執行 <code>DatabaseSeeder</code> 中被指定的 seeder 們</p>
+<pre><code>./artisan db:seed 
+</code></pre><hr>
+<h2 id="blog---實作時間-by-dagg">BLOG - 實作時間 (by Dagg)</h2>
+<h3 id="建立article的model">建立Article的Model</h3>
+<p>為了建立存放文章的Model輸入指令:
+<code>php artisan make:model 'Article' --migration</code>
+同時建立該model的migration</p>
+<h3 id="管理article的model">管理Article的Model</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">class Article extends Model
+{
+    protected $table = &#39;articles&#39;; 
+
+    // $fillable  為可以填入的table
+    protected $fillable = [
+        &#39;content&#39;
+    ];
+}
+</code></pre></div><h3 id="建立migration文件中資料表的欄位格式">建立Migration文件中資料表的欄位格式</h3>
+<ul>
+<li>$table-&gt;increment('_'); // 自動產生的key</li>
+<li>$table-&gt;longText('_');  // 放置無限字元的欄位 例如:文章內容</li>
+<li>$table-&gt;string('_');    // 放置255字元內的字串欄位</li>
+<li>$table-&gt;softDeletes();  // 建立一個判別軟刪除的欄位</li>
+<li>$table-&gt;timestamps();   // 建立時間標記的欄位(會建立兩個欄位，一個放建立時間一個放更新時間)</li>
+</ul>
+<p>調整完你要產生的欄位行別之後在終端機輸入:
+$ <code>php artisan migrate</code></p>
+<h3 id="controller">Controller</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">public function store(Request $request)  // 建立一個store的函式 會接收Request
+{
+    $article = $request-&gt;input(&#39;article&#39;); //把Request的input丟進去$article這個變數裡面
+    $show = new Article();      // 建立一個新的Article物件
+    $show-&gt;content = $article;  // 讓新建的Article物件轉成Request的input
+    $show-&gt;user_id = 1;         // 紀錄user_id
+    $show-&gt;save();              // 把這個Article這個物件save
+    return &#39;Hi&#39;;                // 測試用寫爽的 想不到吧
+}
+</code></pre></div>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

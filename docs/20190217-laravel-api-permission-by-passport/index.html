@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 Laravel API 權限 (Passport) | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 Laravel API 權限 (Passport)"/>
+<meta name="twitter:description" content="使用 JWT 版本 (2018/09 更新)  前面幾個步驟同官方安裝教學
+ 步驟說明 1. composer 載回來 composer require laravel/passport
+2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token)
+3.創造 key php artisan passport:install
+他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)
+同時也準備 2 個 Client Key 在 oauth_clients 資料表內
+Personal access client created successfully. Client ID: 1 Client Secret: ETOhMRq7faRSnb1jN2F168jlbYFcf25MOHj0cOxt Password grant client created successfully. Client ID: 2 Client Secret: fibc50RiIjAiYSLR7xceQyoxQE3oGWtIXpCLj9Co 4. 附加 passport 至 auth 系統  在 app\User."/>
+
+  <meta property="og:title" content="筆記 Laravel API 權限 (Passport)" />
+<meta property="og:description" content="使用 JWT 版本 (2018/09 更新)  前面幾個步驟同官方安裝教學
+ 步驟說明 1. composer 載回來 composer require laravel/passport
+2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token)
+3.創造 key php artisan passport:install
+他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)
+同時也準備 2 個 Client Key 在 oauth_clients 資料表內
+Personal access client created successfully. Client ID: 1 Client Secret: ETOhMRq7faRSnb1jN2F168jlbYFcf25MOHj0cOxt Password grant client created successfully. Client ID: 2 Client Secret: fibc50RiIjAiYSLR7xceQyoxQE3oGWtIXpCLj9Co 4. 附加 passport 至 auth 系統  在 app\User." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/" />
+<meta property="article:published_time" content="2019-02-17T09:46:31+08:00" />
+<meta property="article:modified_time" content="2019-02-17T09:46:31+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 Laravel API 權限 (Passport)</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Feb 17, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a><a class="tag" href="https://blog.10oz.tw/tags/passport/">passport</a><a class="tag" href="https://blog.10oz.tw/tags/jwt/">jwt</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用-jwt-版本-201809-更新">使用 JWT 版本 (2018/09 更新)</a>
+      <ul>
+        <li><a href="#步驟說明">步驟說明</a></li>
+        <li><a href="#參考">參考</a></li>
+      </ul>
+    </li>
+    <li><a href="#oauth2">OAuth2</a>
+      <ul>
+        <li><a href="#什麼是-oauth">什麼是 OAuth?</a></li>
+        <li><a href="#開始安裝---實戰時間">開始安裝 - 實戰時間</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="使用-jwt-版本-201809-更新">使用 JWT 版本 (2018/09 更新)</h2>
+<blockquote>
+<p>前面幾個步驟同官方安裝教學</p>
+</blockquote>
+<h3 id="步驟說明">步驟說明</h3>
+<h5 id="1-composer-載回來">1. composer 載回來</h5>
+<p><code>composer require laravel/passport</code></p>
+<h5 id="2-開資料表">2. 開資料表</h5>
+<p><code>php artisan migrate</code>
+然後你會多 5 張表 (主要使用到 <code>oauth_access_token</code>)</p>
+<h5 id="3創造-key">3.創造 key</h5>
+<p><code>php artisan passport:install</code><br>
+他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)<br>
+同時也準備 2 個 Client Key 在 <code>oauth_clients</code> 資料表內</p>
+<pre><code>Personal access client created successfully.
+Client ID: 1
+Client Secret: ETOhMRq7faRSnb1jN2F168jlbYFcf25MOHj0cOxt
+Password grant client created successfully.
+Client ID: 2
+Client Secret: fibc50RiIjAiYSLR7xceQyoxQE3oGWtIXpCLj9Co
+</code></pre><h5 id="4-附加-passport-至-auth-系統">4. 附加 passport 至 auth 系統</h5>
+<ul>
+<li>在 <code>app\User.php</code> 新增 <code>Laravel\Passport\HasApiTokens</code></li>
+<li>line:5,11</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+
+<span style="color:#007020;font-weight:bold">namespace</span> App;
+
+<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\HasApiTokens;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Notifications\Notifiable;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Auth\User <span style="color:#007020;font-weight:bold">as</span> Authenticatable;
+
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">User</span> <span style="color:#007020;font-weight:bold">extends</span> Authenticatable
+{
+    <span style="color:#007020;font-weight:bold">use</span> HasApiTokens, Notifiable;
+    
+    <span style="color:#60a0b0;font-style:italic">// ...
+</span></code></pre></div><ul>
+<li>在 <code>app/Providers/AuthServiceProvider.php</code> 新增 passport 的 route  (我們 jwt 版本可以不用)</li>
+<li>line:29</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+
+<span style="color:#007020;font-weight:bold">namespace</span> App\Providers;
+
+<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\Passport;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Support\Facades\Gate;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Support\Providers\AuthServiceProvider <span style="color:#007020;font-weight:bold">as</span> ServiceProvider;
+
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">AuthServiceProvider</span> <span style="color:#007020;font-weight:bold">extends</span> ServiceProvider
+{
+    <span style="color:#4070a0;font-style:italic">/**
+</span><span style="color:#4070a0;font-style:italic">     * The policy mappings for the application.
+</span><span style="color:#4070a0;font-style:italic">     *
+</span><span style="color:#4070a0;font-style:italic">     * @var array
+</span><span style="color:#4070a0;font-style:italic">     */</span>
+    <span style="color:#007020;font-weight:bold">protected</span> <span style="color:#bb60d5">$policies</span> <span style="color:#666">=</span> [
+        <span style="color:#4070a0">&#39;App\Model&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;App\Policies\ModelPolicy&#39;</span>,
+    ];
+
+    <span style="color:#4070a0;font-style:italic">/**
+</span><span style="color:#4070a0;font-style:italic">     * Register any authentication / authorization services.
+</span><span style="color:#4070a0;font-style:italic">     *
+</span><span style="color:#4070a0;font-style:italic">     * @return void
+</span><span style="color:#4070a0;font-style:italic">     */</span>
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">boot</span>()
+    {
+        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">registerPolicies</span>();
+
+        Passport<span style="color:#666">::</span><span style="color:#4070a0">routes</span>();
+        
+        <span style="color:#60a0b0;font-style:italic">// set when access tokens expire
+</span><span style="color:#60a0b0;font-style:italic"></span>        Passport<span style="color:#666">::</span><span style="color:#4070a0">tokensExpireIn</span>(now()<span style="color:#666">-&gt;</span><span style="color:#4070a0">addDays</span>(<span style="color:#40a070">15</span>));
+    }
+}
+</code></pre></div><ul>
+<li>在 <code>config/auth.php</code><br>
+修改 guard 使用 passport</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;guards&#39; =&gt; [
+    &#39;web&#39; =&gt; [
+        &#39;driver&#39; =&gt; &#39;session&#39;,
+        &#39;provider&#39; =&gt; &#39;users&#39;,
+    ],
+
+    &#39;api&#39; =&gt; [
+        &#39;driver&#39; =&gt; &#39;passport&#39;,
+        &#39;provider&#39; =&gt; &#39;users&#39;,
+    ],
+],
+</code></pre></div><ul>
+<li>修改 <code>app/Http/Kernel.php</code><br>
+加進 web middleware 中 (此步驟 JWT 才需要)</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;web&#39; =&gt; [
+    // Other middleware...
+    \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+],
+</code></pre></div><h5 id="5-修改登入步驟">5. 修改登入步驟</h5>
+<p>當我們登入成功的時候，回傳加密過的 jwt<br>
+在 <code>app/Http/Controllers/Auth/LoginController.php</code> override 掉 authenticated function<br>
+當登入成功的時候會進入這個function<br>
+createToken 第一個參數是 token的名稱 第二個是權限領域(Scopes)，建立後可以在<code>oauth_xxx</code> 資料表中確認</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    /**
+     * The user has been authenticated.
+     * Do not use the origin response of success login with 302, create access token
+     * and return json format
+     *
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if (!is_null($user)) {
+            // create persionalAccessToken for authrizate API
+            $token = $user-&gt;createToken(&#39;access_token&#39;, [&#39;guard&#39;, &#39;employee&#39;])-&gt;accessToken ?: &#39;&#39;;
+
+            return response()-&gt;json([
+                &#39;access_token&#39; =&gt; $token
+            ], 200);
+        }
+
+        // throw error
+        return $this-&gt;sendFailedLoginResponse($request);
+    }
+</code></pre></div><p>// 加入 scope middleware<br>
+// 在 <code>app/Http/Kernel.php</code> 裡面的 <code>$routeMiddleware</code><br>
+<code>scopes</code> 是你指定的 scope 們<strong>都要</strong>通過 (AND)<br>
+<code>scope</code> 則是你指定的 scope 們<strong>其中之一</strong>通過 (OR)<br>
+可以挑需要用的(我是兩種都加進去了啦)</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;scopes&#39; =&gt; \Laravel\Passport\Http\Middleware\CheckScopes::class,
+&#39;scope&#39; =&gt; \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+</code></pre></div><ul>
+<li>回到 <code>app/Providers/AuthServiceProvider.php</code> 我們可以在這裡設定 <code>scpoe</code> 們</li>
+<li>line:35</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+
+<span style="color:#007020;font-weight:bold">namespace</span> App\Providers;
+
+<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\Passport;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Support\Facades\Gate;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Support\Providers\AuthServiceProvider <span style="color:#007020;font-weight:bold">as</span> ServiceProvider;
+
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">AuthServiceProvider</span> <span style="color:#007020;font-weight:bold">extends</span> ServiceProvider
+{
+    <span style="color:#4070a0;font-style:italic">/**
+</span><span style="color:#4070a0;font-style:italic">     * The policy mappings for the application.
+</span><span style="color:#4070a0;font-style:italic">     *
+</span><span style="color:#4070a0;font-style:italic">     * @var array
+</span><span style="color:#4070a0;font-style:italic">     */</span>
+    <span style="color:#007020;font-weight:bold">protected</span> <span style="color:#bb60d5">$policies</span> <span style="color:#666">=</span> [
+        <span style="color:#4070a0">&#39;App\Model&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;App\Policies\ModelPolicy&#39;</span>,
+    ];
+
+    <span style="color:#4070a0;font-style:italic">/**
+</span><span style="color:#4070a0;font-style:italic">     * Register any authentication / authorization services.
+</span><span style="color:#4070a0;font-style:italic">     *
+</span><span style="color:#4070a0;font-style:italic">     * @return void
+</span><span style="color:#4070a0;font-style:italic">     */</span>
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">boot</span>()
+    {
+        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">registerPolicies</span>();
+        
+        <span style="color:#60a0b0;font-style:italic">// set when access tokens expire
+</span><span style="color:#60a0b0;font-style:italic"></span>        Passport<span style="color:#666">::</span><span style="color:#4070a0">tokensExpireIn</span>(now()<span style="color:#666">-&gt;</span><span style="color:#4070a0">addDays</span>(<span style="color:#40a070">15</span>));
+
+        <span style="color:#60a0b0;font-style:italic">// set when refresh tokens expire
+</span><span style="color:#60a0b0;font-style:italic"></span>        Passport<span style="color:#666">::</span><span style="color:#4070a0">refreshTokensExpireIn</span>(now()<span style="color:#666">-&gt;</span><span style="color:#4070a0">addDays</span>(<span style="color:#40a070">30</span>));
+
+        Passport<span style="color:#666">::</span><span style="color:#4070a0">tokensCan</span>([
+            <span style="color:#4070a0">&#39;admin&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;system admin&#39;</span>,
+            <span style="color:#4070a0">&#39;guard&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;a good guy&#39;</span>,
+            <span style="color:#4070a0">&#39;employee&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;just a poor engineer&#39;</span>
+        ]);
+    }
+}
+
+</code></pre></div><h5 id="6-裝備上去">6. 裝備上去</h5>
+<p>在 <code>routes/api.php</code> 加上 middleware <code>auth</code> 並指定 guard 是 <code>api</code>
+這樣有加上 middleware 的 API 們， 沒有 token 就進不去囉！</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Route::apiResource(&#39;report&#39;, &#39;API\ReportController&#39;)
+    -&gt;middleware(&#39;auth:api&#39;)-&gt;middleware(&#39;scope:employee,guard&#39;);
+    
+Route::post(&#39;/report/multi_assign&#39;, &#39;API\ReportController@assignReports&#39;)
+    -&gt;middleware(&#39;auth:api&#39;)-&gt;middleware(&#39;scope:guard&#39;);
+</code></pre></div><h5 id="7-前端接收">7. 前端接收</h5>
+<p>在這裡我將token存在local storage裡面<br>
+為了接收內容，所以將 make:auth產生的模板修改成 vue component 了<br>
+範例使用 ajax 做登入</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">axios.post(<span style="color:#4070a0">&#39;/login&#39;</span>, {
+    <span style="color:#4070a0">&#39;email&#39;</span><span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">this</span>.email,
+    <span style="color:#4070a0">&#39;password&#39;</span><span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">this</span>.password
+  })
+  .then(res =&gt; {
+    <span style="color:#007020">window</span>.localStorage.setItem(<span style="color:#4070a0">&#39;accessToken&#39;</span>, res.data.access_token)
+    <span style="color:#007020">window</span>.location.href <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.redirect_to
+  })
+  .<span style="color:#007020;font-weight:bold">catch</span>(err =&gt; {
+    console.error(<span style="color:#4070a0">&#39;login failed&#39;</span>)
+    <span style="color:#60a0b0;font-style:italic">// 處理回傳的錯誤訊息
+</span><span style="color:#60a0b0;font-style:italic"></span>  })
+</code></pre></div><p>在 <code>resources/assets/js/bootstrap.js</code><br>
+為了不用每一次送 API 請求都要手動加上 token， 我們修改 axios 的預設</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#60a0b0;font-style:italic">/**
+</span><span style="color:#60a0b0;font-style:italic"> * We will use laravel/passport JWT to verify API permission.
+</span><span style="color:#60a0b0;font-style:italic"> * Once user success to login, get a access token. The access token will be
+</span><span style="color:#60a0b0;font-style:italic"> * stored in the Local Storage of browser.
+</span><span style="color:#60a0b0;font-style:italic"> */</span>
+<span style="color:#007020;font-weight:bold">let</span> accessToken <span style="color:#666">=</span> JSON.parse(<span style="color:#007020">window</span>.localStorage.getItem(<span style="color:#4070a0">&#39;accessToken&#39;</span>)<span style="color:#666">||</span> <span style="color:#007020;font-weight:bold">null</span>);
+
+<span style="color:#007020;font-weight:bold">if</span> (accessToken) {
+    <span style="color:#007020">window</span>.axios.defaults.headers.common[<span style="color:#4070a0">&#39;Authorization&#39;</span>] <span style="color:#666">=</span> accessToken;
+}
+</code></pre></div><ul>
+<li>補充<br>
+可以在 <code>app/Exceptions/Handler.php</code> 做 error handle<br>
+在這裡把全部的 api error 都回傳 <code>401 未驗證</code>， 不良示範XDD</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">/**
+ * Convert an authentication exception into an unauthenticated response.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @param  \Illuminate\Auth\AuthenticationException  $exception
+ * @return \Illuminate\Http\Response
+ */
+protected function unauthenticated($request, AuthenticationException $exception)
+{
+    if ($request-&gt;expectsJson()) {
+        return response()-&gt;json([&#39;error&#39; =&gt; &#39;Unauthenticated.&#39;], 401);
+    }
+
+    $guard = array_get($exception-&gt;guards(), 0);
+    switch ($guard) {
+        case &#39;web&#39;:
+            $login = &#39;login&#39;;
+            break;
+        case &#39;api&#39;:
+            return response()-&gt;json([&#39;error&#39; =&gt; &#39;API Unauthenticated.&#39;], 401);
+            break;
+    }
+
+    return redirect()-&gt;guest(route($login));
+}
+</code></pre></div><h3 id="參考">參考</h3>
+<p><a href="https://laravel.com/docs/master/passport#installation">Laravel 官方</a>
+<a href="http://chatterjee.pw/larvel-passport-jwt-authentication/">Laravel Passport JWT Authentication</a></p>
+<hr>
+<h2 id="oauth2">OAuth2</h2>
+<h3 id="什麼是-oauth">什麼是 OAuth?</h3>
+<p>例如說你從你的服務要跟 google 拿取使用者的資訊</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resourse Owner</td>
+<td>使用者</td>
+</tr>
+<tr>
+<td>Client</td>
+<td>你的服務</td>
+</tr>
+<tr>
+<td>Authorization Server</td>
+<td>授權者，服務跟這邊拿token 如: google</td>
+</tr>
+<tr>
+<td>Resource Server</td>
+<td>服務會跟這裡拿資料</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://camo.githubusercontent.com/3487f5ca4ff38a3ca3b23111dcd9424bdcf6d209/687474703a2f2f626c6f672e676f7069766f74616c2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031322f31302f63647261772e706e67" alt=""></p>
+<h3 id="開始安裝---實戰時間">開始安裝 - 實戰時間</h3>
+<blockquote>
+<p>前幾個步驟同官方教學</p>
+</blockquote>
+<h5 id="1-composer-載回來-1">1. composer 載回來</h5>
+<p><code>composer require laravel/passport</code></p>
+<h5 id="2-開表">2. 開表</h5>
+<p><code>php artisan migrate</code><br>
+然後你會多 5 張表 (主要使用到 <code>oauth_access_token</code>)</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ php artisan migrate
+Migrating: 2016_06_01_000001_create_oauth_auth_codes_table
+Migrated:  2016_06_01_000001_create_oauth_auth_codes_table
+Migrating: 2016_06_01_000002_create_oauth_access_tokens_table
+Migrated:  2016_06_01_000002_create_oauth_access_tokens_table
+Migrating: 2016_06_01_000003_create_oauth_refresh_tokens_table
+Migrated:  2016_06_01_000003_create_oauth_refresh_tokens_table
+Migrating: 2016_06_01_000004_create_oauth_clients_table
+Migrated:  2016_06_01_000004_create_oauth_clients_table
+Migrating: 2016_06_01_000005_create_oauth_personal_access_clients_table
+Migrated:  2016_06_01_000005_create_oauth_personal_access_clients_table
+</code></pre></div><h5 id="3-創造-key">3. 創造 key</h5>
+<p><code>php artisan passport:install</code><br>
+他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)<br>
+同時也準備一組 Client Key 在 <code>oauth_clients</code> 資料表內</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ php artisan passport:install
+Encryption keys generated successfully.
+Personal access client created successfully.
+Client ID: <span style="color:#40a070">1</span>
+Client secret: VJZEYfTpsHBkNCv9ULUyHvGBbJvYiD1ZVP86cbYu
+Password grant client created successfully.
+Client ID: <span style="color:#40a070">2</span>
+Client secret: l4kh71C2DpdUsNmJFipi0hiDnhdgj6VfF5lGGDam
+</code></pre></div><h5 id="4-附加-passport-至-auth-系統-1">4. 附加 passport 至 auth 系統</h5>
+<ul>
+<li>在 <code>app\User.php</code> 新增一個 trait <code>Laravel\Passport\HasApiTokens</code></li>
+<li>line:5,11</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+
+<span style="color:#007020;font-weight:bold">namespace</span> App;
+
+<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\HasApiTokens;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Notifications\Notifiable;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Auth\User <span style="color:#007020;font-weight:bold">as</span> Authenticatable;
+
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">User</span> <span style="color:#007020;font-weight:bold">extends</span> Authenticatable
+{
+    <span style="color:#007020;font-weight:bold">use</span> HasApiTokens, Notifiable;
+    
+    <span style="color:#60a0b0;font-style:italic">// other code...
+</span></code></pre></div><ul>
+<li>在 <code>app/Providers/AuthServiceProvider.php</code> 新增 passport 的 route</li>
+<li>line:5 import passport</li>
+<li>line:29 add passport routes</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+
+<span style="color:#007020;font-weight:bold">namespace</span> App\Providers;
+
+<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\Passport;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Support\Facades\Gate;
+<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Support\Providers\AuthServiceProvider <span style="color:#007020;font-weight:bold">as</span> ServiceProvider;
+
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">AuthServiceProvider</span> <span style="color:#007020;font-weight:bold">extends</span> ServiceProvider
+{
+    <span style="color:#4070a0;font-style:italic">/**
+</span><span style="color:#4070a0;font-style:italic">     * The policy mappings for the application.
+</span><span style="color:#4070a0;font-style:italic">     *
+</span><span style="color:#4070a0;font-style:italic">     * @var array
+</span><span style="color:#4070a0;font-style:italic">     */</span>
+    <span style="color:#007020;font-weight:bold">protected</span> <span style="color:#bb60d5">$policies</span> <span style="color:#666">=</span> [
+        <span style="color:#4070a0">&#39;App\Model&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;App\Policies\ModelPolicy&#39;</span>,
+    ];
+
+    <span style="color:#4070a0;font-style:italic">/**
+</span><span style="color:#4070a0;font-style:italic">     * Register any authentication / authorization services.
+</span><span style="color:#4070a0;font-style:italic">     *
+</span><span style="color:#4070a0;font-style:italic">     * @return void
+</span><span style="color:#4070a0;font-style:italic">     */</span>
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">boot</span>()
+    {
+        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">registerPolicies</span>();
+
+        Passport<span style="color:#666">::</span><span style="color:#4070a0">routes</span>();
+        
+        <span style="color:#60a0b0;font-style:italic">// set when access tokens expire
+</span><span style="color:#60a0b0;font-style:italic"></span>        Passport<span style="color:#666">::</span><span style="color:#4070a0">tokensExpireIn</span>(now()<span style="color:#666">-&gt;</span><span style="color:#4070a0">addDays</span>(<span style="color:#40a070">15</span>));
+    }
+}
+</code></pre></div><ul>
+<li>在 <code>config/auth.php</code><br>
+修改 guard 使用 passport</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;guards&#39; =&gt; [
+    &#39;web&#39; =&gt; [
+        &#39;driver&#39; =&gt; &#39;session&#39;,
+        &#39;provider&#39; =&gt; &#39;users&#39;,
+    ],
+
+    &#39;api&#39; =&gt; [
+        &#39;driver&#39; =&gt; &#39;passport&#39;,
+        &#39;provider&#39; =&gt; &#39;users&#39;,
+    ],
+],
+</code></pre></div>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

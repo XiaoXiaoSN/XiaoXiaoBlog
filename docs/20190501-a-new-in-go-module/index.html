@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 我是個 go module 的菜鳥 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 我是個 go module 的菜鳥"/>
+<meta name="twitter:description" content="簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控制行為：
+ off: go command 不使用 modules 功能，而是沿用舊有的 GOPATH 模式 on: 強制使用 modules 功能，只根據 go.mod 下載 dependency 而完全忽略 GOPATH 以及 vendor 目錄 auto: Golang 1.11 預設值，go command 根據當前工作目錄狀態決定是否啟用 modules 功能，滿足任一條件時才啟動此功能:  當前目錄位於 GOPATH/src 之外並且包含 go.mod 文件 當前目錄位於包含 go.mod 文件的目錄下    因此，我們的第一步就是開啟他
+export GO111MODULE=on 來吧，新專案 mkdir goModTest cd goModTest main.go // at goModTest/main.go package main import ( &quot;net/http&quot; &quot;github."/>
+
+  <meta property="og:title" content="筆記 我是個 go module 的菜鳥" />
+<meta property="og:description" content="簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控制行為：
+ off: go command 不使用 modules 功能，而是沿用舊有的 GOPATH 模式 on: 強制使用 modules 功能，只根據 go.mod 下載 dependency 而完全忽略 GOPATH 以及 vendor 目錄 auto: Golang 1.11 預設值，go command 根據當前工作目錄狀態決定是否啟用 modules 功能，滿足任一條件時才啟動此功能:  當前目錄位於 GOPATH/src 之外並且包含 go.mod 文件 當前目錄位於包含 go.mod 文件的目錄下    因此，我們的第一步就是開啟他
+export GO111MODULE=on 來吧，新專案 mkdir goModTest cd goModTest main.go // at goModTest/main.go package main import ( &quot;net/http&quot; &quot;github." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190501-a-new-in-go-module/" />
+<meta property="article:published_time" content="2019-05-01T01:28:22+08:00" />
+<meta property="article:modified_time" content="2019-05-01T01:28:22+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 我是個 go module 的菜鳥</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        May 1, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/go/">go</a><a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/gomod/">gomod</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#簡介">簡介</a></li>
+    <li><a href="#來吧新專案">來吧，新專案</a>
+      <ul>
+        <li><a href="#maingo">main.go</a></li>
+        <li><a href="#tidy">tidy</a></li>
+        <li><a href="#vendor">Vendor</a></li>
+        <li><a href="#import-local-package">import local package</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="簡介">簡介</h2>
+<p>Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場)
+他在 2018/3/20 提交，並於 2018/5/21 被接受
+想使用他的話，要開個開關：
+環境變數 <code>GO111MODULE</code> 控制行為：</p>
+<ul>
+<li><code>off</code>: go command 不使用 modules 功能，而是沿用舊有的 GOPATH 模式</li>
+<li><code>on</code>: 強制使用 modules 功能，只根據 go.mod 下載 dependency 而完全忽略 GOPATH 以及 vendor 目錄</li>
+<li><code>auto</code>: Golang 1.11 預設值，go command 根據當前工作目錄狀態決定是否啟用 modules 功能，滿足任一條件時才啟動此功能:
+<ul>
+<li>當前目錄位於 GOPATH/src 之外並且包含 go.mod 文件</li>
+<li>當前目錄位於包含 go.mod 文件的目錄下</li>
+</ul>
+</li>
+</ul>
+<p>因此，我們的第一步就是開啟他</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">export</span> <span style="color:#bb60d5">GO111MODULE</span><span style="color:#666">=</span>on
+</code></pre></div><h2 id="來吧新專案">來吧，新專案</h2>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">mkdir goModTest
+<span style="color:#007020">cd</span> goModTest
+</code></pre></div><h3 id="maingo">main.go</h3>
+<pre><code class="language-go=" data-lang="go=">// at goModTest/main.go
+
+package main
+
+import (
+	&quot;net/http&quot;
+
+	&quot;github.com/gin-gonic/gin&quot;
+)
+
+func main() {
+	router := gin.Default()
+
+	router.GET(&quot;/health&quot;, GetHealthHandler)
+
+	s := &amp;http.Server{
+		Addr:    &quot;:8000&quot;,
+		Handler: router,
+	}
+	s.ListenAndServe()
+}
+
+// GetHealthHandler - GET /health to expose service health
+func GetHealthHandler(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		&quot;code&quot;:    0,
+		&quot;message&quot;: &quot;Service is alive!&quot;,
+	})
+}
+</code></pre><p>我們在 <code>main.go</code> 裡面用了 <code>gin</code> 這個 web framework</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go mod init <span style="color:#60a0b0;font-style:italic"># 產生 go.mod</span>
+go build <span style="color:#60a0b0;font-style:italic"># 編譯時會去下載缺少的相依套件</span>
+</code></pre></div><p>執行完後發現 <code>go.mod</code> 中多了幾個相依套件
+還多了一個 <code>go.sum</code>， 他就像是其他語言的 <code>.lock</code> 一樣，是用來記錄安裝的版本</p>
+<h3 id="tidy">tidy</h3>
+<p>自動幫你檢查你的程式碼中使用到的外部引用，
+幫你加入你需要的也幫你移除你用不到的</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go mod tidy
+</code></pre></div><h3 id="vendor">Vendor</h3>
+<p>預設的情況下，go mod 幫你把相依套件下載到 <code>$GOPATH</code>
+不過你希望有放在專案目錄下的話&hellip;</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go mod tidy <span style="color:#60a0b0;font-style:italic"># 先做個整理，才不會多下載</span>
+go mod vendor
+</code></pre></div><h3 id="import-local-package">import local package</h3>
+<p>可以直接 import 專案下的模組，<code>go.mod</code> 知道你目前的位置在 <code>goModTest</code>
+也就是寫在 <code>go.mod</code> 的第一行 <code>module goModTest</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">// 程式裡面這樣引用自己專案的package
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">import</span> dataapi <span style="color:#4070a0">&#34;goModTest/pkg/myapi&#34;</span>
+</code></pre></div><hr>
+<h2 id="reference">Reference</h2>
+<p>官方連結 <a href="https://github.com/golang/go/wiki/Modules">https://github.com/golang/go/wiki/Modules</a>
+你看人家 Drone 也用了 <a href="https://github.com/drone/drone">https://github.com/drone/drone</a>
+<a href="https://www.lightblue.asia/golang-1-11-new-festures-modules">https://www.lightblue.asia/golang-1-11-new-festures-modules</a>
+<a href="https://www.lightblue.asia/go-modules-with-insecure-git/">https://www.lightblue.asia/go-modules-with-insecure-git/</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

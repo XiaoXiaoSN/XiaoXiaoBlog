@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 python: Error 24: too many open files | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 python: Error 24: too many open files"/>
+<meta name="twitter:description" content="問題描述 同時開太多連線啦
+環境 Ubuntu 16.04
+解決方法 https://blog.csdn.net/qq_23926575/article/details/76619827
+開啟這個檔案 sudo vim /etc/security/limits.conf
+在最底下新增兩行
+* soft nofile 10000 * hard nofile 10000 記得重開Server"/>
+
+  <meta property="og:title" content="筆記 python: Error 24: too many open files" />
+<meta property="og:description" content="問題描述 同時開太多連線啦
+環境 Ubuntu 16.04
+解決方法 https://blog.csdn.net/qq_23926575/article/details/76619827
+開啟這個檔案 sudo vim /etc/security/limits.conf
+在最底下新增兩行
+* soft nofile 10000 * hard nofile 10000 記得重開Server" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20181120-python-error24-too-many-open-files/" />
+<meta property="article:published_time" content="2018-11-20T03:19:29+08:00" />
+<meta property="article:modified_time" content="2018-11-20T03:19:29+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 python: Error 24: too many open files</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Nov 20, 2018
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/python/">python</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#問題描述">問題描述</a>
+      <ul>
+        <li><a href="#環境">環境</a></li>
+      </ul>
+    </li>
+    <li><a href="#解決方法">解決方法</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="問題描述">問題描述</h2>
+<p>同時開太多連線啦</p>
+<h3 id="環境">環境</h3>
+<p>Ubuntu 16.04</p>
+<h2 id="解決方法">解決方法</h2>
+<p><a href="https://blog.csdn.net/qq_23926575/article/details/76619827">https://blog.csdn.net/qq_23926575/article/details/76619827</a></p>
+<p>開啟這個檔案
+<code>sudo vim /etc/security/limits.conf</code></p>
+<p>在最底下新增兩行</p>
+<pre><code>* soft nofile 10000
+* hard nofile 10000
+</code></pre><p>記得重開Server</p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

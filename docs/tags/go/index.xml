@@ -50,5 +50,27 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
 一、常用方法 package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) // Box 是個箱子 type Box struct { Name string `json:&amp;#34;name&amp;#34;` Color string `json:&amp;#34;color&amp;#34;` } func main() { jsonStr := `{&amp;#34;name&amp;#34;: &amp;#34;喵喵&amp;#34;, &amp;#34;color&amp;#34;: &amp;#34;blue&amp;#34; }` box := new(Box) // 把 bytes 寫進去 Box 物件裡面 	_ = json.Unmarshal([]byte(jsonStr), box) fmt.Printf(&amp;#34;%+v\n&amp;#34;, box) // {Name:喵喵 Color:blue}  // 再把物件寫回去 binary json 	box.Color = &amp;#34;黃色的&amp;#34; byteJSON, _ := json.</description>
     </item>
     
+    <item>
+      <title>筆記 安裝 Golang 與他們的套件管理工具</title>
+      <link>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</link>
+      <pubDate>Wed, 01 May 2019 11:50:36 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</guid>
+      <description>從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔 在這之前的版本使用環境變數 GOMODULE111=true 來做管理
+ 安裝 golang (on Mac) 1. 第一步當然是拿到 golnag 囉 brew install go 2. 環境設定 試著在 terminal 輸入 go env，能夠拿到 golang 用到的環境變數 特別注意一下幾個環境變數
+ GOROOT: 是你 golang 執行環境住的地方 GOPATH: 是你的 golang 程式 和 用到的套件們所住的地方 GOBIN: 因為 golang 是編譯式的語言，他可以把相依套件事先build 好，製作成 .a 的二進位檔，存在 GOBIN 裡面  # create GOPATH dir mkdir $HOME/gocode 永久設定~~ 如果你的 shell 是 bash 的話 (預設) 開啟編輯器修改 $HOME/.bashrc 檔案，bash 在登入後會做上面的事情</description>
+    </item>
+    
+    <item>
+      <title>筆記 我是個 go module 的菜鳥</title>
+      <link>https://blog.10oz.tw/20190501-a-new-in-go-module/</link>
+      <pubDate>Wed, 01 May 2019 01:28:22 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190501-a-new-in-go-module/</guid>
+      <description>簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控制行為：
+ off: go command 不使用 modules 功能，而是沿用舊有的 GOPATH 模式 on: 強制使用 modules 功能，只根據 go.mod 下載 dependency 而完全忽略 GOPATH 以及 vendor 目錄 auto: Golang 1.11 預設值，go command 根據當前工作目錄狀態決定是否啟用 modules 功能，滿足任一條件時才啟動此功能:  當前目錄位於 GOPATH/src 之外並且包含 go.mod 文件 當前目錄位於包含 go.mod 文件的目錄下    因此，我們的第一步就是開啟他
+export GO111MODULE=on 來吧，新專案 mkdir goModTest cd goModTest main.go // at goModTest/main.go package main import ( &amp;quot;net/http&amp;quot; &amp;quot;github.</description>
+    </item>
+    
   </channel>
 </rss>

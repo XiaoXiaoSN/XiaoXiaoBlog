@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mongodb on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/mongodb/</link>
+    <description>Recent content in mongodb on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 15 Aug 2019 19:59:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 Install php MongoDB driver on MacOS</title>
+      <link>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</link>
+      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</guid>
+      <description>** 2019.08 更新** https://www.php.net/manual/en/mongodb.installation.homebrew.php mac php72 請使用 pecl install mongodb 安裝 mongodb driver 因為 mongodb, xdebug 從 homebrew 被移除了
+[time=Thu, Aug 15, 2019 7:59 PM]
+ 問題描述 想在 Laravel 用 MongoDB
+composer require jenssegers/mongodb 錯誤：
+the requested PHP extension mongodb is missing from your system. =&amp;gt; 沒有裝 php 的擴展
+解決方案 先來個悲劇， homebrew 拿掉 php-mongodb 的擴展了QQ
+只好去裝人家的，我的 php 版本是 7.1 所以裝 php71-mongodb 忘記版本的話可以用 php --version 查看
+brew tap kyslik/php brew install phpxx-mongodb {xx = 71,72} 裝完惹！ 但是當我輸入 php -i 檢查的時候 dyld: Library not loaded: /usr/local/opt/readline/lib/libreadline.</description>
+    </item>
+    
+  </channel>
+</rss>

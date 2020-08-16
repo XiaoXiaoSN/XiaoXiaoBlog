@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>artisan on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/artisan/</link>
+    <description>Recent content in artisan on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 May 2019 02:51:38 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/artisan/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 artisan 的大紅色好刺眼啊啊啊啊</title>
+      <link>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</link>
+      <pubDate>Thu, 23 May 2019 02:51:38 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</guid>
+      <description> Laravel 5.8
+ $kernel = $app-&amp;gt;make(Illuminate\Contracts\Console\Kernel::class); $output = new Symfony\Component\Console\Output\ConsoleOutput; $output-&amp;gt;getFormatter() -&amp;gt;setStyle(&amp;#39;error&amp;#39;, new \Symfony\Component\Console\Formatter\OutputFormatterStyle(&amp;#39;yellow&amp;#39;)); $status = $kernel-&amp;gt;handle( $input = new Symfony\Component\Console\Input\ArgvInput, $output ); 修改的話在 line:37 可以帶三種參數
+public function __construct( string $foreground = null, string $background = null, array $options = []){ /****/ } 三種參數可以參考
+private static $availableForegroundColors = [ &amp;#39;black&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 30, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;red&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 31, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;green&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 32, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;yellow&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 33, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;blue&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 34, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;magenta&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 35, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;cyan&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 36, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;white&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 37, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;default&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 39, &amp;#39;unset&amp;#39; =&amp;gt; 39], ]; private static $availableBackgroundColors = [ &amp;#39;black&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 40, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;red&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 41, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;green&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 42, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;yellow&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 43, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;blue&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 44, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;magenta&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 45, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;cyan&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 46, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;white&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 47, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;default&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 49, &amp;#39;unset&amp;#39; =&amp;gt; 49], ]; private static $availableOptions = [ &amp;#39;bold&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 1, &amp;#39;unset&amp;#39; =&amp;gt; 22], &amp;#39;underscore&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 4, &amp;#39;unset&amp;#39; =&amp;gt; 24], &amp;#39;blink&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 5, &amp;#39;unset&amp;#39; =&amp;gt; 25], &amp;#39;reverse&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 7, &amp;#39;unset&amp;#39; =&amp;gt; 27], &amp;#39;conceal&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 8, &amp;#39;unset&amp;#39; =&amp;gt; 28], ]; </description>
+    </item>
+    
+  </channel>
+</rss>

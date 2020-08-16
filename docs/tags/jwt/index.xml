@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jwt on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/jwt/</link>
+    <description>Recent content in jwt on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Feb 2019 09:46:31 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/jwt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 Laravel API 權限 (Passport)</title>
+      <link>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</link>
+      <pubDate>Sun, 17 Feb 2019 09:46:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</guid>
+      <description>使用 JWT 版本 (2018/09 更新)  前面幾個步驟同官方安裝教學
+ 步驟說明 1. composer 載回來 composer require laravel/passport
+2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token)
+3.創造 key php artisan passport:install
+他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)
+同時也準備 2 個 Client Key 在 oauth_clients 資料表內
+Personal access client created successfully. Client ID: 1 Client Secret: ETOhMRq7faRSnb1jN2F168jlbYFcf25MOHj0cOxt Password grant client created successfully. Client ID: 2 Client Secret: fibc50RiIjAiYSLR7xceQyoxQE3oGWtIXpCLj9Co 4. 附加 passport 至 auth 系統  在 app\User.</description>
+    </item>
+    
+  </channel>
+</rss>

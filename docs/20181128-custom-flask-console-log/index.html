@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 自定義 flask 的 console log 之路 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 自定義 flask 的 console log 之路"/>
+<meta name="twitter:description" content="需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip
+實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9
+import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string = lambda self: \ self.headers.get(&#39;X-Forwarded-For&#39;) if self.headers.get(&#39;X-Forwarded-For&#39;) else self.client_address[0] WSGIRequestHandler.log = lambda self, type, message, *args: \ getattr(werkzeug_logger, type)(&#39;%s %s&#39; % (self."/>
+
+  <meta property="og:title" content="筆記 自定義 flask 的 console log 之路" />
+<meta property="og:description" content="需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip
+實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9
+import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string = lambda self: \ self.headers.get(&#39;X-Forwarded-For&#39;) if self.headers.get(&#39;X-Forwarded-For&#39;) else self.client_address[0] WSGIRequestHandler.log = lambda self, type, message, *args: \ getattr(werkzeug_logger, type)(&#39;%s %s&#39; % (self." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20181128-custom-flask-console-log/" />
+<meta property="article:published_time" content="2018-11-28T03:19:15+08:00" />
+<meta property="article:modified_time" content="2018-11-28T03:19:15+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 自定義 flask 的 console log 之路</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Nov 28, 2018
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/python/">python</a><a class="tag" href="https://blog.10oz.tw/tags/flask/">flask</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#需求">需求</a></li>
+    <li><a href="#實作修改">實作修改</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="需求">需求</h2>
+<p>讓 console log 可以正確顯示來源 ip
+而不是被 web server 轉發的 ip</p>
+<p><img src="https://i.imgur.com/2saUiKz.png" alt=""></p>
+<h2 id="實作修改">實作修改</h2>
+<p>覆蓋掉 address_string 這個 function <code>line:8</code>
+覆蓋掉 log function <code>line:9</code></p>
+<pre><code class="language-python=" data-lang="python=">import logging
+
+# get werkzeug_logger
+werkzeug_logger = logging.getLogger('werkzeug')
+
+# Override the built-in werkzeug logging function in order to change the log line format.
+from werkzeug.serving import WSGIRequestHandler
+WSGIRequestHandler.address_string = lambda self: \
+    self.headers.get('X-Forwarded-For') if self.headers.get('X-Forwarded-For') else self.client_address[0]
+WSGIRequestHandler.log = lambda self, type, message, *args: \
+    getattr(werkzeug_logger, type)('%s %s' % (self.address_string(), message % args))
+</code></pre>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

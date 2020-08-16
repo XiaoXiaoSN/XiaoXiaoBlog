@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 Laravel with Keycloak | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 Laravel with Keycloak"/>
+<meta name="twitter:description" content="laravel version: 5.8
+ 一、安裝篇 裝這個，跟著他的步驟做 https://github.com/robsontenorio/laravel-keycloak-guard
+二、使用篇 我們假設 Keycloak Server 有大大幫你開好了 (沒有請點我)
+取得 Keycloak 金鑰 https://auth.leotekiot.com 預設帳號: admin 預設密碼: Pa55w0rd
+登入後，依序操作得到金鑰 Realm Setting &gt; Keys &gt; RS256 Public key 放到 laravel 的 .env 設定中
+KEYCLOAK_REALM_PUBLIC_KEY=你的公開金鑰 登入 Keycloak Clients &gt; {{ 選個Client }} &gt; Credentials Secret 那邊就是我們的 Client Secret 了 User &gt; View all users &gt; {{ 選個User }} 或是你要新創一個也可以， 總之要記得你的帳號密碼喔
+移駕到 Postman 來嘗試登入 用這個 API 取得 token， auth_realm 填上現在使用的 Realm 預設是 Master"/>
+
+  <meta property="og:title" content="筆記 Laravel with Keycloak" />
+<meta property="og:description" content="laravel version: 5.8
+ 一、安裝篇 裝這個，跟著他的步驟做 https://github.com/robsontenorio/laravel-keycloak-guard
+二、使用篇 我們假設 Keycloak Server 有大大幫你開好了 (沒有請點我)
+取得 Keycloak 金鑰 https://auth.leotekiot.com 預設帳號: admin 預設密碼: Pa55w0rd
+登入後，依序操作得到金鑰 Realm Setting &gt; Keys &gt; RS256 Public key 放到 laravel 的 .env 設定中
+KEYCLOAK_REALM_PUBLIC_KEY=你的公開金鑰 登入 Keycloak Clients &gt; {{ 選個Client }} &gt; Credentials Secret 那邊就是我們的 Client Secret 了 User &gt; View all users &gt; {{ 選個User }} 或是你要新創一個也可以， 總之要記得你的帳號密碼喔
+移駕到 Postman 來嘗試登入 用這個 API 取得 token， auth_realm 填上現在使用的 Realm 預設是 Master" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190424-laravel-with-keycloak/" />
+<meta property="article:published_time" content="2019-04-24T10:05:56+08:00" />
+<meta property="article:modified_time" content="2019-04-24T10:05:56+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 Laravel with Keycloak</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Apr 24, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a><a class="tag" href="https://blog.10oz.tw/tags/keycloak/">keycloak</a><a class="tag" href="https://blog.10oz.tw/tags/oauth/">oauth</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一安裝篇">一、安裝篇</a></li>
+    <li><a href="#二使用篇">二、使用篇</a>
+      <ul>
+        <li><a href="#取得-keycloak-金鑰">取得 Keycloak 金鑰</a></li>
+        <li><a href="#登入-keycloak">登入 Keycloak</a></li>
+        <li><a href="#應用他">應用他!!</a></li>
+      </ul>
+    </li>
+    <li><a href="#三檢查權限篇">三、檢查權限篇</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>laravel version: 5.8</p>
+</blockquote>
+<h2 id="一安裝篇">一、安裝篇</h2>
+<p>裝這個，跟著他的步驟做
+<a href="https://github.com/robsontenorio/laravel-keycloak-guard">https://github.com/robsontenorio/laravel-keycloak-guard</a></p>
+<h2 id="二使用篇">二、使用篇</h2>
+<p>我們假設 Keycloak Server 有大大幫你開好了 (沒有請點<a href="https://github.com/jboss-dockerfiles/keycloak/blob/master/docker-compose-examples/keycloak-mysql.yml">我</a>)</p>
+<h3 id="取得-keycloak-金鑰">取得 Keycloak 金鑰</h3>
+<p><a href="https://auth.leotekiot.com">https://auth.leotekiot.com</a>
+預設帳號: admin
+預設密碼: Pa55w0rd</p>
+<p>登入後，依序操作得到金鑰
+Realm Setting &gt; Keys &gt; RS256 Public key
+<img src="https://i.imgur.com/LvkG6ZO.png" alt=""></p>
+<p>放到 laravel 的 .env 設定中</p>
+<pre><code class="language-env" data-lang="env">KEYCLOAK_REALM_PUBLIC_KEY=你的公開金鑰
+</code></pre><h3 id="登入-keycloak">登入 Keycloak</h3>
+<p>Clients &gt; {{ 選個Client }} &gt; Credentials
+Secret 那邊就是我們的 Client Secret 了
+<img src="https://i.imgur.com/UohvEBJ.png" alt=""></p>
+<p>User &gt; View all users &gt; {{ 選個User }}
+或是你要新創一個也可以，
+總之要記得你的帳號密碼喔</p>
+<p>移駕到 Postman 來嘗試登入
+<img src="https://i.imgur.com/kPJJMGI.png" alt=""></p>
+<p>用這個 API 取得 token，
+<code>auth_realm</code> 填上現在使用的 Realm 預設是 Master</p>
+<pre><code>/auth/realms/{{auth_realm}}/protocol/openid-connect/token
+</code></pre><p>需要的參數前面有介紹過了，按照圖片填滿它吧！</p>
+<p>送出就有 AccessToken 了
+<img src="https://i.imgur.com/8WzsWqV.png" alt=""></p>
+<h3 id="應用他">應用他!!</h3>
+<p>複製剛才的 access_token 貼到那個需要登入的 API 裡面
+Authorization &gt; Type: Bearer Token &gt;
+<img src="https://i.imgur.com/1l4CLX5.png" alt=""></p>
+<p>成功登入～</p>
+<h2 id="三檢查權限篇">三、檢查權限篇</h2>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// import Auth
+use Illuminate\Support\Facades\Auth;
+
+// 解析 JWT 並取得 token
+$tokenString = Auth::token();
+return [
+    &#39;token&#39; =&gt; json_decode($tokenString)
+];
+
+
+// 從 token 來檢查權限(角色)
+$Role = &#39;admin&#39;;
+$isAdmin = Auth::hasRole($CLIENT, $Role);
+
+</code></pre></div>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

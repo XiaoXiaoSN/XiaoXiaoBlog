@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 安裝 Golang 與他們的套件管理工具 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 安裝 Golang 與他們的套件管理工具"/>
+<meta name="twitter:description" content="從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔 在這之前的版本使用環境變數 GOMODULE111=true 來做管理
+ 安裝 golang (on Mac) 1. 第一步當然是拿到 golnag 囉 brew install go 2. 環境設定 試著在 terminal 輸入 go env，能夠拿到 golang 用到的環境變數 特別注意一下幾個環境變數
+ GOROOT: 是你 golang 執行環境住的地方 GOPATH: 是你的 golang 程式 和 用到的套件們所住的地方 GOBIN: 因為 golang 是編譯式的語言，他可以把相依套件事先build 好，製作成 .a 的二進位檔，存在 GOBIN 裡面  # create GOPATH dir mkdir $HOME/gocode 永久設定~~ 如果你的 shell 是 bash 的話 (預設) 開啟編輯器修改 $HOME/.bashrc 檔案，bash 在登入後會做上面的事情"/>
+
+  <meta property="og:title" content="筆記 安裝 Golang 與他們的套件管理工具" />
+<meta property="og:description" content="從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔 在這之前的版本使用環境變數 GOMODULE111=true 來做管理
+ 安裝 golang (on Mac) 1. 第一步當然是拿到 golnag 囉 brew install go 2. 環境設定 試著在 terminal 輸入 go env，能夠拿到 golang 用到的環境變數 特別注意一下幾個環境變數
+ GOROOT: 是你 golang 執行環境住的地方 GOPATH: 是你的 golang 程式 和 用到的套件們所住的地方 GOBIN: 因為 golang 是編譯式的語言，他可以把相依套件事先build 好，製作成 .a 的二進位檔，存在 GOBIN 裡面  # create GOPATH dir mkdir $HOME/gocode 永久設定~~ 如果你的 shell 是 bash 的話 (預設) 開啟編輯器修改 $HOME/.bashrc 檔案，bash 在登入後會做上面的事情" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/" />
+<meta property="article:published_time" content="2019-05-01T11:50:36+08:00" />
+<meta property="article:modified_time" content="2019-05-01T11:50:36+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 安裝 Golang 與他們的套件管理工具</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        May 1, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/go/">go</a><a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安裝-golang-on-mac">安裝 golang (on Mac)</a>
+      <ul>
+        <li><a href="#1-第一步當然是拿到-golnag-囉">1. 第一步當然是拿到 golnag 囉</a></li>
+        <li><a href="#2-環境設定">2. 環境設定</a></li>
+        <li><a href="#永久設定">永久設定~~</a></li>
+        <li><a href="#3-下載專案">3. 下載專案</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-套件管理工具">4. 套件管理工具</a>
+      <ul>
+        <li><a href="#go-modules">go modules</a></li>
+        <li><a href="#go-vendor">go vendor</a></li>
+        <li><a href="#附錄還有其他管理工具">附錄、還有其他管理工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#參考資料">參考資料</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔
+在這之前的版本使用環境變數 GOMODULE111=true 來做管理</p>
+</blockquote>
+<h2 id="安裝-golang-on-mac">安裝 golang (on Mac)</h2>
+<h3 id="1-第一步當然是拿到-golnag-囉">1. 第一步當然是拿到 golnag 囉</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install go
+</code></pre></div><h3 id="2-環境設定">2. 環境設定</h3>
+<p>試著在 terminal 輸入 <code>go env</code>，能夠拿到 golang 用到的環境變數
+特別注意一下幾個環境變數</p>
+<ul>
+<li><code>GOROOT</code>: 是你 golang 執行環境住的地方</li>
+<li><code>GOPATH</code>: 是你的 golang 程式 和 用到的套件們所住的地方</li>
+<li><code>GOBIN</code>: 因為 golang 是編譯式的語言，他可以把相依套件事先build 好，製作成 <code>.a</code> 的二進位檔，存在 <code>GOBIN</code> 裡面</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># create GOPATH dir</span>
+mkdir <span style="color:#bb60d5">$HOME</span>/gocode
+</code></pre></div><h3 id="永久設定">永久設定~~</h3>
+<p>如果你的 shell 是 bash 的話 (預設)
+開啟編輯器修改 <code>$HOME/.bashrc</code> 檔案，bash 在登入後會做上面的事情</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># edit $HOME/.bashrc</span>
+vim <span style="color:#bb60d5">$HOME</span>/.bashrc
+</code></pre></div><p>按下 <code>G</code> 到最底部後 <code>i</code> 進入編輯模式，把環境變數設定貼上去</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">export</span> <span style="color:#bb60d5">GOPATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$HOME</span>/gocode
+<span style="color:#007020">export</span> <span style="color:#bb60d5">GOBIN</span><span style="color:#666">=</span><span style="color:#bb60d5">$GOPATH</span>/bin
+<span style="color:#007020">export</span> <span style="color:#bb60d5">PATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$PATH</span>:<span style="color:#bb60d5">$GOBIN</span>
+</code></pre></div><p>按下<code>esc</code>退出編輯模式，輸入<code>:wq</code>存檔並離開</p>
+<p>or you are using fish <code>vim ~/.config/fish/config.fish</code></p>
+<pre><code># GOLANG configurations
+set -x GOPATH $HOME/gocode
+set -x GOBIN $GOPATH/bin
+set -x GOROOT /usr/local/opt/go/libexec
+set PATH $GOPATH/bin $GOROOT/bin $PATH
+</code></pre><p>重新再開一個小黑窗跑一下新的設定，
+再一次 <code>go env</code> 看看幾個參數有沒有不同吧</p>
+<h3 id="3-下載專案">3. 下載專案</h3>
+<p>在下載前，有些事情是我們要知道的
+Golang 的資料夾下有 <code>src</code> <code>pkg</code> <code>bin</code> 三個目錄</p>
+<ul>
+<li><code>src</code>: 當你找相依套件時，會來拜訪這裡</li>
+<li><code>pkg</code>: 編譯好的 go 檔案(<code>*.a</code>)，使用相依套件時，可以直接取用</li>
+<li><code>bin</code>: 裡面是編譯好的二進位檔案（golang工具）們</li>
+</ul>
+<p>先設定 ssh 下載我們的 repo，而不是 https</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git config --global url.<span style="color:#4070a0">&#34;git+ssh://git@gitlab.tenoz.tw/&#34;</span>.insteadOf <span style="color:#4070a0">&#34;https://repo.tenoz.tw/&#34;</span>
+
+go get repo.tenoz.tw/leotek/pelipper
+</code></pre></div><p>趕快來確認一下，是不是成功下載回來了呢？</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">cd</span> <span style="color:#bb60d5">$GOPATH</span>/src/repo.tenoz.tw/leotek/pelipper
+</code></pre></div><h2 id="4-套件管理工具">4. 套件管理工具</h2>
+<h3 id="go-modules">go modules</h3>
+<p>推薦用這個<br>
+先來看看 <a href="/20190501-a-new-in-go-module">go modules 介紹</a>) 吧</p>
+<h3 id="go-vendor">go vendor</h3>
+<p>前置任務：下載 <a href="https://github.com/kardianos/govendor">govendor</a></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go get -u github.com/kardianos/govendor
+</code></pre></div><p>好，回來看一下<br>
+pelipper 這個專案就是用 govendor 來對他的套件做管理<br>
+看一下 <code>vendor/vendor.json</code> 裡面寫了他使用的套件和版本</p>
+<p>一個指令下載相依套件</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">govendor sync
+</code></pre></div><p>跑跑看~~</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go build
+./pelipper
+</code></pre></div><p>雖然跑起來了，
+不過他可能會跟你說他需要設定檔喔</p>
+<hr>
+<hr>
+<h3 id="附錄還有其他管理工具">附錄、還有其他管理工具</h3>
+<p><a href="https://github.com/golang/go/wiki/PackageManagementTools">這裡</a>有詳細資訊</p>
+<p><code>dep</code> 官方推薦的管理包，不過有要被人家取代掉的趨勢<br>
+<code>Go Modules</code> 94J個，窩看好ni啦 &raquo; <a href="https://md.tenoz.tw/NGcbZCdARUWEt5W3usRBnw">介紹</a></p>
+<hr>
+<h2 id="參考資料">參考資料</h2>
+<p><a href="https://github.com/golang/go/wiki/PackageManagementTools">https://github.com/golang/go/wiki/PackageManagementTools</a>
+<a href="https://ieevee.com/tech/2017/07/10/go-import.html">https://ieevee.com/tech/2017/07/10/go-import.html</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

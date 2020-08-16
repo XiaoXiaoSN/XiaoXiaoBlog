@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 artisan 的大紅色好刺眼啊啊啊啊 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 artisan 的大紅色好刺眼啊啊啊啊"/>
+<meta name="twitter:description" content=" Laravel 5.8
+ $kernel = $app-&gt;make(Illuminate\Contracts\Console\Kernel::class); $output = new Symfony\Component\Console\Output\ConsoleOutput; $output-&gt;getFormatter() -&gt;setStyle(&#39;error&#39;, new \Symfony\Component\Console\Formatter\OutputFormatterStyle(&#39;yellow&#39;)); $status = $kernel-&gt;handle( $input = new Symfony\Component\Console\Input\ArgvInput, $output ); 修改的話在 line:37 可以帶三種參數
+public function __construct( string $foreground = null, string $background = null, array $options = []){ /****/ } 三種參數可以參考
+private static $availableForegroundColors = [ &#39;black&#39; =&gt; [&#39;set&#39; =&gt; 30, &#39;unset&#39; =&gt; 39], &#39;red&#39; =&gt; [&#39;set&#39; =&gt; 31, &#39;unset&#39; =&gt; 39], &#39;green&#39; =&gt; [&#39;set&#39; =&gt; 32, &#39;unset&#39; =&gt; 39], &#39;yellow&#39; =&gt; [&#39;set&#39; =&gt; 33, &#39;unset&#39; =&gt; 39], &#39;blue&#39; =&gt; [&#39;set&#39; =&gt; 34, &#39;unset&#39; =&gt; 39], &#39;magenta&#39; =&gt; [&#39;set&#39; =&gt; 35, &#39;unset&#39; =&gt; 39], &#39;cyan&#39; =&gt; [&#39;set&#39; =&gt; 36, &#39;unset&#39; =&gt; 39], &#39;white&#39; =&gt; [&#39;set&#39; =&gt; 37, &#39;unset&#39; =&gt; 39], &#39;default&#39; =&gt; [&#39;set&#39; =&gt; 39, &#39;unset&#39; =&gt; 39], ]; private static $availableBackgroundColors = [ &#39;black&#39; =&gt; [&#39;set&#39; =&gt; 40, &#39;unset&#39; =&gt; 49], &#39;red&#39; =&gt; [&#39;set&#39; =&gt; 41, &#39;unset&#39; =&gt; 49], &#39;green&#39; =&gt; [&#39;set&#39; =&gt; 42, &#39;unset&#39; =&gt; 49], &#39;yellow&#39; =&gt; [&#39;set&#39; =&gt; 43, &#39;unset&#39; =&gt; 49], &#39;blue&#39; =&gt; [&#39;set&#39; =&gt; 44, &#39;unset&#39; =&gt; 49], &#39;magenta&#39; =&gt; [&#39;set&#39; =&gt; 45, &#39;unset&#39; =&gt; 49], &#39;cyan&#39; =&gt; [&#39;set&#39; =&gt; 46, &#39;unset&#39; =&gt; 49], &#39;white&#39; =&gt; [&#39;set&#39; =&gt; 47, &#39;unset&#39; =&gt; 49], &#39;default&#39; =&gt; [&#39;set&#39; =&gt; 49, &#39;unset&#39; =&gt; 49], ]; private static $availableOptions = [ &#39;bold&#39; =&gt; [&#39;set&#39; =&gt; 1, &#39;unset&#39; =&gt; 22], &#39;underscore&#39; =&gt; [&#39;set&#39; =&gt; 4, &#39;unset&#39; =&gt; 24], &#39;blink&#39; =&gt; [&#39;set&#39; =&gt; 5, &#39;unset&#39; =&gt; 25], &#39;reverse&#39; =&gt; [&#39;set&#39; =&gt; 7, &#39;unset&#39; =&gt; 27], &#39;conceal&#39; =&gt; [&#39;set&#39; =&gt; 8, &#39;unset&#39; =&gt; 28], ]; "/>
+
+  <meta property="og:title" content="筆記 artisan 的大紅色好刺眼啊啊啊啊" />
+<meta property="og:description" content=" Laravel 5.8
+ $kernel = $app-&gt;make(Illuminate\Contracts\Console\Kernel::class); $output = new Symfony\Component\Console\Output\ConsoleOutput; $output-&gt;getFormatter() -&gt;setStyle(&#39;error&#39;, new \Symfony\Component\Console\Formatter\OutputFormatterStyle(&#39;yellow&#39;)); $status = $kernel-&gt;handle( $input = new Symfony\Component\Console\Input\ArgvInput, $output ); 修改的話在 line:37 可以帶三種參數
+public function __construct( string $foreground = null, string $background = null, array $options = []){ /****/ } 三種參數可以參考
+private static $availableForegroundColors = [ &#39;black&#39; =&gt; [&#39;set&#39; =&gt; 30, &#39;unset&#39; =&gt; 39], &#39;red&#39; =&gt; [&#39;set&#39; =&gt; 31, &#39;unset&#39; =&gt; 39], &#39;green&#39; =&gt; [&#39;set&#39; =&gt; 32, &#39;unset&#39; =&gt; 39], &#39;yellow&#39; =&gt; [&#39;set&#39; =&gt; 33, &#39;unset&#39; =&gt; 39], &#39;blue&#39; =&gt; [&#39;set&#39; =&gt; 34, &#39;unset&#39; =&gt; 39], &#39;magenta&#39; =&gt; [&#39;set&#39; =&gt; 35, &#39;unset&#39; =&gt; 39], &#39;cyan&#39; =&gt; [&#39;set&#39; =&gt; 36, &#39;unset&#39; =&gt; 39], &#39;white&#39; =&gt; [&#39;set&#39; =&gt; 37, &#39;unset&#39; =&gt; 39], &#39;default&#39; =&gt; [&#39;set&#39; =&gt; 39, &#39;unset&#39; =&gt; 39], ]; private static $availableBackgroundColors = [ &#39;black&#39; =&gt; [&#39;set&#39; =&gt; 40, &#39;unset&#39; =&gt; 49], &#39;red&#39; =&gt; [&#39;set&#39; =&gt; 41, &#39;unset&#39; =&gt; 49], &#39;green&#39; =&gt; [&#39;set&#39; =&gt; 42, &#39;unset&#39; =&gt; 49], &#39;yellow&#39; =&gt; [&#39;set&#39; =&gt; 43, &#39;unset&#39; =&gt; 49], &#39;blue&#39; =&gt; [&#39;set&#39; =&gt; 44, &#39;unset&#39; =&gt; 49], &#39;magenta&#39; =&gt; [&#39;set&#39; =&gt; 45, &#39;unset&#39; =&gt; 49], &#39;cyan&#39; =&gt; [&#39;set&#39; =&gt; 46, &#39;unset&#39; =&gt; 49], &#39;white&#39; =&gt; [&#39;set&#39; =&gt; 47, &#39;unset&#39; =&gt; 49], &#39;default&#39; =&gt; [&#39;set&#39; =&gt; 49, &#39;unset&#39; =&gt; 49], ]; private static $availableOptions = [ &#39;bold&#39; =&gt; [&#39;set&#39; =&gt; 1, &#39;unset&#39; =&gt; 22], &#39;underscore&#39; =&gt; [&#39;set&#39; =&gt; 4, &#39;unset&#39; =&gt; 24], &#39;blink&#39; =&gt; [&#39;set&#39; =&gt; 5, &#39;unset&#39; =&gt; 25], &#39;reverse&#39; =&gt; [&#39;set&#39; =&gt; 7, &#39;unset&#39; =&gt; 27], &#39;conceal&#39; =&gt; [&#39;set&#39; =&gt; 8, &#39;unset&#39; =&gt; 28], ]; " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/" />
+<meta property="article:published_time" content="2019-05-23T02:51:38+08:00" />
+<meta property="article:modified_time" content="2019-05-23T02:51:38+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 artisan 的大紅色好刺眼啊啊啊啊</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        May 23, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a><a class="tag" href="https://blog.10oz.tw/tags/artisan/">artisan</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents"></nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>Laravel 5.8</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$kernel = $app-&gt;make(Illuminate\Contracts\Console\Kernel::class);
+
+$output = new Symfony\Component\Console\Output\ConsoleOutput;
+$output-&gt;getFormatter()
+    -&gt;setStyle(&#39;error&#39;, new \Symfony\Component\Console\Formatter\OutputFormatterStyle(&#39;yellow&#39;));
+
+$status = $kernel-&gt;handle(
+    $input = new Symfony\Component\Console\Input\ArgvInput,
+    $output
+);
+</code></pre></div><p>修改的話在 line:37 可以帶三種參數</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">public function __construct(
+    string $foreground = null, 
+    string $background = null, 
+    array $options = []){
+    /****/ 
+}
+</code></pre></div><p>三種參數可以參考</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">private static $availableForegroundColors = [
+    &#39;black&#39; =&gt; [&#39;set&#39; =&gt; 30, &#39;unset&#39; =&gt; 39],
+    &#39;red&#39; =&gt; [&#39;set&#39; =&gt; 31, &#39;unset&#39; =&gt; 39],
+    &#39;green&#39; =&gt; [&#39;set&#39; =&gt; 32, &#39;unset&#39; =&gt; 39],
+    &#39;yellow&#39; =&gt; [&#39;set&#39; =&gt; 33, &#39;unset&#39; =&gt; 39],
+    &#39;blue&#39; =&gt; [&#39;set&#39; =&gt; 34, &#39;unset&#39; =&gt; 39],
+    &#39;magenta&#39; =&gt; [&#39;set&#39; =&gt; 35, &#39;unset&#39; =&gt; 39],
+    &#39;cyan&#39; =&gt; [&#39;set&#39; =&gt; 36, &#39;unset&#39; =&gt; 39],
+    &#39;white&#39; =&gt; [&#39;set&#39; =&gt; 37, &#39;unset&#39; =&gt; 39],
+    &#39;default&#39; =&gt; [&#39;set&#39; =&gt; 39, &#39;unset&#39; =&gt; 39],
+];
+private static $availableBackgroundColors = [
+    &#39;black&#39; =&gt; [&#39;set&#39; =&gt; 40, &#39;unset&#39; =&gt; 49],
+    &#39;red&#39; =&gt; [&#39;set&#39; =&gt; 41, &#39;unset&#39; =&gt; 49],
+    &#39;green&#39; =&gt; [&#39;set&#39; =&gt; 42, &#39;unset&#39; =&gt; 49],
+    &#39;yellow&#39; =&gt; [&#39;set&#39; =&gt; 43, &#39;unset&#39; =&gt; 49],
+    &#39;blue&#39; =&gt; [&#39;set&#39; =&gt; 44, &#39;unset&#39; =&gt; 49],
+    &#39;magenta&#39; =&gt; [&#39;set&#39; =&gt; 45, &#39;unset&#39; =&gt; 49],
+    &#39;cyan&#39; =&gt; [&#39;set&#39; =&gt; 46, &#39;unset&#39; =&gt; 49],
+    &#39;white&#39; =&gt; [&#39;set&#39; =&gt; 47, &#39;unset&#39; =&gt; 49],
+    &#39;default&#39; =&gt; [&#39;set&#39; =&gt; 49, &#39;unset&#39; =&gt; 49],
+];
+private static $availableOptions = [
+    &#39;bold&#39; =&gt; [&#39;set&#39; =&gt; 1, &#39;unset&#39; =&gt; 22],
+    &#39;underscore&#39; =&gt; [&#39;set&#39; =&gt; 4, &#39;unset&#39; =&gt; 24],
+    &#39;blink&#39; =&gt; [&#39;set&#39; =&gt; 5, &#39;unset&#39; =&gt; 25],
+    &#39;reverse&#39; =&gt; [&#39;set&#39; =&gt; 7, &#39;unset&#39; =&gt; 27],
+    &#39;conceal&#39; =&gt; [&#39;set&#39; =&gt; 8, &#39;unset&#39; =&gt; 28],
+];
+</code></pre></div>
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

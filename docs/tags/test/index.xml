@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>test on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/test/</link>
+    <description>Recent content in test on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Jul 2019 13:18:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 laravel test - 我們也來寫測試</title>
+      <link>https://blog.10oz.tw/20190703-laravel-testing/</link>
+      <pubDate>Wed, 03 Jul 2019 13:18:13 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190703-laravel-testing/</guid>
+      <description>laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM]
+ 開始之前 test 的設定檔在 ./phpunit.xml ，
+&amp;lt;!--phpunit.xml --&amp;gt; &amp;lt;phpunit&amp;gt; &amp;lt;php&amp;gt; &amp;lt;!--laravel 環境設定檔案使用 .emv.testing --&amp;gt; &amp;lt;server name=&amp;#34;APP_ENV&amp;#34; value=&amp;#34;testing&amp;#34;/&amp;gt; &amp;lt;!--測試環境的資料庫連線設定，我們將使用 sqlite --&amp;gt; &amp;lt;server name=&amp;#34;DB_CONNECTION&amp;#34; value=&amp;#34;sqlite_for_testing&amp;#34;/&amp;gt; &amp;lt;env name=&amp;#34;DB_DATABASE&amp;#34; value=&amp;#34;:memory:&amp;#34;/&amp;gt; &amp;lt;/php&amp;gt; &amp;lt;/phpunit&amp;gt; php 也要加在 Config/dataset.php
+/* Config/dataset.php */ &amp;lt;?php &amp;#39;connections&amp;#39; =&amp;gt; [ // ...other db connection configuration  // 為了方便測試，使用 memory sqlite 做為我們的資料庫 	&amp;#39;sqlite_for_testing&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;sqlite&amp;#39;, &amp;#39;database&amp;#39; =&amp;gt; &amp;#39;:memory:&amp;#39;, &amp;#39;prefix&amp;#39; =&amp;gt; &amp;#39;&amp;#39;, &amp;#39;foreign_key_constraints&amp;#39; =&amp;gt; true, ], ] 確認好設定後，我們執行起來</description>
+    </item>
+    
+  </channel>
+</rss>

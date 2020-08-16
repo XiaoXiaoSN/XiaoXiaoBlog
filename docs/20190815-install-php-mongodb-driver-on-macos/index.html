@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 Install php MongoDB driver on MacOS | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 Install php MongoDB driver on MacOS"/>
+<meta name="twitter:description" content="** 2019.08 更新** https://www.php.net/manual/en/mongodb.installation.homebrew.php mac php72 請使用 pecl install mongodb 安裝 mongodb driver 因為 mongodb, xdebug 從 homebrew 被移除了
+[time=Thu, Aug 15, 2019 7:59 PM]
+ 問題描述 想在 Laravel 用 MongoDB
+composer require jenssegers/mongodb 錯誤：
+the requested PHP extension mongodb is missing from your system. =&gt; 沒有裝 php 的擴展
+解決方案 先來個悲劇， homebrew 拿掉 php-mongodb 的擴展了QQ
+只好去裝人家的，我的 php 版本是 7.1 所以裝 php71-mongodb 忘記版本的話可以用 php --version 查看
+brew tap kyslik/php brew install phpxx-mongodb {xx = 71,72} 裝完惹！ 但是當我輸入 php -i 檢查的時候 dyld: Library not loaded: /usr/local/opt/readline/lib/libreadline."/>
+
+  <meta property="og:title" content="筆記 Install php MongoDB driver on MacOS" />
+<meta property="og:description" content="** 2019.08 更新** https://www.php.net/manual/en/mongodb.installation.homebrew.php mac php72 請使用 pecl install mongodb 安裝 mongodb driver 因為 mongodb, xdebug 從 homebrew 被移除了
+[time=Thu, Aug 15, 2019 7:59 PM]
+ 問題描述 想在 Laravel 用 MongoDB
+composer require jenssegers/mongodb 錯誤：
+the requested PHP extension mongodb is missing from your system. =&gt; 沒有裝 php 的擴展
+解決方案 先來個悲劇， homebrew 拿掉 php-mongodb 的擴展了QQ
+只好去裝人家的，我的 php 版本是 7.1 所以裝 php71-mongodb 忘記版本的話可以用 php --version 查看
+brew tap kyslik/php brew install phpxx-mongodb {xx = 71,72} 裝完惹！ 但是當我輸入 php -i 檢查的時候 dyld: Library not loaded: /usr/local/opt/readline/lib/libreadline." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/" />
+<meta property="article:published_time" content="2019-08-15T19:59:34+08:00" />
+<meta property="article:modified_time" content="2019-08-15T19:59:34+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 Install php MongoDB driver on MacOS</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Aug 15, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a><a class="tag" href="https://blog.10oz.tw/tags/mongodb/">mongodb</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#問題描述">問題描述</a></li>
+    <li><a href="#解決方案">解決方案</a></li>
+    <li><a href="#後記---小踩雷">後記 - 小踩雷</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>** 2019.08 更新**
+<a href="https://www.php.net/manual/en/mongodb.installation.homebrew.php">https://www.php.net/manual/en/mongodb.installation.homebrew.php</a>
+mac php72 請使用 <code>pecl install mongodb</code> 安裝 mongodb driver
+因為 mongodb, xdebug 從 homebrew 被移除了</p>
+<p>[time=Thu, Aug 15, 2019 7:59 PM]</p>
+</blockquote>
+<h2 id="問題描述">問題描述</h2>
+<p>想在 <code>Laravel</code> 用 <code>MongoDB</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">composer require jenssegers/mongodb
+</code></pre></div><p>錯誤：</p>
+<pre><code>the requested PHP extension mongodb is missing from your system.
+</code></pre><p>=&gt; 沒有裝 <code>php</code> 的擴展</p>
+<h2 id="解決方案">解決方案</h2>
+<p>先來個悲劇， <code>homebrew</code> 拿掉 php-mongodb 的擴展了QQ</p>
+<p>只好去裝人家的，我的 <code>php</code> 版本是 7.1 所以裝 <code>php71-mongodb</code>
+忘記版本的話可以用 <code>php --version</code> 查看</p>
+<pre><code>brew tap kyslik/php
+brew install phpxx-mongodb   {xx = 71,72}
+</code></pre><p>裝完惹！ 但是當我輸入 <code>php -i</code> 檢查的時候
+<code>dyld: Library not loaded: /usr/local/opt/readline/lib/libreadline.7.dylib</code></p>
+<p>哎呀QQ 來去 Google 看看</p>
+<pre><code>ln -s /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline/lib/libreadline.7.dylib
+</code></pre><p>之後可以輸入來檢查有沒有成功</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">» php -m | grep mongodb
+mongodb
+</code></pre></div><p>link 我手上有的版本過去之後，一切順利呢！！</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">composer require jenssegers/mongodb
+</code></pre></div><hr>
+<h2 id="後記---小踩雷">後記 - 小踩雷</h2>
+<ul>
+<li>
+<p>要是<code>php -i | grep mongodb</code>什麼都沒有的話可能是當初在安裝php的時候沒有安裝完全</p>
+<ul>
+<li>移除php重裝一次</li>
+<li>然後 <code>brew link phpxx</code></li>
+<li>你的 <code>/usr/local/</code>有可能會沒有sbin這個資料夾所以就<code>mkdir sbin</code>他</li>
+<li>然後成功連結他應該就可以惹</li>
+<li>※小秘訣：你可以跑 <code> brew doctor</code> 叫醫生幫你診斷～
+<img src="https://i.imgur.com/6Ei2TAB.png" alt=""></li>
+</ul>
+</li>
+<li>
+<p>跑起來遇到</p>
+</li>
+</ul>
+<pre><code>Symfony\Component\Debug\Exception\FatalThrowableError  : Call to a member function prepare() on null
+</code></pre><p><img src="https://i.imgur.com/IskCRFl.png" alt=""></p>
+<p>可以把原本 extend 的 <code>Model</code> 換成 <code> \Jenssegers\Mongodb\Eloquent\Model</code></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

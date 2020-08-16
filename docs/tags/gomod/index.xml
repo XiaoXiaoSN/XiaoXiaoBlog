@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gomod on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/gomod/</link>
+    <description>Recent content in gomod on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 May 2019 01:28:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/gomod/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 我是個 go module 的菜鳥</title>
+      <link>https://blog.10oz.tw/20190501-a-new-in-go-module/</link>
+      <pubDate>Wed, 01 May 2019 01:28:22 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190501-a-new-in-go-module/</guid>
+      <description>簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控制行為：
+ off: go command 不使用 modules 功能，而是沿用舊有的 GOPATH 模式 on: 強制使用 modules 功能，只根據 go.mod 下載 dependency 而完全忽略 GOPATH 以及 vendor 目錄 auto: Golang 1.11 預設值，go command 根據當前工作目錄狀態決定是否啟用 modules 功能，滿足任一條件時才啟動此功能:  當前目錄位於 GOPATH/src 之外並且包含 go.mod 文件 當前目錄位於包含 go.mod 文件的目錄下    因此，我們的第一步就是開啟他
+export GO111MODULE=on 來吧，新專案 mkdir goModTest cd goModTest main.go // at goModTest/main.go package main import ( &amp;quot;net/http&amp;quot; &amp;quot;github.</description>
+    </item>
+    
+  </channel>
+</rss>

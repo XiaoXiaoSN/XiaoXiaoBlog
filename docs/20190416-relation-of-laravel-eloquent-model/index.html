@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 Laravel Eloquent Model 的 relation | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 Laravel Eloquent Model 的 relation"/>
+<meta name="twitter:description" content="版本 Larael 5.7
+ 範例模型 accounts
+CREATE TABLE `accounts` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `website_id` int(10) unsigned NOT NULL, `account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, `deleted_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ); websites
+CREATE TABLE `websites` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ) accounts table 底下有個 cloumn website_id 用來關聯 websites 這張表。"/>
+
+  <meta property="og:title" content="筆記 Laravel Eloquent Model 的 relation" />
+<meta property="og:description" content="版本 Larael 5.7
+ 範例模型 accounts
+CREATE TABLE `accounts` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `website_id` int(10) unsigned NOT NULL, `account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, `deleted_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ); websites
+CREATE TABLE `websites` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ) accounts table 底下有個 cloumn website_id 用來關聯 websites 這張表。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/" />
+<meta property="article:published_time" content="2019-04-16T20:35:16+08:00" />
+<meta property="article:modified_time" content="2019-04-16T20:35:16+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 Laravel Eloquent Model 的 relation</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Apr 16, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a><a class="tag" href="https://blog.10oz.tw/tags/eloquent/">eloquent</a><a class="tag" href="https://blog.10oz.tw/tags/orm/">orm</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#範例模型">範例模型</a></li>
+    <li><a href="#正片開始---model">正片開始 - Model</a>
+      <ul>
+        <li><a href="#方案一加入參數-with">方案一、加入參數 $with</a></li>
+        <li><a href="#方案二-加入參數-appends">方案二、 加入參數 $appends</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>版本
+Larael 5.7</p>
+</blockquote>
+<h2 id="範例模型">範例模型</h2>
+<p><strong>accounts</strong></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#007020;font-weight:bold">CREATE</span> <span style="color:#007020;font-weight:bold">TABLE</span> <span style="color:#666">`</span>accounts<span style="color:#666">`</span> (
+    <span style="color:#666">`</span>id<span style="color:#666">`</span> <span style="color:#007020">int</span>(<span style="color:#40a070">10</span>) unsigned <span style="color:#007020;font-weight:bold">NOT</span> <span style="color:#007020;font-weight:bold">NULL</span> AUTO_INCREMENT,
+    <span style="color:#666">`</span>website_id<span style="color:#666">`</span> <span style="color:#007020">int</span>(<span style="color:#40a070">10</span>) unsigned <span style="color:#007020;font-weight:bold">NOT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+    <span style="color:#666">`</span>account<span style="color:#666">`</span> <span style="color:#007020">varchar</span>(<span style="color:#40a070">255</span>) <span style="color:#007020;font-weight:bold">COLLATE</span> utf8mb4_unicode_ci <span style="color:#007020;font-weight:bold">NOT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+    <span style="color:#666">`</span>password<span style="color:#666">`</span> <span style="color:#007020">varchar</span>(<span style="color:#40a070">255</span>) <span style="color:#007020;font-weight:bold">COLLATE</span> utf8mb4_unicode_ci <span style="color:#007020;font-weight:bold">NOT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+    <span style="color:#666">`</span>name<span style="color:#666">`</span> <span style="color:#007020">varchar</span>(<span style="color:#40a070">255</span>) <span style="color:#007020;font-weight:bold">COLLATE</span> utf8mb4_unicode_ci <span style="color:#007020;font-weight:bold">NOT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+
+    <span style="color:#666">`</span>created_at<span style="color:#666">`</span> <span style="color:#007020;font-weight:bold">timestamp</span> <span style="color:#007020;font-weight:bold">NULL</span> <span style="color:#007020;font-weight:bold">DEFAULT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+    <span style="color:#666">`</span>updated_at<span style="color:#666">`</span> <span style="color:#007020;font-weight:bold">timestamp</span> <span style="color:#007020;font-weight:bold">NULL</span> <span style="color:#007020;font-weight:bold">DEFAULT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+    <span style="color:#666">`</span>deleted_at<span style="color:#666">`</span> <span style="color:#007020;font-weight:bold">timestamp</span> <span style="color:#007020;font-weight:bold">NULL</span> <span style="color:#007020;font-weight:bold">DEFAULT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+
+    <span style="color:#007020;font-weight:bold">PRIMARY</span> <span style="color:#007020;font-weight:bold">KEY</span> (<span style="color:#666">`</span>id<span style="color:#666">`</span>)
+);
+</code></pre></div><p><strong>websites</strong></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#007020;font-weight:bold">CREATE</span> <span style="color:#007020;font-weight:bold">TABLE</span> <span style="color:#666">`</span>websites<span style="color:#666">`</span> (
+    <span style="color:#666">`</span>id<span style="color:#666">`</span> <span style="color:#007020">int</span>(<span style="color:#40a070">10</span>) unsigned <span style="color:#007020;font-weight:bold">NOT</span> <span style="color:#007020;font-weight:bold">NULL</span> AUTO_INCREMENT,
+    <span style="color:#666">`</span>name<span style="color:#666">`</span> <span style="color:#007020">varchar</span>(<span style="color:#40a070">255</span>) <span style="color:#007020;font-weight:bold">COLLATE</span> utf8mb4_unicode_ci <span style="color:#007020;font-weight:bold">NOT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+
+    <span style="color:#666">`</span>created_at<span style="color:#666">`</span> <span style="color:#007020;font-weight:bold">timestamp</span> <span style="color:#007020;font-weight:bold">NULL</span> <span style="color:#007020;font-weight:bold">DEFAULT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+    <span style="color:#666">`</span>updated_at<span style="color:#666">`</span> <span style="color:#007020;font-weight:bold">timestamp</span> <span style="color:#007020;font-weight:bold">NULL</span> <span style="color:#007020;font-weight:bold">DEFAULT</span> <span style="color:#007020;font-weight:bold">NULL</span>,
+
+    <span style="color:#007020;font-weight:bold">PRIMARY</span> <span style="color:#007020;font-weight:bold">KEY</span> (<span style="color:#666">`</span>id<span style="color:#666">`</span>)
+) 
+</code></pre></div><p><code>accounts</code> table 底下有個 cloumn <code>website_id</code> 用來關聯 <code>websites</code> 這張表。</p>
+<h2 id="正片開始---model">正片開始 - Model</h2>
+<p><code>Account</code> 是一個 Model，跟 <code>websites</code> 屬於多對一的關係
+一個 <code>website</code> 底下可以有很多 <code>account</code></p>
+<h3 id="方案一加入參數-with">方案一、加入參數 $with</h3>
+<p>在 <code>Account.php</code> 中&hellip;</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// Account.php Account Model
+
+// will call getWebsiteAttribute and append to the model object
+protected $with = [&#39;website&#39;];
+
+public function website() {
+    return $this-&gt;belongsTo(&#39;App\Website&#39;);
+    // 等於 $this-&gt;belongsTo(&#39;App\Website&#39;, &#39;website_id&#39;, &#39;id&#39;); 
+}
+
+public function getWebsiteAttribute() {
+    return $this-&gt;website()-&gt;first();
+}
+</code></pre></div><p>他會自動幫你找到 <code>$with</code> 內的 relation</p>
+<p>輸出看起來像這樣，多了 <code>website</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#062873;font-weight:bold">&#34;id&#34;</span>: <span style="color:#40a070">1</span>,
+    <span style="color:#062873;font-weight:bold">&#34;website_id&#34;</span>: <span style="color:#40a070">1</span>,
+    <span style="color:#062873;font-weight:bold">&#34;account&#34;</span>: <span style="color:#4070a0">&#34;ditto&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;password&#34;</span>: <span style="color:#4070a0">&#34;niguai.tenoz.1006&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>: <span style="color:#4070a0">&#34;meow&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;created_at&#34;</span>: <span style="color:#4070a0">&#34;2019-01-28 06:58:44&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;updated_at&#34;</span>: <span style="color:#4070a0">&#34;2019-01-28 06:58:44&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;website&#34;</span>: {
+        <span style="color:#062873;font-weight:bold">&#34;id&#34;</span>: <span style="color:#40a070">1</span>,
+        <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>: <span style="color:#4070a0">&#34;meo.tw&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;created_at&#34;</span>: <span style="color:#007020;font-weight:bold">null</span>,
+        <span style="color:#062873;font-weight:bold">&#34;updated_at&#34;</span>: <span style="color:#007020;font-weight:bold">null</span>
+    }
+}
+</code></pre></div><h3 id="方案二-加入參數-appends">方案二、 加入參數 $appends</h3>
+<p>只是把 <code>$with</code> 換成 <code>$appends</code>，可以達到一樣的效果</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// Account.php Account Model
+
+// will call getWebsiteAttribute and append to the model object
+protected $appends = [&#39;website&#39;];
+
+public function website() {
+    return $this-&gt;belongsTo(&#39;App\Website&#39;);
+}
+
+public function getWebsiteAttribute() {
+    return $this-&gt;website()-&gt;first();
+}
+</code></pre></div><p>不過為什麼要重複做這樣的功能呢?
+我認為 <code>appends</code> 跟 <code>$with</code> 的使用時機不同！
+<code>$with</code> 更用在 <strong>關聯另外的資料表</strong> 時
+<code>$appends</code> 則是可以用於加入其他資訊，像是:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// Account.php Account Model
+
+protected $appends = [&#39;uniqName&#39;];
+
+public function getUniqNameAttribute() {
+    return &#34;{$this-&gt;name}#{$this-&gt;id}&#34;;
+}
+</code></pre></div><p>輸出看起來像這樣，多了 <code>uniqName</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#062873;font-weight:bold">&#34;id&#34;</span>: <span style="color:#40a070">1</span>,
+    <span style="color:#062873;font-weight:bold">&#34;website_id&#34;</span>: <span style="color:#40a070">1</span>,
+    <span style="color:#062873;font-weight:bold">&#34;account&#34;</span>: <span style="color:#4070a0">&#34;ditto&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;password&#34;</span>: <span style="color:#4070a0">&#34;niguai.tenoz.1006&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>: <span style="color:#4070a0">&#34;meow&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;created_at&#34;</span>: <span style="color:#4070a0">&#34;2019-01-28 06:58:44&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;updated_at&#34;</span>: <span style="color:#4070a0">&#34;2019-01-28 06:58:44&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;uniqName&#34;</span>: <span style="color:#4070a0">&#34;meow#1&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;website&#34;</span>: {
+        <span style="color:#062873;font-weight:bold">&#34;id&#34;</span>: <span style="color:#40a070">1</span>,
+        <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>: <span style="color:#4070a0">&#34;meo.tw&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;created_at&#34;</span>: <span style="color:#007020;font-weight:bold">null</span>,
+        <span style="color:#062873;font-weight:bold">&#34;updated_at&#34;</span>: <span style="color:#007020;font-weight:bold">null</span>
+    }
+}
+</code></pre></div><p>:::info
+小Hint:
+belongsTo 這個 function 會幫你猜你 relate 的 key column name， 他用的是你呼叫他的那個 function name</p>
+<p>因此，
+function website() 中的 belongsTo 可以省略掉後面兩個參數
+:::</p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

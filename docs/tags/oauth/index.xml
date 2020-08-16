@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>oauth on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/oauth/</link>
+    <description>Recent content in oauth on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 24 Apr 2019 10:05:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/oauth/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 Laravel with Keycloak</title>
+      <link>https://blog.10oz.tw/20190424-laravel-with-keycloak/</link>
+      <pubDate>Wed, 24 Apr 2019 10:05:56 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190424-laravel-with-keycloak/</guid>
+      <description>laravel version: 5.8
+ 一、安裝篇 裝這個，跟著他的步驟做 https://github.com/robsontenorio/laravel-keycloak-guard
+二、使用篇 我們假設 Keycloak Server 有大大幫你開好了 (沒有請點我)
+取得 Keycloak 金鑰 https://auth.leotekiot.com 預設帳號: admin 預設密碼: Pa55w0rd
+登入後，依序操作得到金鑰 Realm Setting &amp;gt; Keys &amp;gt; RS256 Public key 放到 laravel 的 .env 設定中
+KEYCLOAK_REALM_PUBLIC_KEY=你的公開金鑰 登入 Keycloak Clients &amp;gt; {{ 選個Client }} &amp;gt; Credentials Secret 那邊就是我們的 Client Secret 了 User &amp;gt; View all users &amp;gt; {{ 選個User }} 或是你要新創一個也可以， 總之要記得你的帳號密碼喔
+移駕到 Postman 來嘗試登入 用這個 API 取得 token， auth_realm 填上現在使用的 Realm 預設是 Master</description>
+    </item>
+    
+  </channel>
+</rss>

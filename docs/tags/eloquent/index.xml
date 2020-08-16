@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>eloquent on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/eloquent/</link>
+    <description>Recent content in eloquent on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Apr 2019 20:35:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/eloquent/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 Laravel Eloquent Model 的 relation</title>
+      <link>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</link>
+      <pubDate>Tue, 16 Apr 2019 20:35:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</guid>
+      <description>版本 Larael 5.7
+ 範例模型 accounts
+CREATE TABLE `accounts` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `website_id` int(10) unsigned NOT NULL, `account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, `deleted_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ); websites
+CREATE TABLE `websites` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ) accounts table 底下有個 cloumn website_id 用來關聯 websites 這張表。</description>
+    </item>
+    
+  </channel>
+</rss>

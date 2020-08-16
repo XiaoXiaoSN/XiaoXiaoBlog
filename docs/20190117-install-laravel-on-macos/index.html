@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 安裝 Laravel on MacOS | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 安裝 Laravel on MacOS"/>
+<meta name="twitter:description" content="Step by Step 安裝指南 事前準備 HomeBrew 首先安裝 HomeBrew，他是 Mac 上的套件管理工具
+在終端機執行他： (裝過了可以跳過)
+/usr/bin/ruby -e &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&#34; ＊ Docker 安裝 Docker， 以會需要他多多照顧
+不想登入可以直接點 下載連結 下載 .dmg 並安裝
+安裝 python3 用 brew 裝，已經裝好了，跳過
+安裝 docker-compose 就是把 docker 組隊，一次把一群不同 docker 給開起來的工具
+pip3 install docker-compose ＊ 安裝 PHP (7.1.3以上) brew install php@7.2 ＊ 下載 Composer composer 是 php 的套件管理工具，想像他跟 pip, npm 這些的傢伙是一樣的
+可以直接跑下面的指令，或是到下載頁面下載 php -r &#34;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#34; php -r &#34;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;93b544968e392c0362774670ac182b134cd3b3a09695e5dca5e53c3728f1a9f115f20b3b754bf9a1be329d521bdaa8b26ac6a13e9a62d6444cdb0dc8a1da0806156398a5cbe587c3f0fe57a54d8f5&#39;) { echo &#39;Installer verified&#39;; } else { echo &#39;Installer corrupt&#39;; unlink(&#39;composer-setup."/>
+
+  <meta property="og:title" content="筆記 安裝 Laravel on MacOS" />
+<meta property="og:description" content="Step by Step 安裝指南 事前準備 HomeBrew 首先安裝 HomeBrew，他是 Mac 上的套件管理工具
+在終端機執行他： (裝過了可以跳過)
+/usr/bin/ruby -e &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&#34; ＊ Docker 安裝 Docker， 以會需要他多多照顧
+不想登入可以直接點 下載連結 下載 .dmg 並安裝
+安裝 python3 用 brew 裝，已經裝好了，跳過
+安裝 docker-compose 就是把 docker 組隊，一次把一群不同 docker 給開起來的工具
+pip3 install docker-compose ＊ 安裝 PHP (7.1.3以上) brew install php@7.2 ＊ 下載 Composer composer 是 php 的套件管理工具，想像他跟 pip, npm 這些的傢伙是一樣的
+可以直接跑下面的指令，或是到下載頁面下載 php -r &#34;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#34; php -r &#34;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;93b544968e392c0362774670ac182b134cd3b3a09695e5dca5e53c3728f1a9f115f20b3b754bf9a1be329d521bdaa8b26ac6a13e9a62d6444cdb0dc8a1da0806156398a5cbe587c3f0fe57a54d8f5&#39;) { echo &#39;Installer verified&#39;; } else { echo &#39;Installer corrupt&#39;; unlink(&#39;composer-setup." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190117-install-laravel-on-macos/" />
+<meta property="article:published_time" content="2019-01-17T12:03:16+08:00" />
+<meta property="article:modified_time" content="2019-01-17T12:03:16+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 安裝 Laravel on MacOS</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Jan 17, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-by-step-安裝指南">Step by Step 安裝指南</a>
+      <ul>
+        <li><a href="#事前準備">事前準備</a></li>
+        <li><a href="#下載-laravel-框架">下載 Laravel 框架</a></li>
+        <li><a href="#試試看能不能開服務啦">試試看能不能開服務啦～～～</a></li>
+      </ul>
+    </li>
+    <li><a href="#好像還缺了些東西">好像&hellip;還缺了些東西？</a>
+      <ul>
+        <li><a href="#-在-project-裡面安裝-laradock">＊ 在 project 裡面安裝 laradock</a></li>
+      </ul>
+    </li>
+    <li><a href="#看起來設定好了跑跑看">看起來設定好了，跑跑看？</a>
+      <ul>
+        <li></li>
+        <li><a href="#bonus">Bonus</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="step-by-step-安裝指南">Step by Step 安裝指南</h2>
+<h3 id="事前準備">事前準備</h3>
+<h4 id="homebrew">HomeBrew</h4>
+<p>首先安裝 <a href="https://brew.sh/index_zh-tw">HomeBrew</a>，他是 Mac 上的套件管理工具<br>
+在終端機執行他： (裝過了可以跳過)</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">/usr/bin/ruby -e <span style="color:#4070a0">&#34;</span><span style="color:#007020;font-weight:bold">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style="color:#007020;font-weight:bold">)</span><span style="color:#4070a0">&#34;</span>
+</code></pre></div><h4 id="-docker">＊ Docker</h4>
+<p>安裝 <a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">Docker</a>， 以會需要他多多照顧<br>
+不想登入可以直接點 <a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">下載連結</a> 下載 .dmg 並安裝</p>
+<h4 id="安裝-python3">安裝 python3</h4>
+<p>用 <code>brew</code> 裝，已經裝好了，跳過</p>
+<h4 id="安裝-docker-compose">安裝 docker-compose</h4>
+<p>就是把 docker 組隊，一次把一群不同 docker 給開起來的工具</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pip3 install docker-compose
+</code></pre></div><h4 id="-安裝-php-713以上">＊ 安裝 PHP (7.1.3以上)</h4>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install php@7.2
+</code></pre></div><h4 id="-下載-composer">＊ 下載 Composer</h4>
+<p><code>composer</code> 是 php 的套件管理工具，想像他跟 <code>pip</code>, <code>npm</code> 這些的傢伙是一樣的</p>
+<h5 id="可以直接跑下面的指令或是到下載頁面httpsgetcomposerorgdownload下載">可以直接跑下面的指令，或是到<a href="https://getcomposer.org/download/">下載頁面</a>下載</h5>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php -r <span style="color:#4070a0">&#34;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#34;</span>
+php -r <span style="color:#4070a0">&#34;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;93b544968e392c0362774670ac182b134cd3b3a09695e5dca5e53c3728f1a9f115f20b3b754bf9a1be329d521bdaa8b26ac6a13e9a62d6444cdb0dc8a1da0806156398a5cbe587c3f0fe57a54d8f5&#39;) { echo &#39;Installer verified&#39;; } else { echo &#39;Installer corrupt&#39;; unlink(&#39;composer-setup.php&#39;); } echo PHP_EOL;&#34;</span>
+php composer-setup.php
+php -r <span style="color:#4070a0">&#34;unlink(&#39;composer-setup.php&#39;);&#34;</span>
+</code></pre></div><h5 id="裝完後會多出一個-composerphar我們把它放到可使用指令區">裝完後會多出一個 <code>composer.phar</code>，我們把它放到可使用指令區</h5>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo mkdir /usr/local/bin -p
+sudo mv composer.phar /usr/local/bin/composer
+</code></pre></div><h4 id="-安裝-nodejs">＊ 安裝 NodeJS</h4>
+<p>來這邊安裝 <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a>
+目前我使用的版本是 <code>8.12</code> ，不過下載到 10版的應該也不會有問題啦 &gt; &lt;</p>
+<hr>
+<h3 id="下載-laravel-框架">下載 Laravel 框架</h3>
+<h4 id="移動到要安裝的資料夾例如">移動到要安裝的資料夾，例如：</h4>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">cd</span> ~/project
+</code></pre></div><h4 id="利用-git-下載-完成後會多一個-practice-資料夾">利用 git 下載， 完成後會多一個 <code>practice</code> 資料夾</h4>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone https://github.com/laravel/laravel.git practice
+</code></pre></div><h4 id="安裝-laravel-相依套件">安裝 Laravel 相依套件</h4>
+<h5 id="移動到專案資料夾">移動到專案資料夾</h5>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">cd</span> practice
+</code></pre></div><h5 id="利用-composer-安裝-php-的相依套件">利用 composer 安裝 php 的相依套件</h5>
+<pre><code>composer install
+</code></pre><h5 id="更新一下-js-套件">更新一下 js 套件</h5>
+<pre><code>npm install
+</code></pre><h5 id="更改權限">更改權限</h5>
+<pre><code>sudo chmod -R 777 storage/ bootstrap/cache/
+</code></pre><h3 id="試試看能不能開服務啦">試試看能不能開服務啦～～～</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php artisan serve
+</code></pre></div><p>用你的瀏覽器開這個 http://127.0.0.1:8000</p>
+<p>敲棒der～～～
+<img src="https://i.imgur.com/fEbm0nB.png" alt=""></p>
+<h5 id="開過後更改權限2">開過後，更改權限2</h5>
+<pre><code>sudo chmod -R 777 storage/
+</code></pre><hr>
+<h2 id="好像還缺了些東西">好像&hellip;還缺了些東西？</h2>
+<p>那我的資料庫呢？ 我們找 <a href="http://laradock.io/">Laradock</a>來幫我們吧!</p>
+<h3 id="-在-project-裡面安裝-laradock">＊ 在 project 裡面安裝 laradock</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># cd ~/project/practice</span>
+git submodule add https://github.com/Laradock/laradock.git
+</code></pre></div><h5 id="裝好之後-我們複製一份-laravel-的設定檔">裝好之後, 我們複製一份 <code>laravel</code> 的設定檔</h5>
+<pre><code>cp .env.example .env
+</code></pre><h5 id="產生-app-key">產生 app key</h5>
+<pre><code>php artisan key:generate
+</code></pre><h5 id="然後修改一下-mysql-連線的設定">然後修改一下 <code>MySQL</code> 連線的設定</h5>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#60a0b0;font-style:italic"># at ~/project/practice/.env</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># line 9</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>DB_CONNECTION=mysql<span style="color:#bbb">
+</span><span style="color:#bbb"></span>DB_HOST=mysql<span style="color:#bbb">
+</span><span style="color:#bbb"></span>DB_PORT=<span style="color:#40a070">3306</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>DB_DATABASE=default<span style="color:#bbb">
+</span><span style="color:#bbb"></span>DB_USERNAME=default<span style="color:#bbb">
+</span><span style="color:#bbb"></span>DB_PASSWORD=secret<span style="color:#bbb">
+</span></code></pre></div><h5 id="還有-laradock-的也是">還有 <code>laradock</code> 的也是</h5>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">cd</span> laradock
+cp env-example .env
+</code></pre></div><h5 id="最後我們要小改一下改變-laradock-存檔的位置">最後我們要小改一下，改變 <code>laradock</code> 存檔的位置</h5>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#60a0b0;font-style:italic"># line 14</span>
+<span style="color:#bb60d5">DATA_PATH_HOST</span><span style="color:#666">=</span>~/.laradock/practice-data
+</code></pre></div><h5 id="下載-docker-image">下載 docker image</h5>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull xiao4011/laradock_mysql
+docker tag xiao4011/laradock_mysql:latest laradock_mysql:latest
+</code></pre></div><h2 id="看起來設定好了跑跑看">看起來設定好了，跑跑看？</h2>
+<p>laradock 也可以幫你開很多不同的服務，這裡我們先開好我們需要用的</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker-compose up -d mysql phpmyadmin
+</code></pre></div><h4 id="試試看連線">試試看連線</h4>
+<p>回到外層，也就是 <code>~/project/practice</code></p>
+<p>執行一下這個指令</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php artisan migrate
+</code></pre></div><p><img src="https://i.imgur.com/oK6cjq7.png" alt="">
+他幫你建了幾張 table 你就成功了</p>
+<h3 id="bonus">Bonus</h3>
+<p>找個視窗開啟服務 <code>php artisan serve</code>
+執行一下這個指令，看看多了些什麼</p>
+<pre><code>php artisan make:auth
+</code></pre><p>就自動幫你建好會員登入系統了，很方便ㄅ</p>
+<hr>
+<p>To Be Continue&hellip; <a href="/20190123-a-new-in-laravel">下集待續</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

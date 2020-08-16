@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>flask on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/flask/</link>
+    <description>Recent content in flask on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Nov 2018 03:19:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/flask/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>筆記 自定義 flask 的 console log 之路</title>
+      <link>https://blog.10oz.tw/20181128-custom-flask-console-log/</link>
+      <pubDate>Wed, 28 Nov 2018 03:19:15 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20181128-custom-flask-console-log/</guid>
+      <description>需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip
+實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9
+import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string = lambda self: \ self.headers.get(&#39;X-Forwarded-For&#39;) if self.headers.get(&#39;X-Forwarded-For&#39;) else self.client_address[0] WSGIRequestHandler.log = lambda self, type, message, *args: \ getattr(werkzeug_logger, type)(&#39;%s %s&#39; % (self.</description>
+    </item>
+    
+  </channel>
+</rss>

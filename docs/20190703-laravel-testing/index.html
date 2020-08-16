@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>筆記 laravel test - 我們也來寫測試 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 laravel test - 我們也來寫測試"/>
+<meta name="twitter:description" content="laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM]
+ 開始之前 test 的設定檔在 ./phpunit.xml ，
+&lt;!--phpunit.xml --&gt; &lt;phpunit&gt; &lt;php&gt; &lt;!--laravel 環境設定檔案使用 .emv.testing --&gt; &lt;server name=&#34;APP_ENV&#34; value=&#34;testing&#34;/&gt; &lt;!--測試環境的資料庫連線設定，我們將使用 sqlite --&gt; &lt;server name=&#34;DB_CONNECTION&#34; value=&#34;sqlite_for_testing&#34;/&gt; &lt;env name=&#34;DB_DATABASE&#34; value=&#34;:memory:&#34;/&gt; &lt;/php&gt; &lt;/phpunit&gt; php 也要加在 Config/dataset.php
+/* Config/dataset.php */ &lt;?php &#39;connections&#39; =&gt; [ // ...other db connection configuration  // 為了方便測試，使用 memory sqlite 做為我們的資料庫 	&#39;sqlite_for_testing&#39; =&gt; [ &#39;driver&#39; =&gt; &#39;sqlite&#39;, &#39;database&#39; =&gt; &#39;:memory:&#39;, &#39;prefix&#39; =&gt; &#39;&#39;, &#39;foreign_key_constraints&#39; =&gt; true, ], ] 確認好設定後，我們執行起來"/>
+
+  <meta property="og:title" content="筆記 laravel test - 我們也來寫測試" />
+<meta property="og:description" content="laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM]
+ 開始之前 test 的設定檔在 ./phpunit.xml ，
+&lt;!--phpunit.xml --&gt; &lt;phpunit&gt; &lt;php&gt; &lt;!--laravel 環境設定檔案使用 .emv.testing --&gt; &lt;server name=&#34;APP_ENV&#34; value=&#34;testing&#34;/&gt; &lt;!--測試環境的資料庫連線設定，我們將使用 sqlite --&gt; &lt;server name=&#34;DB_CONNECTION&#34; value=&#34;sqlite_for_testing&#34;/&gt; &lt;env name=&#34;DB_DATABASE&#34; value=&#34;:memory:&#34;/&gt; &lt;/php&gt; &lt;/phpunit&gt; php 也要加在 Config/dataset.php
+/* Config/dataset.php */ &lt;?php &#39;connections&#39; =&gt; [ // ...other db connection configuration  // 為了方便測試，使用 memory sqlite 做為我們的資料庫 	&#39;sqlite_for_testing&#39; =&gt; [ &#39;driver&#39; =&gt; &#39;sqlite&#39;, &#39;database&#39; =&gt; &#39;:memory:&#39;, &#39;prefix&#39; =&gt; &#39;&#39;, &#39;foreign_key_constraints&#39; =&gt; true, ], ] 確認好設定後，我們執行起來" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190703-laravel-testing/" />
+<meta property="article:published_time" content="2019-07-03T13:18:13+08:00" />
+<meta property="article:modified_time" content="2019-07-03T13:18:13+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">筆記 laravel test - 我們也來寫測試</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Jul 3, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a><a class="tag" href="https://blog.10oz.tw/tags/test/">test</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#開始之前">開始之前</a></li>
+    <li><a href="#寫個測試來跑跑">寫個測試來跑跑</a>
+      <ul>
+        <li><a href="#製造假資料">製造假資料</a></li>
+      </ul>
+    </li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>laravel version: 5.8
+[time=Wed, Jul 3, 2019 1:27 PM]</p>
+</blockquote>
+<h2 id="開始之前">開始之前</h2>
+<p>test 的設定檔在 <code>./phpunit.xml</code> ，</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#60a0b0;font-style:italic">&lt;!--</span><span style="color:#60a0b0;font-style:italic"> phpunit.xml </span><span style="color:#60a0b0;font-style:italic">--&gt;</span>
+
+<span style="color:#062873;font-weight:bold">&lt;phpunit</span><span style="color:#062873;font-weight:bold">&gt;</span>
+    <span style="color:#062873;font-weight:bold">&lt;php</span><span style="color:#062873;font-weight:bold">&gt;</span>
+        <span style="color:#60a0b0;font-style:italic">&lt;!--</span><span style="color:#60a0b0;font-style:italic"> laravel 環境設定檔案使用 .emv.testing </span><span style="color:#60a0b0;font-style:italic">--&gt;</span>
+        <span style="color:#062873;font-weight:bold">&lt;server</span> <span style="color:#4070a0">name=</span><span style="color:#4070a0">&#34;APP_ENV&#34;</span> <span style="color:#4070a0">value=</span><span style="color:#4070a0">&#34;testing&#34;</span><span style="color:#062873;font-weight:bold">/&gt;</span>
+
+        <span style="color:#60a0b0;font-style:italic">&lt;!--</span><span style="color:#60a0b0;font-style:italic"> 測試環境的資料庫連線設定，我們將使用 sqlite </span><span style="color:#60a0b0;font-style:italic">--&gt;</span>
+        <span style="color:#062873;font-weight:bold">&lt;server</span> <span style="color:#4070a0">name=</span><span style="color:#4070a0">&#34;DB_CONNECTION&#34;</span> <span style="color:#4070a0">value=</span><span style="color:#4070a0">&#34;sqlite_for_testing&#34;</span><span style="color:#062873;font-weight:bold">/&gt;</span>
+        <span style="color:#062873;font-weight:bold">&lt;env</span> <span style="color:#4070a0">name=</span><span style="color:#4070a0">&#34;DB_DATABASE&#34;</span> <span style="color:#4070a0">value=</span><span style="color:#4070a0">&#34;:memory:&#34;</span><span style="color:#062873;font-weight:bold">/&gt;</span>
+    <span style="color:#062873;font-weight:bold">&lt;/php&gt;</span>
+<span style="color:#062873;font-weight:bold">&lt;/phpunit&gt;</span>
+</code></pre></div><p>php 也要加在 <code>Config/dataset.php</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">/* Config/dataset.php */
+
+<span style="color:#007020">&lt;?php</span>
+<span style="color:#4070a0">&#39;connections&#39;</span> <span style="color:#666">=&gt;</span> [
+	<span style="color:#60a0b0;font-style:italic">// ...other db connection configuration
+</span><span style="color:#60a0b0;font-style:italic"></span>
+	<span style="color:#60a0b0;font-style:italic">// 為了方便測試，使用 memory sqlite 做為我們的資料庫
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#4070a0">&#39;sqlite_for_testing&#39;</span> <span style="color:#666">=&gt;</span> [
+		<span style="color:#4070a0">&#39;driver&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;sqlite&#39;</span>,
+		<span style="color:#4070a0">&#39;database&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;:memory:&#39;</span>,
+		<span style="color:#4070a0">&#39;prefix&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;&#39;</span>,
+		<span style="color:#4070a0">&#39;foreign_key_constraints&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#007020;font-weight:bold">true</span>,
+	],
+]
+</code></pre></div><p>確認好設定後，我們執行起來</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># -v 代表 --verbose 顯示更詳細的資訊</span>
+./vendor/bin/phpunit -v --debug
+</code></pre></div><p><img src="https://i.imgur.com/kx7PVgF.png" alt=""></p>
+<h2 id="寫個測試來跑跑">寫個測試來跑跑</h2>
+<p>最近要重構一個 function，覺得裡面的邏輯有點複雜，決定先寫個測試再來開工<br>
+這次的目標是 <code>app/Http/Services/ScheduleService.php</code> 裡面的 <code>checkScheduleAvailable</code> 這個 function</p>
+<p>所以我們先來準備測試檔案:</p>
+<pre><code>php artisan make:test Schedule/availableTest --unit
+</code></pre><p>產生了一個 <code>tests/Unit/Schedule/availableTest.php</code> ，來看看裡面有什麼吧</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+
+<span style="color:#60a0b0;font-style:italic">// test 開頭的 function 會被測試
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">testExample</span>()
+{
+	<span style="color:#60a0b0;font-style:italic">// assertTrue 指定結果要是 true, 
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// 因為 (true === true) ，所以我們將會通過測試
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">assertTrue</span>(<span style="color:#007020;font-weight:bold">true</span>);
+}
+</code></pre></div><h3 id="製造假資料">製造假資料</h3>
+<p>為了測試 function 能夠順利回傳，總要給點資料才能測吧?</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">availableTest</span> <span style="color:#007020;font-weight:bold">extends</span> TestCase
+{
+    <span style="color:#60a0b0;font-style:italic">// 資料庫每次用完要復原，才不會讓測試資料一直留在資料庫中
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">use</span> RefreshDatabase;
+	
+	
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">testQueryUnAvailable</span>()<span style="color:#666">:</span> void
+    {
+        <span style="color:#60a0b0;font-style:italic">// inject some fake data into database
+</span><span style="color:#60a0b0;font-style:italic"></span>        factory(User<span style="color:#666">::</span><span style="color:#4070a0">class</span>)<span style="color:#666">-&gt;</span><span style="color:#4070a0">create</span>();
+        factory(Project<span style="color:#666">::</span><span style="color:#4070a0">class</span>)<span style="color:#666">-&gt;</span><span style="color:#4070a0">create</span>();
+        factory(Pole<span style="color:#666">::</span><span style="color:#4070a0">class</span>, <span style="color:#40a070">5</span>)<span style="color:#666">-&gt;</span><span style="color:#4070a0">create</span>();
+        <span style="color:#bb60d5">$ad</span> <span style="color:#666">=</span> factory(Ad<span style="color:#666">::</span><span style="color:#4070a0">class</span>)<span style="color:#666">-&gt;</span><span style="color:#4070a0">make</span>([
+            <span style="color:#4070a0">&#39;ad_status_id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">4</span>,  <span style="color:#60a0b0;font-style:italic">// ad_status_id: 4 is depolyed
+</span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#4070a0">&#39;ad_types_id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">1</span>,   <span style="color:#60a0b0;font-style:italic">// ad_types_id: 1 is slideshow
+</span><span style="color:#60a0b0;font-style:italic"></span>        ]);
+        factory(Ad<span style="color:#666">::</span><span style="color:#4070a0">class</span>)<span style="color:#666">-&gt;</span><span style="color:#4070a0">create</span>(<span style="color:#bb60d5">$ad</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">toArray</span>());
+		
+        <span style="color:#60a0b0;font-style:italic">// 測試一波，資料是不是有好好的塞進資料庫了
+</span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">assertCount</span>(<span style="color:#40a070">5</span>, Pole<span style="color:#666">::</span><span style="color:#4070a0">all</span>());
+        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">assertDatabaseHas</span>(<span style="color:#4070a0">&#39;ads&#39;</span>, [
+            <span style="color:#4070a0">&#39;ad_status_id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">4</span>,
+            <span style="color:#4070a0">&#39;ad_types_id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">1</span>,
+        ]);
+    }
+}
+</code></pre></div><h2 id="ref">Ref</h2>
+<p><a href="https://blog.goodjack.tw/2018/07/laravel-phpunit.html">https://blog.goodjack.tw/2018/07/laravel-phpunit.html</a>
+<a href="https://gist.github.com/jaceju/c415c1b42daf4c589f2a">https://gist.github.com/jaceju/c415c1b42daf4c589f2a</a>
+<a href="https://laravel.com/docs/5.8/database-testing">https://laravel.com/docs/5.8/database-testing</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

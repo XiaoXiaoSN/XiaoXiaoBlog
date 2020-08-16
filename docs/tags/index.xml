@@ -93,11 +93,11 @@
     </item>
     
     <item>
-      <title>排版</title>
-      <link>https://blog.10oz.tw/tags/%E6%8E%92%E7%89%88/</link>
+      <title>pretty</title>
+      <link>https://blog.10oz.tw/tags/pretty/</link>
       <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
       
-      <guid>https://blog.10oz.tw/tags/%E6%8E%92%E7%89%88/</guid>
+      <guid>https://blog.10oz.tw/tags/pretty/</guid>
       <description></description>
     </item>
     
@@ -107,6 +107,159 @@
       <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>laravel</title>
+      <link>https://blog.10oz.tw/tags/laravel/</link>
+      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/laravel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mongodb</title>
+      <link>https://blog.10oz.tw/tags/mongodb/</link>
+      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>php</title>
+      <link>https://blog.10oz.tw/tags/php/</link>
+      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>https://blog.10oz.tw/tags/test/</link>
+      <pubDate>Wed, 03 Jul 2019 13:18:13 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>artisan</title>
+      <link>https://blog.10oz.tw/tags/artisan/</link>
+      <pubDate>Thu, 23 May 2019 02:51:38 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/artisan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gomod</title>
+      <link>https://blog.10oz.tw/tags/gomod/</link>
+      <pubDate>Wed, 01 May 2019 01:28:22 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/gomod/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>keycloak</title>
+      <link>https://blog.10oz.tw/tags/keycloak/</link>
+      <pubDate>Wed, 24 Apr 2019 10:05:56 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/keycloak/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oauth</title>
+      <link>https://blog.10oz.tw/tags/oauth/</link>
+      <pubDate>Wed, 24 Apr 2019 10:05:56 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/oauth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>eloquent</title>
+      <link>https://blog.10oz.tw/tags/eloquent/</link>
+      <pubDate>Tue, 16 Apr 2019 20:35:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/eloquent/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>orm</title>
+      <link>https://blog.10oz.tw/tags/orm/</link>
+      <pubDate>Tue, 16 Apr 2019 20:35:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/orm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jwt</title>
+      <link>https://blog.10oz.tw/tags/jwt/</link>
+      <pubDate>Sun, 17 Feb 2019 09:46:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/jwt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>passport</title>
+      <link>https://blog.10oz.tw/tags/passport/</link>
+      <pubDate>Sun, 17 Feb 2019 09:46:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/passport/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flask</title>
+      <link>https://blog.10oz.tw/tags/flask/</link>
+      <pubDate>Wed, 28 Nov 2018 03:19:15 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/flask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://blog.10oz.tw/tags/python/</link>
+      <pubDate>Wed, 28 Nov 2018 03:19:15 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>https://blog.10oz.tw/tags/mysql/</link>
+      <pubDate>Sat, 17 Nov 2018 14:11:06 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysqlclient</title>
+      <link>https://blog.10oz.tw/tags/mysqlclient/</link>
+      <pubDate>Sat, 17 Nov 2018 14:11:06 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/mysqlclient/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vscode</title>
+      <link>https://blog.10oz.tw/tags/vscode/</link>
+      <pubDate>Thu, 08 Nov 2018 12:04:17 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/vscode/</guid>
       <description></description>
     </item>
     
