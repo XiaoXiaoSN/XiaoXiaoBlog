@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>Homebrew 自己寫配方一起來釀酒 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Homebrew 自己寫配方一起來釀酒"/>
+<meta name="twitter:description" content="馬上試試 pokesay
+brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要他說的話XDD
+我用得很快樂的時候發現一件事很不快樂，當一行太多字的時候會換行
+你看！都擠在一起了R
+這時我想到 cowsay 應該有這個功能才對呀！ 查詢了之後發現 在 pokemonsay 裡面 -n 被用在 Do not tell the pokémon name. 也就是最底下不要 show pokemon 的名字
+QQ 我不依，我自己改!
+介紹 Homebrew 首先先介紹一下 homebrew 這個軟體～ 他是 MacOS 上的套件管理工具，是 mac 最重要的必裝軟體之一
+ brew 這個字是釀造的意思，homebrew 在家釀造也就是自釀的意思 tap 第三方套件的倉庫，就相當於是 apt 的 ppa 一樣的角色 formula 公式、配方，上面寫著軟體安裝的步驟，也就是釀製(brew)的方法 cellar 酒窖存放釀好的酒，預設存在 /usr/local/Cellar，每個資料夾裡面也存有不同的版本，當 brew switch 某個套件版本的時候就是把 /usr/local/bin 的 link 指過去    補充: brew cask 用來安裝 macOS apps 也就是可以直接在應用程式裡面看到的圖像化軟體，像是 Chrome, Firefox, 360Safe 之類的"/>
+
+  <meta property="og:title" content="Homebrew 自己寫配方一起來釀酒" />
+<meta property="og:description" content="馬上試試 pokesay
+brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要他說的話XDD
+我用得很快樂的時候發現一件事很不快樂，當一行太多字的時候會換行
+你看！都擠在一起了R
+這時我想到 cowsay 應該有這個功能才對呀！ 查詢了之後發現 在 pokemonsay 裡面 -n 被用在 Do not tell the pokémon name. 也就是最底下不要 show pokemon 的名字
+QQ 我不依，我自己改!
+介紹 Homebrew 首先先介紹一下 homebrew 這個軟體～ 他是 MacOS 上的套件管理工具，是 mac 最重要的必裝軟體之一
+ brew 這個字是釀造的意思，homebrew 在家釀造也就是自釀的意思 tap 第三方套件的倉庫，就相當於是 apt 的 ppa 一樣的角色 formula 公式、配方，上面寫著軟體安裝的步驟，也就是釀製(brew)的方法 cellar 酒窖存放釀好的酒，預設存在 /usr/local/Cellar，每個資料夾裡面也存有不同的版本，當 brew switch 某個套件版本的時候就是把 /usr/local/bin 的 link 指過去    補充: brew cask 用來安裝 macOS apps 也就是可以直接在應用程式裡面看到的圖像化軟體，像是 Chrome, Firefox, 360Safe 之類的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200811-homebrew-create-app/" />
+<meta property="article:published_time" content="2020-08-11T23:16:31+08:00" />
+<meta property="article:modified_time" content="2020-08-11T23:16:31+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">Homebrew 自己寫配方一起來釀酒</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Aug 11, 2020
+      </div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#起源">起源</a></li>
+    <li><a href="#介紹-homebrew">介紹 Homebrew</a></li>
+    <li><a href="#開始釀酒">開始釀酒</a>
+      <ul>
+        <li><a href="#程式本身">程式本身</a></li>
+        <li><a href="#formula-安裝指南">Formula 安裝指南</a></li>
+        <li><a href="#brew-edit">brew edit</a></li>
+      </ul>
+    </li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <p><img src="https://i.imgur.com/8csSu3h.png" alt="">
+馬上試試 pokesay</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew tap xiaoxiaosn/xiaoxiao
+brew install pokesay
+</code></pre></div><h2 id="起源">起源</h2>
+<p>這個故事是這樣的，有一天發現了一個有趣的 command <a href="https://github.com/possatti/pokemonsay">pokemonsay</a>他是 <a href="https://en.wikipedia.org/wiki/Cowsay">cowsay</a> 的改編版，它可以讓 pokemon 出現說你想要他說的話XDD<br>
+我用得很快樂的時候發現一件事很不快樂，當一行太多字的時候會換行<br>
+你看！都擠在一起了R<br>
+<img src="https://i.imgur.com/ZZlwdAQ.png" alt=""></p>
+<p>這時我想到 cowsay 應該有這個功能才對呀！ 查詢了之後發現 在 pokemonsay 裡面 <code>-n</code> 被用在 <code>Do not tell the pokémon name.</code> 也就是最底下不要 show pokemon 的名字</p>
+<p>QQ 我不依，我自己改!</p>
+<h2 id="介紹-homebrew">介紹 Homebrew</h2>
+<p>首先先介紹一下 homebrew 這個軟體～
+他是 MacOS 上的套件管理工具，是 mac 最重要的必裝軟體之一</p>
+<ul>
+<li><code>brew</code> 這個字是釀造的意思，<code>homebrew</code> 在家釀造也就是自釀的意思</li>
+<li><code>tap</code> 第三方套件的倉庫，就相當於是 apt 的 ppa 一樣的角色</li>
+<li><code>formula</code> 公式、配方，上面寫著軟體安裝的步驟，也就是釀製(brew)的方法</li>
+<li><code>cellar</code> 酒窖存放釀好的酒，預設存在 <code>/usr/local/Cellar</code>，每個資料夾裡面也存有不同的版本，當 brew switch 某個套件版本的時候就是把 <code>/usr/local/bin</code> 的 link 指過去
+<img src="https://i.imgur.com/D5m64PT.png" alt=""></li>
+</ul>
+<blockquote>
+<p>補充:
+<code>brew cask</code> 用來安裝 macOS apps 也就是可以直接在應用程式裡面看到的圖像化軟體，像是 Chrome, Firefox, 360Safe 之類的</p>
+</blockquote>
+<p>了解完基本架構後，我們知道目標就是製作自己的 <code>tap</code>
+好讓 <code>brew</code> 可以安裝我們釋出的第三方套件</p>
+<h2 id="開始釀酒">開始釀酒</h2>
+<p>我們分成兩個部分來完成，一個是我們的應用程式另一個是 homebrew 的安裝腳本</p>
+<h3 id="程式本身">程式本身</h3>
+<p>只要任何一個可以執行的命令都行，所以先不著墨於此
+範例會用下面這個 repo，已經把我想要的 <code>-n</code> 指令加回來啦～～
+<a href="https://github.com/XiaoXiaoSN/pokesay">https://github.com/XiaoXiaoSN/pokesay</a></p>
+<h3 id="formula-安裝指南">Formula 安裝指南</h3>
+<p>本文的重點來啦!
+首先我們要到 github 上開一個新專案，命名叫做 homebrew-{your-tap-name}，例如我的 <code>homebrew-xiaoxiao</code></p>
+<p>進入專案底下新增 <code>Formula</code> 資料夾，在底下新增你的 formula</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#60a0b0;font-style:italic"># Formula/pokesay.rb</span>
+
+<span style="color:#60a0b0;font-style:italic"># 定義 Pokesay 繼承 Formula</span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">Pokesay</span> <span style="color:#666">&lt;</span> <span style="color:#60add5">Formula</span>
+  desc <span style="color:#4070a0">&#39;&#34;pokesay&#34; is like &#34;cowsay&#34; but for pokémon.&#39;</span>
+  homepage <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">https://github.com/XiaoXiaoSN/pokesay</span><span style="color:#4070a0">&#34;</span>
+
+  <span style="color:#60a0b0;font-style:italic"># url 說明要去哪裡下載專案</span>
+  <span style="color:#60a0b0;font-style:italic"># https://github.com/{username}/{repo}/{format}/{tag or branch}</span>
+  <span style="color:#60a0b0;font-style:italic"># format 我們都寫 tarball</span>
+  <span style="color:#60a0b0;font-style:italic"># tag or branch 就看你喜歡用哪個囉</span>
+  url <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">https://github.com/XiaoXiaoSN/pokesay/tarball/v1.0.1</span><span style="color:#4070a0">&#34;</span>
+
+  <span style="color:#60a0b0;font-style:italic"># sha256 用來確認你上面說的檔案身份，等等下面會說怎麼長出來</span>
+  sha256 <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">43511be3dbb52b380bf7501e3b06a0a17ee0349d0246601537481ca811753a4a</span><span style="color:#4070a0">&#34;</span>
+    
+  <span style="color:#60a0b0;font-style:italic"># 版本號</span>
+  version <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">v1.0.1</span><span style="color:#4070a0">&#34;</span>
+
+  <span style="color:#60a0b0;font-style:italic"># depends_on 定義安裝你的東西前，會用到的依賴套件</span>
+  depends_on <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">cowsay</span><span style="color:#4070a0">&#34;</span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#517918">:recommended</span>
+  depends_on <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">coreutils</span><span style="color:#4070a0">&#34;</span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">[</span><span style="color:#517918">:recommended</span>, <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">with-default-names</span><span style="color:#4070a0">&#34;</span><span style="color:#666">]</span> <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> <span style="color:#60add5">OS</span><span style="color:#666">.</span>linux?
+
+  <span style="color:#60a0b0;font-style:italic"># 定義安裝步驟</span>
+  <span style="color:#007020;font-weight:bold">def</span> <span style="color:#0e84b5;font-weight:bold"></span><span style="color:#666"></span><span style="color:#06287e">install</span>
+    <span style="color:#007020">system</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">cp</span><span style="color:#4070a0">&#34;</span>, <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">-r</span><span style="color:#4070a0">&#34;</span>, <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">./cows</span><span style="color:#4070a0">&#34;</span>, <span style="color:#4070a0">&#34;</span><span style="color:#70a0d0;font-style:italic">#{</span>prefix<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">/cows</span><span style="color:#4070a0">&#34;</span>
+    <span style="color:#007020">system</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">cp</span><span style="color:#4070a0">&#34;</span>, <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">pokemonsay.sh</span><span style="color:#4070a0">&#34;</span>, <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">pokesay</span><span style="color:#4070a0">&#34;</span>
+
+    <span style="color:#60a0b0;font-style:italic"># 字串取代，讓 pokesay 在本地也可以找得到參考檔案</span>
+    inreplace <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">pokesay</span><span style="color:#4070a0">&#34;</span>, <span style="color:#235388">/</span><span style="color:#235388">^pokemon_path=.*$</span><span style="color:#235388">/</span>, <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">pokemon_path=</span><span style="color:#70a0d0;font-style:italic">#{</span>prefix<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">/cows</span><span style="color:#4070a0">&#34;</span>
+
+    <span style="color:#60a0b0;font-style:italic"># 把 pokesay 複製到這個 formula 的目錄 (/usr/local/Cellar/{pkg}/0.1/bin)</span>
+    <span style="color:#60a0b0;font-style:italic"># 並設定成可執行檔案 (chmod 0555 foo)</span>
+    bin<span style="color:#666">.</span>install <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">pokesay</span><span style="color:#4070a0">&#34;</span>
+  <span style="color:#007020;font-weight:bold">end</span>
+
+  <span style="color:#60a0b0;font-style:italic"># 安裝完成後的驗證測試，這邊偷懶沒寫 XD</span>
+  <span style="color:#007020">test</span> <span style="color:#007020;font-weight:bold">do</span>
+    <span style="color:#007020">system</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">false</span><span style="color:#4070a0">&#34;</span>
+  <span style="color:#007020;font-weight:bold">end</span>
+<span style="color:#007020;font-weight:bold">end</span>
+</code></pre></div><p>如何產生 sha256</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># 用 curl 下載壓縮檔下來， -L 跟隨跳轉 -o 儲存輸出到檔案</span>
+curl -L https://github.com/XiaoXiaoSN/pokesay/tarball/v1.0.1 -o pokesay.tar.gz
+<span style="color:#60a0b0;font-style:italic"># 計算 sha256 雜湊值</span>
+shasum -a <span style="color:#40a070">256</span> pokesay.tar.gz
+</code></pre></div><h3 id="brew-edit">brew edit</h3>
+<p><code>brew edit</code> 會叫出你安裝時下載的 Formula，讓你可以編輯再重新安裝<br>
+也可以藉機偷偷參考別人的 Formula 是如何編寫的～～</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew edit wget <span style="color:#60a0b0;font-style:italic"># 會使用預設編輯器開啟</span>
+</code></pre></div><h2 id="ref">Ref</h2>
+<p>homebrew故事 <a href="https://www.onejar99.com/mac-homebrew-homebrew-cask-mac/">https://www.onejar99.com/mac-homebrew-homebrew-cask-mac/</a>
+Formula-Cookbook <a href="https://docs.brew.sh/Formula-Cookbook">https://docs.brew.sh/Formula-Cookbook</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

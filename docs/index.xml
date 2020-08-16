@@ -39,6 +39,22 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
     </item>
     
     <item>
+      <title>Homebrew 自己寫配方一起來釀酒</title>
+      <link>https://blog.10oz.tw/20200811-homebrew-create-app/</link>
+      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200811-homebrew-create-app/</guid>
+      <description>馬上試試 pokesay
+brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要他說的話XDD
+我用得很快樂的時候發現一件事很不快樂，當一行太多字的時候會換行
+你看！都擠在一起了R
+這時我想到 cowsay 應該有這個功能才對呀！ 查詢了之後發現 在 pokemonsay 裡面 -n 被用在 Do not tell the pokémon name. 也就是最底下不要 show pokemon 的名字
+QQ 我不依，我自己改!
+介紹 Homebrew 首先先介紹一下 homebrew 這個軟體～ 他是 MacOS 上的套件管理工具，是 mac 最重要的必裝軟體之一
+ brew 這個字是釀造的意思，homebrew 在家釀造也就是自釀的意思 tap 第三方套件的倉庫，就相當於是 apt 的 ppa 一樣的角色 formula 公式、配方，上面寫著軟體安裝的步驟，也就是釀製(brew)的方法 cellar 酒窖存放釀好的酒，預設存在 /usr/local/Cellar，每個資料夾裡面也存有不同的版本，當 brew switch 某個套件版本的時候就是把 /usr/local/bin 的 link 指過去    補充: brew cask 用來安裝 macOS apps 也就是可以直接在應用程式裡面看到的圖像化軟體，像是 Chrome, Firefox, 360Safe 之類的</description>
+    </item>
+    
+    <item>
       <title>出發尋找 WSL2 的旅程</title>
       <link>https://blog.10oz.tw/20200728-journey-in-wsl2/</link>
       <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
