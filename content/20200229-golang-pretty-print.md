@@ -1,7 +1,7 @@
 ---
 title: "Golang 漂亮的輸出 JSON"
 date: 2020-02-29T16:18:09+08:00
-tags: ["golang", "json", "排版"]
+tags: ["go", "golang", "json", "排版"]
 ---
 
 偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！

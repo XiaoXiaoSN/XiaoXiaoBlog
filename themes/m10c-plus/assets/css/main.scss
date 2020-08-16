@@ -18,6 +18,7 @@ $primary-color: {{ .Site.Params.style.primaryColor | default "#57cc8a" }};
 @import 'components/pagination';
 @import 'components/post';
 @import 'components/posts_list';
+@import 'components/sidebar';
 @import 'components/tag';
 
 // The last 'extra' import can optionally be overridden on a per project

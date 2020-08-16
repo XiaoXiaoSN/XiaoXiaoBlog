@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
-    <title>出發尋找 WSL2 的旅程 // XiaoXiao Notes</title>
-    <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.62.2" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Xiao Xiao" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.11ecca05b1ef33760dd644d9ac836f8588a6db28733dcec218b12e34e0f5b458.css" />
-    <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
 
-    
-    <meta name="twitter:card" content="summary"/>
+<head>
+  <title>出發尋找 WSL2 的旅程 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="出發尋找 WSL2 的旅程"/>
 <meta name="twitter:description" content="步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &raquo; https://www.microsoft.com/en-us/software-download/windows10
 開啟環境設定 用系統管理員身分開啟 PowerShell 後，輸入指令開啟 Linux Subsystem 的支援和 HyperV 的虛擬機器平台 用 HyperV 要記得到 BIOS 開啟虛擬機器的支援喔
@@ -19,7 +21,7 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 然後要更新 linux subsystem kernel https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel
 安裝 Linux 發行版 按一下 Windows 鍵輸入 Microsoft Store 後開啟商店選擇你要的 Linux 版本，在這裡我選擇 Ubuntu1804 另外偷偷下載了 windows terminal，有比較漂亮R 看一看 WSL2 的設定 更新完後開啟 PowerShell 將 WSL 預設版本改為 2"/>
 
-    <meta property="og:title" content="出發尋找 WSL2 的旅程" />
+  <meta property="og:title" content="出發尋找 WSL2 的旅程" />
 <meta property="og:description" content="步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &raquo; https://www.microsoft.com/en-us/software-download/windows10
 開啟環境設定 用系統管理員身分開啟 PowerShell 後，輸入指令開啟 Linux Subsystem 的支援和 HyperV 的虛擬機器平台 用 HyperV 要記得到 BIOS 開啟虛擬機器的支援喔
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 這時候你需要重啟一下電腦~
@@ -30,19 +32,48 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 <meta property="article:published_time" content="2020-07-28T10:29:08+08:00" />
 <meta property="article:modified_time" content="2020-07-28T10:29:08+08:00" />
 
+</head>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
       <h1 class="title">XiaoXiao Notes</h1>
-      <p class="sub-title"> XiaoXiao 的筆記書</p>
-      <div class="app-header-social">
-        
-      </div>
-    </header>
-    <main class="app-container">
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
       
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
 
 <article class="post">
   <header class="post-header">
@@ -245,6 +276,7 @@ sudo chown -f -R arios ~/.kube
 </article>
 
 
-    </main>
-  </body>
+  </main>
+</body>
+
 </html>

@@ -1,8 +1,9 @@
 {{ define "main" }}
   <article>
     <h1>{{ .Title }}</h1>
+
     <ul class="posts-list">
-      {{ range .Data.Terms.Alphabetical }}
+      {{ range .Data.Terms.ByCount }}
         <li class="posts-list-item">
             <a class="posts-list-item-title" href="{{ .Page.Permalink }}">
               {{ .Page.Title }}
@@ -11,6 +12,19 @@
         </li>
       {{ end }}
     </ul>
+    
+    <!-- list 的版本，都很醜 -->
+    <!-- <ul>
+        {{ $type := .Type }}
+        {{ range $key, $value := .Data.Terms.ByCount }}
+            {{ $name := .Name }}
+            {{ $count := .Count }}
+            {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
+                <li><a href="{{ .Permalink }}">{{ $name }}</a> {{ $count }}</li>
+            {{ end }}
+        {{ end }}
+    </ul> -->
+
     {{ partial "pagination.html" $ }}
   </article>
 {{ end }}

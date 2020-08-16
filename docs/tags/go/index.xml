@@ -21,9 +21,33 @@
 所以學學看應該很不錯吧！
 Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
 首先要了解 Model, Policy 是什麼呢?
-  Policy 是規則，裡面寫了一系列的權限像是 {小明} 可以對 {文件} {查看} {小明} 可以對 {程式} {查看} {小明} 可以對 {程式} {修改}
+  Policy 是規則，裡面寫了一系列的權限像是
+{小明} 可以對 {文件} {查看}
+{小明} 可以對 {程式} {查看}
+{小明} 可以對 {程式} {修改}
   Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
   Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)</description>
+    </item>
+    
+    <item>
+      <title>Golang 漂亮的輸出 JSON</title>
+      <link>https://blog.10oz.tw/20200229-golang-pretty-print/</link>
+      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200229-golang-pretty-print/</guid>
+      <description>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！
+我需要排版！！趕快筆記一下
+一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &amp;#34;&amp;#34;, &amp;#34; &amp;#34;) if err != nil { fmt.Println(&amp;#34;&amp;#34;) } fmt.Printf(&amp;#34;%s\n&amp;#34;, jsonByte) } 二、我有一個 json byte func prettyPrintByte(jsonByte []byte) { var buf bytes.Buffer err := json.Indent(&amp;amp;buf, jsonByte, &amp;#34;&amp;#34;, &amp;#34; &amp;#34;) if err == nil { jsonByte = buf.Bytes() } fmt.Printf(&amp;#34;%s\n&amp;#34;, jsonByte) } 參考 https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889</description>
+    </item>
+    
+    <item>
+      <title>Golang 怎麼處理 JSON</title>
+      <link>https://blog.10oz.tw/20200228-golang-json-marshal/</link>
+      <pubDate>Fri, 28 Feb 2020 23:22:36 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200228-golang-json-marshal/</guid>
+      <description>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成常用處理json、自定義處理 json和多層處理 三個 part， GOGO
+一、常用方法 package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) // Box 是個箱子 type Box struct { Name string `json:&amp;#34;name&amp;#34;` Color string `json:&amp;#34;color&amp;#34;` } func main() { jsonStr := `{&amp;#34;name&amp;#34;: &amp;#34;喵喵&amp;#34;, &amp;#34;color&amp;#34;: &amp;#34;blue&amp;#34; }` box := new(Box) // 把 bytes 寫進去 Box 物件裡面 	_ = json.Unmarshal([]byte(jsonStr), box) fmt.Printf(&amp;#34;%+v\n&amp;#34;, box) // {Name:喵喵 Color:blue}  // 再把物件寫回去 binary json 	box.Color = &amp;#34;黃色的&amp;#34; byteJSON, _ := json.</description>
     </item>
     
   </channel>

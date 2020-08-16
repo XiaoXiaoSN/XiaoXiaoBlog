@@ -6,10 +6,28 @@
     <description>Recent content in golang on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Feb 2020 16:18:09 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2020 00:33:03 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Casbin 權限管理模組</title>
+      <link>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</link>
+      <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</guid>
+      <description>Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c++, rust
+所以學學看應該很不錯吧！
+Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
+首先要了解 Model, Policy 是什麼呢?
+  Policy 是規則，裡面寫了一系列的權限像是
+{小明} 可以對 {文件} {查看}
+{小明} 可以對 {程式} {查看}
+{小明} 可以對 {程式} {修改}
+  Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
+  Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)</description>
+    </item>
     
     <item>
       <title>Golang 漂亮的輸出 JSON</title>

@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
-    <title>製造一個 hugo 部落格 // XiaoXiao Notes</title>
-    <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.62.2" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Xiao Xiao" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.11ecca05b1ef33760dd644d9ac836f8588a6db28733dcec218b12e34e0f5b458.css" />
-    <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
 
-    
-    <meta name="twitter:card" content="summary"/>
+<head>
+  <title>製造一個 hugo 部落格 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="製造一個 hugo 部落格"/>
 <meta name="twitter:description" content="步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
 所以我們需要:
@@ -19,7 +21,7 @@
 $ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
 ├── archetypes │ └── default.md # 產生新文章時的模板 ├── config.toml # 最主要的設定檔案 ├── content # Markdown 的文章在這邊 ├── data ├── layouts ├── resources │ └── _gen ├── static └── themes # 套用的主題包們 └── hugo-theme-m10c 接著挑選一個漂亮的 hugo 模板來下載，我用人家教學示範的模板"/>
 
-    <meta property="og:title" content="製造一個 hugo 部落格" />
+  <meta property="og:title" content="製造一個 hugo 部落格" />
 <meta property="og:description" content="步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
 所以我們需要:
  一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
@@ -30,19 +32,48 @@ $ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
 <meta property="article:published_time" content="2020-01-24T23:02:16+08:00" />
 <meta property="article:modified_time" content="2020-01-24T23:02:16+08:00" />
 
+</head>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
       <h1 class="title">XiaoXiao Notes</h1>
-      <p class="sub-title"> XiaoXiao 的筆記書</p>
-      <div class="app-header-social">
-        
-      </div>
-    </header>
-    <main class="app-container">
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
       
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
 
 <article class="post">
   <header class="post-header">
@@ -75,6 +106,11 @@ $ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
       </ul>
     </li>
     <li><a href="#選修---使用自己的-domain">選修 - 使用自己的 domain</a></li>
+    <li><a href="#補充設定">補充設定</a>
+      <ul>
+        <li><a href="#md-換行格式">md 換行格式</a></li>
+      </ul>
+    </li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
@@ -190,6 +226,12 @@ $ git push origin master
 <p>這樣就設定好囉～
 記得要回到專案的 <code>config.toml</code> 設定新的 url 喔</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">baseURL = <span style="color:#4070a0">&#34;https://blog.10oz.tw&#34;</span>
+</code></pre></div><h2 id="補充設定">補充設定</h2>
+<h3 id="md-換行格式">md 換行格式</h3>
+<p>由於很多人從 hackmd 或是其他的平台轉過來
+發現他們原來的 md 貼過來換行符號沒有被保留在 html 上，也就是兩行連起來啦</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[blackfriday]
+  extensions = [<span style="color:#4070a0">&#34;hardLineBreak&#34;</span>]
 </code></pre></div><hr>
 <h2 id="references">References</h2>
 <p><strong>hugo</strong></p>
@@ -211,6 +253,7 @@ $ git push origin master
 </article>
 
 
-    </main>
-  </body>
+  </main>
+</body>
+
 </html>

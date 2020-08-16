@@ -8,6 +8,7 @@
     </a>
   </li>
   {{ end }}
+
   {{ range .Pagers }}
   <li class="page-item{{ if eq .PageNumber $.Paginator.PageNumber }} active{{ end }}">
     <a class="page-link" href="{{ .URL }}">
@@ -15,6 +16,7 @@
     </a>
   </li>
   {{ end }}
+
   {{ with .Next }}
   <li class="page-item">
     <a class="page-link" href="{{ .URL }}">

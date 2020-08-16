@@ -1,0 +1,47 @@
+  <!-- sidebar start -->
+  <header class="app-header">
+    <a href="{{ .Site.BaseURL }}">
+      <img class="app-header-avatar" src="{{ .Site.Params.avatar | default "profile.jpg" | relURL }}"
+        alt="{{ .Site.Params.author }}" />
+      <h1 class="title">{{ .Site.Title }}</h1>
+    </a>
+    <p class="sub-title"> {{ .Site.Params.description }}</p>
+
+    <div class="social-icon">
+      {{ range .Site.Params.social }}
+      <a target="_blank" href="{{ .url }}"
+        rel="noreferrer noopener">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
+      {{ end }}
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+        {{ if .HasChildren }}
+            <li class="{{ if $currentPage.HasMenuCurrent "main" . }} active {{ end }}">
+                <a href="#">
+                    {{ .Pre }}
+                    <span>{{ .Name }}</span>
+                </a>
+            </li>
+
+            <ul class="sub-menu">
+                {{ range .Children }}
+                <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                    <a href="{{ .URL }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        {{ else }}
+            <li>
+            <a href="{{ .URL }}">
+                {{ .Pre }}<span>{{ .Name }}</span>
+            </a>
+            </li>
+        {{ end }}
+        {{ end }}
+
+      </ul>
+    </aside>
+  </header>

@@ -1,32 +1,40 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
-    <title>Casbin 權限管理模組 // XiaoXiao Notes</title>
-    <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.62.2" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Xiao Xiao" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.11ecca05b1ef33760dd644d9ac836f8588a6db28733dcec218b12e34e0f5b458.css" />
-    <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
 
-    
-    <meta name="twitter:card" content="summary"/>
+<head>
+  <title>Casbin 權限管理模組 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Casbin 權限管理模組"/>
 <meta name="twitter:description" content="Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c&#43;&#43;, rust
 所以學學看應該很不錯吧！
 Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
 首先要了解 Model, Policy 是什麼呢?
-  Policy 是規則，裡面寫了一系列的權限像是 {小明} 可以對 {文件} {查看} {小明} 可以對 {程式} {查看} {小明} 可以對 {程式} {修改}
+  Policy 是規則，裡面寫了一系列的權限像是
+{小明} 可以對 {文件} {查看}
+{小明} 可以對 {程式} {查看}
+{小明} 可以對 {程式} {修改}
   Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
   Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)"/>
 
-    <meta property="og:title" content="Casbin 權限管理模組" />
+  <meta property="og:title" content="Casbin 權限管理模組" />
 <meta property="og:description" content="Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c&#43;&#43;, rust
 所以學學看應該很不錯吧！
 Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
 首先要了解 Model, Policy 是什麼呢?
-  Policy 是規則，裡面寫了一系列的權限像是 {小明} 可以對 {文件} {查看} {小明} 可以對 {程式} {查看} {小明} 可以對 {程式} {修改}
+  Policy 是規則，裡面寫了一系列的權限像是
+{小明} 可以對 {文件} {查看}
+{小明} 可以對 {程式} {查看}
+{小明} 可以對 {程式} {修改}
   Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
   Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)" />
 <meta property="og:type" content="article" />
@@ -34,19 +42,48 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
 <meta property="article:published_time" content="2020-08-13T00:33:03+08:00" />
 <meta property="article:modified_time" content="2020-08-13T00:33:03+08:00" />
 
+</head>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="https://blog.10oz.tw"><img class="app-header-avatar" src="/profile.jpg" alt="Xiao Xiao" /></a>
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
       <h1 class="title">XiaoXiao Notes</h1>
-      <p class="sub-title"> XiaoXiao 的筆記書</p>
-      <div class="app-header-social">
-        
-      </div>
-    </header>
-    <main class="app-container">
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
       
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
 
 <article class="post">
   <header class="post-header">
@@ -63,7 +100,7 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
 </svg>
-        <a class="tag" href="https://blog.10oz.tw/tags/go/">go</a><a class="tag" href="https://blog.10oz.tw/tags/casbin/">casbin</a></div></div>
+        <a class="tag" href="https://blog.10oz.tw/tags/go/">go</a><a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/casbin/">casbin</a></div></div>
   </header>
 
   <aside>
@@ -94,9 +131,9 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
 <p>首先要了解 Model, Policy 是什麼呢?</p>
 <ul>
 <li>
-<p>Policy 是規則，裡面寫了一系列的權限像是
-<code>{小明} 可以對 {文件} {查看}</code>
-<code>{小明} 可以對 {程式} {查看}</code>
+<p>Policy 是規則，裡面寫了一系列的權限像是<br>
+<code>{小明} 可以對 {文件} {查看}</code><br>
+<code>{小明} 可以對 {程式} {查看}</code><br>
 <code>{小明} 可以對 {程式} {修改}</code></p>
 </li>
 <li>
@@ -143,9 +180,9 @@ p, bob, data2, write
 <p>複製了範例的 RBAC 模式，可以在剛剛的 <a href="https://casbin.org/editor/">editor</a> 上選擇 RBAC with resource roles 來看看執行結果是否相同</p>
 <p>這邊在看的時候可以先看 policy g 定義的 group，</p>
 <blockquote>
-<p>alice 是 admin
-data1 是 data_group
-data2 是 data_group
+<p>alice 是 admin<br>
+data1 是 data_group<br>
+data2 是 data_group<br>
 然後 admin 可以 write data_group</p>
 </blockquote>
 <p>這樣應該相當容易理解了～</p>
@@ -283,9 +320,9 @@ data2 是 data_group
 	fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;enforce2: %t\n&#34;</span>, result) <span style="color:#60a0b0;font-style:italic">// false (因為 data_group_admin 對 data_group 沒有 read)
 </span><span style="color:#60a0b0;font-style:italic"></span>}
 </code></pre></div><h1 id="ref">Ref</h1>
-<p><a href="https://darjun.github.io/2020/06/12/godailylib/casbin/">https://darjun.github.io/2020/06/12/godailylib/casbin/</a></p>
-<p><a href="https://github.com/casbin/xorm-adapter/tree/v2.0.1">https://github.com/casbin/xorm-adapter/tree/v2.0.1</a></p>
-<p><a href="https://casbin.org/docs/en/overview">https://casbin.org/docs/en/overview</a></p>
+<p><a href="https://darjun.github.io/2020/06/12/godailylib/casbin/">https://darjun.github.io/2020/06/12/godailylib/casbin/</a>
+<a href="https://github.com/casbin/xorm-adapter/tree/v2.0.1">https://github.com/casbin/xorm-adapter/tree/v2.0.1</a>
+<a href="https://casbin.org/docs/en/overview">https://casbin.org/docs/en/overview</a></p>
 
   </div>
 
@@ -295,6 +332,7 @@ data2 是 data_group
 </article>
 
 
-    </main>
-  </body>
+  </main>
+</body>
+
 </html>

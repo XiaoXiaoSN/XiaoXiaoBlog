@@ -21,7 +21,10 @@
 所以學學看應該很不錯吧！
 Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
 首先要了解 Model, Policy 是什麼呢?
-  Policy 是規則，裡面寫了一系列的權限像是 {小明} 可以對 {文件} {查看} {小明} 可以對 {程式} {查看} {小明} 可以對 {程式} {修改}
+  Policy 是規則，裡面寫了一系列的權限像是
+{小明} 可以對 {文件} {查看}
+{小明} 可以對 {程式} {查看}
+{小明} 可以對 {程式} {修改}
   Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
   Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)</description>
     </item>

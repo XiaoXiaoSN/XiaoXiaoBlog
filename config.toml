@@ -6,22 +6,28 @@ publishDir = "docs"
 theme = "m10c-plus"
 paginate = 10
 
+sectionPagesMenu = "main"
+[menu]
+  [[menu.main]]
+    name = "用 Tags 分類"
+    url = "/tags"
+
 [params]
   author = "Xiao Xiao"
   description = "XiaoXiao 的筆記書"
-#   [[params.social]]
-#     name = "github"
-#     url = "https://github.com/gohugoio"
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/XiaoXiaoSN"
 
-[params.style]
-  profileBackground = "#333333"
-  profileFontColor = "#f5e3e0"
-  profileTitleColor = "#f5f5f5"
-  contentBackground = "#fafafa"
-  contentFontColor = "#212121"
-  contentTitleColor = "#111111"
-  codeBackground = "#efefef"
-  primaryColor = "#0366d6"
+  [params.style]
+    profileBackground = "#333333"
+    profileFontColor = "#f5e3e0"
+    profileTitleColor = "#f5f5f5"
+    contentBackground = "#fafafa"
+    contentFontColor = "#212121"
+    contentTitleColor = "#111111"
+    codeBackground = "#efefef"
+    primaryColor = "#0366d6"
 
 [markup.highlight]
   style = "friendly"
