@@ -6,10 +6,27 @@
     <description>Recent content on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Aug 2020 23:11:03 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2020 21:38:12 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我們想在虛擬機上跑個 k8s</title>
+      <link>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</link>
+      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</guid>
+      <description>環境 我們先用 macOS Catalina 10.15.2 來做筆記喔
+1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～
+1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10
+支援的 virtual box 版本沒有到最新的 6， 我們到這邊下載舊版吧
+https://www.virtualbox.org/wiki/
+ 如果 mac 不給你開的話，記得可以到 系統偏好設定 &amp;gt; 安全性與隱私 &amp;gt; 一般 開啟權限
+ 1.2 設定 vagrant 第一步要先建立一個 Vagrantfile，我們選用 ubuntu 16.04 TLS
+這邊也有更多選擇 &amp;ndash;&amp;gt; https://app.vagrantup.com/boxes/search
+# 先在你喜歡的地方開個資料夾吧 mkdir -p ~/projects/vagrant/k8s-master cd ~/projects/vagrant/k8s-master vim Vagrantfile # -*- mode: ruby -*- # vi: set ft=ruby : Vagrant.</description>
+    </item>
     
     <item>
       <title>Docker 建立不同架構的 Image</title>

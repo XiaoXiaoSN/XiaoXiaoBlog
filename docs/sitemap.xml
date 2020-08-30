@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.10oz.tw/tags/k8s/</loc>
+    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/kubernetes/</loc>
+    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/</loc>
+    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/vagrant/</loc>
+    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/vm/</loc>
+    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/</loc>
+    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</loc>
+    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.10oz.tw/tags/buildx/</loc>
     <lastmod>2020-08-14T23:11:03+08:00</lastmod>
   </url>
@@ -19,16 +54,6 @@
   
   <url>
     <loc>https://blog.10oz.tw/tags/multi-arch/</loc>
-    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/</loc>
-    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/</loc>
     <lastmod>2020-08-14T23:11:03+08:00</lastmod>
   </url>
   
@@ -53,7 +78,27 @@
   </url>
   
   <url>
+    <loc>https://blog.10oz.tw/tags/homebrew/</loc>
+    <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.10oz.tw/20200811-homebrew-create-app/</loc>
+    <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/pokemon/</loc>
+    <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/pokesay/</loc>
+    <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/ruby/</loc>
     <lastmod>2020-08-11T23:16:31+08:00</lastmod>
   </url>
   

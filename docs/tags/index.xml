@@ -6,10 +6,46 @@
     <description>Recent content in Tags on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Aug 2020 23:11:03 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2020 21:38:12 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>k8s</title>
+      <link>https://blog.10oz.tw/tags/k8s/</link>
+      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://blog.10oz.tw/tags/kubernetes/</link>
+      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vagrant</title>
+      <link>https://blog.10oz.tw/tags/vagrant/</link>
+      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/vagrant/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vm</title>
+      <link>https://blog.10oz.tw/tags/vm/</link>
+      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/vm/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>buildx</title>
@@ -62,6 +98,42 @@
       <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>homebrew</title>
+      <link>https://blog.10oz.tw/tags/homebrew/</link>
+      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/homebrew/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pokemon</title>
+      <link>https://blog.10oz.tw/tags/pokemon/</link>
+      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/pokemon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pokesay</title>
+      <link>https://blog.10oz.tw/tags/pokesay/</link>
+      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/pokesay/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ruby</title>
+      <link>https://blog.10oz.tw/tags/ruby/</link>
+      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/ruby/</guid>
       <description></description>
     </item>
     

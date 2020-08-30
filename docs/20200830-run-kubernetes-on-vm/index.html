@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>我們想在虛擬機上跑個 k8s | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.b85b68bc1739a598cc31dce2875a31a8b69ae2c73a5e808ab9cb43f9fe2173bf.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我們想在虛擬機上跑個 k8s"/>
+<meta name="twitter:description" content="環境 我們先用 macOS Catalina 10.15.2 來做筆記喔
+1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～
+1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10
+支援的 virtual box 版本沒有到最新的 6， 我們到這邊下載舊版吧
+https://www.virtualbox.org/wiki/
+ 如果 mac 不給你開的話，記得可以到 系統偏好設定 &gt; 安全性與隱私 &gt; 一般 開啟權限
+ 1.2 設定 vagrant 第一步要先建立一個 Vagrantfile，我們選用 ubuntu 16.04 TLS
+這邊也有更多選擇 &ndash;&gt; https://app.vagrantup.com/boxes/search
+# 先在你喜歡的地方開個資料夾吧 mkdir -p ~/projects/vagrant/k8s-master cd ~/projects/vagrant/k8s-master vim Vagrantfile # -*- mode: ruby -*- # vi: set ft=ruby : Vagrant."/>
+
+  <meta property="og:title" content="我們想在虛擬機上跑個 k8s" />
+<meta property="og:description" content="環境 我們先用 macOS Catalina 10.15.2 來做筆記喔
+1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～
+1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10
+支援的 virtual box 版本沒有到最新的 6， 我們到這邊下載舊版吧
+https://www.virtualbox.org/wiki/
+ 如果 mac 不給你開的話，記得可以到 系統偏好設定 &gt; 安全性與隱私 &gt; 一般 開啟權限
+ 1.2 設定 vagrant 第一步要先建立一個 Vagrantfile，我們選用 ubuntu 16.04 TLS
+這邊也有更多選擇 &ndash;&gt; https://app.vagrantup.com/boxes/search
+# 先在你喜歡的地方開個資料夾吧 mkdir -p ~/projects/vagrant/k8s-master cd ~/projects/vagrant/k8s-master vim Vagrantfile # -*- mode: ruby -*- # vi: set ft=ruby : Vagrant." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200830-run-kubernetes-on-vm/" />
+<meta property="article:published_time" content="2020-08-30T21:38:12+08:00" />
+<meta property="article:modified_time" content="2020-08-30T21:38:12+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">我們想在虛擬機上跑個 k8s</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Aug 30, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/kubernetes/">kubernetes</a><a class="tag" href="https://blog.10oz.tw/tags/k8s/">k8s</a><a class="tag" href="https://blog.10oz.tw/tags/vm/">vm</a><a class="tag" href="https://blog.10oz.tw/tags/vagrant/">vagrant</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#環境">環境</a></li>
+    <li><a href="#1-虛擬機">1. 虛擬機</a>
+      <ul>
+        <li><a href="#11-安裝-vagrant-跟-virtual-box">1.1 安裝 vagrant 跟 virtual box</a></li>
+        <li><a href="#12-設定-vagrant">1.2 設定 vagrant</a></li>
+        <li><a href="#13-用-vagrant-啟動虛擬機">1.3 用 vagrant 啟動虛擬機</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-安裝-kubernates-server">2. 安裝 kubernates server</a>
+      <ul>
+        <li><a href="#21-安裝-container-服務">2.1 安裝 container 服務</a></li>
+        <li><a href="#22-安裝-kubernates">2.2 安裝 kubernates</a></li>
+        <li><a href="#23-kubernates-master-之-kubeadm">2.3 kubernates master 之 kubeadm</a></li>
+        <li><a href="#24-安裝-kubenetes-網路介面">2.4 安裝 kubenetes 網路介面</a></li>
+        <li><a href="#25-image-存起來才可以複製好多個">2.5 image 存起來才可以複製好多個</a></li>
+        <li><a href="#26-讓-master-可以用於部署">2.6 讓 master 可以用於部署</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-安裝-kubernates-worker">3. 安裝 kubernates worker</a>
+      <ul>
+        <li><a href="#31-vagrant-啟動檔案">3.1 Vagrant 啟動檔案</a></li>
+        <li><a href="#32-安裝步驟">3.2 安裝步驟</a></li>
+        <li><a href="#33-加入-kubernates-cluster">3.3 加入 kubernates cluster</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="環境">環境</h2>
+<p>我們先用 macOS Catalina 10.15.2 來做筆記喔</p>
+<h2 id="1-虛擬機">1. 虛擬機</h2>
+<p>一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～</p>
+<h3 id="11-安裝-vagrant-跟-virtual-box">1.1 安裝 vagrant 跟 virtual box</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew cask install vagrant
+vagrant version
+</code></pre></div><p>vagrant 使用版本 2.2.10<br>
+支援的 virtual box 版本沒有到最新的 6， 我們到這邊下載舊版吧<br>
+<a href="https://www.virtualbox.org/wiki/">https://www.virtualbox.org/wiki/</a></p>
+<blockquote>
+<p>如果 mac 不給你開的話，記得可以到 <code>系統偏好設定</code> &gt; <code>安全性與隱私</code> &gt; <code>一般</code> 開啟權限</p>
+</blockquote>
+<h3 id="12-設定-vagrant">1.2 設定 vagrant</h3>
+<p>第一步要先建立一個 Vagrantfile，我們選用 ubuntu 16.04 TLS<br>
+這邊也有更多選擇 &ndash;&gt; <a href="https://app.vagrantup.com/boxes/search">https://app.vagrantup.com/boxes/search</a></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># 先在你喜歡的地方開個資料夾吧</span>
+mkdir -p ~/projects/vagrant/k8s-master
+<span style="color:#007020">cd</span> ~/projects/vagrant/k8s-master
+vim Vagrantfile
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#60a0b0;font-style:italic"># -*- mode: ruby -*-</span>
+<span style="color:#60a0b0;font-style:italic"># vi: set ft=ruby :</span>
+
+<span style="color:#60add5">Vagrant</span><span style="color:#666">.</span>configure(<span style="color:#40a070">2</span><span style="color:#666"></span>) <span style="color:#007020;font-weight:bold">do</span> <span style="color:#666">|</span>config<span style="color:#666">|</span>
+  <span style="color:#60a0b0;font-style:italic"># 選用的檔案，xenial 是 ubuntu16 的名字</span>
+  config<span style="color:#666">.</span>vm<span style="color:#666">.</span>box <span style="color:#666">=</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">ubuntu/xenial64</span><span style="color:#4070a0">&#34;</span>
+  <span style="color:#60a0b0;font-style:italic"># 將虛擬機內部的 6443 port 導出到本機的 26443 port</span>
+  <span style="color:#60a0b0;font-style:italic"># config.vm.network &#34;forwarded_port&#34;, guest: 6443, host: 26443</span>
+  config<span style="color:#666">.</span>vm<span style="color:#666">.</span>network <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">private_network</span><span style="color:#4070a0">&#34;</span>, <span style="color:#517918">ip</span>: <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">172.16.16.100</span><span style="color:#4070a0">&#34;</span>
+
+  <span style="color:#60a0b0;font-style:italic"># 分配 2GB 的記憶體給虛擬機</span>
+  config<span style="color:#666">.</span>vm<span style="color:#666">.</span>provider <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">virtualbox</span><span style="color:#4070a0">&#34;</span> <span style="color:#007020;font-weight:bold">do</span> <span style="color:#666">|</span>vb<span style="color:#666">|</span>
+    v<span style="color:#666">.</span>name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">k8s-m1</span><span style="color:#4070a0">&#34;</span>
+    vb<span style="color:#666">.</span>memory <span style="color:#666">=</span> <span style="color:#40a070">2048</span>
+    <span style="color:#666"></span>vb<span style="color:#666">.</span>cpus <span style="color:#666">=</span> <span style="color:#40a070">2</span>
+  <span style="color:#666"></span><span style="color:#007020;font-weight:bold">end</span>
+
+  <span style="color:#60a0b0;font-style:italic"># 設定帳號密碼是 ubuntu:ubuntu</span>
+  config<span style="color:#666">.</span>vm<span style="color:#666">.</span>provision <span style="color:#4070a0">&#39;shell&#39;</span>, <span style="color:#517918">inline</span>: <span style="color:#4070a0">&lt;&lt;-SHELL
+</span><span style="color:#4070a0"></span>    echo <span style="color:#4070a0">&#39;ubuntu:ubuntu&#39;</span> <span style="color:#666">|</span> sudo chpasswd
+  <span style="color:#60add5">SHELL</span>
+<span style="color:#007020;font-weight:bold">end</span>
+</code></pre></div><h3 id="13-用-vagrant-啟動虛擬機">1.3 用 vagrant 啟動虛擬機</h3>
+<p>設定好後就開起來連進去吧</p>
+<pre><code>vagrant up
+vagrant ssh
+</code></pre><h2 id="2-安裝-kubernates-server">2. 安裝 kubernates server</h2>
+<h3 id="21-安裝-container-服務">2.1 安裝 container 服務</h3>
+<p>最重要的，我們要先裝 docker &raquo; <a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker">我是指南</a></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic">## 進入 super user 模式來安裝</span>
+sudo su
+
+<span style="color:#60a0b0;font-style:italic">## 以下開始安裝 Docker CE</span>
+<span style="color:#60a0b0;font-style:italic">## Set up the repository:</span>
+<span style="color:#60a0b0;font-style:italic">## Install packages to allow apt to use a repository over HTTPS</span>
+apt-get update -y <span style="color:#666">&amp;&amp;</span> apt-get install -y <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>  apt-transport-https ca-certificates curl software-properties-common
+
+<span style="color:#60a0b0;font-style:italic">## Add Docker’s official GPG key</span>
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+<span style="color:#60a0b0;font-style:italic">## Add Docker apt repository.</span>
+add-apt-repository <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>  <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+</span><span style="color:#4070a0">  </span><span style="color:#007020;font-weight:bold">$(</span>lsb_release -cs<span style="color:#007020;font-weight:bold">)</span><span style="color:#4070a0"> \
+</span><span style="color:#4070a0">  stable</span><span style="color:#4070a0">&#34;</span>
+
+<span style="color:#60a0b0;font-style:italic">## Install Docker CE.</span>
+apt-get update -y <span style="color:#666">&amp;&amp;</span> apt-get install -y <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>  containerd.io<span style="color:#666">=</span>1.2.10-3 <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>  docker-ce<span style="color:#666">=</span>5:19.03.4~3-0~ubuntu-<span style="color:#007020;font-weight:bold">$(</span>lsb_release -cs<span style="color:#007020;font-weight:bold">)</span> <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>  docker-ce-cli<span style="color:#666">=</span>5:19.03.4~3-0~ubuntu-<span style="color:#007020;font-weight:bold">$(</span>lsb_release -cs<span style="color:#007020;font-weight:bold">)</span>
+
+<span style="color:#60a0b0;font-style:italic">## Setup daemon.</span>
+cat &gt; /etc/docker/daemon.json <span style="color:#4070a0">&lt;&lt;EOF
+</span><span style="color:#4070a0">{
+</span><span style="color:#4070a0">  &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
+</span><span style="color:#4070a0">  &#34;log-driver&#34;: &#34;json-file&#34;,
+</span><span style="color:#4070a0">  &#34;log-opts&#34;: {
+</span><span style="color:#4070a0">    &#34;max-size&#34;: &#34;100m&#34;
+</span><span style="color:#4070a0">  },
+</span><span style="color:#4070a0">  &#34;storage-driver&#34;: &#34;overlay2&#34;
+</span><span style="color:#4070a0">}
+</span><span style="color:#4070a0">EOF</span>
+
+mkdir -p /etc/systemd/system/docker.service.d
+
+<span style="color:#60a0b0;font-style:italic"># Restart docker.</span>
+systemctl daemon-reload
+systemctl restart docker
+
+<span style="color:#60a0b0;font-style:italic"># If you want the docker service to start on boot, run the following command:</span>
+sudo systemctl <span style="color:#007020">enable</span> docker
+</code></pre></div><h3 id="22-安裝-kubernates">2.2 安裝 kubernates</h3>
+<p>我們需要 kubelet、 kubeadm 和 kubectl &raquo; <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl">指南</a></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get update <span style="color:#666">&amp;&amp;</span> sudo apt-get install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+cat <span style="color:#4070a0">&lt;&lt;EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+</span><span style="color:#4070a0">deb https://apt.kubernetes.io/ kubernetes-xenial main
+</span><span style="color:#4070a0">EOF</span>
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># 禁用 swap</span>
+swapoff -a; sed -i <span style="color:#4070a0">&#39;/swap/d&#39;</span> /etc/fstab
+
+<span style="color:#60a0b0;font-style:italic"># 更改網路設定</span>
+cat &gt;&gt;/etc/sysctl.d/kubernetes.conf<span style="color:#4070a0">&lt;&lt;EOF
+</span><span style="color:#4070a0">net.bridge.bridge-nf-call-ip6tables = 1
+</span><span style="color:#4070a0">net.bridge.bridge-nf-call-iptables = 1
+</span><span style="color:#4070a0">EOF</span>
+sysctl --system
+</code></pre></div><h3 id="23-kubernates-master-之-kubeadm">2.3 kubernates master 之 kubeadm</h3>
+<p>連線回來後記得切換回 super user</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">vagrant ssh
+
+<span style="color:#60a0b0;font-style:italic"># 這時候可以看到 hostname 已經變成 k8s-m1</span>
+sudo su
+</code></pre></div><p>這邊簡單選用默認的 Flannel 實作 pod 與 pod 間溝通的介面~</p>
+<blockquote>
+<p>kubeadm only supports Container Network Interface (CNI) based networks</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubeadm init <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>    --apiserver-advertise-address<span style="color:#666">=</span>172.16.16.100 <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>    --pod-network-cidr<span style="color:#666">=</span>172.16.0.0/16
+</code></pre></div><p>等待個 2~3 分鐘<br>
+成功後會提示你以下訊息！ 就表示成功了</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Your Kubernetes control-plane has initialized successfully!
+
+<span style="color:#60a0b0;font-style:italic">## 讓 user 可以連線到 k8s cluster</span> 
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p <span style="color:#bb60d5">$HOME</span>/.kube
+  sudo cp -i /etc/kubernetes/admin.conf <span style="color:#bb60d5">$HOME</span>/.kube/config
+  sudo chown <span style="color:#007020;font-weight:bold">$(</span>id -u<span style="color:#007020;font-weight:bold">)</span>:<span style="color:#007020;font-weight:bold">$(</span>id -g<span style="color:#007020;font-weight:bold">)</span> <span style="color:#bb60d5">$HOME</span>/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run <span style="color:#4070a0">&#34;kubectl apply -f [podnetwork].yaml&#34;</span> with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+<span style="color:#60a0b0;font-style:italic">## 加入 node 到 cluster，複製起來晚點開好其他 node 後要用</span>
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.0.2.15:6443 --token 3vex22.6kqkhji310d3ckp0 <span style="color:#4070a0;font-weight:bold">\
+</span><span style="color:#4070a0;font-weight:bold"></span>    --discovery-token-ca-cert-hash sha256:cb8bb2fde074ba2a294413122a5a9208479b12a73ec316c01bd9a8b485add2fa
+</code></pre></div><p>先跑個他提示的訊息，讓 user 可以連線到 cluster</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">mkdir -p <span style="color:#bb60d5">$HOME</span>/.kube
+sudo cp -i /etc/kubernetes/admin.conf <span style="color:#bb60d5">$HOME</span>/.kube/config
+sudo chown <span style="color:#007020;font-weight:bold">$(</span>id -u<span style="color:#007020;font-weight:bold">)</span>:<span style="color:#007020;font-weight:bold">$(</span>id -g<span style="color:#007020;font-weight:bold">)</span> <span style="color:#bb60d5">$HOME</span>/.kube/config
+</code></pre></div><h3 id="24-安裝-kubenetes-網路介面">2.4 安裝 kubenetes 網路介面</h3>
+<p>接下來要為我們的 k8s cluster 建立 pod network，他的工作是負責跟 Container 連線，他們各自有實作 CNI( Container Network Interface)，詳細可以來參考<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/#how-to-implement-the-kubernetes-networking-model">Kubernetes網絡模型列表</a></p>
+<p>這裡我們選擇官方偷偷推薦的 <code>Calico</code> (CentOS 的 <code>Flannel</code> 也很多人用)</p>
+<pre><code>kubectl create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+</code></pre><h3 id="25-image-存起來才可以複製好多個">2.5 image 存起來才可以複製好多個</h3>
+<p>回到本地端 vagrant 的資料夾，把目前的狀態打包起來<br>
+給想要有很多台 master 的你~~</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">vagrant package --output k8s-master.box
+</code></pre></div><h3 id="26-讓-master-可以用於部署">2.6 讓 master 可以用於部署</h3>
+<p>在預設情況下，為了安全和穩定性，master node 會被隔離開來，不允許部署 Pod 上去<br>
+但是如果你要做單節點的話~~</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl taint nodes --all node-role.kubernetes.io/master-
+</code></pre></div><h2 id="3-安裝-kubernates-worker">3. 安裝 kubernates worker</h2>
+<h3 id="31-vagrant-啟動檔案">3.1 Vagrant 啟動檔案</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#60a0b0;font-style:italic"># -*- mode: ruby -*-</span>
+<span style="color:#60a0b0;font-style:italic"># vi: set ft=ruby :</span>
+
+<span style="color:#60add5">Vagrant</span><span style="color:#666">.</span>configure(<span style="color:#40a070">2</span><span style="color:#666"></span>) <span style="color:#007020;font-weight:bold">do</span> <span style="color:#666">|</span>config<span style="color:#666">|</span>
+  <span style="color:#60add5">NodeCount</span> <span style="color:#666">=</span> <span style="color:#40a070">4</span>
+
+  <span style="color:#666"></span>(<span style="color:#40a070">1</span><span style="color:#666"></span><span style="color:#666">..</span><span style="color:#60add5">NodeCount</span>)<span style="color:#666">.</span>each <span style="color:#007020;font-weight:bold">do</span> <span style="color:#666">|</span>i<span style="color:#666">|</span>
+    config<span style="color:#666">.</span>vm<span style="color:#666">.</span>define <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">k8s-w</span><span style="color:#70a0d0;font-style:italic">#{</span>i<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span> <span style="color:#007020;font-weight:bold">do</span> <span style="color:#666">|</span>node<span style="color:#666">|</span>
+      node<span style="color:#666">.</span>vm<span style="color:#666">.</span>box <span style="color:#666">=</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">ubuntu/xenial64</span><span style="color:#4070a0">&#34;</span>
+      node<span style="color:#666">.</span>vm<span style="color:#666">.</span>hostname <span style="color:#666">=</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">k8s-w</span><span style="color:#70a0d0;font-style:italic">#{</span>i<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>
+      node<span style="color:#666">.</span>vm<span style="color:#666">.</span>network <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">private_network</span><span style="color:#4070a0">&#34;</span>, <span style="color:#517918">ip</span>: <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">172.16.16.10</span><span style="color:#70a0d0;font-style:italic">#{</span>i<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>
+      
+      node<span style="color:#666">.</span>vm<span style="color:#666">.</span>provider <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">virtualbox</span><span style="color:#4070a0">&#34;</span> <span style="color:#007020;font-weight:bold">do</span> <span style="color:#666">|</span>v<span style="color:#666">|</span>
+        v<span style="color:#666">.</span>name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">k8s-w</span><span style="color:#70a0d0;font-style:italic">#{</span>i<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>
+        v<span style="color:#666">.</span>memory <span style="color:#666">=</span> <span style="color:#40a070">2048</span>
+        <span style="color:#666"></span>v<span style="color:#666">.</span>cpus <span style="color:#666">=</span> <span style="color:#40a070">1</span>
+      <span style="color:#666"></span><span style="color:#007020;font-weight:bold">end</span>
+
+      node<span style="color:#666">.</span>vm<span style="color:#666">.</span>provision <span style="color:#4070a0">&#39;shell&#39;</span>, <span style="color:#517918">inline</span>: <span style="color:#4070a0">&lt;&lt;-SHELL
+</span><span style="color:#4070a0"></span>        echo <span style="color:#4070a0">&#39;ubuntu:ubuntu&#39;</span> <span style="color:#666">|</span> sudo chpasswd
+      <span style="color:#60add5">SHELL</span>
+
+    <span style="color:#007020;font-weight:bold">end</span>
+  <span style="color:#007020;font-weight:bold">end</span>
+
+<span style="color:#007020;font-weight:bold">end</span>
+</code></pre></div><h3 id="32-安裝步驟">3.2 安裝步驟</h3>
+<p><code>2.1</code> <code>2.2</code></p>
+<blockquote>
+<p>vagrant 開多台vm時，連線回去要加上名字:<br>
+vagrant ssh k8s-w1</p>
+</blockquote>
+<h3 id="33-加入-kubernates-cluster">3.3 加入 kubernates cluster</h3>
+<p>到 master 機器上拿到加入 cluster 的指令</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubeadm token create --print-join-command
+</code></pre></div><p>再回來 worker 機器上，使用 sudo 加入節點後貼上剛才拿到的指令</p>
+<pre><code>sudo su
+kubeadm join 172.16.16.100:6443 --token 7fz9ob.a6sno93d0zwcz3v9     --discovery-token-ca-cert-hash sha256:cb8bb2fde074ba2a294413122a5a9208479b12a73ec316c01bd9a8b485add2fa
+</code></pre><p>回到 master</p>
+<pre><code>kubectl get nodes
+</code></pre><p><img src="https://i.imgur.com/lO2Anvv.png" alt=""></p>
+<p>以上 k8s 架設就大功告成了，把 master 的 <code>~/.kube/config</code> 複製一份回到本地端就可以用 local 端拜訪囉~</p>
+<h2 id="reference">Reference</h2>
+<p><a href="https://rickhw.github.io/2019/03/17/Container/Install-K8s-with-Kubeadm/">https://rickhw.github.io/2019/03/17/Container/Install-K8s-with-Kubeadm/</a>
+<a href="https://zhuanlan.zhihu.com/p/31398416">https://zhuanlan.zhihu.com/p/31398416</a>
+<a href="https://www.vagrantup.com/docs/providers/virtualbox">https://www.vagrantup.com/docs/providers/virtualbox</a>
+<a href="https://www.youtube.com/watch?v=mMmxMoprxiY">https://www.youtube.com/watch?v=mMmxMoprxiY</a>
+更換 master IP <a href="https://github.com/kubernetes/kubeadm/issues/338">https://github.com/kubernetes/kubeadm/issues/338</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>
