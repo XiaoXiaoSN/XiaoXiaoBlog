@@ -5,12 +5,19 @@ publishDir = "docs"
 
 theme = "m10c-plus"
 paginate = 10
+paginatePath = "pages"
 
 sectionPagesMenu = "main"
 [menu]
   [[menu.main]]
     name = "用 Tags 分類"
     url = "/tags"
+  [[menu.main]]
+    name = "關於 XiaoXiao"
+    url = "/about"
+  [[menu.main]]
+    name = "回到文章列表"
+    url = "/"
 
 [params]
   author = "Xiao Xiao"

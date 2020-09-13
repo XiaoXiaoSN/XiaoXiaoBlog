@@ -59,13 +59,14 @@
       display: block; // 手機頁面隱藏，大的畫面會顯示
       color: $profile-title-color;
       list-style: none;
-      padding-left: 0;
+      padding: .2rem 0 0 0;
       a {
         color: $profile-title-color;
       }
 
       li {
-        margin: .2rem;
+        padding: .2rem;
+        margin: .4rem;
       }
       li:hover {
         color: $content-title-color;

@@ -313,5 +313,14 @@ pip3 install mysqlclient arios@AriosMac: pymysql_pool » pip3 install mysqlclien
 extension-pkg-whitelist=MySQLdb </description>
     </item>
     
+    <item>
+      <title>關於 XiaoXiao</title>
+      <link>https://blog.10oz.tw/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.10oz.tw/about/</guid>
+      <description>什麼都有趣、什麼都好玩、什麼都想試試看</description>
+    </item>
+    
   </channel>
 </rss>
