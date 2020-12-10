@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</loc>
+    <lastmod>2020-11-23T00:56:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/</loc>
+    <lastmod>2020-11-23T00:56:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200831-known-fire-gitio/</loc>
+    <lastmod>2020-08-31T01:34:04+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.10oz.tw/tags/k8s/</loc>
     <lastmod>2020-08-30T21:38:12+08:00</lastmod>
   </url>
@@ -24,11 +39,6 @@
   
   <url>
     <loc>https://blog.10oz.tw/tags/vm/</loc>
-    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/</loc>
     <lastmod>2020-08-30T21:38:12+08:00</lastmod>
   </url>
   
@@ -165,6 +175,26 @@
   <url>
     <loc>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</loc>
     <lastmod>2019-08-15T19:59:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/elasticsearch/</loc>
+    <lastmod>2019-08-14T00:15:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/es/</loc>
+    <lastmod>2019-08-14T00:15:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/ilm/</loc>
+    <lastmod>2019-08-14T00:15:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20190814-learning-elasticsearch/</loc>
+    <lastmod>2019-08-14T00:15:26+08:00</lastmod>
   </url>
   
   <url>

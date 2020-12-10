@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>es on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/es/</link>
+    <description>Recent content in es on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Aug 2019 00:15:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/es/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Learning Elasticsearch</title>
+      <link>https://blog.10oz.tw/20190814-learning-elasticsearch/</link>
+      <pubDate>Wed, 14 Aug 2019 00:15:26 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190814-learning-elasticsearch/</guid>
+      <description>@elasticsearch version 6.8
+ STRUCTURE 可以這樣想像
+Relational DB -&amp;gt; Databases -&amp;gt; Tables -&amp;gt; Rows -&amp;gt; Columns
+Elasticsearch -&amp;gt; Indices -&amp;gt; Types -&amp;gt; Documents -&amp;gt; Fields
+不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義）
+Indices created in 6.x only allow a single-type per index. 6.x 後建議 type 使用 _doc，
+然後 8.x: Specifying types in requests is no longer supported.
+我發現我發現 看一眼 reindex 就很清楚他改了什麼了喔！
+POST _reindex { &amp;quot;source&amp;quot;: { &amp;quot;index&amp;quot;: &amp;quot;twitter&amp;quot; }, &amp;quot;dest&amp;quot;: { &amp;quot;index&amp;quot;: &amp;quot;new_twitter&amp;quot; }, &amp;quot;script&amp;quot;: { &amp;quot;source&amp;quot;: &amp;quot;&amp;quot;&amp;quot; ctx.</description>
+    </item>
+    
+  </channel>
+</rss>

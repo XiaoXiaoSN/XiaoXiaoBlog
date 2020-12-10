@@ -6,10 +6,45 @@
     <description>Recent content on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Aug 2020 21:38:12 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2020 00:56:51 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>gRPC - protobuf v3 產生 nullable 欄位</title>
+      <link>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</link>
+      <pubDate>Mon, 23 Nov 2020 00:56:51 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</guid>
+      <description>關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！
+option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option 去產生一個 nullable 的欄位
+syntax = &amp;#34;proto3&amp;#34;;message Foo { int32 bar = 1; optional int32 baz = 2;}https://stackoverflow.com/a/62566052/6695274
+wrappers 不過， gogo-proto 並不支援阿QQ，
+但也不能就這麼捨棄 gogo-proto，因此我們需要選擇另一個方案
+import &amp;#34;google/protobuf/wrappers.proto&amp;#34;;message Foo { int32 bar = 1; google.protobuf.Int32Value baz = 2;}https://stackoverflow.com/a/50099927/6695274
+記得在 --go-output= 內加上 Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types
+但是但是，無法支援 enum 我難過
+custom wrappers 只好自己動手做 (?
+enum Status { STATUS_OK = 0; STATUS_FAIL = 1;}message NullInt32 { bool valid = 1; int32 value = 2;}message NullStatus { bool valid = 1; Status value = 2;}message Foo { int32 bar = 1; NullInt32 baz = 2; NullStatus status = 3;}gen 成 golang 的 code 之後就這樣用，基本上跟 wrappers 的用法是一樣的</description>
+    </item>
+    
+    <item>
+      <title>已知用火 - git.io 短網址</title>
+      <link>https://blog.10oz.tw/20200831-known-fire-gitio/</link>
+      <pubDate>Mon, 31 Aug 2020 01:34:04 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200831-known-fire-gitio/</guid>
+      <description>介紹 GitHub 在 2018 年推出的短網址服務: git.io
+他可以把 GitHub 的網址縮短~
+with fish 其實會發現他的原因，是因為在尋找 fish 的 plugin
+https://github.com/jorgebucaran/gitio.fish
+fisher 是一個 fish 的套件管理工具，我們用它來安裝 fish 版 gitio
+fisher add jorgebucaran/gitio.fish 用這個工具的話可以自定義名稱喔！ 網頁版的 UI 好像就沒有這個選項 QQ
+安裝完成後 gitio key=url 就可以了
+gitio yamcha=https://github.com/XiaoXiaoSN/YamCha # https://git.io/yamcha without fish? 直接自己組 queryString 打過去也是可以的
+export url=https://github.com/XiaoXiaoSN/YamCha export code=yamcha curl https://git.io/ --data-urlencode &amp;#34;url=$url&amp;#34; --data-urlencode code=&amp;#34;$code&amp;#34; </description>
+    </item>
     
     <item>
       <title>我們想在虛擬機上跑個 k8s</title>
@@ -132,6 +167,23 @@ the requested PHP extension mongodb is missing from your system. =&amp;gt; 沒�
 解決方案 先來個悲劇， homebrew 拿掉 php-mongodb 的擴展了QQ
 只好去裝人家的，我的 php 版本是 7.1 所以裝 php71-mongodb 忘記版本的話可以用 php --version 查看
 brew tap kyslik/php brew install phpxx-mongodb {xx = 71,72} 裝完惹！ 但是當我輸入 php -i 檢查的時候 dyld: Library not loaded: /usr/local/opt/readline/lib/libreadline.</description>
+    </item>
+    
+    <item>
+      <title>Learning Elasticsearch</title>
+      <link>https://blog.10oz.tw/20190814-learning-elasticsearch/</link>
+      <pubDate>Wed, 14 Aug 2019 00:15:26 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190814-learning-elasticsearch/</guid>
+      <description>@elasticsearch version 6.8
+ STRUCTURE 可以這樣想像
+Relational DB -&amp;gt; Databases -&amp;gt; Tables -&amp;gt; Rows -&amp;gt; Columns
+Elasticsearch -&amp;gt; Indices -&amp;gt; Types -&amp;gt; Documents -&amp;gt; Fields
+不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義）
+Indices created in 6.x only allow a single-type per index. 6.x 後建議 type 使用 _doc，
+然後 8.x: Specifying types in requests is no longer supported.
+我發現我發現 看一眼 reindex 就很清楚他改了什麼了喔！
+POST _reindex { &amp;quot;source&amp;quot;: { &amp;quot;index&amp;quot;: &amp;quot;twitter&amp;quot; }, &amp;quot;dest&amp;quot;: { &amp;quot;index&amp;quot;: &amp;quot;new_twitter&amp;quot; }, &amp;quot;script&amp;quot;: { &amp;quot;source&amp;quot;: &amp;quot;&amp;quot;&amp;quot; ctx.</description>
     </item>
     
     <item>
@@ -303,12 +355,12 @@ pip3 install mysqlclient arios@AriosMac: pymysql_pool » pip3 install mysqlclien
     </item>
     
     <item>
-      <title>筆記 解決VSCode上pylint無法解析c函式庫的內容</title>
+      <title>筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容</title>
       <link>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</link>
       <pubDate>Thu, 08 Nov 2018 12:04:17 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</guid>
-      <description>問題 當你的函示庫底層使用C語言而不是純python編寫時 pylint可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
+      <description>問題 當你的函示庫底層使用 C語言 而不是純 python 編寫時 pylint 可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
 解決方法 加入以下至白名單 $vim ~/.pylintrc
 extension-pkg-whitelist=MySQLdb </description>
     </item>
@@ -319,7 +371,8 @@ extension-pkg-whitelist=MySQLdb </description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://blog.10oz.tw/about/</guid>
-      <description>什麼都有趣、什麼都好玩、什麼都想試試看</description>
+      <description>什麼都有趣、什麼都好玩、什麼都想試試看
+但是我金魚QQ 所以要寫筆記</description>
     </item>
     
   </channel>

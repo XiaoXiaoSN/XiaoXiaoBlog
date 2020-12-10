@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>筆記 解決VSCode上pylint無法解析c函式庫的內容</title>
+      <title>筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容</title>
       <link>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</link>
       <pubDate>Thu, 08 Nov 2018 12:04:17 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</guid>
-      <description>問題 當你的函示庫底層使用C語言而不是純python編寫時 pylint可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
+      <description>問題 當你的函示庫底層使用 C語言 而不是純 python 編寫時 pylint 可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
 解決方法 加入以下至白名單 $vim ~/.pylintrc
 extension-pkg-whitelist=MySQLdb </description>
     </item>

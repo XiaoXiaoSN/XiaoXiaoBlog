@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <title>筆記 解決VSCode上pylint無法解析c函式庫的內容 | XiaoXiao Notes</title>
+  <title>筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容 | XiaoXiao Notes</title>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.62.2" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,13 +14,13 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="筆記 解決VSCode上pylint無法解析c函式庫的內容"/>
-<meta name="twitter:description" content="問題 當你的函示庫底層使用C語言而不是純python編寫時 pylint可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
+<meta name="twitter:title" content="筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容"/>
+<meta name="twitter:description" content="問題 當你的函示庫底層使用 C語言 而不是純 python 編寫時 pylint 可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
 解決方法 加入以下至白名單 $vim ~/.pylintrc
 extension-pkg-whitelist=MySQLdb "/>
 
-  <meta property="og:title" content="筆記 解決VSCode上pylint無法解析c函式庫的內容" />
-<meta property="og:description" content="問題 當你的函示庫底層使用C語言而不是純python編寫時 pylint可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
+  <meta property="og:title" content="筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容" />
+<meta property="og:description" content="問題 當你的函示庫底層使用 C語言 而不是純 python 編寫時 pylint 可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
 解決方法 加入以下至白名單 $vim ~/.pylintrc
 extension-pkg-whitelist=MySQLdb " />
 <meta property="og:type" content="article" />
@@ -89,7 +89,7 @@ extension-pkg-whitelist=MySQLdb " />
 
 <article class="post">
   <header class="post-header">
-    <h1 class="post-title">筆記 解決VSCode上pylint無法解析c函式庫的內容</h1>
+    <h1 class="post-title">筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容</h1>
     <div class="post-meta">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
@@ -117,8 +117,8 @@ extension-pkg-whitelist=MySQLdb " />
   <div class="post-content">
     <h2 id="問題">問題</h2>
 <p><img src="https://i.imgur.com/fczhIaz.png" alt="">
-當你的函示庫底層使用<strong>C語言</strong>而不是純python編寫時
-pylint可能會無法正確的找到他，此問題可能出現在<code>numpy</code>或是本例的<code>mysqlclient</code>上</p>
+當你的函示庫底層使用 <strong>C語言</strong> 而不是純 python 編寫時
+pylint 可能會無法正確的找到他，此問題可能出現在<code>numpy</code>或是本例的<code>mysqlclient</code>上</p>
 <h2 id="解決方法">解決方法</h2>
 <p>加入以下至白名單
 $<code>vim ~/.pylintrc</code></p>

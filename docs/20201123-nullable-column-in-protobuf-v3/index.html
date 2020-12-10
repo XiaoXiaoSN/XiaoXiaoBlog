@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>gRPC - protobuf v3 產生 nullable 欄位 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="gRPC - protobuf v3 產生 nullable 欄位"/>
+<meta name="twitter:description" content="關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！
+option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option 去產生一個 nullable 的欄位
+syntax = &#34;proto3&#34;;message Foo { int32 bar = 1; optional int32 baz = 2;}https://stackoverflow.com/a/62566052/6695274
+wrappers 不過， gogo-proto 並不支援阿QQ，
+但也不能就這麼捨棄 gogo-proto，因此我們需要選擇另一個方案
+import &#34;google/protobuf/wrappers.proto&#34;;message Foo { int32 bar = 1; google.protobuf.Int32Value baz = 2;}https://stackoverflow.com/a/50099927/6695274
+記得在 --go-output= 內加上 Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types
+但是但是，無法支援 enum 我難過
+custom wrappers 只好自己動手做 (?
+enum Status { STATUS_OK = 0; STATUS_FAIL = 1;}message NullInt32 { bool valid = 1; int32 value = 2;}message NullStatus { bool valid = 1; Status value = 2;}message Foo { int32 bar = 1; NullInt32 baz = 2; NullStatus status = 3;}gen 成 golang 的 code 之後就這樣用，基本上跟 wrappers 的用法是一樣的"/>
+
+  <meta property="og:title" content="gRPC - protobuf v3 產生 nullable 欄位" />
+<meta property="og:description" content="關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！
+option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option 去產生一個 nullable 的欄位
+syntax = &#34;proto3&#34;;message Foo { int32 bar = 1; optional int32 baz = 2;}https://stackoverflow.com/a/62566052/6695274
+wrappers 不過， gogo-proto 並不支援阿QQ，
+但也不能就這麼捨棄 gogo-proto，因此我們需要選擇另一個方案
+import &#34;google/protobuf/wrappers.proto&#34;;message Foo { int32 bar = 1; google.protobuf.Int32Value baz = 2;}https://stackoverflow.com/a/50099927/6695274
+記得在 --go-output= 內加上 Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types
+但是但是，無法支援 enum 我難過
+custom wrappers 只好自己動手做 (?
+enum Status { STATUS_OK = 0; STATUS_FAIL = 1;}message NullInt32 { bool valid = 1; int32 value = 2;}message NullStatus { bool valid = 1; Status value = 2;}message Foo { int32 bar = 1; NullInt32 baz = 2; NullStatus status = 3;}gen 成 golang 的 code 之後就這樣用，基本上跟 wrappers 的用法是一樣的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/" />
+<meta property="article:published_time" content="2020-11-23T00:56:51+08:00" />
+<meta property="article:modified_time" content="2020-11-23T00:56:51+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">gRPC - protobuf v3 產生 nullable 欄位</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Nov 23, 2020
+      </div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#關於-protobuf-null-value">關於 protobuf null value</a>
+      <ul>
+        <li><a href="#option">option</a></li>
+        <li><a href="#wrappers">wrappers</a></li>
+        <li><a href="#custom-wrappers">custom wrappers</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="關於-protobuf-null-value">關於 protobuf null value</h2>
+<p>golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！</p>
+<h3 id="option">option</h3>
+<p>protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option 去產生一個 nullable 的欄位</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf">syntax <span style="color:#666">=</span> <span style="color:#4070a0">&#34;proto3&#34;</span>;<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">message</span> <span style="color:#0e84b5;font-weight:bold">Foo</span> {<span style="">
+</span><span style=""></span>    <span style="color:#902000">int32</span> bar <span style="color:#666">=</span> <span style="color:#40a070">1</span>;<span style="">
+</span><span style=""></span>    <span style="color:#007020;font-weight:bold">optional</span> <span style="color:#902000">int32</span> baz <span style="color:#666">=</span> <span style="color:#40a070">2</span>;<span style="">
+</span><span style=""></span>}<span style="">
+</span></code></pre></div><p><a href="https://stackoverflow.com/a/62566052/6695274">https://stackoverflow.com/a/62566052/6695274</a></p>
+<h3 id="wrappers">wrappers</h3>
+<p>不過， gogo-proto 並不支援阿QQ，<br>
+但也不能就這麼捨棄 gogo-proto，因此我們需要選擇另一個方案</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-proto" data-lang="proto"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#4070a0">&#34;google/protobuf/wrappers.proto&#34;</span>;<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">message</span> <span style="color:#0e84b5;font-weight:bold">Foo</span> {<span style="">
+</span><span style=""></span>    <span style="color:#902000">int32</span> bar <span style="color:#666">=</span> <span style="color:#40a070">1</span>;<span style="">
+</span><span style=""></span>    google.protobuf.Int32Value baz <span style="color:#666">=</span> <span style="color:#40a070">2</span>;<span style="">
+</span><span style=""></span>}<span style="">
+</span></code></pre></div><p><a href="https://stackoverflow.com/a/50099927/6695274">https://stackoverflow.com/a/50099927/6695274</a></p>
+<p>記得在 <code>--go-output=</code> 內加上 <code>Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types</code></p>
+<p>但是但是，無法支援 enum 我難過</p>
+<h3 id="custom-wrappers">custom wrappers</h3>
+<p>只好自己動手做 (?</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#007020;font-weight:bold">enum</span> Status {<span style="">
+</span><span style=""></span>    STATUS_OK <span style="color:#666">=</span> <span style="color:#40a070">0</span>;<span style="">
+</span><span style=""></span>    STATUS_FAIL <span style="color:#666">=</span> <span style="color:#40a070">1</span>;<span style="">
+</span><span style=""></span>}<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">message</span> <span style="color:#0e84b5;font-weight:bold">NullInt32</span> {<span style="">
+</span><span style=""></span>    <span style="color:#902000">bool</span> valid <span style="color:#666">=</span> <span style="color:#40a070">1</span>;<span style="">
+</span><span style=""></span>    <span style="color:#902000">int32</span> value <span style="color:#666">=</span> <span style="color:#40a070">2</span>;<span style="">
+</span><span style=""></span>}<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">message</span> <span style="color:#0e84b5;font-weight:bold">NullStatus</span> {<span style="">
+</span><span style=""></span>    <span style="color:#902000">bool</span> valid <span style="color:#666">=</span> <span style="color:#40a070">1</span>;<span style="">
+</span><span style=""></span>    Status value <span style="color:#666">=</span> <span style="color:#40a070">2</span>;<span style="">
+</span><span style=""></span>}<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">message</span> <span style="color:#0e84b5;font-weight:bold">Foo</span> {<span style="">
+</span><span style=""></span>    <span style="color:#902000">int32</span> bar <span style="color:#666">=</span> <span style="color:#40a070">1</span>;<span style="">
+</span><span style=""></span>    NullInt32 baz <span style="color:#666">=</span> <span style="color:#40a070">2</span>;<span style="">
+</span><span style=""></span>    NullStatus status <span style="color:#666">=</span> <span style="color:#40a070">3</span>;<span style="">
+</span><span style=""></span>}<span style="">
+</span></code></pre></div><p>gen 成 golang 的 code 之後就這樣用，基本上跟 wrappers 的用法是一樣的</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">type</span> NullStatus <span style="color:#007020;font-weight:bold">struct</span> {
+	Valid                <span style="color:#902000">bool</span>     <span style="color:#4070a0">`</span><span style="color:#4070a0">protobuf:&#34;varint,1,opt,name=valid,proto3&#34; json:&#34;valid,omitempty&#34;</span><span style="color:#4070a0">`</span>
+	Value                Status   <span style="color:#4070a0">`</span><span style="color:#4070a0">protobuf:&#34;varint,2,opt,name=value,proto3,enum=blackblock.Status&#34; json:&#34;value,omitempty&#34;</span><span style="color:#4070a0">`</span>
+	XXX_NoUnkeyedLiteral <span style="color:#007020;font-weight:bold">struct</span>{} <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;-&#34;</span><span style="color:#4070a0">`</span>
+	XXX_unrecognized     []<span style="color:#902000">byte</span>   <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;-&#34;</span><span style="color:#4070a0">`</span>
+	XXX_sizecache        <span style="color:#902000">int32</span>    <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;-&#34;</span><span style="color:#4070a0">`</span>
+}
+
+<span style="color:#007020;font-weight:bold">func</span> (m <span style="color:#666">*</span>NullStatus) <span style="color:#06287e">GetValid</span>() <span style="color:#902000">bool</span> {
+	<span style="color:#007020;font-weight:bold">if</span> m <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		<span style="color:#007020;font-weight:bold">return</span> m.Valid
+	}
+	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">false</span>
+}
+
+<span style="color:#007020;font-weight:bold">func</span> (m <span style="color:#666">*</span>NullStatus) <span style="color:#06287e">GetValue</span>() Status {
+	<span style="color:#007020;font-weight:bold">if</span> m <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+		<span style="color:#007020;font-weight:bold">return</span> m.Value
+	}
+	<span style="color:#007020;font-weight:bold">return</span> Status_STATUS_OK
+}
+
+<span style="color:#007020;font-weight:bold">type</span> Foo <span style="color:#007020;font-weight:bold">struct</span> {
+	Bar                  <span style="color:#902000">int32</span>       <span style="color:#4070a0">`</span><span style="color:#4070a0">protobuf:&#34;varint,1,opt,name=bar,proto3&#34; json:&#34;bar,omitempty&#34;</span><span style="color:#4070a0">`</span>
+	Baz                  <span style="color:#666">*</span>NullInt32  <span style="color:#4070a0">`</span><span style="color:#4070a0">protobuf:&#34;bytes,2,opt,name=baz,proto3&#34; json:&#34;baz,omitempty&#34;</span><span style="color:#4070a0">`</span>
+	Status               <span style="color:#666">*</span>NullStatus <span style="color:#4070a0">`</span><span style="color:#4070a0">protobuf:&#34;bytes,3,opt,name=status,proto3&#34; json:&#34;status,omitempty&#34;</span><span style="color:#4070a0">`</span>
+	XXX_NoUnkeyedLiteral <span style="color:#007020;font-weight:bold">struct</span>{}    <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;-&#34;</span><span style="color:#4070a0">`</span>
+	XXX_unrecognized     []<span style="color:#902000">byte</span>      <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;-&#34;</span><span style="color:#4070a0">`</span>
+	XXX_sizecache        <span style="color:#902000">int32</span>       <span style="color:#4070a0">`</span><span style="color:#4070a0">json:&#34;-&#34;</span><span style="color:#4070a0">`</span>
+}
+</code></pre></div><p>好啦，希望不要用到啦😅</p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

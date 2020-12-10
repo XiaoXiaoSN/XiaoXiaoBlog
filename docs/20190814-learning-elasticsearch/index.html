@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>Learning Elasticsearch | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Learning Elasticsearch"/>
+<meta name="twitter:description" content="@elasticsearch version 6.8
+ STRUCTURE 可以這樣想像
+Relational DB -&gt; Databases -&gt; Tables -&gt; Rows -&gt; Columns
+Elasticsearch -&gt; Indices -&gt; Types -&gt; Documents -&gt; Fields
+不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義）
+Indices created in 6.x only allow a single-type per index. 6.x 後建議 type 使用 _doc，
+然後 8.x: Specifying types in requests is no longer supported.
+我發現我發現 看一眼 reindex 就很清楚他改了什麼了喔！
+POST _reindex { &quot;source&quot;: { &quot;index&quot;: &quot;twitter&quot; }, &quot;dest&quot;: { &quot;index&quot;: &quot;new_twitter&quot; }, &quot;script&quot;: { &quot;source&quot;: &quot;&quot;&quot; ctx."/>
+
+  <meta property="og:title" content="Learning Elasticsearch" />
+<meta property="og:description" content="@elasticsearch version 6.8
+ STRUCTURE 可以這樣想像
+Relational DB -&gt; Databases -&gt; Tables -&gt; Rows -&gt; Columns
+Elasticsearch -&gt; Indices -&gt; Types -&gt; Documents -&gt; Fields
+不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義）
+Indices created in 6.x only allow a single-type per index. 6.x 後建議 type 使用 _doc，
+然後 8.x: Specifying types in requests is no longer supported.
+我發現我發現 看一眼 reindex 就很清楚他改了什麼了喔！
+POST _reindex { &quot;source&quot;: { &quot;index&quot;: &quot;twitter&quot; }, &quot;dest&quot;: { &quot;index&quot;: &quot;new_twitter&quot; }, &quot;script&quot;: { &quot;source&quot;: &quot;&quot;&quot; ctx." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190814-learning-elasticsearch/" />
+<meta property="article:published_time" content="2019-08-14T00:15:26+08:00" />
+<meta property="article:modified_time" content="2019-08-14T00:15:26+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">Learning Elasticsearch</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Aug 14, 2019
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/es/">es</a><a class="tag" href="https://blog.10oz.tw/tags/elasticsearch/">elasticsearch</a><a class="tag" href="https://blog.10oz.tw/tags/ilm/">ilm</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#structure">STRUCTURE</a></li>
+    <li><a href="#usage">USAGE</a>
+      <ul>
+        <li><a href="#search---es-dsl">Search - ES DSL</a></li>
+        <li><a href="#rollover-index">Rollover Index</a></li>
+        <li><a href="#mapping">Mapping</a></li>
+        <li><a href="#ilm-index-lifecycle-management">ILM (Index Lifecycle Management)</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">REFERENCE</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>@elasticsearch version 6.8</p>
+</blockquote>
+<h2 id="structure">STRUCTURE</h2>
+<p>可以這樣想像<br>
+Relational DB -&gt; Databases -&gt; Tables -&gt; Rows -&gt; Columns<br>
+Elasticsearch -&gt; Indices   -&gt; Types  -&gt; Documents -&gt; Fields</p>
+<p>不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義）</p>
+<pre><code>Indices created in 6.x only allow a single-type per index.
+</code></pre><p>6.x 後建議 <code>type</code> 使用 <code>_doc</code>，<br>
+然後 8.x: <code>Specifying types in requests is no longer supported.</code></p>
+<p>我發現我發現 看一眼 reindex 就很清楚他改了什麼了喔！</p>
+<pre><code>POST _reindex
+{
+  &quot;source&quot;: {
+    &quot;index&quot;: &quot;twitter&quot;
+  },
+  &quot;dest&quot;: {
+    &quot;index&quot;: &quot;new_twitter&quot;
+  },
+  &quot;script&quot;: {
+    &quot;source&quot;: &quot;&quot;&quot;
+      ctx._source.type = ctx._type;
+      ctx._id = ctx._type + '-' + ctx._id;
+      ctx._type = '_doc';
+    &quot;&quot;&quot;
+  }
+}
+</code></pre><p>這是一個新增範例，依照 <code>/Index/Type/ID</code> 新增一筆 <code>Document</code></p>
+<pre><code>PUT /employee/_doc/1
+{
+    &quot;first_name&quot; : &quot;John&quot;,
+    &quot;last_name&quot; :  &quot;Smith&quot;,
+    &quot;age&quot; :        25,
+    &quot;about&quot; :      &quot;I love to go rock climbing&quot;,
+    &quot;interests&quot;:   [&quot;sports&quot;, &quot;music&quot;]
+}
+</code></pre><h2 id="usage">USAGE</h2>
+<p>列出所有 index</p>
+<pre><code>GET /_cat/indices?v
+</code></pre><p>所有在 index 中的 type</p>
+<pre><code>GET /_mapping?pretty=true
+</code></pre><h3 id="search---es-dsl">Search - ES DSL</h3>
+<p>Query DSL(Domain Specific Language)</p>
+<p>架構介紹 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-filter-context.html">來自這邊</a></p>
+<pre><code>GET /_search
+{
+  &quot;query&quot;: { 
+    &quot;bool&quot;: { 
+      &quot;must&quot;: [
+        { &quot;match&quot;: { &quot;title&quot;:   &quot;Search&quot;        }},
+        { &quot;match&quot;: { &quot;content&quot;: &quot;Elasticsearch&quot; }}
+      ],
+      &quot;filter&quot;: [ 
+        { &quot;term&quot;:  { &quot;status&quot;: &quot;published&quot; }},
+        { &quot;range&quot;: { &quot;publish_date&quot;: { &quot;gte&quot;: &quot;2015-01-01&quot; }}}
+      ]
+    }
+  }
+}
+</code></pre><p>在 <code>bool</code> 裡面， <code>must</code> <code>match</code> 表示檢索的評分項目<br>
+而 <code>filter</code> 中的兩個 <code>term</code> 和 <code>range</code> 表示過濾條件，不會影響到評分</p>
+<p>由 index 來搜尋</p>
+<pre><code>GET users/_search
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {
+      
+    }
+  }
+}
+</code></pre><h4 id="多個-index-搜尋是這樣的">多個 index 搜尋是這樣的</h4>
+<pre><code>GET /kimchy,elasticsearch/_search?q=tag:wow
+</code></pre><h4 id="matchall">MatchAll</h4>
+<pre><code>GET /_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    }
+}
+</code></pre><p><code>match_none</code> 是他的相反</p>
+<h3 id="rollover-index">Rollover Index</h3>
+<p>可參考 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.3/indices-rollover-index.html#indices-rollover-index">文件</a>。當檔案大時，可以利用 rollover index 來分檔案，並且利用 alias 統一搜尋</p>
+<pre><code>PUT /logs-000001 
+{
+  &quot;aliases&quot;: {
+    &quot;logs_write&quot;: {}
+  }
+}
+
+# Add &gt; 1000 documents to logs-000001
+
+POST /logs_write/_rollover 
+{
+  &quot;conditions&quot;: {
+    &quot;max_age&quot;:   &quot;7d&quot;,
+    &quot;max_docs&quot;:  1000,
+    &quot;max_size&quot;:  &quot;5gb&quot;
+  }
+}
+</code></pre><p>也可以使用日期來做</p>
+<pre><code># PUT /&lt;logs-{now/d}-1&gt; with URI encoding:
+PUT /%3Clogs-%7Bnow%2Fd%7D-1%3E 
+{
+  &quot;aliases&quot;: {
+    &quot;logs_write&quot;: {}
+  }
+}
+</code></pre><h3 id="mapping">Mapping</h3>
+<p>Mapping 可以設定這個 Index 裡面的 Fields 的 type</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.8/mapping.html">ref</a></p>
+<blockquote>
+<p>如果你是 7.x 記得看到 <code>_doc</code> 就給它拿掉</p>
+</blockquote>
+<pre><code>PUT twitter 
+{}
+
+PUT twitter/_mapping/_doc 
+{
+  &quot;properties&quot;: {
+    &quot;email&quot;: {
+      &quot;type&quot;: &quot;keyword&quot;
+    }
+  }
+}
+</code></pre><pre><code>GET /twitter/_mapping/_doc
+</code></pre><h3 id="ilm-index-lifecycle-management">ILM (Index Lifecycle Management)</h3>
+<p>rollover 的條件是當你 call API 的時候才會檢查，也就是說他不會自動生效
+而 ILM 的功能就是讓 elasticsearch 排程幫你做 rollover</p>
+<ol>
+<li>先開一個 policy</li>
+</ol>
+<pre><code>PUT _ilm/policy/mylogs_policy
+{
+  &quot;policy&quot;: {
+    &quot;phases&quot;: {
+      &quot;hot&quot;: {
+        &quot;actions&quot;: {
+          &quot;rollover&quot;: {
+            &quot;max_docs&quot;: &quot;4&quot;,
+            &quot;max_age&quot;:  &quot;30d&quot;,
+            &quot;max_size&quot;: &quot;5gb&quot;
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><ol start="2">
+<li>開一個 template 綁定這個 policy</li>
+</ol>
+<pre><code>PUT /_template/mylogs_template
+{
+  &quot;index_patterns&quot;: [&quot;mylogs-*&quot;],
+  &quot;settings&quot;: {
+    &quot;number_of_shards&quot;: 1,
+    &quot;number_of_replicas&quot;: 1,
+    &quot;index.lifecycle.name&quot;: &quot;mylogs_policy&quot;,      
+    &quot;index.lifecycle.rollover_alias&quot;: &quot;mylogs&quot;
+  }
+}
+</code></pre><ol start="3">
+<li>建立 alias</li>
+</ol>
+<pre><code># PUT /&lt;mylogs-000001&gt;
+PUT %3Cmylogs-000001%3E
+{
+  &quot;aliases&quot;:{
+    &quot;mylogs&quot;: {
+      &quot;is_write_index&quot;:true
+    }
+  }
+}
+</code></pre><p>當這個 alias 會被用於寫入時，要將 <code>is_write_index</code> 設定成 <code>true</code>，同時間 <code>is_write_index=true</code> 只會有一筆</p>
+<ol start="4">
+<li>一直打資料進去 <code>mylogs</code>，他會依照上面的設定 rollover
+<img src="https://i.imgur.com/UrxZDIu.png" alt="">
+<img src="https://i.imgur.com/Ejd71hO.png" alt=""></li>
+</ol>
+<p><strong>可透過別名查詢所有 index</strong></p>
+<pre><code>POST /prod_vpn_event/_refresh
+GET /prod_vpn_event/_search
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  }
+}
+</code></pre><p><img src="https://i.imgur.com/ETrW37P.png" alt=""></p>
+<hr>
+<h2 id="reference">REFERENCE</h2>
+<p><a href="https://es.xiaoleilu.com">https://es.xiaoleilu.com</a>
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl.html">https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl.html</a>
+ILM <a href="https://elasticsearch.cn/article/6358">https://elasticsearch.cn/article/6358</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>
