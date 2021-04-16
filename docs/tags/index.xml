@@ -6,10 +6,253 @@
     <description>Recent content in Tags on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Aug 2020 21:38:12 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 17 Apr 2021 02:03:48 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang</title>
+      <link>https://blog.10oz.tw/tags/golang/</link>
+      <pubDate>Sat, 17 Apr 2021 02:03:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vim</title>
+      <link>https://blog.10oz.tw/tags/vim/</link>
+      <pubDate>Sat, 17 Apr 2021 02:03:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>argo</title>
+      <link>https://blog.10oz.tw/tags/argo/</link>
+      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/argo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cd</title>
+      <link>https://blog.10oz.tw/tags/cd/</link>
+      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/cd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://blog.10oz.tw/tags/gitlab/</link>
+      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://blog.10oz.tw/tags/docker/</link>
+      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://blog.10oz.tw/tags/linux/</link>
+      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>log</title>
+      <link>https://blog.10oz.tw/tags/log/</link>
+      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/log/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kops</title>
+      <link>https://blog.10oz.tw/tags/kops/</link>
+      <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/kops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>terraform</title>
+      <link>https://blog.10oz.tw/tags/terraform/</link>
+      <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/terraform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blockchain</title>
+      <link>https://blog.10oz.tw/tags/blockchain/</link>
+      <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/blockchain/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ethereum</title>
+      <link>https://blog.10oz.tw/tags/ethereum/</link>
+      <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/ethereum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geth</title>
+      <link>https://blog.10oz.tw/tags/geth/</link>
+      <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/geth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>helm</title>
+      <link>https://blog.10oz.tw/tags/helm/</link>
+      <pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/helm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://blog.10oz.tw/tags/kubernetes/</link>
+      <pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golnag</title>
+      <link>https://blog.10oz.tw/tags/golnag/</link>
+      <pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/golnag/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>subgroup</title>
+      <link>https://blog.10oz.tw/tags/subgroup/</link>
+      <pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/subgroup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chromedp</title>
+      <link>https://blog.10oz.tw/tags/chromedp/</link>
+      <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/chromedp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chromium</title>
+      <link>https://blog.10oz.tw/tags/chromium/</link>
+      <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/chromium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gfw</title>
+      <link>https://blog.10oz.tw/tags/gfw/</link>
+      <pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/gfw/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vpn</title>
+      <link>https://blog.10oz.tw/tags/vpn/</link>
+      <pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/vpn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>istio</title>
+      <link>https://blog.10oz.tw/tags/istio/</link>
+      <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/istio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>service-mesh</title>
+      <link>https://blog.10oz.tw/tags/service-mesh/</link>
+      <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/service-mesh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gql</title>
+      <link>https://blog.10oz.tw/tags/gql/</link>
+      <pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/gql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graphql</title>
+      <link>https://blog.10oz.tw/tags/graphql/</link>
+      <pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/graphql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>di</title>
+      <link>https://blog.10oz.tw/tags/di/</link>
+      <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/di/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wire</title>
+      <link>https://blog.10oz.tw/tags/wire/</link>
+      <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/tags/wire/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>k8s</title>
@@ -17,15 +260,6 @@
       <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://blog.10oz.tw/tags/kubernetes/</link>
-      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -57,15 +291,6 @@
     </item>
     
     <item>
-      <title>docker</title>
-      <link>https://blog.10oz.tw/tags/docker/</link>
-      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>multi-arch</title>
       <link>https://blog.10oz.tw/tags/multi-arch/</link>
       <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
@@ -89,15 +314,6 @@
       <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://blog.10oz.tw/tags/golang/</link>
-      <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/tags/golang/</guid>
       <description></description>
     </item>
     

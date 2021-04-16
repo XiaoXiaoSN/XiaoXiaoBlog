@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cd on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/cd/</link>
+    <description>Recent content in cd on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Apr 2021 01:29:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/cd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>究竟阿狗能做什麼呢</title>
+      <link>https://blog.10oz.tw/20210409-what-can-argocd-do/</link>
+      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210409-what-can-argocd-do/</guid>
+      <description>你問阿狗是什麼 GitOps + Kubernetes 的產物，相當不錯的運維工具
+先來裝 Argo CD 我們要用 helm 安裝裝起來喔
+helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml
+installCRDs:falseglobal:image:tag:v1.8.6dex:enabled:falseserver:extraArgs:---insecure# 如果說你有需要用反向代理抓 subpath，可以在這裡設定# - --basehref=https://blog.10oz.tw/argo# - --rootpath=/argoconfig:# 這裡要把你要監看的 git repo 放上來，# 範例是私有 Gitlab 的設定方式repositories:| - name: dev-argoinsecure:trueinsecureIgnoreHostKey:truesshPrivateKeySecret:name:argocd-secretkey:webhook.gitlab.secrettype:giturl:git@gitlab.10oz.tw:self_group/dev-argo.gitmetrics:enabled:trueconfigs:secret:# 這裡產生一個 ssh key 來設定 gitlab repo 裡面的 deploy key# 然後把相應的 private 提供給 Argo 使用gitlabSecret:|- first set ssh-public-key in gitlab repo, Settings &amp;gt; Repository &amp;gt; Deploy Keysandreplacethefieldwithssh-private-key PS: 後面有說這裏的 Repository 跟 Secret 在哪裡弄 :) 反正先裝等等還能改 XDD</description>
+    </item>
+    
+  </channel>
+</rss>

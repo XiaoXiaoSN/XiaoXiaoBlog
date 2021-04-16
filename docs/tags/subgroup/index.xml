@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>subgroup on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/subgroup/</link>
+    <description>Recent content in subgroup on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Mar 2021 01:49:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/subgroup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>go get 與私有 Gitlab</title>
+      <link>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</link>
+      <pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</guid>
+      <description>GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64
+ 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援
+Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env
+export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod
+module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo =&amp;gt; gitlab.com/org/subgroup/repo.git/pkg/foo v1.0.0 Ref https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785</description>
+    </item>
+    
+  </channel>
+</rss>

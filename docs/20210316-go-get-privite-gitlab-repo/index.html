@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>go get 與私有 Gitlab | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="go get 與私有 Gitlab"/>
+<meta name="twitter:description" content="GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64
+ 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援
+Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env
+export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod
+module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo =&gt; gitlab.com/org/subgroup/repo.git/pkg/foo v1.0.0 Ref https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785"/>
+
+  <meta property="og:title" content="go get 與私有 Gitlab" />
+<meta property="og:description" content="GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64
+ 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援
+Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env
+export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod
+module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo =&gt; gitlab.com/org/subgroup/repo.git/pkg/foo v1.0.0 Ref https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/" />
+<meta property="article:published_time" content="2021-03-16T01:49:55+08:00" />
+<meta property="article:modified_time" content="2021-03-16T01:49:55+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">go get 與私有 Gitlab</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Mar 16, 2021
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/golnag/">golnag</a><a class="tag" href="https://blog.10oz.tw/tags/gitlab/">gitlab</a><a class="tag" href="https://blog.10oz.tw/tags/subgroup/">subgroup</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#問題描述">問題描述</a></li>
+    <li><a href="#privite-gitlab">Privite Gitlab</a></li>
+    <li><a href="#subgroup">Subgroup</a></li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>GitLab Community Edition 12.7.0
+go version go1.15 darwin/amd64</p>
+</blockquote>
+<h2 id="問題描述">問題描述</h2>
+<p>事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援</p>
+<h2 id="privite-gitlab">Privite Gitlab</h2>
+<p>存取私有的 Gitlab 可以修改你的 go env</p>
+<pre><code>export GOPRIVATE=gitlab.company.com.tw
+</code></pre><h2 id="subgroup">Subgroup</h2>
+<p>你的 go.mod</p>
+<pre><code>module example.com/test
+
+require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0
+
+replace gitlab.com/org/subgroup/repo/pkg/foo =&gt; gitlab.com/org/subgroup/repo.git/pkg/foo v1.0.0
+</code></pre><h2 id="ref">Ref</h2>
+<p><a href="https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785">https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

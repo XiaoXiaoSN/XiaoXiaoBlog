@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>service-mesh on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/service-mesh/</link>
+    <description>Recent content in service-mesh on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Nov 2020 01:36:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>新米 Istio 篇</title>
+      <link>https://blog.10oz.tw/20201115-a-istio-beginner/</link>
+      <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid>
+      <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧
+curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 | | default | demo | minimal | remote | empty | preview | | | &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; | &amp;mdash;&amp;mdash;- | &amp;mdash;- | &amp;mdash;&amp;mdash;- | &amp;mdash;&amp;mdash; | &amp;mdash;&amp;ndash; | &amp;mdash;&amp;mdash;- | &amp;mdash; | | Core components | | | | | | | | | istio-egressgateway | | X | | | | | | | istio-ingressgateway | X | X | | | | X | | | istiod | X | X | X | | | X | |</description>
+    </item>
+    
+  </channel>
+</rss>

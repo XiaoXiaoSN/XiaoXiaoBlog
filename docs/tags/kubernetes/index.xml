@@ -6,10 +6,32 @@
     <description>Recent content in kubernetes on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Aug 2020 21:38:12 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Mar 2021 01:24:28 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>helm3 說 has no deployed releases</title>
+      <link>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</link>
+      <pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</guid>
+      <description>問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本
+Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他跑下去就好
+或者說去找到 secrets sh.helm.release.v1.{server_name}.v{version} 修改一下裡面的 labels status，改成 deployed
+metadata:name:sh.helm.release.v1.code-server.v31namespace:foouid:b94b5861-8f98-4e8c-bb81-e715975d8c22resourceVersion:&amp;#39;46153334&amp;#39;creationTimestamp:&amp;#39;2021-03-04T06:12:08Z&amp;#39;labels:modifiedAt:&amp;#39;1614838331&amp;#39;name:code-serverowner:helmstatus:failed# 改這裏成 deployedversion:&amp;#39;31&amp;#39;再重新 Retry 一下 helm upgrade 就可以囉</description>
+    </item>
+    
+    <item>
+      <title>新米 Istio 篇</title>
+      <link>https://blog.10oz.tw/20201115-a-istio-beginner/</link>
+      <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid>
+      <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧
+curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 | | default | demo | minimal | remote | empty | preview | | | &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; | &amp;mdash;&amp;mdash;- | &amp;mdash;- | &amp;mdash;&amp;mdash;- | &amp;mdash;&amp;mdash; | &amp;mdash;&amp;ndash; | &amp;mdash;&amp;mdash;- | &amp;mdash; | | Core components | | | | | | | | | istio-egressgateway | | X | | | | | | | istio-ingressgateway | X | X | | | | X | | | istiod | X | X | X | | | X | |</description>
+    </item>
     
     <item>
       <title>我們想在虛擬機上跑個 k8s</title>

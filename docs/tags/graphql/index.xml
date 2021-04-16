@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>graphql on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/graphql/</link>
+    <description>Recent content in graphql on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Oct 2020 01:17:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/graphql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GraphQL 打招呼</title>
+      <link>https://blog.10oz.tw/20201009-hello-graphql/</link>
+      <pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201009-hello-graphql/</guid>
+      <description>介紹一下 在遇見 GraphQL 的時候最常被比較的就是 Restful API，畢竟 Rustful API 是目前的主流設計，此時我們就必須了解到什麼情況下使用 GraphQL 能帶來效益
+ Over Fetch Restful API 的回傳會是一整個 resource， /user/1 會回傳 id=1 的 User 的全部資料，然而在很多情況下我們不需要這麼多的資料，可能 我們僅僅只需要 user 的名字而已 在 GraphQL 你可以指定你所需要的欄位，大大的減少了傳輸無用資料的消耗 Under Fetch 也就是 n+1 問題，情景是 user 有很多的 friends，每個朋友都是一名 User，在 Restful 的設計中，每個 User resource 都是一支 API，想想就頭痛 QQ。因此會在後端客製化 API 做 eager loading，一次回傳這些資料 但到了 GraphQL 這完全不是問題，你可以向下定義你所需要的資料，並嵌入 User 中 query{User(id:1){NameAvatarURLfriends{IDName}}}  在設計上，GraphQL 關注 明確的解釋查詢語言與型態系統 而不去描述伺服器端實作，前後端之間以 Schema 定義溝通介面，雙方有共通的資料型態以及明確定義的詞彙來討論
+讓一切清楚且簡單～
+怎麼用r 工具會用一點 - GraphQL Playground 認識一些 GraphQL Schema GraphQL 定義自己的語法格式，他是個 SDL (Schema Define Language)</description>
+    </item>
+    
+  </channel>
+</rss>

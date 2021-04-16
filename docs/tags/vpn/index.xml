@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vpn on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/vpn/</link>
+    <description>Recent content in vpn on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jan 2021 01:52:48 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/vpn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VPN &amp; GFW - 科學上網</title>
+      <link>https://blog.10oz.tw/20210124-vpn-and-gfw/</link>
+      <pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210124-vpn-and-gfw/</guid>
+      <description>GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由的需求，幫 QQ
+GFW 擋掉的方法有域名污染、關鍵字阻斷、特徵攔截&amp;hellip;等等，只要他看見你的封包含有他不喜歡的關鍵字，或是黑名單的 IP 就直接斷掉你的網路封包。
+因此想要繞過 GFW 的審核，就需要用上封包加密，他看不懂的東西他不會隨便的就把你給封鎖掉，也就有機會可以碰觸到外面的世界。 不過這樣會面臨到另一個問題，加密的內容 GFW 看不懂，google 也一樣看不懂，因此需要有一台跳板機來解密，然後跳板機幫你做到你真正想要做的事情，再將結果加密傳回去給你。
+常用技術與工具們 VPS (Virtual Private Server) 也就是跳板機啦，常用的供應商有 Linode, Vultr，都是老牌穩定價格合理的廠商。
+他們會租借一台虛擬的主機和 IP 給你，就好像有一台實際的電腦，你可以連線進去在上面做任何的事情~~ 當然也包含架設 VPN 跳板喔
+socks5 跑在第五層(Session Layer)的代理服務，很常被用來作為 VPN 服務的代理，不過這個協定不包含加密，因此一般會再搭配其他服務一起使用。 另外他無法做到全局代理，例如更低層級的 TCP, ICMP 這些協定，你 ping 回來還會是自己的 IP
+可以使用類似 tun2sock 這類工具，轉換所有的流量至 socks5，以達到全局代理的效果，當然別忘記還沒加密嘿
+ShadowSocks (SS, SSR) 最有知名度的翻牆工具，內容就是簡單的對封包做對稱加密，支援多種加密法，也有各種語言實作套件，不過也因為他簡單所以有很多人都表示這種翻牆的特徵已經能夠被 GFW 識別出來了，然而目前的翻牆最大宗還是使用 ShadowSocks 再加上 socks5 代理
+然後作者在 github 上突然的消失好幾個月惹，大家都說他被中國政府抓去喝茶惹
+SSR(ShadowSocksR) 是 ShadowSocks 的 fork 修改版</description>
+    </item>
+    
+  </channel>
+</rss>

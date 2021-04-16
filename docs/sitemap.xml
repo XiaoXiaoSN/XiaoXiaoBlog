@@ -3,13 +3,218 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.10oz.tw/tags/golang/</loc>
+    <lastmod>2021-04-17T02:03:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/</loc>
+    <lastmod>2021-04-17T02:03:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/vim/</loc>
+    <lastmod>2021-04-17T02:03:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/</loc>
+    <lastmod>2021-04-17T02:03:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200926-wanna-install-vim/</loc>
+    <lastmod>2021-04-17T02:03:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/argo/</loc>
+    <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/cd/</loc>
+    <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/gitlab/</loc>
+    <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210409-what-can-argocd-do/</loc>
+    <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/docker/</loc>
+    <lastmod>2021-04-02T01:19:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/linux/</loc>
+    <lastmod>2021-04-02T01:19:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/log/</loc>
+    <lastmod>2021-04-02T01:19:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</loc>
+    <lastmod>2021-04-02T01:19:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/kops/</loc>
+    <lastmod>2021-03-31T01:32:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/terraform/</loc>
+    <lastmod>2021-03-31T01:32:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</loc>
+    <lastmod>2021-03-31T01:32:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/blockchain/</loc>
+    <lastmod>2021-03-26T01:41:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/ethereum/</loc>
+    <lastmod>2021-03-26T01:41:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/geth/</loc>
+    <lastmod>2021-03-26T01:41:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</loc>
+    <lastmod>2021-03-26T01:41:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/helm/</loc>
+    <lastmod>2021-03-26T01:24:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</loc>
+    <lastmod>2021-03-26T01:24:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/kubernetes/</loc>
+    <lastmod>2021-03-26T01:24:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</loc>
+    <lastmod>2021-03-16T01:49:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/golnag/</loc>
+    <lastmod>2021-03-16T01:49:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/subgroup/</loc>
+    <lastmod>2021-03-16T01:49:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/chromedp/</loc>
+    <lastmod>2021-03-06T01:26:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210306-chromedp-zombi-process/</loc>
+    <lastmod>2021-03-06T01:26:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/chromium/</loc>
+    <lastmod>2021-03-06T01:26:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/gfw/</loc>
+    <lastmod>2021-01-24T01:52:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/vpn/</loc>
+    <lastmod>2021-01-24T01:52:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210124-vpn-and-gfw/</loc>
+    <lastmod>2021-01-24T01:52:48+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</loc>
     <lastmod>2020-11-23T00:56:51+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blog.10oz.tw/</loc>
-    <lastmod>2020-11-23T00:56:51+08:00</lastmod>
+    <loc>https://blog.10oz.tw/tags/istio/</loc>
+    <lastmod>2020-11-15T01:36:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/service-mesh/</loc>
+    <lastmod>2020-11-15T01:36:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20201115-a-istio-beginner/</loc>
+    <lastmod>2020-11-15T01:36:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/gql/</loc>
+    <lastmod>2020-10-09T01:17:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/graphql/</loc>
+    <lastmod>2020-10-09T01:17:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20201009-hello-graphql/</loc>
+    <lastmod>2020-10-09T01:17:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</loc>
+    <lastmod>2020-09-19T00:56:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/di/</loc>
+    <lastmod>2020-09-08T02:00:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20200908-golang-di-tool-wire/</loc>
+    <lastmod>2020-09-08T02:00:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/wire/</loc>
+    <lastmod>2020-09-08T02:00:42+08:00</lastmod>
   </url>
   
   <url>
@@ -19,16 +224,6 @@
   
   <url>
     <loc>https://blog.10oz.tw/tags/k8s/</loc>
-    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/kubernetes/</loc>
-    <lastmod>2020-08-30T21:38:12+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/</loc>
     <lastmod>2020-08-30T21:38:12+08:00</lastmod>
   </url>
   
@@ -49,11 +244,6 @@
   
   <url>
     <loc>https://blog.10oz.tw/tags/buildx/</loc>
-    <lastmod>2020-08-14T23:11:03+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/docker/</loc>
     <lastmod>2020-08-14T23:11:03+08:00</lastmod>
   </url>
   
@@ -79,11 +269,6 @@
   
   <url>
     <loc>https://blog.10oz.tw/tags/go/</loc>
-    <lastmod>2020-08-13T00:33:03+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/golang/</loc>
     <lastmod>2020-08-13T00:33:03+08:00</lastmod>
   </url>
   

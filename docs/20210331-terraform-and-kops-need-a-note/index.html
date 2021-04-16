@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>想用 Terraform 與 kOps 也得寫個筆記 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="想用 Terraform 與 kOps 也得寫個筆記"/>
+<meta name="twitter:description" content="流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform
+brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key
+直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器👍
+provider &quot;aws&quot; { # access_key = &quot;$AWS_ACCESS_KEY_ID&quot; # secret_key = &quot;$AWS_SECRET_ACCESS_KEY&quot; region = &quot;ap-northeast-1&quot; } data &quot;aws_ami&quot; &quot;ubuntu&quot; { most_recent = true filter { name = &quot;name&quot; values = [&quot;ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*&quot;] } filter { name = &quot;root-device-type&quot; values = [&quot;ebs&quot;] } filter { name = &quot;virtualization-type&quot; values = [&quot;hvm&quot;] } owners = [&quot;099720109477&quot;] # Canonical } # resource &lt;resource_type&gt; &lt;resource_name&gt; resource &quot;aws_instance&quot; &quot;example&quot; { ami = data."/>
+
+  <meta property="og:title" content="想用 Terraform 與 kOps 也得寫個筆記" />
+<meta property="og:description" content="流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform
+brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key
+直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器👍
+provider &quot;aws&quot; { # access_key = &quot;$AWS_ACCESS_KEY_ID&quot; # secret_key = &quot;$AWS_SECRET_ACCESS_KEY&quot; region = &quot;ap-northeast-1&quot; } data &quot;aws_ami&quot; &quot;ubuntu&quot; { most_recent = true filter { name = &quot;name&quot; values = [&quot;ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*&quot;] } filter { name = &quot;root-device-type&quot; values = [&quot;ebs&quot;] } filter { name = &quot;virtualization-type&quot; values = [&quot;hvm&quot;] } owners = [&quot;099720109477&quot;] # Canonical } # resource &lt;resource_type&gt; &lt;resource_name&gt; resource &quot;aws_instance&quot; &quot;example&quot; { ami = data." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/" />
+<meta property="article:published_time" content="2021-03-31T01:32:54+08:00" />
+<meta property="article:modified_time" content="2021-03-31T01:32:54+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">想用 Terraform 與 kOps 也得寫個筆記</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Mar 31, 2021
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/terraform/">terraform</a><a class="tag" href="https://blog.10oz.tw/tags/kops/">kops</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#流水帳開始-">流水帳開始 😂</a>
+      <ul>
+        <li><a href="#terraform-先裝點東西吧">Terraform 先裝點東西吧</a></li>
+        <li><a href="#kops-出現了">kOps 出現了</a></li>
+      </ul>
+    </li>
+    <li><a href="#打完收工">打完收工</a></li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="流水帳開始-">流水帳開始 😂</h2>
+<h3 id="terraform-先裝點東西吧">Terraform 先裝點東西吧</h3>
+<p>來安裝 terraform</p>
+<pre><code>brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+</code></pre><p>首先登入你的 aws iam 建立一組 Access key, Secret key</p>
+<p>直接產一個 <code>main.tf</code> 檔案~
+下面有指令直接來跑跑看，你應該要多一個 ec2 機器👍</p>
+<pre><code>provider &quot;aws&quot; {
+  #   access_key = &quot;$AWS_ACCESS_KEY_ID&quot;
+  #   secret_key = &quot;$AWS_SECRET_ACCESS_KEY&quot;
+  region = &quot;ap-northeast-1&quot;
+}
+
+data &quot;aws_ami&quot; &quot;ubuntu&quot; {
+  most_recent = true
+
+  filter {
+    name   = &quot;name&quot;
+    values = [&quot;ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*&quot;]
+  }
+  filter {
+    name   = &quot;root-device-type&quot;
+    values = [&quot;ebs&quot;]
+  }
+  filter {
+    name   = &quot;virtualization-type&quot;
+    values = [&quot;hvm&quot;]
+  }
+
+  owners = [&quot;099720109477&quot;] # Canonical
+}
+
+# resource &lt;resource_type&gt; &lt;resource_name&gt;
+resource &quot;aws_instance&quot; &quot;example&quot; {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = &quot;t2.micro&quot;
+}
+</code></pre><p>上面這一段開一個基本 ec2 instance 的範例，其實官方有教 <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance">點我</a></p>
+<p>第一次進來要先初始化一下！</p>
+<pre><code>terraform init
+</code></pre><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">terraform fmt   <span style="color:#60a0b0;font-style:italic"># 格式化文件</span>
+terraform plan  <span style="color:#60a0b0;font-style:italic"># 檢查與線上版本的差異</span>
+terraform apply <span style="color:#60a0b0;font-style:italic"># 準備部署 注意喔，再來個 yes 你就發射出去了</span>
+<span style="color:#60a0b0;font-style:italic"># terraform destroy</span>
+</code></pre></div><h3 id="kops-出現了">kOps 出現了</h3>
+<p>跟隨官方腳步走，kOps 帶你部署 terraform &raquo; <a href="https://github.com/kubernetes/kops/blob/master/docs/terraform.md">點我</a>
+networking 那邊可以選你需要的 CNI，不填寫也可以動啦，不過你會得到預設的 Kubenet</p>
+<pre><code>kops create cluster \
+  --networking calico \ 
+  --name=ptcg.10oz.tw \
+  --state=s3://ptcg-bucket-tf \
+  --dns-zone=ptcg.10oz.tw \
+  --zones=ap-northeast-1a \
+  --out=. \
+  --target=terraform
+</code></pre><p>會看到以下的 log</p>
+<pre><code>I0331 02:43:11.734871   11785 new_cluster.go:231] Inferred &quot;aws&quot; cloud provider from zone &quot;ap-northeast-1a&quot;
+I0331 02:43:12.025276   11785 subnets.go:180] Assigned CIDR 172.20.32.0/19 to subnet ap-northeast-1a
+I0331 02:43:13.000070   11785 create_cluster.go:713] Using SSH public key: /Users/xiaorenhao/.ssh/id_rsa.pub
+I0331 02:43:17.504798   11785 executor.go:111] Tasks: 0 done / 79 total; 45 can run
+I0331 02:43:17.521376   11785 dnszone.go:242] Check for existing route53 zone to re-use with name &quot;ptcg.10oz.tw&quot;
+W0331 02:43:17.904862   11785 vfs_castore.go:604] CA private key was not found
+I0331 02:43:18.010251   11785 keypair.go:195] Issuing new certificate: &quot;etcd-clients-ca&quot;
+I0331 02:43:18.017672   11785 keypair.go:195] Issuing new certificate: &quot;etcd-peers-ca-events&quot;
+I0331 02:43:18.022377   11785 keypair.go:195] Issuing new certificate: &quot;etcd-manager-ca-events&quot;
+I0331 02:43:18.022427   11785 keypair.go:195] Issuing new certificate: &quot;apiserver-aggregator-ca&quot;
+W0331 02:43:18.022450   11785 vfs_castore.go:604] CA private key was not found
+I0331 02:43:18.022474   11785 keypair.go:195] Issuing new certificate: &quot;ca&quot;
+I0331 02:43:18.029875   11785 keypair.go:195] Issuing new certificate: &quot;master&quot;
+I0331 02:43:18.034989   11785 keypair.go:195] Issuing new certificate: &quot;etcd-manager-ca-main&quot;
+I0331 02:43:18.131053   11785 keypair.go:195] Issuing new certificate: &quot;etcd-peers-ca-main&quot;
+I0331 02:43:18.247347   11785 dnszone.go:249] Existing zone &quot;ptcg.10oz.tw.&quot; found; will configure TF to reuse
+I0331 02:43:19.689156   11785 executor.go:111] Tasks: 45 done / 79 total; 16 can run
+I0331 02:43:19.694681   11785 executor.go:111] Tasks: 61 done / 79 total; 16 can run
+I0331 02:43:20.133663   11785 executor.go:111] Tasks: 77 done / 79 total; 2 can run
+I0331 02:43:20.134776   11785 executor.go:111] Tasks: 79 done / 79 total; 0 can run
+I0331 02:43:20.156638   11785 target.go:221] Terraform output is in .
+I0331 02:43:20.433778   11785 update_cluster.go:313] Exporting kubecfg for cluster
+kops has set your kubectl context to ptcg.10oz.tw
+
+Terraform output has been placed into .
+Run these commands to apply the configuration:
+   cd .
+   terraform plan
+   terraform apply
+
+Suggestions:
+ * validate cluster: kops validate cluster --wait 10m
+ * list nodes: kubectl get nodes --show-labels
+ * ssh to the master: ssh -i ~/.ssh/id_rsa ubuntu@api.ptcg.10oz.tw
+ * the ubuntu user is specific to Ubuntu. If not using Ubuntu please use the appropriate user based on your OS.
+ * read about installing addons at: https://kops.sigs.k8s.io/operations/addons.
+</code></pre><p>會看見 kOps 幫你建立好了可以開啟 Kubernetes 服務的 terraform 檔案，直接給他跑下去</p>
+<pre><code>terraform plan
+terraform apply
+</code></pre><p>跑完後用這個指令來檢查你的 k8s cluster 是否有健康跑起來了</p>
+<pre><code>kops validate cluster --wait 10m
+</code></pre><p>開出來的 admin token 一天就會過期，建議是自己建立一個適合自己用的 Service Account，
+不過你需要 admin token 的時候可以這麼做</p>
+<pre><code>kops export kubecfg --admin
+</code></pre><p>附錄：我想你會需要 Ingress Route</p>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
+</code></pre><h2 id="打完收工">打完收工</h2>
+<pre><code>kops delete cluster \
+  --name=ptcg.10oz.tw \
+  --state=s3://ptcg-bucket-tf \
+  --yes
+</code></pre><pre><code>terraform destroy
+</code></pre><p>然後建議要多人工檢查一下，因為我下完指令後很開心的洗洗睡了，隔天才注意到 Mount 的 PV 沒有幫我刪掉QQ
+下次請記得到 EC2 Volume 看看喔！！</p>
+<h2 id="ref">Ref</h2>
+<p><a href="https://shazi7804.github.io/terraform-manage-guide/command/plan.html">https://shazi7804.github.io/terraform-manage-guide/command/plan.html</a>
+<a href="https://medium.com/@chihsuan/terraform-%E8%87%AA%E5%8B%95%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A4%8E%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9-f827e8975e98">https://medium.com/@chihsuan/terraform-%E8%87%AA%E5%8B%95%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A4%8E%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9-f827e8975e98</a>
+<a href="https://godleon.github.io/blog/DevOps/terraform-getting-started/">https://godleon.github.io/blog/DevOps/terraform-getting-started/</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

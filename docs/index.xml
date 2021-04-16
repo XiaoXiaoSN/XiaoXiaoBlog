@@ -6,10 +6,128 @@
     <description>Recent content on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Nov 2020 00:56:51 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 17 Apr 2021 02:03:48 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我要裝 vim</title>
+      <link>https://blog.10oz.tw/20200926-wanna-install-vim/</link>
+      <pubDate>Sat, 17 Apr 2021 02:03:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
+      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&amp;#34;==============================================================================&amp;#34; vim 内置配置 &amp;#34;==============================================================================&amp;#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开&amp;#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡&amp;#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC&amp;#34; 关闭兼容模式set nocompatibleset nu &amp;#34; 设置行号set cursorline &amp;#34;突出显示当前行set showmatch &amp;#34; 显示括号匹配&amp;#34; tab 缩进set tabstop=4 &amp;#34; 设置Tab长度为4空格set shiftwidth=4 &amp;#34; 设置自动缩进长度为4空格set autoindent &amp;#34; 继承前一行的缩进方式，适用于多行注释&amp;#34; 定义快捷键的前缀，即&amp;lt;Leader&amp;gt;let mapleader=&amp;#34;,&amp;#34; &amp;#34; ==== 系统剪切板复制粘贴 ====&amp;#34; v 模式下复制内容到系统剪切板vmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下复制一行到系统剪切板nmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下粘贴系统剪切板的内容nmap &amp;lt;Leader&amp;gt;v &amp;#34;+p&amp;#34; 开启实时搜索set incsearch&amp;#34; 搜索时大小写不敏感set ignorecasesyntax enablesyntax on &amp;#34; 开启文件类型侦测filetype plugin indent on &amp;#34; 启用自动补全&amp;#34; 退出插入模式指定类型的文件自动保存au InsertLeave *.</description>
+    </item>
+    
+    <item>
+      <title>究竟阿狗能做什麼呢</title>
+      <link>https://blog.10oz.tw/20210409-what-can-argocd-do/</link>
+      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210409-what-can-argocd-do/</guid>
+      <description>你問阿狗是什麼 GitOps + Kubernetes 的產物，相當不錯的運維工具
+先來裝 Argo CD 我們要用 helm 安裝裝起來喔
+helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml
+installCRDs:falseglobal:image:tag:v1.8.6dex:enabled:falseserver:extraArgs:---insecure# 如果說你有需要用反向代理抓 subpath，可以在這裡設定# - --basehref=https://blog.10oz.tw/argo# - --rootpath=/argoconfig:# 這裡要把你要監看的 git repo 放上來，# 範例是私有 Gitlab 的設定方式repositories:| - name: dev-argoinsecure:trueinsecureIgnoreHostKey:truesshPrivateKeySecret:name:argocd-secretkey:webhook.gitlab.secrettype:giturl:git@gitlab.10oz.tw:self_group/dev-argo.gitmetrics:enabled:trueconfigs:secret:# 這裡產生一個 ssh key 來設定 gitlab repo 裡面的 deploy key# 然後把相應的 private 提供給 Argo 使用gitlabSecret:|- first set ssh-public-key in gitlab repo, Settings &amp;gt; Repository &amp;gt; Deploy Keysandreplacethefieldwithssh-private-key PS: 後面有說這裏的 Repository 跟 Secret 在哪裡弄 :) 反正先裝等等還能改 XDD</description>
+    </item>
+    
+    <item>
+      <title>啥? k8s node 硬碟空間滿了</title>
+      <link>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</link>
+      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</guid>
+      <description>發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼
+dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs 5.0M 0 5.0M 0% /run/lock tmpfs 5.9G 0 5.9G 0% /sys/fs/cgroup /dev/sda2 976M 213M 696M 24% /boot tmpfs 1.2G 0 1.2G 0% /run/user/1000 閉眼先清空一波 Docker image, volumn&amp;hellip;
+docker system prune -a 檢查一下還有啥米東西佔用了我們的空間</description>
+    </item>
+    
+    <item>
+      <title>想用 Terraform 與 kOps 也得寫個筆記</title>
+      <link>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</link>
+      <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</guid>
+      <description>流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform
+brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key
+直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器👍
+provider &amp;quot;aws&amp;quot; { # access_key = &amp;quot;$AWS_ACCESS_KEY_ID&amp;quot; # secret_key = &amp;quot;$AWS_SECRET_ACCESS_KEY&amp;quot; region = &amp;quot;ap-northeast-1&amp;quot; } data &amp;quot;aws_ami&amp;quot; &amp;quot;ubuntu&amp;quot; { most_recent = true filter { name = &amp;quot;name&amp;quot; values = [&amp;quot;ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*&amp;quot;] } filter { name = &amp;quot;root-device-type&amp;quot; values = [&amp;quot;ebs&amp;quot;] } filter { name = &amp;quot;virtualization-type&amp;quot; values = [&amp;quot;hvm&amp;quot;] } owners = [&amp;quot;099720109477&amp;quot;] # Canonical } # resource &amp;lt;resource_type&amp;gt; &amp;lt;resource_name&amp;gt; resource &amp;quot;aws_instance&amp;quot; &amp;quot;example&amp;quot; { ami = data.</description>
+    </item>
+    
+    <item>
+      <title>小紀錄更新 Rinkeby Ethereum 節點</title>
+      <link>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</link>
+      <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</guid>
+      <description>這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事
+ 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢包充值 發現！ 不妙！ 充不進去耶，怎麼沒反應咧？
+找 log 但一切正常，這時發現卡在 8,290,928 想說這個位置是不是發生了什麼奇怪的交易，來查查看好了～ google 後發現， EIP 1559 實裝在 Rinkeby 惹！ 雖然之前沒有認真關注這個提案，但還是知道他是一個吵很大的硬分叉 馬上 ssh 連到我們的 full node 去看看，最高節點就是在 8,290,928 的位置
+好啦，找到原因了～～ 我們來跟一下硬分叉吧
+更新一下 首先下載最新的包~~
+sudo add-apt-repository -y ppa:ethereum/ethereum -y apt-cache policy ethereum # 確認版本 sudo apt-get upgrade ethereal geth version # 確認版本 然後重啟就好囉
+# 再重新開回服務 geth --rinkeby --http --http.addr 0.0.0.0 --ws --ws.</description>
+    </item>
+    
+    <item>
+      <title>helm3 說 has no deployed releases</title>
+      <link>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</link>
+      <pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</guid>
+      <description>問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本
+Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他跑下去就好
+或者說去找到 secrets sh.helm.release.v1.{server_name}.v{version} 修改一下裡面的 labels status，改成 deployed
+metadata:name:sh.helm.release.v1.code-server.v31namespace:foouid:b94b5861-8f98-4e8c-bb81-e715975d8c22resourceVersion:&amp;#39;46153334&amp;#39;creationTimestamp:&amp;#39;2021-03-04T06:12:08Z&amp;#39;labels:modifiedAt:&amp;#39;1614838331&amp;#39;name:code-serverowner:helmstatus:failed# 改這裏成 deployedversion:&amp;#39;31&amp;#39;再重新 Retry 一下 helm upgrade 就可以囉</description>
+    </item>
+    
+    <item>
+      <title>go get 與私有 Gitlab</title>
+      <link>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</link>
+      <pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</guid>
+      <description>GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64
+ 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援
+Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env
+export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod
+module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo =&amp;gt; gitlab.com/org/subgroup/repo.git/pkg/foo v1.0.0 Ref https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785</description>
+    </item>
+    
+    <item>
+      <title>Chromedp 殭屍進程</title>
+      <link>https://blog.10oz.tw/20210306-chromedp-zombi-process/</link>
+      <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210306-chromedp-zombi-process/</guid>
+      <description>問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積
+因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗試用 pprof 錄了一段後發現沒有直接的上升，於是直接進入容器裡面觀察 process 佔用的資源
+哇嗚，發現好多 chrome 的屍體 好了，開始研究為什麼 chromedp 沒幫我們把它關掉。 此時發現一張 Issue 有這個問題和其他人的研究成果
+解決方法 其實解決方法 chromedp 已經給你了
+FROM chromedp/headless-shell:latest ... # Install dumb-init or tini RUN apt install dumb-init # or RUN apt install tini ... ENTRYPOINT [&amp;quot;dumb-init&amp;quot;, &amp;quot;--&amp;quot;] # or ENTRYPOINT [&amp;quot;tini&amp;quot;, &amp;quot;--&amp;quot;] CMD [&amp;quot;/path/to/your/program&amp;quot;] 就是第 7 行的那個，在 docker image 中不要直接去跑你的程式而是用 dumb-init 去包起來跑！ 就可以避免殭屍進程了
+原因是這樣的，一般來說在執行 OS 的時候 Pid 為 1 的服務會是系統服務(ex: systemd, launchd)，然而在 Container 裡面 Pid=1 是我們自己的程式！</description>
+    </item>
+    
+    <item>
+      <title>VPN &amp; GFW - 科學上網</title>
+      <link>https://blog.10oz.tw/20210124-vpn-and-gfw/</link>
+      <pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210124-vpn-and-gfw/</guid>
+      <description>GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由的需求，幫 QQ
+GFW 擋掉的方法有域名污染、關鍵字阻斷、特徵攔截&amp;hellip;等等，只要他看見你的封包含有他不喜歡的關鍵字，或是黑名單的 IP 就直接斷掉你的網路封包。
+因此想要繞過 GFW 的審核，就需要用上封包加密，他看不懂的東西他不會隨便的就把你給封鎖掉，也就有機會可以碰觸到外面的世界。 不過這樣會面臨到另一個問題，加密的內容 GFW 看不懂，google 也一樣看不懂，因此需要有一台跳板機來解密，然後跳板機幫你做到你真正想要做的事情，再將結果加密傳回去給你。
+常用技術與工具們 VPS (Virtual Private Server) 也就是跳板機啦，常用的供應商有 Linode, Vultr，都是老牌穩定價格合理的廠商。
+他們會租借一台虛擬的主機和 IP 給你，就好像有一台實際的電腦，你可以連線進去在上面做任何的事情~~ 當然也包含架設 VPN 跳板喔
+socks5 跑在第五層(Session Layer)的代理服務，很常被用來作為 VPN 服務的代理，不過這個協定不包含加密，因此一般會再搭配其他服務一起使用。 另外他無法做到全局代理，例如更低層級的 TCP, ICMP 這些協定，你 ping 回來還會是自己的 IP
+可以使用類似 tun2sock 這類工具，轉換所有的流量至 socks5，以達到全局代理的效果，當然別忘記還沒加密嘿
+ShadowSocks (SS, SSR) 最有知名度的翻牆工具，內容就是簡單的對封包做對稱加密，支援多種加密法，也有各種語言實作套件，不過也因為他簡單所以有很多人都表示這種翻牆的特徵已經能夠被 GFW 識別出來了，然而目前的翻牆最大宗還是使用 ShadowSocks 再加上 socks5 代理
+然後作者在 github 上突然的消失好幾個月惹，大家都說他被中國政府抓去喝茶惹
+SSR(ShadowSocksR) 是 ShadowSocks 的 fork 修改版</description>
+    </item>
     
     <item>
       <title>gRPC - protobuf v3 產生 nullable 欄位</title>
@@ -27,6 +145,63 @@ import &amp;#34;google/protobuf/wrappers.proto&amp;#34;;message Foo { int32 bar 
 但是但是，無法支援 enum 我難過
 custom wrappers 只好自己動手做 (?
 enum Status { STATUS_OK = 0; STATUS_FAIL = 1;}message NullInt32 { bool valid = 1; int32 value = 2;}message NullStatus { bool valid = 1; Status value = 2;}message Foo { int32 bar = 1; NullInt32 baz = 2; NullStatus status = 3;}gen 成 golang 的 code 之後就這樣用，基本上跟 wrappers 的用法是一樣的</description>
+    </item>
+    
+    <item>
+      <title>新米 Istio 篇</title>
+      <link>https://blog.10oz.tw/20201115-a-istio-beginner/</link>
+      <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid>
+      <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧
+curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 | | default | demo | minimal | remote | empty | preview | | | &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; | &amp;mdash;&amp;mdash;- | &amp;mdash;- | &amp;mdash;&amp;mdash;- | &amp;mdash;&amp;mdash; | &amp;mdash;&amp;ndash; | &amp;mdash;&amp;mdash;- | &amp;mdash; | | Core components | | | | | | | | | istio-egressgateway | | X | | | | | | | istio-ingressgateway | X | X | | | | X | | | istiod | X | X | X | | | X | |</description>
+    </item>
+    
+    <item>
+      <title>GraphQL 打招呼</title>
+      <link>https://blog.10oz.tw/20201009-hello-graphql/</link>
+      <pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201009-hello-graphql/</guid>
+      <description>介紹一下 在遇見 GraphQL 的時候最常被比較的就是 Restful API，畢竟 Rustful API 是目前的主流設計，此時我們就必須了解到什麼情況下使用 GraphQL 能帶來效益
+ Over Fetch Restful API 的回傳會是一整個 resource， /user/1 會回傳 id=1 的 User 的全部資料，然而在很多情況下我們不需要這麼多的資料，可能 我們僅僅只需要 user 的名字而已 在 GraphQL 你可以指定你所需要的欄位，大大的減少了傳輸無用資料的消耗 Under Fetch 也就是 n+1 問題，情景是 user 有很多的 friends，每個朋友都是一名 User，在 Restful 的設計中，每個 User resource 都是一支 API，想想就頭痛 QQ。因此會在後端客製化 API 做 eager loading，一次回傳這些資料 但到了 GraphQL 這完全不是問題，你可以向下定義你所需要的資料，並嵌入 User 中 query{User(id:1){NameAvatarURLfriends{IDName}}}  在設計上，GraphQL 關注 明確的解釋查詢語言與型態系統 而不去描述伺服器端實作，前後端之間以 Schema 定義溝通介面，雙方有共通的資料型態以及明確定義的詞彙來討論
+讓一切清楚且簡單～
+怎麼用r 工具會用一點 - GraphQL Playground 認識一些 GraphQL Schema GraphQL 定義自己的語法格式，他是個 SDL (Schema Define Language)</description>
+    </item>
+    
+    <item>
+      <title>新米 blockchain 混亂中</title>
+      <link>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</link>
+      <pubDate>Sat, 19 Sep 2020 00:56:51 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</guid>
+      <description>這次筆記內容會圍繞在比特幣這個區塊鍊加密貨幣系統 然後比特幣是一種讓北極熊沒有家住的技術 (?
+ 區塊鏈的安全  區塊鏈鏈的模式，保證新的區塊接續前一個區塊，當區塊越多越難被修改 共識機制需要多數節點認同保護資料不易被竄改，也就是去中心化的部分啦 密碼學上的困難問題保護使用資產不會被任意取用，也在建立新的區塊時增加難度，就是挖礦的部分啦  共識機制 這是在分散式系統中相當常見的問題，當節點多了，在同步上出現分歧時應該要聽誰的? 究竟誰手中的資料才是正確的呢?
+拜占庭將軍問題 描述有數個將軍各自在不同地方，但有著相同的任務，而這個任務非常艱難，必須要每個將軍同時進攻、或是同時撤退，否則就會失敗。
+因此在出發之前，每位將軍會投票決定之後才開始行動， 然而&amp;hellip;在這樣的條件下，竟有還有幾位將軍是隱藏身分的間諜!?
+在節點中，同樣會遇到這樣的問題，當節點中出現了不遵守規定的惡意節點時，該如何將它的影響降低呢?
+挖礦 也就是增加難度，比特幣使用 PoW(Proof-of-Work)，讓北極熊沒地方住 ，讓每個節點用工作量來證明自己。如果你想要搞破壞的話，你必須付出比整個鏈上過半的計算能力，然而在現在廣大的比特鏈生態來說，這是不可能的。
+ 每個鏈上的共識機制都不同，例如乙太鍊上使用的是 PoS
+ 激勵機制 在前一個段落的區塊鍊安全那邊有說到使用 PoW 來保證難以隨意的添加區塊，但是認真想想誰要做這麼吃力的事情? 因此激勵機制的部分就是 給你錢幫我算 (*´∀`)~♥ xdd
+區塊鏈節點 身為一個去中心化的點對點系統，當然一定要有節點。在比特鏈上可以大致分兩種節點，全節點(Full Node)與輕量節點(Light Node)
+ 全節點: 存放著完整的比特鏈資訊(好幾十GB)，工作是打包區塊上鏈以及驗證其他人上傳區塊的合法性 輕量節點: 也稱為簡單支付驗證（SPV）節點，不需要儲存所有區塊資訊，也不會對鏈上的安全性做出貢獻，就只是個 read user。可以是手機或是電腦的客戶端軟體，他能夠驗證某一筆交易是否在區塊鏈中 礦工仔: 準確來說礦工不一定是比特網路的一部分，礦工只需要向全節點要求交易回來打包、計算，再將節點廣播出去給所有的全節點驗證就好了  挖礦仔常見問題  Q: 挖礦是啥米?
+ 當有一筆交易要進行的時候，交易方拋出他的交易資訊，請人幫他簽核，成功幫他完成任務的人會有獎金
+ Q: 這個簽核任務有是啥米?
+ 礦工們會將交易區塊資訊 + Nonce 拿去 hash，不斷的替換 Nonce 取得某一組 hash 值開頭是 n 個 bits 為 0 的解答，第一個拿到解答的就是這次挖礦的成功者。因此越多人參與解題就越難挖到礦</description>
+    </item>
+    
+    <item>
+      <title>golng 注入工具 wire</title>
+      <link>https://blog.10oz.tw/20200908-golang-di-tool-wire/</link>
+      <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200908-golang-di-tool-wire/</guid>
+      <description>wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。
+能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤
+ Q: Should I use Wire for small applications? Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler. 不複雜的小型專案還是手動注入會更乾淨喔~
+ go build tag 菜鳥如我這時候才知道，在 .go 檔案最前面加入 build tag 的檔案，在編譯的時候是不會被加進去的(ex: //+build foo ) 所以可以放重複的 function 在同一個 package 裡面，這個操作在 lorca 那篇也有出現過，可以交叉比較一下～
+這是一個 wire.go 檔案
+//+build wireinject package main import ( &amp;quot;learnGo/wire/repo&amp;quot; &amp;quot;learnGo/wire/service&amp;quot; &amp;quot;github.</description>
     </item>
     
     <item>
@@ -372,7 +547,7 @@ extension-pkg-whitelist=MySQLdb </description>
       
       <guid>https://blog.10oz.tw/about/</guid>
       <description>什麼都有趣、什麼都好玩、什麼都想試試看
-但是我金魚QQ 所以要寫筆記</description>
+但是我金魚QQ 所以要寫筆記 喵</description>
     </item>
     
   </channel>

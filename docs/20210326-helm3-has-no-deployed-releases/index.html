@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>helm3 說 has no deployed releases | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="helm3 說 has no deployed releases"/>
+<meta name="twitter:description" content="問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本
+Error: UPGRADE FAILED: &quot;code-server&quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他跑下去就好
+或者說去找到 secrets sh.helm.release.v1.{server_name}.v{version} 修改一下裡面的 labels status，改成 deployed
+metadata:name:sh.helm.release.v1.code-server.v31namespace:foouid:b94b5861-8f98-4e8c-bb81-e715975d8c22resourceVersion:&#39;46153334&#39;creationTimestamp:&#39;2021-03-04T06:12:08Z&#39;labels:modifiedAt:&#39;1614838331&#39;name:code-serverowner:helmstatus:failed# 改這裏成 deployedversion:&#39;31&#39;再重新 Retry 一下 helm upgrade 就可以囉"/>
+
+  <meta property="og:title" content="helm3 說 has no deployed releases" />
+<meta property="og:description" content="問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本
+Error: UPGRADE FAILED: &quot;code-server&quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他跑下去就好
+或者說去找到 secrets sh.helm.release.v1.{server_name}.v{version} 修改一下裡面的 labels status，改成 deployed
+metadata:name:sh.helm.release.v1.code-server.v31namespace:foouid:b94b5861-8f98-4e8c-bb81-e715975d8c22resourceVersion:&#39;46153334&#39;creationTimestamp:&#39;2021-03-04T06:12:08Z&#39;labels:modifiedAt:&#39;1614838331&#39;name:code-serverowner:helmstatus:failed# 改這裏成 deployedversion:&#39;31&#39;再重新 Retry 一下 helm upgrade 就可以囉" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/" />
+<meta property="article:published_time" content="2021-03-26T01:24:28+08:00" />
+<meta property="article:modified_time" content="2021-03-26T01:24:28+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">helm3 說 has no deployed releases</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Mar 26, 2021
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/kubernetes/">kubernetes</a><a class="tag" href="https://blog.10oz.tw/tags/helm/">helm</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#問題描述">問題描述</a></li>
+    <li><a href="#處理一下">處理一下</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="問題描述">問題描述</h2>
+<p>helm release 明明就存在，但是他就是跟你說沒有部署的版本</p>
+<pre><code>Error: UPGRADE FAILED: &quot;code-server&quot; has no deployed releases
+</code></pre><h2 id="處理一下">處理一下</h2>
+<p>原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 <code>--force</code> 再給他跑下去就好</p>
+<p>或者說去找到 secrets sh.helm.release.v1.{server_name}.v{version} 修改一下裡面的
+labels status，改成 <code>deployed</code></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">metadata:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>name:<span style="color:#bbb"> </span>sh.helm.release.v1.code-server.v31<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>namespace:<span style="color:#bbb"> </span>foo<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>uid:<span style="color:#bbb"> </span>b94b5861-8f98-4e8c-bb81-e715975d8c22<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>resourceVersion:<span style="color:#bbb"> </span><span style="color:#4070a0">&#39;46153334&#39;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span>creationTimestamp:<span style="color:#bbb"> </span><span style="color:#4070a0">&#39;2021-03-04T06:12:08Z&#39;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span>labels:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>modifiedAt:<span style="color:#bbb"> </span><span style="color:#4070a0">&#39;1614838331&#39;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>name:<span style="color:#bbb"> </span>code-server<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>owner:<span style="color:#bbb"> </span>helm<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>status:<span style="color:#bbb"> </span>failed<span style="color:#bbb"> </span><span style="color:#60a0b0;font-style:italic"># 改這裏成 deployed</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>version:<span style="color:#bbb"> </span><span style="color:#4070a0">&#39;31&#39;</span><span style="color:#bbb">
+</span></code></pre></div><p>再重新 Retry 一下 helm upgrade 就可以囉</p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

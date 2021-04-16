@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>啥? k8s node 硬碟空間滿了 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="啥? k8s node 硬碟空間滿了"/>
+<meta name="twitter:description" content="發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼
+dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs 5.0M 0 5.0M 0% /run/lock tmpfs 5.9G 0 5.9G 0% /sys/fs/cgroup /dev/sda2 976M 213M 696M 24% /boot tmpfs 1.2G 0 1.2G 0% /run/user/1000 閉眼先清空一波 Docker image, volumn&hellip;
+docker system prune -a 檢查一下還有啥米東西佔用了我們的空間"/>
+
+  <meta property="og:title" content="啥? k8s node 硬碟空間滿了" />
+<meta property="og:description" content="發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼
+dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs 5.0M 0 5.0M 0% /run/lock tmpfs 5.9G 0 5.9G 0% /sys/fs/cgroup /dev/sda2 976M 213M 696M 24% /boot tmpfs 1.2G 0 1.2G 0% /run/user/1000 閉眼先清空一波 Docker image, volumn&hellip;
+docker system prune -a 檢查一下還有啥米東西佔用了我們的空間" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20210402-what-k8s-node-disk-full/" />
+<meta property="article:published_time" content="2021-04-02T01:19:30+08:00" />
+<meta property="article:modified_time" content="2021-04-02T01:19:30+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">啥? k8s node 硬碟空間滿了</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Apr 2, 2021
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/docker/">docker</a><a class="tag" href="https://blog.10oz.tw/tags/linux/">linux</a><a class="tag" href="https://blog.10oz.tw/tags/log/">log</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#發現-k8s-機器的硬碟空間滿了">發現 k8s 機器的硬碟空間滿了</a></li>
+    <li><a href="#解決他">解決他</a>
+      <ul>
+        <li><a href="#一個小坑">一個小坑</a></li>
+      </ul>
+    </li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="發現-k8s-機器的硬碟空間滿了">發現 k8s 機器的硬碟空間滿了</h2>
+<p>滿了耶！！怎麼會這樣
+<img src="https://i.imgur.com/09T0qb3.png" alt=""></p>
+<p>趁還有空間趕快 ssh 進去看一眼</p>
+<pre><code>dev@k8s07:~$ df -h
+Filesystem                         Size  Used Avail Use% Mounted on
+udev                               5.9G     0  5.9G   0% /dev
+tmpfs                              1.2G  4.5M  1.2G   1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv   98G   70G   23G  76% /
+tmpfs                              5.9G     0  5.9G   0% /dev/shm
+tmpfs                              5.0M     0  5.0M   0% /run/lock
+tmpfs                              5.9G     0  5.9G   0% /sys/fs/cgroup
+/dev/sda2                          976M  213M  696M  24% /boot
+tmpfs                              1.2G     0  1.2G   0% /run/user/1000
+</code></pre><p>閉眼先清空一波 Docker image, volumn&hellip;</p>
+<pre><code>docker system prune -a
+</code></pre><p>檢查一下還有啥米東西佔用了我們的空間</p>
+<pre><code>sudo du -ahx / | sort -rh | head -n 20
+</code></pre><pre><code>find /var/lib/docker/ -name &quot;*.log&quot; -exec ls -sh {} \; | sort -h -r | head -20
+</code></pre><p>一看發現原來我有一個 30G 一個 18G 的 docker logs，有夠大啦😂
+看一下 log 內容就發現了原因是最近新增的爬蟲的關係 QQ (還有 fluent-bit 也不小)</p>
+<h2 id="解決他">解決他</h2>
+<p>沒事沒事，之前可能大意了沒有想到這種 Case 簡單加個規則就好了</p>
+<pre><code>cat &gt; /etc/docker/daemon.json &lt;&lt;EOF
+{
+   &quot;exec-opts&quot;: [&quot;native.cgroupdriver=cgroupfs&quot;],
+  &quot;log-driver&quot;: &quot;json-file&quot;,
+  &quot;log-opts&quot;: {
+    &quot;max-size&quot;: &quot;1g&quot;,
+    &quot;max-file&quot;: &quot;3&quot;
+  },
+  &quot;storage-driver&quot;: &quot;overlay2&quot;
+}
+EOF
+</code></pre><p>The max-size is a limit on the docker log file, so it includes the json or local log formatting overhead. And the max-file is the number of logfiles docker will maintain. After the size limit is reached on one file, the logs are rotated, and the oldest logs are deleted when you exceed max-file.</p>
+<blockquote>
+<p>Note: Restart Docker for the changes to take effect for newly created containers. Existing containers do not use the new logging configuration.</p>
+</blockquote>
+<pre><code># Restart docker.
+systemctl restart docker
+
+# 手動刪除舊的大檔案
+cat /dev/null &gt; 大檔案.log
+</code></pre><h3 id="一個小坑">一個小坑</h3>
+<p>另外要注意，我第一次寫的時候 daemon.json docker cgroup driver 設定成 systemd 就炸掉了XDD</p>
+<pre><code>$ journalctl -xeu kubelet
+# ....something
+failed to run Kubelet: misconfiguration: kubelet cgroup driver: &quot;cgroupfs&quot; is different from docker cgroup driver: &quot;systemd&quot;
+# ...something
+</code></pre><h2 id="ref">Ref</h2>
+<p><a href="https://www.linode.com/community/questions/16922/my-disk-is-filling-up-how-can-i-find-the-culprit">https://www.linode.com/community/questions/16922/my-disk-is-filling-up-how-can-i-find-the-culprit</a>
+<a href="https://docs.docker.com/config/containers/logging/configure/#configure-the-default-logging-driver">https://docs.docker.com/config/containers/logging/configure/#configure-the-default-logging-driver</a>
+<a href="https://stackoverflow.com/questions/31829587/docker-container-logs-taking-all-my-disk-space">https://stackoverflow.com/questions/31829587/docker-container-logs-taking-all-my-disk-space</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

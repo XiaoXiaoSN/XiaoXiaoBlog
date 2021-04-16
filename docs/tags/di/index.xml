@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>di on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/di/</link>
+    <description>Recent content in di on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Sep 2020 02:00:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/di/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>golng 注入工具 wire</title>
+      <link>https://blog.10oz.tw/20200908-golang-di-tool-wire/</link>
+      <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200908-golang-di-tool-wire/</guid>
+      <description>wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。
+能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤
+ Q: Should I use Wire for small applications? Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler. 不複雜的小型專案還是手動注入會更乾淨喔~
+ go build tag 菜鳥如我這時候才知道，在 .go 檔案最前面加入 build tag 的檔案，在編譯的時候是不會被加進去的(ex: //+build foo ) 所以可以放重複的 function 在同一個 package 裡面，這個操作在 lorca 那篇也有出現過，可以交叉比較一下～
+這是一個 wire.go 檔案
+//+build wireinject package main import ( &amp;quot;learnGo/wire/repo&amp;quot; &amp;quot;learnGo/wire/service&amp;quot; &amp;quot;github.</description>
+    </item>
+    
+  </channel>
+</rss>

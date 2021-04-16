@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>VPN &amp; GFW - 科學上網 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VPN &amp; GFW - 科學上網"/>
+<meta name="twitter:description" content="GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由的需求，幫 QQ
+GFW 擋掉的方法有域名污染、關鍵字阻斷、特徵攔截&hellip;等等，只要他看見你的封包含有他不喜歡的關鍵字，或是黑名單的 IP 就直接斷掉你的網路封包。
+因此想要繞過 GFW 的審核，就需要用上封包加密，他看不懂的東西他不會隨便的就把你給封鎖掉，也就有機會可以碰觸到外面的世界。 不過這樣會面臨到另一個問題，加密的內容 GFW 看不懂，google 也一樣看不懂，因此需要有一台跳板機來解密，然後跳板機幫你做到你真正想要做的事情，再將結果加密傳回去給你。
+常用技術與工具們 VPS (Virtual Private Server) 也就是跳板機啦，常用的供應商有 Linode, Vultr，都是老牌穩定價格合理的廠商。
+他們會租借一台虛擬的主機和 IP 給你，就好像有一台實際的電腦，你可以連線進去在上面做任何的事情~~ 當然也包含架設 VPN 跳板喔
+socks5 跑在第五層(Session Layer)的代理服務，很常被用來作為 VPN 服務的代理，不過這個協定不包含加密，因此一般會再搭配其他服務一起使用。 另外他無法做到全局代理，例如更低層級的 TCP, ICMP 這些協定，你 ping 回來還會是自己的 IP
+可以使用類似 tun2sock 這類工具，轉換所有的流量至 socks5，以達到全局代理的效果，當然別忘記還沒加密嘿
+ShadowSocks (SS, SSR) 最有知名度的翻牆工具，內容就是簡單的對封包做對稱加密，支援多種加密法，也有各種語言實作套件，不過也因為他簡單所以有很多人都表示這種翻牆的特徵已經能夠被 GFW 識別出來了，然而目前的翻牆最大宗還是使用 ShadowSocks 再加上 socks5 代理
+然後作者在 github 上突然的消失好幾個月惹，大家都說他被中國政府抓去喝茶惹
+SSR(ShadowSocksR) 是 ShadowSocks 的 fork 修改版"/>
+
+  <meta property="og:title" content="VPN &amp; GFW - 科學上網" />
+<meta property="og:description" content="GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由的需求，幫 QQ
+GFW 擋掉的方法有域名污染、關鍵字阻斷、特徵攔截&hellip;等等，只要他看見你的封包含有他不喜歡的關鍵字，或是黑名單的 IP 就直接斷掉你的網路封包。
+因此想要繞過 GFW 的審核，就需要用上封包加密，他看不懂的東西他不會隨便的就把你給封鎖掉，也就有機會可以碰觸到外面的世界。 不過這樣會面臨到另一個問題，加密的內容 GFW 看不懂，google 也一樣看不懂，因此需要有一台跳板機來解密，然後跳板機幫你做到你真正想要做的事情，再將結果加密傳回去給你。
+常用技術與工具們 VPS (Virtual Private Server) 也就是跳板機啦，常用的供應商有 Linode, Vultr，都是老牌穩定價格合理的廠商。
+他們會租借一台虛擬的主機和 IP 給你，就好像有一台實際的電腦，你可以連線進去在上面做任何的事情~~ 當然也包含架設 VPN 跳板喔
+socks5 跑在第五層(Session Layer)的代理服務，很常被用來作為 VPN 服務的代理，不過這個協定不包含加密，因此一般會再搭配其他服務一起使用。 另外他無法做到全局代理，例如更低層級的 TCP, ICMP 這些協定，你 ping 回來還會是自己的 IP
+可以使用類似 tun2sock 這類工具，轉換所有的流量至 socks5，以達到全局代理的效果，當然別忘記還沒加密嘿
+ShadowSocks (SS, SSR) 最有知名度的翻牆工具，內容就是簡單的對封包做對稱加密，支援多種加密法，也有各種語言實作套件，不過也因為他簡單所以有很多人都表示這種翻牆的特徵已經能夠被 GFW 識別出來了，然而目前的翻牆最大宗還是使用 ShadowSocks 再加上 socks5 代理
+然後作者在 github 上突然的消失好幾個月惹，大家都說他被中國政府抓去喝茶惹
+SSR(ShadowSocksR) 是 ShadowSocks 的 fork 修改版" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20210124-vpn-and-gfw/" />
+<meta property="article:published_time" content="2021-01-24T01:52:48+08:00" />
+<meta property="article:modified_time" content="2021-01-24T01:52:48+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">VPN &amp; GFW - 科學上網</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Jan 24, 2021
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/gfw/">gfw</a><a class="tag" href="https://blog.10oz.tw/tags/vpn/">vpn</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#gfw-great-fire-wall">GFW (great fire wall)</a></li>
+    <li><a href="#常用技術與工具們">常用技術與工具們</a>
+      <ul>
+        <li><a href="#vps-virtual-private-server">VPS (Virtual Private Server)</a></li>
+        <li><a href="#socks5">socks5</a></li>
+        <li><a href="#shadowsocks-ss-ssr">ShadowSocks (SS, SSR)</a></li>
+        <li><a href="#v2ray">V2Ray</a></li>
+        <li><a href="#trojan">Trojan</a></li>
+        <li><a href="#專線iplc-iepl">專線(IPLC, IEPL)</a></li>
+      </ul>
+    </li>
+    <li><a href="#todo嗎">TODO嗎</a></li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="gfw-great-fire-wall">GFW (great fire wall)</h2>
+<p>中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由的需求，幫 QQ</p>
+<p>GFW 擋掉的方法有域名污染、關鍵字阻斷、特徵攔截&hellip;等等，只要他看見你的封包含有他不喜歡的關鍵字，或是黑名單的 IP 就直接斷掉你的網路封包。</p>
+<p>因此想要繞過 GFW 的審核，就需要用上封包加密，他看不懂的東西他不會隨便的就把你給封鎖掉，也就有機會可以碰觸到外面的世界。
+不過這樣會面臨到另一個問題，加密的內容 GFW 看不懂，google 也一樣看不懂，因此需要有一台跳板機來解密，然後跳板機幫你做到你真正想要做的事情，再將結果加密傳回去給你。</p>
+<h2 id="常用技術與工具們">常用技術與工具們</h2>
+<h3 id="vps-virtual-private-server">VPS (Virtual Private Server)</h3>
+<p>也就是跳板機啦，常用的供應商有 Linode, Vultr，都是老牌穩定價格合理的廠商。<br>
+他們會租借一台虛擬的主機和 IP 給你，就好像有一台實際的電腦，你可以連線進去在上面做任何的事情~~ 當然也包含架設 VPN 跳板喔</p>
+<h3 id="socks5">socks5</h3>
+<p>跑在第五層(Session Layer)的代理服務，很常被用來作為 VPN 服務的代理，不過這個協定不包含加密，因此一般會再搭配其他服務一起使用。
+另外他無法做到全局代理，例如更低層級的 TCP, ICMP 這些協定，你 ping 回來還會是自己的 IP</p>
+<p>可以使用類似 tun2sock 這類工具，轉換所有的流量至 socks5，以達到全局代理的效果，當然別忘記還沒加密嘿</p>
+<h3 id="shadowsocks-ss-ssr">ShadowSocks (SS, SSR)</h3>
+<p>最有知名度的翻牆工具，內容就是簡單的對封包做對稱加密，支援多種加密法，也有各種語言實作套件，不過也因為他簡單所以有很多人都表示這種翻牆的特徵已經能夠被 GFW 識別出來了，然而目前的翻牆最大宗還是使用 ShadowSocks 再加上 socks5 代理</p>
+<p>然後作者在 github 上突然的消失好幾個月惹，大家都說他被中國政府抓去喝茶惹</p>
+<p>SSR(ShadowSocksR) 是 ShadowSocks 的 fork 修改版</p>
+<h3 id="v2ray">V2Ray</h3>
+<p>來自 Project V，V2Ray 專案就是個超級綜合包，支援許多種不同的協議(當然也包含 ShasowSocks)，可以自定義出口協定、入口協定、白名單&hellip;，抽象程度很高可以彈性的做變化，也因此複雜度相當高</p>
+<p>也有發行自己的協議 - VMess，他是基於 TLS 的加密演算法，用於保護內容，混淆特徵。</p>
+<p>平台上推薦的用法是 VMess + WSS，也就是用 vemss 協議加密再透過 TLS 加密過的 websocket 傳輸，加完密基本上從外觀上看就是一個跟所有人都一樣的正常 websocket 連線，而且被 GFW 抓走的案例也相對少很多，因此被認為是一個主流的翻牆方式～～</p>
+<h3 id="trojan">Trojan</h3>
+<p>不太認識這個QQ，是個後來出現的明日之星(?</p>
+<p>他和 V2Ray 相同也是跑在 WSS 上做加密、混淆，不過他不像 V2Ray 有這麼多的選擇，也就更輕量更簡單。</p>
+<h3 id="專線iplc-iepl">專線(IPLC, IEPL)</h3>
+<p>中國內部的網路有幾種線路，常見的 163, CN2&hellip; 還有其他幾種骨感網路的流量，不是很了解但知道他們都是要過 GFW 的。<br>
+IPLC 就厲害啦，他不過 GFW 所以不用翻！不過這線路貴得很，基本不在選項內 XDD</p>
+<h2 id="todo嗎">TODO嗎</h2>
+<p>像是傳統的 VPN 協議就會有明顯的特徵，
+PPTP L2TP openVPN SSTP&hellip;</p>
+<h2 id="ref">Ref</h2>
+<p><a href="https://www.v2ray.com/developer/intro/guide.html">https://www.v2ray.com/developer/intro/guide.html</a>
+<a href="https://www.youtube.com/watch?v=XKZM_AjCUr0&amp;list=PLqybz7NWybwUgR-S6m78tfd-lV4sBvGFG">https://www.youtube.com/watch?v=XKZM_AjCUr0&amp;list=PLqybz7NWybwUgR-S6m78tfd-lV4sBvGFG</a>
+<a href="https://github.com/trojan-gfw/trojan">https://github.com/trojan-gfw/trojan</a>
+<a href="https://wivwiv.com/post/ssr-v2ray-trojan/">https://wivwiv.com/post/ssr-v2ray-trojan/</a>
+<a href="https://blog.wongcw.com/2019/07/03/iepl%E3%80%81iplc%E8%A9%B3%E7%B4%B0%E4%BB%8B%E7%B4%B9%E5%8F%8A%E5%8D%80%E5%88%A5/">https://blog.wongcw.com/2019/07/03/iepl%E3%80%81iplc%E8%A9%B3%E7%B4%B0%E4%BB%8B%E7%B4%B9%E5%8F%8A%E5%8D%80%E5%88%A5/</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>golng 注入工具 wire | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="golng 注入工具 wire"/>
+<meta name="twitter:description" content="wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。
+能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤
+ Q: Should I use Wire for small applications? Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler. 不複雜的小型專案還是手動注入會更乾淨喔~
+ go build tag 菜鳥如我這時候才知道，在 .go 檔案最前面加入 build tag 的檔案，在編譯的時候是不會被加進去的(ex: //&#43;build foo ) 所以可以放重複的 function 在同一個 package 裡面，這個操作在 lorca 那篇也有出現過，可以交叉比較一下～
+這是一個 wire.go 檔案
+//&#43;build wireinject package main import ( &quot;learnGo/wire/repo&quot; &quot;learnGo/wire/service&quot; &quot;github."/>
+
+  <meta property="og:title" content="golng 注入工具 wire" />
+<meta property="og:description" content="wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。
+能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤
+ Q: Should I use Wire for small applications? Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler. 不複雜的小型專案還是手動注入會更乾淨喔~
+ go build tag 菜鳥如我這時候才知道，在 .go 檔案最前面加入 build tag 的檔案，在編譯的時候是不會被加進去的(ex: //&#43;build foo ) 所以可以放重複的 function 在同一個 package 裡面，這個操作在 lorca 那篇也有出現過，可以交叉比較一下～
+這是一個 wire.go 檔案
+//&#43;build wireinject package main import ( &quot;learnGo/wire/repo&quot; &quot;learnGo/wire/service&quot; &quot;github." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200908-golang-di-tool-wire/" />
+<meta property="article:published_time" content="2020-09-08T02:00:42+08:00" />
+<meta property="article:modified_time" content="2020-09-08T02:00:42+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">golng 注入工具 wire</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Sep 8, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a><a class="tag" href="https://blog.10oz.tw/tags/di/">di</a><a class="tag" href="https://blog.10oz.tw/tags/wire/">wire</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#wire-是個啥米">wire 是個啥米</a></li>
+    <li><a href="#go-build-tag">go build tag</a></li>
+    <li><a href="#關於-wire-的開始方法">關於 wire 的開始方法</a></li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="wire-是個啥米">wire 是個啥米</h2>
+<p><code>wire</code> 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 <code>reflect</code> 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。<br>
+能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤</p>
+<blockquote>
+<p>Q: Should I use Wire for small applications?
+Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler.
+不複雜的小型專案還是手動注入會更乾淨喔~</p>
+</blockquote>
+<h2 id="go-build-tag">go build tag</h2>
+<p>菜鳥如我這時候才知道，在 <code>.go</code> 檔案最前面加入 build tag 的檔案，在編譯的時候是不會被加進去的(ex: <code>//+build foo</code> )
+所以可以放重複的 function 在同一個 package 裡面，這個操作在 <code>lorca</code> 那篇也有出現過，可以交叉比較一下～</p>
+<p>這是一個 <code>wire.go</code> 檔案</p>
+<pre><code class="language-go=" data-lang="go=">//+build wireinject
+
+package main
+
+import (
+	&quot;learnGo/wire/repo&quot;
+	&quot;learnGo/wire/service&quot;
+
+	&quot;github.com/google/wire&quot;
+)
+
+func CreateService() (service.Service, error) {
+	wire.Build(repo.NewRepo, service.NewService)
+	panic(&quot;never be triggered&quot;)
+	return nil, nil
+}
+</code></pre><p>這是一個 <code>wire_gen.go</code> 檔案，他們在同一個 pakcage 下，定義著相同的函式，但是編譯的時候只會看 <code>wire_gen.go</code>，因為 <code>wire.go</code> 的最前面有標記 build tag</p>
+<pre><code class="language-go=" data-lang="go=">// Code generated by Wire. DO NOT EDIT.
+
+//go:generate wire
+//+build !wireinject
+
+package main
+
+import (
+	&quot;learnGo/wire/repo&quot;
+	&quot;learnGo/wire/service&quot;
+)
+
+import (
+	_ &quot;github.com/google/wire&quot;
+)
+
+// Injectors from wire.go:
+
+func CreateService() (service.Service, error) {
+	repoRepo := repo.NewRepo()
+	serviceService := service.NewService(repoRepo)
+    return serviceService, nil
+}
+</code></pre><p>假設我們有個 <code>main.go</code> 來執行&hellip;</p>
+<pre><code class="language-go=" data-lang="go=">package main
+
+import (
+	_ &quot;github.com/google/wire&quot;
+)
+
+func main() {
+	svc, err := CreateService()
+	if err != nil {
+		panic(err)
+	}
+	svc.SayHello(&quot;wire main package&quot;)
+}
+</code></pre><p>執行 <code>go build -tags wireinject</code> 這樣會使用 <code>wire.go</code> 來編譯，長出來的執行檔就會跑 <code>wire.go:14</code> 的 panic</p>
+<p>根據這樣的經驗，進階可以利用 golang <code>build tag</code> 的功能，依照不同的需求來編譯出不同的執行檔</p>
+<blockquote>
+<p>踩到坑: 如果用 <code>go run *.go</code> 來跑，那麼你會得到 <code>{function} redeclared in this block</code>，你的所有檔案還是會被拿來用QQ</p>
+</blockquote>
+<h2 id="關於-wire-的開始方法">關於 wire 的開始方法</h2>
+<p>使用上一段落的範例， <code>wire_gen.go</code> 是怎麼長出來的呢？
+首先需要安裝 <code>wire</code></p>
+<pre><code>go get github.com/google/wire/cmd/wire
+</code></pre><p>然後輸入</p>
+<pre><code>wire
+</code></pre><p>就可以看見 <code>wire_gen.go</code> 長出來囉<br>
+詳細看一下內容的前幾行，</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">// 提醒你和編譯器這是一個產生出來的檔案，不是給人類直接修改的
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// Code generated by Wire. DO NOT EDIT.
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#60a0b0;font-style:italic">// 可以使用 `go generate` 指令來觸發後面的指令，
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// 在這裡會幫你跑 wire 來 gen code
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">//go:generate wire
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#60a0b0;font-style:italic">// 註記 build tags 不存在 wireinject 用的
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">//+build !wireinject
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#60a0b0;font-style:italic">// ...
+</span></code></pre></div><h2 id="ref">Ref</h2>
+<p><a href="https://medium.com/@dche423/master-wire-cn-d57de86caa1b">https://medium.com/@dche423/master-wire-cn-d57de86caa1b</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

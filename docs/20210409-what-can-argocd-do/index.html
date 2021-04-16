@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>究竟阿狗能做什麼呢 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="究竟阿狗能做什麼呢"/>
+<meta name="twitter:description" content="你問阿狗是什麼 GitOps &#43; Kubernetes 的產物，相當不錯的運維工具
+先來裝 Argo CD 我們要用 helm 安裝裝起來喔
+helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml
+installCRDs:falseglobal:image:tag:v1.8.6dex:enabled:falseserver:extraArgs:---insecure# 如果說你有需要用反向代理抓 subpath，可以在這裡設定# - --basehref=/argo# - --rootpath=/argoconfig:# 這裡要把你要監看的 git repo 放上來，# 範例是私有 Gitlab 的設定方式repositories:| - name: dev-argoinsecure:trueinsecureIgnoreHostKey:truesshPrivateKeySecret:name:argocd-secretkey:webhook.gitlab.secrettype:giturl:git@gitlab.10oz.tw:self_group/dev-argo.gitmetrics:enabled:trueconfigs:secret:# 這裡產生一個 ssh key 來設定 gitlab repo 裡面的 deploy key# 然後把相應的 private 提供給 Argo 使用gitlabSecret:|- first set ssh-public-key in gitlab repo, Settings &gt; Repository &gt; Deploy Keysandreplacethefieldwithssh-private-key PS: 後面有說這裏的 Repository 跟 Secret 在哪裡弄 :) 反正先裝等等還能改 XDD"/>
+
+  <meta property="og:title" content="究竟阿狗能做什麼呢" />
+<meta property="og:description" content="你問阿狗是什麼 GitOps &#43; Kubernetes 的產物，相當不錯的運維工具
+先來裝 Argo CD 我們要用 helm 安裝裝起來喔
+helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml
+installCRDs:falseglobal:image:tag:v1.8.6dex:enabled:falseserver:extraArgs:---insecure# 如果說你有需要用反向代理抓 subpath，可以在這裡設定# - --basehref=/argo# - --rootpath=/argoconfig:# 這裡要把你要監看的 git repo 放上來，# 範例是私有 Gitlab 的設定方式repositories:| - name: dev-argoinsecure:trueinsecureIgnoreHostKey:truesshPrivateKeySecret:name:argocd-secretkey:webhook.gitlab.secrettype:giturl:git@gitlab.10oz.tw:self_group/dev-argo.gitmetrics:enabled:trueconfigs:secret:# 這裡產生一個 ssh key 來設定 gitlab repo 裡面的 deploy key# 然後把相應的 private 提供給 Argo 使用gitlabSecret:|- first set ssh-public-key in gitlab repo, Settings &gt; Repository &gt; Deploy Keysandreplacethefieldwithssh-private-key PS: 後面有說這裏的 Repository 跟 Secret 在哪裡弄 :) 反正先裝等等還能改 XDD" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20210409-what-can-argocd-do/" />
+<meta property="article:published_time" content="2021-04-09T01:29:53+08:00" />
+<meta property="article:modified_time" content="2021-04-09T01:29:53+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">究竟阿狗能做什麼呢</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Apr 9, 2021
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/argo/">argo</a><a class="tag" href="https://blog.10oz.tw/tags/cd/">cd</a><a class="tag" href="https://blog.10oz.tw/tags/gitlab/">gitlab</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#你問阿狗是什麼">你問阿狗是什麼</a></li>
+    <li><a href="#先來裝-argo-cd">先來裝 Argo CD</a></li>
+    <li><a href="#再來設定-argocd">再來設定 ArgoCD</a>
+      <ul>
+        <li><a href="#先來搞定-gitlab-repo">先來搞定 Gitlab Repo</a></li>
+      </ul>
+    </li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="你問阿狗是什麼">你問阿狗是什麼</h2>
+<p>GitOps + Kubernetes 的產物，相當不錯的運維工具</p>
+<h2 id="先來裝-argo-cd">先來裝 Argo CD</h2>
+<p>我們要用 helm 安裝裝起來喔</p>
+<pre><code>helm repo add argo-cd https://argoproj.github.io/argo-helm
+helm repo update
+</code></pre><p>來準備個 values.yaml</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">installCRDs:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>global:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>image:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>tag:<span style="color:#bbb"> </span>v1<span style="color:#40a070">.8</span><span style="color:#40a070">.6</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>dex:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>enabled:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>server:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>extraArgs:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>-<span style="color:#bbb"> </span>--insecure<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># 如果說你有需要用反向代理抓 subpath，可以在這裡設定</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># - --basehref=/argo</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># - --rootpath=/argo</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span>config:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># 這裡要把你要監看的 git repo 放上來，</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># 範例是私有 Gitlab 的設定方式</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>repositories:<span style="color:#bbb"> </span><span style="color:#4070a0;font-style:italic">|
+</span><span style="color:#4070a0;font-style:italic">     </span><span style="color:#4070a0;font-style:italic"> </span><span style="color:#4070a0;font-style:italic">- name: dev-argo</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>insecure:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>insecureIgnoreHostKey:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>sshPrivateKeySecret:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>name:<span style="color:#bbb"> </span>argocd-secret<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>key:<span style="color:#bbb"> </span>webhook.gitlab.secret<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>type:<span style="color:#bbb"> </span>git<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>url:<span style="color:#bbb"> </span>git@gitlab.10oz.tw:self_group/dev-argo.git<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>metrics:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>enabled:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>configs:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>secret:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># 這裡產生一個 ssh key 來設定 gitlab repo 裡面的 deploy key</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># 然後把相應的 private 提供給 Argo 使用</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>gitlabSecret:<span style="color:#bbb"> </span>|<span style="color:#4070a0;font-style:italic">-
+</span><span style="color:#4070a0;font-style:italic">     </span><span style="color:#4070a0;font-style:italic"> </span><span style="color:#4070a0;font-style:italic">first set ssh-public-key in gitlab repo, Settings &gt; Repository &gt; Deploy Keys</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>and<span style="color:#bbb"> </span>replace<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>field<span style="color:#bbb"> </span>with<span style="color:#bbb"> </span>ssh-private-key<span style="color:#bbb">
+</span></code></pre></div><blockquote>
+<p>PS: 後面有說這裏的 Repository 跟 Secret 在哪裡弄 :)
+反正先裝等等還能改 XDD</p>
+</blockquote>
+<p>下個安裝指令</p>
+<pre><code>helm install argo-cd argo-cd/argo-cd --version 2.11.0 --namespace argocd --values ./values.yaml
+</code></pre><p>你可以把他 port forward 出來看一下</p>
+<pre><code>kubectl port-forward svc/argo-cd-argocd-server 8080:443 -n argocd
+</code></pre><p>帳號是 admin，而密碼會自動產生，預設是 Argo-CD server 的 Pod Name</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#60a0b0;font-style:italic"># 醬子拿出來看</span>
+kubectl get pods -l app.kubernetes.io/name<span style="color:#666">=</span>argocd-server -o name | cut -d<span style="color:#4070a0">&#39;/&#39;</span> -f <span style="color:#40a070">2</span>
+</code></pre></div><p>另外，也可以安裝 argo cli 來修改密碼</p>
+<pre><code>brew install argocd
+
+argocd login localhost:8080
+argocd account update-password
+</code></pre><p>開起來會看到這樣的畫面 (PS: 那兩個方框框還不會有，等一下才要裝)
+<img src="https://i.imgur.com/5MsQthJ.png" alt=""></p>
+<p>按到左邊齒輪的 Settings 然後 Repositories，如果說你的 Gitlab Repo 還沒設定的話，這裡不會是綠色勾勾 Success
+<img src="https://i.imgur.com/CrPW9bs.png" alt=""></p>
+<h2 id="再來設定-argocd">再來設定 ArgoCD</h2>
+<h3 id="先來搞定-gitlab-repo">先來搞定 Gitlab Repo</h3>
+<p>剛剛上面填了一個 repository 的地址，現在要讓他成真 (?
+總之就開一個 self_group/dev-argo Repo 在 gitlab.10oz.tw，請自己依照環境調整齁
+開好了之後就點進去吧~~</p>
+<p>首先你需要長一個 ssh rsa key 出來</p>
+<pre><code>ssh-keygen -f ./argo-deploy-key
+</code></pre><p>然後把你的 Public Key (argo-deploy-key.pub) 設在這裡～
+<img src="https://i.imgur.com/bti7ojc.png" alt=""></p>
+<p>這時候 Argo 有能力去看你的 Gitlab Repo 了，他會告訴你說你的 Repo 裡面是空ㄉ喔喔喔喔</p>
+<p>讓我們來塞一點東西進去ㄅ，一個 application 用來設定 Argo 的監看目標，而這次監看的目標是 traefik/ingress-route 這個資料夾底下的一般 kubernetes 設定檔案</p>
+<pre><code>.
+├── README.md
+├── applications
+│   ├── traefik-ingress-route.yaml
+└── traefik
+    └── ingress-route
+        └── argo-route.yaml
+</code></pre><p>applications/traefik-ingress-route.yaml</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">kind:<span style="color:#bbb"> </span>Application<span style="color:#bbb">
+</span><span style="color:#bbb"></span>apiVersion:<span style="color:#bbb"> </span>argoproj.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span>metadata:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>name:<span style="color:#bbb"> </span>golang-traefik-ingress-route<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>namespace:<span style="color:#bbb"> </span>argocd<span style="color:#bbb">
+</span><span style="color:#bbb"></span>spec:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>project:<span style="color:#bbb"> </span>default<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>destination:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>name:<span style="color:#bbb"> </span>in-cluster<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>namespace:<span style="color:#bbb"> </span>traefik<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>source:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>path:<span style="color:#bbb"> </span>traefik/ingress-route<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>repoURL:<span style="color:#bbb"> </span><span style="color:#4070a0">&#39;git@gitlab.10oz.tw:self_group/dev-argo.git&#39;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>targetRevision:<span style="color:#bbb"> </span>HEAD<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>syncPolicy:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>automated:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>prune:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span></code></pre></div><p>traefik/ingress-route/argo-route.yaml</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">kind:<span style="color:#bbb"> </span>IngressRoute<span style="color:#bbb">
+</span><span style="color:#bbb"></span>apiVersion:<span style="color:#bbb"> </span>traefik.containo.us/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span>metadata:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>name:<span style="color:#bbb"> </span>argocd-server-route<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>namespace:<span style="color:#bbb"> </span>argocd<span style="color:#bbb">
+</span><span style="color:#bbb"></span>spec:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>routes:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>-<span style="color:#bbb"> </span>kind:<span style="color:#bbb"> </span>Rule<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>match:<span style="color:#bbb"> </span>Host(`foo.10oz.tw`)<span style="color:#bbb"> </span><span style="color:#007020">&amp;&amp;</span><span style="color:#bbb"> </span>PathPrefix(`/argo`)<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>services:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>argo-cd-argocd-server<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>port:<span style="color:#bbb"> </span><span style="color:#40a070">80</span><span style="color:#bbb">
+</span></code></pre></div><p>Commit 推出去，就醬子就能動了喔 👍👍</p>
+<h2 id="ref">Ref</h2>
+<p><a href="https://argoproj.github.io/argo-cd/#quick-start">https://argoproj.github.io/argo-cd/#quick-start</a>
+<a href="https://www.qikqiak.com/post/gitlab-ci-argo-cd-gitops/">https://www.qikqiak.com/post/gitlab-ci-argo-cd-gitops/</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

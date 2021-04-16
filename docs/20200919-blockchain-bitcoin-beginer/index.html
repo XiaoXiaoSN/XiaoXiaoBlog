@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>新米 blockchain 混亂中 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="新米 blockchain 混亂中"/>
+<meta name="twitter:description" content="這次筆記內容會圍繞在比特幣這個區塊鍊加密貨幣系統 然後比特幣是一種讓北極熊沒有家住的技術 (?
+ 區塊鏈的安全  區塊鏈鏈的模式，保證新的區塊接續前一個區塊，當區塊越多越難被修改 共識機制需要多數節點認同保護資料不易被竄改，也就是去中心化的部分啦 密碼學上的困難問題保護使用資產不會被任意取用，也在建立新的區塊時增加難度，就是挖礦的部分啦  共識機制 這是在分散式系統中相當常見的問題，當節點多了，在同步上出現分歧時應該要聽誰的? 究竟誰手中的資料才是正確的呢?
+拜占庭將軍問題 描述有數個將軍各自在不同地方，但有著相同的任務，而這個任務非常艱難，必須要每個將軍同時進攻、或是同時撤退，否則就會失敗。
+因此在出發之前，每位將軍會投票決定之後才開始行動， 然而&hellip;在這樣的條件下，竟有還有幾位將軍是隱藏身分的間諜!?
+在節點中，同樣會遇到這樣的問題，當節點中出現了不遵守規定的惡意節點時，該如何將它的影響降低呢?
+挖礦 也就是增加難度，比特幣使用 PoW(Proof-of-Work)，讓北極熊沒地方住 ，讓每個節點用工作量來證明自己。如果你想要搞破壞的話，你必須付出比整個鏈上過半的計算能力，然而在現在廣大的比特鏈生態來說，這是不可能的。
+ 每個鏈上的共識機制都不同，例如乙太鍊上使用的是 PoS
+ 激勵機制 在前一個段落的區塊鍊安全那邊有說到使用 PoW 來保證難以隨意的添加區塊，但是認真想想誰要做這麼吃力的事情? 因此激勵機制的部分就是 給你錢幫我算 (*´∀`)~♥ xdd
+區塊鏈節點 身為一個去中心化的點對點系統，當然一定要有節點。在比特鏈上可以大致分兩種節點，全節點(Full Node)與輕量節點(Light Node)
+ 全節點: 存放著完整的比特鏈資訊(好幾十GB)，工作是打包區塊上鏈以及驗證其他人上傳區塊的合法性 輕量節點: 也稱為簡單支付驗證（SPV）節點，不需要儲存所有區塊資訊，也不會對鏈上的安全性做出貢獻，就只是個 read user。可以是手機或是電腦的客戶端軟體，他能夠驗證某一筆交易是否在區塊鏈中 礦工仔: 準確來說礦工不一定是比特網路的一部分，礦工只需要向全節點要求交易回來打包、計算，再將節點廣播出去給所有的全節點驗證就好了  挖礦仔常見問題  Q: 挖礦是啥米?
+ 當有一筆交易要進行的時候，交易方拋出他的交易資訊，請人幫他簽核，成功幫他完成任務的人會有獎金
+ Q: 這個簽核任務有是啥米?
+ 礦工們會將交易區塊資訊 &#43; Nonce 拿去 hash，不斷的替換 Nonce 取得某一組 hash 值開頭是 n 個 bits 為 0 的解答，第一個拿到解答的就是這次挖礦的成功者。因此越多人參與解題就越難挖到礦"/>
+
+  <meta property="og:title" content="新米 blockchain 混亂中" />
+<meta property="og:description" content="這次筆記內容會圍繞在比特幣這個區塊鍊加密貨幣系統 然後比特幣是一種讓北極熊沒有家住的技術 (?
+ 區塊鏈的安全  區塊鏈鏈的模式，保證新的區塊接續前一個區塊，當區塊越多越難被修改 共識機制需要多數節點認同保護資料不易被竄改，也就是去中心化的部分啦 密碼學上的困難問題保護使用資產不會被任意取用，也在建立新的區塊時增加難度，就是挖礦的部分啦  共識機制 這是在分散式系統中相當常見的問題，當節點多了，在同步上出現分歧時應該要聽誰的? 究竟誰手中的資料才是正確的呢?
+拜占庭將軍問題 描述有數個將軍各自在不同地方，但有著相同的任務，而這個任務非常艱難，必須要每個將軍同時進攻、或是同時撤退，否則就會失敗。
+因此在出發之前，每位將軍會投票決定之後才開始行動， 然而&hellip;在這樣的條件下，竟有還有幾位將軍是隱藏身分的間諜!?
+在節點中，同樣會遇到這樣的問題，當節點中出現了不遵守規定的惡意節點時，該如何將它的影響降低呢?
+挖礦 也就是增加難度，比特幣使用 PoW(Proof-of-Work)，讓北極熊沒地方住 ，讓每個節點用工作量來證明自己。如果你想要搞破壞的話，你必須付出比整個鏈上過半的計算能力，然而在現在廣大的比特鏈生態來說，這是不可能的。
+ 每個鏈上的共識機制都不同，例如乙太鍊上使用的是 PoS
+ 激勵機制 在前一個段落的區塊鍊安全那邊有說到使用 PoW 來保證難以隨意的添加區塊，但是認真想想誰要做這麼吃力的事情? 因此激勵機制的部分就是 給你錢幫我算 (*´∀`)~♥ xdd
+區塊鏈節點 身為一個去中心化的點對點系統，當然一定要有節點。在比特鏈上可以大致分兩種節點，全節點(Full Node)與輕量節點(Light Node)
+ 全節點: 存放著完整的比特鏈資訊(好幾十GB)，工作是打包區塊上鏈以及驗證其他人上傳區塊的合法性 輕量節點: 也稱為簡單支付驗證（SPV）節點，不需要儲存所有區塊資訊，也不會對鏈上的安全性做出貢獻，就只是個 read user。可以是手機或是電腦的客戶端軟體，他能夠驗證某一筆交易是否在區塊鏈中 礦工仔: 準確來說礦工不一定是比特網路的一部分，礦工只需要向全節點要求交易回來打包、計算，再將節點廣播出去給所有的全節點驗證就好了  挖礦仔常見問題  Q: 挖礦是啥米?
+ 當有一筆交易要進行的時候，交易方拋出他的交易資訊，請人幫他簽核，成功幫他完成任務的人會有獎金
+ Q: 這個簽核任務有是啥米?
+ 礦工們會將交易區塊資訊 &#43; Nonce 拿去 hash，不斷的替換 Nonce 取得某一組 hash 值開頭是 n 個 bits 為 0 的解答，第一個拿到解答的就是這次挖礦的成功者。因此越多人參與解題就越難挖到礦" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/" />
+<meta property="article:published_time" content="2020-09-19T00:56:51+08:00" />
+<meta property="article:modified_time" content="2020-09-19T00:56:51+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">新米 blockchain 混亂中</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Sep 19, 2020
+      </div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#區塊鏈的安全">區塊鏈的安全</a>
+      <ul>
+        <li><a href="#共識機制">共識機制</a></li>
+      </ul>
+    </li>
+    <li><a href="#激勵機制">激勵機制</a>
+      <ul>
+        <li><a href="#區塊鏈節點">區塊鏈節點</a></li>
+        <li><a href="#挖礦仔常見問題">挖礦仔常見問題</a></li>
+      </ul>
+    </li>
+    <li><a href="#交易模型">交易模型</a>
+      <ul>
+        <li><a href="#粉塵攻擊">粉塵攻擊</a></li>
+      </ul>
+    </li>
+    <li><a href="#bip-bitcoin-improvement-proposals">BIP (Bitcoin Improvement Proposals)</a>
+      <ul>
+        <li><a href="#bip-32-hd-wallet">BIP-32 HD-Wallet</a></li>
+        <li><a href="#bip-39-助記詞">BIP-39 助記詞</a></li>
+        <li><a href="#bip-44-多帳號的-hd-wallet">BIP-44 多帳號的 HD-Wallet</a></li>
+      </ul>
+    </li>
+    <li><a href="#錢包地址">錢包地址</a></li>
+    <li><a href="#交易">交易</a>
+      <ul>
+        <li><a href="#p2pkh-pay-to-pubkey-hash">P2PKH (Pay to Pubkey Hash)</a></li>
+        <li><a href="#p2sh-pay-to-script-hash">P2SH (Pay to Script Hash)</a></li>
+        <li><a href="#p2wpkh--pay-to-witness-public-key-hash">P2WPKH ( pay to witness public key hash)</a></li>
+        <li><a href="#segwit-segregated-witness-隔離見證">SegWit (Segregated Witness) 隔離見證</a></li>
+        <li><a href="#帳號安全">帳號安全</a></li>
+      </ul>
+    </li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <blockquote>
+<p>這次筆記內容會圍繞在<strong>比特幣</strong>這個區塊鍊加密貨幣系統
+然後比特幣是一種讓北極熊沒有家住的技術 (?</p>
+</blockquote>
+<h2 id="區塊鏈的安全">區塊鏈的安全</h2>
+<ul>
+<li><strong>區塊鏈</strong>鏈的模式，保證新的區塊接續前一個區塊，當區塊越多越難被修改</li>
+<li><strong>共識機制</strong>需要多數節點認同保護資料不易被竄改，也就是<strong>去中心化</strong>的部分啦</li>
+<li><strong>密碼學</strong>上的困難問題保護使用資產不會被任意取用，也在建立新的區塊時增加難度，就是挖礦的部分啦</li>
+</ul>
+<h3 id="共識機制">共識機制</h3>
+<p>這是在分散式系統中相當常見的問題，當節點多了，在同步上出現分歧時應該要聽誰的?
+究竟誰手中的資料才是正確的呢?</p>
+<h4 id="拜占庭將軍問題">拜占庭將軍問題</h4>
+<p>描述有數個將軍各自在不同地方，但有著相同的任務，而這個任務非常艱難，必須要每個將軍同時進攻、或是同時撤退，否則就會失敗。<br>
+因此在出發之前，每位將軍會投票決定之後才開始行動，
+然而&hellip;在這樣的條件下，竟有還有幾位將軍是隱藏身分的間諜!?</p>
+<p>在節點中，同樣會遇到這樣的問題，當節點中出現了不遵守規定的惡意節點時，該如何將它的影響降低呢?</p>
+<h4 id="挖礦">挖礦</h4>
+<p>也就是增加難度，比特幣使用 PoW(Proof-of-Work)，<del>讓北極熊沒地方住</del> ，讓每個節點用工作量來證明自己。如果你想要搞破壞的話，你必須付出比整個鏈上過半的計算能力，然而在現在廣大的比特鏈生態來說，這是不可能的。</p>
+<blockquote>
+<p>每個鏈上的共識機制都不同，例如乙太鍊上使用的是 PoS</p>
+</blockquote>
+<h2 id="激勵機制">激勵機制</h2>
+<p>在前一個段落的區塊鍊安全那邊有說到使用 PoW 來保證難以隨意的添加區塊，但是認真想想誰要做這麼吃力的事情? 因此激勵機制的部分就是 <strong>給你錢幫我算</strong> (*´∀`)~♥ xdd</p>
+<h3 id="區塊鏈節點">區塊鏈節點</h3>
+<p>身為一個去中心化的點對點系統，當然一定要有節點。在比特鏈上可以大致分兩種節點，全節點(Full Node)與輕量節點(Light Node)</p>
+<ul>
+<li><code>全節點</code>: 存放著完整的比特鏈資訊(好幾十GB)，工作是打包區塊上鏈以及驗證其他人上傳區塊的合法性</li>
+<li><code>輕量節點</code>: 也稱為簡單支付驗證（SPV）節點，不需要儲存所有區塊資訊，也不會對鏈上的安全性做出貢獻，就只是個 read user。可以是手機或是電腦的客戶端軟體，他能夠驗證某一筆交易是否在區塊鏈中</li>
+<li><code>礦工仔</code>: 準確來說礦工不一定是比特網路的一部分，礦工只需要向全節點要求交易回來打包、計算，再將節點廣播出去給所有的全節點驗證就好了</li>
+</ul>
+<h3 id="挖礦仔常見問題">挖礦仔常見問題</h3>
+<blockquote>
+<p>Q: 挖礦是啥米?</p>
+</blockquote>
+<p>當有一筆交易要進行的時候，交易方拋出他的交易資訊，請人幫他簽核，成功幫他完成任務的人會有獎金</p>
+<blockquote>
+<p>Q: 這個簽核任務有是啥米?</p>
+</blockquote>
+<p>礦工們會將<code>交易區塊資訊</code> + <code>Nonce</code> 拿去 hash，不斷的替換 Nonce 取得某一組 hash 值開頭是 n 個 bits 為 0 的解答，第一個拿到解答的就是這次挖礦的成功者。因此越多人參與解題就越難挖到礦</p>
+<blockquote>
+<p>Q: 這樣不就超難挖礦的嗎?</p>
+</blockquote>
+<p>每經過 2016 個交易認證後難度會改變(要求開頭的 0 變多個或變少)，改變依照之前的交易認證時間，如果太久就變簡單一點，反之亦然。</p>
+<blockquote>
+<p>Q: 挖礦挖不完的嗎?</p>
+</blockquote>
+<p>會挖完的，最一開始驗證一筆交易礦工可以拿到 50 塊錢比特幣，每次產生出 21萬塊錢比特幣後，獎勵就會少一半，直到最後小於比特幣可以支付的最小單位 (10的-8次方比特幣)</p>
+<h2 id="交易模型">交易模型</h2>
+<p>UTXO Model (Unspent Transaction Output)，在比特幣鏈上的餘額並不是直接儲存一個數字的，如果你今天想要拿到某個地址的餘額的話，就需要從第一個區塊開始看，把每一筆還沒有被消費掉的交易(Unspent Transaction)加起來，這個數字才會是你的餘額。
+例如說:</p>
+<pre><code>A 轉給 C 100 btc .... (tx1)
+B 轉給 C 120 btc .... (tx2)
+
+到這裡 C 有 2 筆未使用交易，總共 220 btc
+
+如果 C 要轉給 A 130 塊錢的話，就必須從他的 UTXO 裡面選出來交易
+C -&gt; A 130 btc .... (tx3)
+C -&gt; C 90 btc .... (tx4) 多餘的錢錢要還給自己呀！
+
+因此最後的結果中，C 消耗了 tx1, tx2 
+C 剩下一筆 90 塊的未使用交易 
+</code></pre><h3 id="粉塵攻擊">粉塵攻擊</h3>
+<p>在 UTXO 系統中會遇到的身分問題，可以參考這篇寫得很棒 XDD
+<a href="https://iview.sina.com.tw/post/23868182">https://iview.sina.com.tw/post/23868182</a></p>
+<hr>
+<p>在區塊上的交易紀錄基本上都是公開透明的，可以共大眾來查找。</p>
+<p>公有鏈：完全去中心化，也就是完全公開透明、任何人都可以加入，每個人都可以讀取上面的資料的鏈。
+私有鏈：部分去中心化，是完全私有的區塊鏈，寫入權限全被一處中心所把持，而讀取權限則被這處中心限制，但此鏈交易速度比較快並且也保持了不可篡改性，是給私有公司使用的鏈。
+聯盟鏈：介於公有鏈和私有鏈之間，和私有鏈最大的不同是，它適用於多個機構共同使用，或者一整個行業、聯盟用的；而私有鏈是一家企業或公司用的</p>
+<p>Merkle Tree
+不可修改性
+如果今天有人想要修改一個區塊的交易紀錄，會需要把後續所有的 Block 都修改才行，</p>
+<p>用於快速驗證交易存在某個區塊</p>
+<hr>
+<h2 id="bip-bitcoin-improvement-proposals">BIP (Bitcoin Improvement Proposals)</h2>
+<h3 id="bip-32-hd-wallet">BIP-32 HD-Wallet</h3>
+<p>定義 Hierarchical Deterministic wallet，可以由一個 Seed 來產生多組錢包地址(包含公鑰、私鑰)
+好處是只需要記得 Seed 就可以動態錢包，不需要記得很長的密碼</p>
+<p><img src="https://raw.githubusercontent.com/bitcoin/bips/master/bip-0032/derivation.png" alt=""></p>
+<h3 id="bip-39-助記詞">BIP-39 助記詞</h3>
+<p>助記詞(mnemonic)將 Seed 用英文單字來編碼表示，更方便記憶。
+做法是 seed + checkSum 然後每 11bits 兌換呈一個對應的字</p>
+<h3 id="bip-44-多帳號的-hd-wallet">BIP-44 多帳號的 HD-Wallet</h3>
+<p>基於 BIP-32 的系統，讓他同時支援多種幣別，
+而一組助記詞可以產出 N 組私鑰，每組私鑰對應一種幣種(BTC, ETH&hellip;)
+表示形式像是:</p>
+<pre><code>m / purpose' / coin_type' / account' / change / address_index
+</code></pre><p>每個欄位有不同意義
+- <code>purpose'</code> 固定寫 44 表示是依照 BIP-44 規則產生後面的樹跟子節點
+- <code>coin_type'</code> 一組 Seed 可以為不同幣別產生多個完全獨立的錢包地址，例如比特幣是 0，以太幣是 60 &raquo;&gt; <a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md">這邊有列表</a>
+- <code>account'</code> 一組 Seed 可以為不同帳號產生多個完全獨立的錢包地址
+- <code>change'</code> 固定用 0 表示外部鍊(external chain) 用於對外部收款付款， 1 表示內部鍊(internal chain)，這什麼意思&hellip;我看不懂QQ
+- <code>index'</code> 剛剛說了麻，一個 Seed 可以產很多地址，index 表示你要第幾個錢包地址
+| coin | account | chain | address | path |
+| &mdash;- | &mdash;- | &mdash;- | &mdash;- | &mdash;- |
+| Bitcoin | first | external | first | m / 44&rsquo; / 0&rsquo; / 0&rsquo; / 0 / 0 |
+| Bitcoin Testnet | first | external | first | m / 44&rsquo; / 1&rsquo; / 0&rsquo; / 0 / 0 |</p>
+<p>可以到這個網站上實際產生一組試試看 <a href="https://iancoleman.io/bip39/">https://iancoleman.io/bip39/</a></p>
+<h2 id="錢包地址">錢包地址</h2>
+<p>比特幣錢包地址可能是 <code>1</code>, <code>3</code>, <code>bc1</code> 開頭，測試鏈上的地址是 <code>m</code>, <code>n</code>, <code>2</code>, <code>tb1</code> 開頭</p>
+<h2 id="交易">交易</h2>
+<p>有分幾種交易簽章模式，差別在如何使用 tx out，每個 tx out 上都有不同的 lock script，可以把這個鎖想像成是一個題目，你必須將題目完整解鎖你才有資格，例如說 lock script 是 <code>+ 3 = 5</code>，那你 tx in 的 unlock script 就要是 <code>2</code>，組合起來驗證 <code>2 + 3 = 5</code> 這樣才是一個合法的交易簽章</p>
+<p>主要分成幾種模式：</p>
+<h3 id="p2pkh-pay-to-pubkey-hash">P2PKH (Pay to Pubkey Hash)</h3>
+<p>算是最基礎的模式，使用的 lock script 是</p>
+<pre><code>OP_DUP OP_HASH160 &lt;Public Key Hash&gt; OP_EQUAL OP_CHECKSIG
+</code></pre><p>unlock script</p>
+<pre><code>&lt;Signature&gt; &lt;Public Key&gt;
+</code></pre><p><img src="https://miro.medium.com/max/770/1*NtgVAsbc112gcNoS1IDjDg.png" alt=""></p>
+<h3 id="p2sh-pay-to-script-hash">P2SH (Pay to Script Hash)</h3>
+<p>在這之前要先認識一下多簽 (Multi-signature)，他的 lock script 是由多個公鑰組成，你必須完成他指定數量的簽章才能解鎖，</p>
+<p>例如說 2-3 多簽，就是你必須要有這 3 個人其中兩個的簽章</p>
+<pre><code>2 &lt;Public Key A&gt; &lt;Public Key B&gt; &lt;Public Key C&gt; 3 OP_CHECKMULTISIG
+</code></pre><p>假設你有 B, C 的同意， unlock script 會像是</p>
+<pre><code>OP_0 &lt;Signature B&gt; &lt;Signature C&gt;
+</code></pre><p>不過，這樣的方式如果人數一多會讓 lock script 變得非常非常長，這樣儲存 UTXO 會浪費掉很多珍貴的記憶體，因此 <code>P2SH</code> 來解決問題惹，簡單來說就是把題目放到 lock script，而 unlock script 只存題目的 hash，驗證時首先驗證 lock script 裡面的題目 hash 後是否和 unlock script 相同，相同的話就相信你並接收你的驗證</p>
+<p>lock script, 裡面的 redeem scriptHash 就是題目的 hash，<br>
+redeem script(題目): <code>2 PKA PKB PKC 3 OP_CHECKMULTISIG</code></p>
+<pre><code>OP_HASH160 &lt;redeem scriptHash&gt; OP_EQUAL
+</code></pre><p>unlock script 比較一下前面的多簽</p>
+<pre><code>&lt;SigB&gt; &lt;SigC&gt; 2 PKA PKB PKC 3 OP_CHECKMULTISIG
+</code></pre><p>example:
+<img src="https://miro.medium.com/max/1540/1*ix6qCQoBzFROhvPokj6YYw.png" alt=""></p>
+<h3 id="p2wpkh--pay-to-witness-public-key-hash">P2WPKH ( pay to witness public key hash)</h3>
+<h3 id="segwit-segregated-witness-隔離見證">SegWit (Segregated Witness) 隔離見證</h3>
+<p>由於每個區塊最多最多只能夠有 1MB，而每一筆交易的簽章佔用了很大的比例，
+因此在 BIP141 提出了見證隔離這個方案，將原本一個區塊的最大值從 1MB 改成 4MB，計算單位從 bytes 改成 weight，並將原本簽章的部份抽出來存放，這表示發一筆交易需要的 byte 更少更便宜，經過計算後一個區塊能夠放更多的交易，因此交易速度提高，而礦工打包區塊也可以拿到更多手續費，</p>
+<p>Bech32 encoded segwit addresses start with a human-readable</p>
+<hr>
+<h3 id="帳號安全">帳號安全</h3>
+<p>橢圓曲線用的是這條 secp256k1，他長這樣</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">secp256k1.P = <span style="color:#06287e">fromHex</span>(<span style="color:#4070a0">&#34;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F&#34;</span>)
+secp256k1.N = <span style="color:#06287e">fromHex</span>(<span style="color:#4070a0">&#34;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141&#34;</span>)
+secp256k1.B = <span style="color:#06287e">fromHex</span>(<span style="color:#4070a0">&#34;0000000000000000000000000000000000000000000000000000000000000007&#34;</span>)
+secp256k1.Gx = <span style="color:#06287e">fromHex</span>(<span style="color:#4070a0">&#34;79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798&#34;</span>)
+secp256k1.Gy = <span style="color:#06287e">fromHex</span>(<span style="color:#4070a0">&#34;483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8&#34;</span>)
+</code></pre></div><p>比特幣錢包地址怎麼來的呢?</p>
+<blockquote>
+<ol>
+<li>把公鑰拿出來找到他在曲線上的 (x, y)，再拿去 hash 2 次，</li>
+<li>再將 hash 結果做兩次 sha256 取得前四個 byte 作為 checkSum</li>
+<li>最後 base58 encode 就是人類看到的地址囉</li>
+</ol>
+<p>hash = ripemd160(sha256(pubkey_bits))
+checkSum = sha256(sha256(&ldquo;00&quot;+hash))[:4]  // (0x00 for Main Network)
+addr = base58(hash + checkSum)
+詳細可以參考<a href="https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses">這篇wiki</a></p>
+</blockquote>
+<p>以太幣錢包的話有點不同</p>
+<blockquote>
+<p>把公鑰拿出來後用的是 Keccak-256(sha-3) 來 hash，特點是長度是不固定的
+最後加上 EIP55 的大小寫檢查碼 (這是可選的)
+詳細可以參考這個 <a href="https://git.io/ethAddressHash">https://git.io/ethAddressHash</a></p>
+</blockquote>
+<h2 id="ref">Ref</h2>
+<p>什麼是節點 <a href="https://academy.binance.com/zt/articles/what-are-nodes">https://academy.binance.com/zt/articles/what-are-nodes</a>
+<a href="https://medium.com/taipei-ethereum-meetup/%E8%99%9B%E6%93%AC%E8%B2%A8%E5%B9%A3%E9%8C%A2%E5%8C%85-%E5%BE%9E-bip32-bip39-bip44-%E5%88%B0-ethereum-hd-%EF%BD%97allet-a40b1c87c1f7">https://medium.com/taipei-ethereum-meetup/%E8%99%9B%E6%93%AC%E8%B2%A8%E5%B9%A3%E9%8C%A2%E5%8C%85-%E5%BE%9E-bip32-bip39-bip44-%E5%88%B0-ethereum-hd-%EF%BD%97allet-a40b1c87c1f7</a>
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki</a>
+比特幣問題們 <a href="https://bitcoin.org/zh_TW/faq#wont-the-finite-amount-of-bitcoins-be-a-limitation">https://bitcoin.org/zh_TW/faq#wont-the-finite-amount-of-bitcoins-be-a-limitation</a>
+關於比特幣地址 <a href="https://medium.com/my-blockchain-development-daily-journey/%E9%97%9C%E6%96%BC%E6%AF%94%E7%89%B9%E5%B9%A3%E5%9C%B0%E5%9D%80-%E4%BD%A0%E8%A9%B2%E7%9F%A5%E9%81%93%E7%9A%84%E4%BA%8B-8dd3bbb89ade">https://medium.com/my-blockchain-development-daily-journey/%E9%97%9C%E6%96%BC%E6%AF%94%E7%89%B9%E5%B9%A3%E5%9C%B0%E5%9D%80-%E4%BD%A0%E8%A9%B2%E7%9F%A5%E9%81%93%E7%9A%84%E4%BA%8B-8dd3bbb89ade</a>
+隔離見證 <a href="https://blockcast.it/2017/04/24/what-is-scalability-issue-and-segregated-witness/">https://blockcast.it/2017/04/24/what-is-scalability-issue-and-segregated-witness/</a>
+bitcoin tx怎麼包 <a href="https://medium.com/taipei-ethereum-meetup/mastering-bitcoin-ch5-transactions-38a387e3819a">https://medium.com/taipei-ethereum-meetup/mastering-bitcoin-ch5-transactions-38a387e3819a</a>
+比特節點介紹 <a href="https://academy.binance.com/zt/articles/what-are-nodes">https://academy.binance.com/zt/articles/what-are-nodes</a>
+註記詞與BIP <a href="https://www.mdeditor.tw/pl/pCPM/zh-tw">https://www.mdeditor.tw/pl/pCPM/zh-tw</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/vim/</link>
+    <description>Recent content in vim on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Apr 2021 02:03:48 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我要裝 vim</title>
+      <link>https://blog.10oz.tw/20200926-wanna-install-vim/</link>
+      <pubDate>Sat, 17 Apr 2021 02:03:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
+      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&amp;#34;==============================================================================&amp;#34; vim 内置配置 &amp;#34;==============================================================================&amp;#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开&amp;#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡&amp;#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC&amp;#34; 关闭兼容模式set nocompatibleset nu &amp;#34; 设置行号set cursorline &amp;#34;突出显示当前行set showmatch &amp;#34; 显示括号匹配&amp;#34; tab 缩进set tabstop=4 &amp;#34; 设置Tab长度为4空格set shiftwidth=4 &amp;#34; 设置自动缩进长度为4空格set autoindent &amp;#34; 继承前一行的缩进方式，适用于多行注释&amp;#34; 定义快捷键的前缀，即&amp;lt;Leader&amp;gt;let mapleader=&amp;#34;,&amp;#34; &amp;#34; ==== 系统剪切板复制粘贴 ====&amp;#34; v 模式下复制内容到系统剪切板vmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下复制一行到系统剪切板nmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下粘贴系统剪切板的内容nmap &amp;lt;Leader&amp;gt;v &amp;#34;+p&amp;#34; 开启实时搜索set incsearch&amp;#34; 搜索时大小写不敏感set ignorecasesyntax enablesyntax on &amp;#34; 开启文件类型侦测filetype plugin indent on &amp;#34; 启用自动补全&amp;#34; 退出插入模式指定类型的文件自动保存au InsertLeave *.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>新米 Istio 篇 | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="新米 Istio 篇"/>
+<meta name="twitter:description" content="開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧
+curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 | | default | demo | minimal | remote | empty | preview | | | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;- | &mdash;- | &mdash;&mdash;- | &mdash;&mdash; | &mdash;&ndash; | &mdash;&mdash;- | &mdash; | | Core components | | | | | | | | | istio-egressgateway | | X | | | | | | | istio-ingressgateway | X | X | | | | X | | | istiod | X | X | X | | | X | |"/>
+
+  <meta property="og:title" content="新米 Istio 篇" />
+<meta property="og:description" content="開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧
+curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 | | default | demo | minimal | remote | empty | preview | | | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;- | &mdash;- | &mdash;&mdash;- | &mdash;&mdash; | &mdash;&ndash; | &mdash;&mdash;- | &mdash; | | Core components | | | | | | | | | istio-egressgateway | | X | | | | | | | istio-ingressgateway | X | X | | | | X | | | istiod | X | X | X | | | X | |" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20201115-a-istio-beginner/" />
+<meta property="article:published_time" content="2020-11-15T01:36:30+08:00" />
+<meta property="article:modified_time" content="2020-11-15T01:36:30+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">新米 Istio 篇</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Nov 15, 2020
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/kubernetes/">kubernetes</a><a class="tag" href="https://blog.10oz.tw/tags/istio/">istio</a><a class="tag" href="https://blog.10oz.tw/tags/service-mesh/">service-mesh</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#開始安裝">開始安裝</a>
+      <ul>
+        <li><a href="#利用-kaili-視覺化-traffic">利用 Kaili 視覺化 traffic</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <h2 id="開始安裝">開始安裝</h2>
+<p>下載後會得到一個資料夾 <code>istio-1.7.4</code> 把他加入你的執行檔中吧</p>
+<pre><code>curl -L https://istio.io/downloadIstio | sh -
+
+export PATH=$PWD/istio-1.7.4/bin:$PATH
+istioctl version # 成功就是有囉
+</code></pre><p>預設的 Profile 們有六個，我就先用 default 吧
+|                      | default | demo | minimal | remote | empty | preview |     |
+| &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;- | &mdash;- | &mdash;&mdash;- | &mdash;&mdash; | &mdash;&ndash; | &mdash;&mdash;- | &mdash; |
+| Core components      |         |      |         |        |       |         |     |
+| istio-egressgateway  |         | X    |         |        |       |         |     |
+| istio-ingressgateway | X       | X    |         |        |       | X       |     |
+| istiod               | X       | X    | X       |        |       | X       |     |</p>
+<pre><code>istioctl profile list
+istioctl install --set profile=default
+</code></pre><p>裝好之後來實驗一下喔，開一個新的 namespce 並安裝官方範例 book info，裡面包含 4 個微服務</p>
+<pre><code>kubectl create namespcae istio-bookinfo
+
+# kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+kubectl apply -n istio-bookinfo -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre><p>目前的 pod 裡面都只有 1 個 Container，我們要注入 istio 的 envoy proxy 讓每個 Pod 裡面多一個 sidecar</p>
+<pre><code>&gt; ~/istio » kubectl get po -n istio-bookinfo
+NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79c697d759-9kvrq       1/1     Running   0          3m41s
+productpage-v1-65576bb7bf-w9gf6   1/1     Running   0          3m38s
+ratings-v1-7d99676f7f-tq9kw       1/1     Running   0          3m40s
+reviews-v1-987d495c-j655s         1/1     Running   0          3m40s
+reviews-v2-6c5bf657cf-l595s       1/1     Running   0          3m39s
+reviews-v3-5f7b9f4f77-4qdtb       1/1     Running   0          3m39s
+</code></pre><pre><code>kubectl label namespace istio-bookinfo istio-injection=enabled
+kubectl get namespace -L istio-injection
+
+# 重新部署，就把 Pod 都刪掉吧
+kubectl delete (kubectl get all | grep pod | awk '{print $1}')
+</code></pre><p>如果要關掉的話</p>
+<pre><code>kubectl label namespace default istio-injection-
+</code></pre><p>再來看看，是不是每個 Pod 裡面都多一個 Container 啦~</p>
+<pre><code>&gt; ~/istio » kubectl get pod
+NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79c697d759-lqt6k       2/2     Running   0          3m15s
+productpage-v1-65576bb7bf-zwgqd   2/2     Running   0          3m15s
+ratings-v1-7d99676f7f-fqvvd       2/2     Running   0          3m15s
+reviews-v1-987d495c-kbc4z         2/2     Running   0          3m14s
+reviews-v2-6c5bf657cf-749bn       2/2     Running   0          3m14s
+reviews-v3-5f7b9f4f77-f7wvk       2/2     Running   0          3m14s
+</code></pre><p>我們的服務目前長這樣
+<img src="https://istio.io/latest/docs/examples/bookinfo/withistio.svg" alt=""></p>
+<pre><code>kubectl port-forward svc/productpage 9080:9080 -n istio-bookinfo
+</code></pre><h3 id="利用-kaili-視覺化-traffic">利用 Kaili 視覺化 traffic</h3>
+<pre><code># 詳細內容在 https://github.com/istio/istio/tree/1.7.0/samples/addons
+kubectl apply -f samples/addons
+</code></pre><p>檢查 namespace <code>istio-system</code> 內，多了 grafana, kiali, prometheus, tracing, zipkin 這幾個服務</p>
+<p>來看看 kaili 喔～</p>
+<pre><code>port-forward svc/kiali 20001:20001 -n istio-system
+</code></pre><p>kaili 可以用流量直接幫我們畫出 service 之間的關係圖
+<img src="https://i.imgur.com/r66NCjQ.png" alt=""></p>
+<h2 id="reference">Reference</h2>
+<p><a href="https://istio.io/latest/docs/setup/getting-started/">https://istio.io/latest/docs/setup/getting-started/</a>
+<a href="https://istio.io/latest/docs/setup/additional-setup/config-profiles/">https://istio.io/latest/docs/setup/additional-setup/config-profiles/</a>
+<a href="https://istio.io/latest/docs/examples/bookinfo/">https://istio.io/latest/docs/examples/bookinfo/</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

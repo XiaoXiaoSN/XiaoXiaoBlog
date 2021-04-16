@@ -6,10 +6,49 @@
     <description>Recent content in golang on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Aug 2020 00:33:03 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 17 Apr 2021 02:03:48 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我要裝 vim</title>
+      <link>https://blog.10oz.tw/20200926-wanna-install-vim/</link>
+      <pubDate>Sat, 17 Apr 2021 02:03:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
+      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&amp;#34;==============================================================================&amp;#34; vim 内置配置 &amp;#34;==============================================================================&amp;#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开&amp;#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡&amp;#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC&amp;#34; 关闭兼容模式set nocompatibleset nu &amp;#34; 设置行号set cursorline &amp;#34;突出显示当前行set showmatch &amp;#34; 显示括号匹配&amp;#34; tab 缩进set tabstop=4 &amp;#34; 设置Tab长度为4空格set shiftwidth=4 &amp;#34; 设置自动缩进长度为4空格set autoindent &amp;#34; 继承前一行的缩进方式，适用于多行注释&amp;#34; 定义快捷键的前缀，即&amp;lt;Leader&amp;gt;let mapleader=&amp;#34;,&amp;#34; &amp;#34; ==== 系统剪切板复制粘贴 ====&amp;#34; v 模式下复制内容到系统剪切板vmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下复制一行到系统剪切板nmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下粘贴系统剪切板的内容nmap &amp;lt;Leader&amp;gt;v &amp;#34;+p&amp;#34; 开启实时搜索set incsearch&amp;#34; 搜索时大小写不敏感set ignorecasesyntax enablesyntax on &amp;#34; 开启文件类型侦测filetype plugin indent on &amp;#34; 启用自动补全&amp;#34; 退出插入模式指定类型的文件自动保存au InsertLeave *.</description>
+    </item>
+    
+    <item>
+      <title>Chromedp 殭屍進程</title>
+      <link>https://blog.10oz.tw/20210306-chromedp-zombi-process/</link>
+      <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210306-chromedp-zombi-process/</guid>
+      <description>問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積
+因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗試用 pprof 錄了一段後發現沒有直接的上升，於是直接進入容器裡面觀察 process 佔用的資源
+哇嗚，發現好多 chrome 的屍體 好了，開始研究為什麼 chromedp 沒幫我們把它關掉。 此時發現一張 Issue 有這個問題和其他人的研究成果
+解決方法 其實解決方法 chromedp 已經給你了
+FROM chromedp/headless-shell:latest ... # Install dumb-init or tini RUN apt install dumb-init # or RUN apt install tini ... ENTRYPOINT [&amp;quot;dumb-init&amp;quot;, &amp;quot;--&amp;quot;] # or ENTRYPOINT [&amp;quot;tini&amp;quot;, &amp;quot;--&amp;quot;] CMD [&amp;quot;/path/to/your/program&amp;quot;] 就是第 7 行的那個，在 docker image 中不要直接去跑你的程式而是用 dumb-init 去包起來跑！ 就可以避免殭屍進程了
+原因是這樣的，一般來說在執行 OS 的時候 Pid 為 1 的服務會是系統服務(ex: systemd, launchd)，然而在 Container 裡面 Pid=1 是我們自己的程式！</description>
+    </item>
+    
+    <item>
+      <title>golng 注入工具 wire</title>
+      <link>https://blog.10oz.tw/20200908-golang-di-tool-wire/</link>
+      <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200908-golang-di-tool-wire/</guid>
+      <description>wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。
+能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤
+ Q: Should I use Wire for small applications? Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler. 不複雜的小型專案還是手動注入會更乾淨喔~
+ go build tag 菜鳥如我這時候才知道，在 .go 檔案最前面加入 build tag 的檔案，在編譯的時候是不會被加進去的(ex: //+build foo ) 所以可以放重複的 function 在同一個 package 裡面，這個操作在 lorca 那篇也有出現過，可以交叉比較一下～
+這是一個 wire.go 檔案
+//+build wireinject package main import ( &amp;quot;learnGo/wire/repo&amp;quot; &amp;quot;learnGo/wire/service&amp;quot; &amp;quot;github.</description>
+    </item>
     
     <item>
       <title>Casbin 權限管理模組</title>

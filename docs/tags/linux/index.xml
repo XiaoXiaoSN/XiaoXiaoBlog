@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/linux/</link>
+    <description>Recent content in linux on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Apr 2021 01:19:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>啥? k8s node 硬碟空間滿了</title>
+      <link>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</link>
+      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</guid>
+      <description>發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼
+dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs 5.0M 0 5.0M 0% /run/lock tmpfs 5.9G 0 5.9G 0% /sys/fs/cgroup /dev/sda2 976M 213M 696M 24% /boot tmpfs 1.2G 0 1.2G 0% /run/user/1000 閉眼先清空一波 Docker image, volumn&amp;hellip;
+docker system prune -a 檢查一下還有啥米東西佔用了我們的空間</description>
+    </item>
+    
+    <item>
+      <title>Chromedp 殭屍進程</title>
+      <link>https://blog.10oz.tw/20210306-chromedp-zombi-process/</link>
+      <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210306-chromedp-zombi-process/</guid>
+      <description>問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積
+因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗試用 pprof 錄了一段後發現沒有直接的上升，於是直接進入容器裡面觀察 process 佔用的資源
+哇嗚，發現好多 chrome 的屍體 好了，開始研究為什麼 chromedp 沒幫我們把它關掉。 此時發現一張 Issue 有這個問題和其他人的研究成果
+解決方法 其實解決方法 chromedp 已經給你了
+FROM chromedp/headless-shell:latest ... # Install dumb-init or tini RUN apt install dumb-init # or RUN apt install tini ... ENTRYPOINT [&amp;quot;dumb-init&amp;quot;, &amp;quot;--&amp;quot;] # or ENTRYPOINT [&amp;quot;tini&amp;quot;, &amp;quot;--&amp;quot;] CMD [&amp;quot;/path/to/your/program&amp;quot;] 就是第 7 行的那個，在 docker image 中不要直接去跑你的程式而是用 dumb-init 去包起來跑！ 就可以避免殭屍進程了
+原因是這樣的，一般來說在執行 OS 的時候 Pid 為 1 的服務會是系統服務(ex: systemd, launchd)，然而在 Container 裡面 Pid=1 是我們自己的程式！</description>
+    </item>
+    
+  </channel>
+</rss>

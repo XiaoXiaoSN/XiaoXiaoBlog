@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>我要裝 vim | XiaoXiao Notes</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.62.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Xiao Xiao" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
+  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我要裝 vim"/>
+<meta name="twitter:description" content="好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&#34;==============================================================================&#34; vim 内置配置 &#34;==============================================================================&#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开&#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡&#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC&#34; 关闭兼容模式set nocompatibleset nu &#34; 设置行号set cursorline &#34;突出显示当前行set showmatch &#34; 显示括号匹配&#34; tab 缩进set tabstop=4 &#34; 设置Tab长度为4空格set shiftwidth=4 &#34; 设置自动缩进长度为4空格set autoindent &#34; 继承前一行的缩进方式，适用于多行注释&#34; 定义快捷键的前缀，即&lt;Leader&gt;let mapleader=&#34;,&#34; &#34; ==== 系统剪切板复制粘贴 ====&#34; v 模式下复制内容到系统剪切板vmap &lt;Leader&gt;c &#34;&#43;yy&#34; n 模式下复制一行到系统剪切板nmap &lt;Leader&gt;c &#34;&#43;yy&#34; n 模式下粘贴系统剪切板的内容nmap &lt;Leader&gt;v &#34;&#43;p&#34; 开启实时搜索set incsearch&#34; 搜索时大小写不敏感set ignorecasesyntax enablesyntax on &#34; 开启文件类型侦测filetype plugin indent on &#34; 启用自动补全&#34; 退出插入模式指定类型的文件自动保存au InsertLeave *."/>
+
+  <meta property="og:title" content="我要裝 vim" />
+<meta property="og:description" content="好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&#34;==============================================================================&#34; vim 内置配置 &#34;==============================================================================&#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开&#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡&#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC&#34; 关闭兼容模式set nocompatibleset nu &#34; 设置行号set cursorline &#34;突出显示当前行set showmatch &#34; 显示括号匹配&#34; tab 缩进set tabstop=4 &#34; 设置Tab长度为4空格set shiftwidth=4 &#34; 设置自动缩进长度为4空格set autoindent &#34; 继承前一行的缩进方式，适用于多行注释&#34; 定义快捷键的前缀，即&lt;Leader&gt;let mapleader=&#34;,&#34; &#34; ==== 系统剪切板复制粘贴 ====&#34; v 模式下复制内容到系统剪切板vmap &lt;Leader&gt;c &#34;&#43;yy&#34; n 模式下复制一行到系统剪切板nmap &lt;Leader&gt;c &#34;&#43;yy&#34; n 模式下粘贴系统剪切板的内容nmap &lt;Leader&gt;v &#34;&#43;p&#34; 开启实时搜索set incsearch&#34; 搜索时大小写不敏感set ignorecasesyntax enablesyntax on &#34; 开启文件类型侦测filetype plugin indent on &#34; 启用自动补全&#34; 退出插入模式指定类型的文件自动保存au InsertLeave *." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200926-wanna-install-vim/" />
+<meta property="article:published_time" content="2021-04-17T02:03:48+08:00" />
+<meta property="article:modified_time" content="2021-04-17T02:03:48+08:00" />
+
+</head>
+
+<body>
+    
+  <header class="app-header">
+    <a href="https://blog.10oz.tw">
+      <img class="app-header-avatar" src="/profile.jpg"
+        alt="Xiao Xiao" />
+      <h1 class="title">XiaoXiao Notes</h1>
+    </a>
+    <p class="sub-title"> XiaoXiao 的筆記書</p>
+
+    <div class="social-icon">
+      
+      <a target="_blank" href="https://github.com/XiaoXiaoSN"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+    </div>
+
+    <aside>
+      <ul class="start-menu">
+        
+        
+        
+            <li>
+            <a href="/">
+                <span>回到文章列表</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/tags">
+                <span>用 Tags 分類</span>
+            </a>
+            </li>
+        
+        
+        
+            <li>
+            <a href="/about">
+                <span>關於 XiaoXiao</span>
+            </a>
+            </li>
+        
+        
+
+      </ul>
+    </aside>
+  </header>
+
+
+  <main class="app-container">
+    
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">我要裝 vim</h1>
+    <div class="post-meta">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+        Apr 17, 2021
+      </div><div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+        <a class="tag" href="https://blog.10oz.tw/tags/vim/">vim</a><a class="tag" href="https://blog.10oz.tw/tags/golang/">golang</a></div></div>
+  </header>
+
+  <aside>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#設定開始">設定開始</a>
+      <ul>
+        <li><a href="#撰寫設定檔">撰寫設定檔</a></li>
+        <li><a href="#安裝相關插件">安裝相關插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用者筆記">使用者筆記</a>
+      <ul>
+        <li><a href="#插件們">插件們</a></li>
+        <li><a href="#vim-基本常用指令">Vim 基本常用指令</a></li>
+      </ul>
+    </li>
+    <li><a href="#ref">Ref</a></li>
+  </ul>
+</nav>
+  </aside>
+
+  <div class="post-content">
+    <p>好文章推推，直接抄爆
+<a href="https://learnku.com/articles/24924">https://learnku.com/articles/24924</a></p>
+<h2 id="設定開始">設定開始</h2>
+<h3 id="撰寫設定檔">撰寫設定檔</h3>
+<p>首先 <code>vim ~/.vimrc</code> 改成下面這模樣</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; vim 内置配置 </span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 关闭兼容模式</span><span style="">
+</span><span style=""></span>set nocompatible<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span>set nu <span style="color:#60a0b0;font-style:italic">&#34; 设置行号</span><span style="">
+</span><span style=""></span>set cursorline <span style="color:#60a0b0;font-style:italic">&#34;突出显示当前行</span><span style="">
+</span><span style=""></span>set showmatch <span style="color:#60a0b0;font-style:italic">&#34; 显示括号匹配</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; tab 缩进</span><span style="">
+</span><span style=""></span>set tabstop=<span style="color:#40a070">4</span> <span style="color:#60a0b0;font-style:italic">&#34; 设置Tab长度为4空格</span><span style="">
+</span><span style=""></span>set shiftwidth=<span style="color:#40a070">4</span> <span style="color:#60a0b0;font-style:italic">&#34; 设置自动缩进长度为4空格</span><span style="">
+</span><span style=""></span>set autoindent <span style="color:#60a0b0;font-style:italic">&#34; 继承前一行的缩进方式，适用于多行注释</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 定义快捷键的前缀，即&lt;Leader&gt;</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> mapleader=<span style="color:#4070a0">&#34;,&#34;</span> <span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; ==== 系统剪切板复制粘贴 ====</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; v 模式下复制内容到系统剪切板</span><span style="">
+</span><span style=""></span>vmap &lt;Leader&gt;c <span style="color:#60a0b0;font-style:italic">&#34;+yy</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; n 模式下复制一行到系统剪切板</span><span style="">
+</span><span style=""></span>nmap &lt;Leader&gt;c <span style="color:#60a0b0;font-style:italic">&#34;+yy</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; n 模式下粘贴系统剪切板的内容</span><span style="">
+</span><span style=""></span>nmap &lt;Leader&gt;v <span style="color:#60a0b0;font-style:italic">&#34;+p</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 开启实时搜索</span><span style="">
+</span><span style=""></span>set incsearch<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 搜索时大小写不敏感</span><span style="">
+</span><span style=""></span>set ignorecase<span style="">
+</span><span style=""></span>syntax enable<span style="">
+</span><span style=""></span>syntax on                    <span style="color:#60a0b0;font-style:italic">&#34; 开启文件类型侦测</span><span style="">
+</span><span style=""></span>filetype plugin indent on    <span style="color:#60a0b0;font-style:italic">&#34; 启用自动补全</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 退出插入模式指定类型的文件自动保存</span><span style="">
+</span><span style=""></span>au InsertLeave *.go,*.sh,*.php write<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 插件配置 </span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 插件开始的位置</span><span style="">
+</span><span style=""></span>call plug#begin(<span style="color:#4070a0">&#39;~/.vim/plugged&#39;</span>)<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; Shorthand notation; fetches https://github.com/junegunn/vim-easy-align</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 可以快速对齐的插件</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;junegunn/vim-easy-align&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 用来提供一个导航目录的侧边栏</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;scrooloose/nerdtree&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 可以使 nerdtree Tab 标签的名称更友好些</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;jistr/vim-nerdtree-tabs&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 可以在导航目录中看到 git 版本信息</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;Xuyuanp/nerdtree-git-plugin&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 支援更多 git 的功能</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;tpope/vim-fugitive&#39;</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;tpope/vim-rhubarb&#39;</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;shumphrey/fugitive-gitlab.vim&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 可以在文档中显示 git 信息</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;airblade/vim-gitgutter&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 查看当前代码文件中的变量和函数列表的插件，</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 可以切换和跳转到代码中对应的变量和函数的位置</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 大纲式导航, Go 需要 https://github.com/jstemmer/gotags 支持</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;majutsushi/tagbar&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 自动补全括号的插件，包括小括号，中括号，以及花括号</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;jiangmiao/auto-pairs&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;vim-airline/vim-airline&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 代码自动完成，安装完插件还需要额外配置才可以使用</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;Valloric/YouCompleteMe&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 下面两个插件要配合使用，可以自动生成代码块</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;SirVer/ultisnips&#39;</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;honza/vim-snippets&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 配色方案</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;fatih/molokai&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; go 主要插件</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;fatih/vim-go&#39;</span>, { <span style="color:#4070a0">&#39;tag&#39;</span>: <span style="color:#4070a0">&#39;*&#39;</span> }<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; go 中的代码追踪，输入 gd 就可以自动跳转</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;dgryski/vim-godef&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; markdown 插件</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;iamcco/mathjax-support-for-mkdp&#39;</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;iamcco/markdown-preview.vim&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 模糊搜尋</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;junegunn/fzf&#39;</span>, { <span style="color:#4070a0">&#39;dir&#39;</span>: <span style="color:#4070a0">&#39;~/.fzf&#39;</span>, <span style="color:#4070a0">&#39;do&#39;</span>: <span style="color:#4070a0">&#39;./install --all&#39;</span>  }<span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;junegunn/fzf.vim&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 多行編輯</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;mg979/vim-visual-multi&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 搜尋</span><span style="">
+</span><span style=""></span>Plug <span style="color:#4070a0">&#39;mileszs/ack.vim&#39;</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:ackprg = <span style="color:#4070a0">&#39;ag --nogroup --nocolor --column&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 插件结束的位置，插件全部放在此行上面</span><span style="">
+</span><span style=""></span>call plug#end()<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 主题配色 </span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:rehash256 = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:molokai_original = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span>colorscheme molokai<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; colorscheme sublimemonokai</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; vim-go 插件</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_fmt_command = <span style="color:#4070a0">&#34;goimports&#34;</span> <span style="color:#60a0b0;font-style:italic">&#34; 格式化将默认的 gofmt 替换</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_autodetect_gopath = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_list_type = <span style="color:#4070a0">&#34;quickfix&#34;</span><span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_version_warning = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_types = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_fields = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_functions = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_function_calls = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_operators = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_extra_types = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_methods = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_generate_tags = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_format_strings = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_function_arguments = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_generate_tags = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:go_highlight_variable_declarations = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:godef_split=<span style="color:#40a070">2</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; NERDTree 插件</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 打开和关闭NERDTree快捷键</span><span style="">
+</span><span style=""></span>map &lt;F10&gt; :NERDTreeToggle&lt;CR&gt;<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 显示行号</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> NERDTreeShowLineNumbers=<span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 打开文件时是否显示目录</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> NERDTreeAutoCenter=<span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 是否显示隐藏文件</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> NERDTreeShowHidden=<span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 设置宽度</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; let NERDTreeWinSize=31</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 忽略一下文件的显示</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> NERDTreeIgnore=[<span style="color:#4070a0">&#39;\.pyc&#39;</span>, <span style="color:#4070a0">&#39;\~$&#39;</span>, <span style="color:#4070a0">&#39;\.swp&#39;</span>, <span style="color:#4070a0">&#39;.git&#39;</span>]<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; 打开 vim 文件及显示书签列表</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> NERDTreeShowBookmarks=<span style="color:#40a070">2</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; 在终端启动vim时，共享NERDTree</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:nerdtree_tabs_open_on_console_startup=<span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;  majutsushi/tagbar 插件</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; majutsushi/tagbar 插件打开关闭快捷键</span><span style="">
+</span><span style=""></span>nmap &lt;F9&gt; :TagbarToggle&lt;CR&gt;<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:tagbar_type_go = {<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#39;ctagstype&#39;</span> : <span style="color:#4070a0">&#39;go&#39;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#39;kinds&#39;</span>     : [<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;p:package&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;i:imports:1&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;c:constants&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;v:variables&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;t:types&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;n:interfaces&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;w:fields&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;e:embedded&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;m:methods&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;r:constructor&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;f:functions&#39;</span><span style="">
+</span><span style=""></span>    \ ],<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#39;sro&#39;</span> : <span style="color:#4070a0">&#39;.&#39;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#39;kind2scope&#39;</span> : {<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;t&#39;</span> : <span style="color:#4070a0">&#39;ctype&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;n&#39;</span> : <span style="color:#4070a0">&#39;ntype&#39;</span><span style="">
+</span><span style=""></span>    \ },<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#39;scope2kind&#39;</span> : {<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;ctype&#39;</span> : <span style="color:#4070a0">&#39;t&#39;</span>,<span style="">
+</span><span style=""></span>        \ <span style="color:#4070a0">&#39;ntype&#39;</span> : <span style="color:#4070a0">&#39;n&#39;</span><span style="">
+</span><span style=""></span>    \ },<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#39;ctagsbin&#39;</span>  : <span style="color:#4070a0">&#39;gotags&#39;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#39;ctagsargs&#39;</span> : <span style="color:#4070a0">&#39;-sort -silent&#39;</span><span style="">
+</span><span style=""></span>\ }<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;  nerdtree-git-plugin 插件</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:NERDTreeGitStatusIndicatorMapCustom = {<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Modified&#34;</span>  : <span style="color:#4070a0">&#34;✹&#34;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Staged&#34;</span>    : <span style="color:#4070a0">&#34;✚&#34;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Untracked&#34;</span> : <span style="color:#4070a0">&#34;✭&#34;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Renamed&#34;</span>   : <span style="color:#4070a0">&#34;➜&#34;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Unmerged&#34;</span>  : <span style="color:#4070a0">&#34;═&#34;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Deleted&#34;</span>   : <span style="color:#4070a0">&#34;✖&#34;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Dirty&#34;</span>     : <span style="color:#4070a0">&#34;✗&#34;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Clean&#34;</span>     : <span style="color:#4070a0">&#34;✔︎&#34;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#39;Ignored&#39;</span>   : <span style="color:#4070a0">&#39;☒&#39;</span>,<span style="">
+</span><span style=""></span>    \ <span style="color:#4070a0">&#34;Unknown&#34;</span>   : <span style="color:#4070a0">&#34;?&#34;</span><span style="">
+</span><span style=""></span>    \ }<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:NERDTreeGitStatusShowIgnored = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;  nerdtree-git-plugin 插件</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; [Buffers] Jump to the existing window if possible</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:fzf_buffers_jump = <span style="color:#40a070">1</span><span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span>nnoremap &lt;leader&gt;fl :Lines <span style="">
+</span><span style=""></span>nnoremap &lt;leader&gt;fbl :BLines <span style="">
+</span><span style=""></span>nnoremap &lt;leader&gt;ff :Files <span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;  Valloric/YouCompleteMe 插件</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; make YCM compatible with UltiSnips (using supertab)</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:ycm_key_list_select_completion = [<span style="color:#4070a0">&#39;&lt;C-n&gt;&#39;</span>, <span style="color:#4070a0">&#39;&lt;space&gt;&#39;</span>]<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:ycm_key_list_previous_completion = [<span style="color:#4070a0">&#39;&lt;C-p&gt;&#39;</span>, <span style="color:#4070a0">&#39;&lt;Up&gt;&#39;</span>]<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:SuperTabDefaultCompletionType = <span style="color:#4070a0">&#39;&lt;C-n&gt;&#39;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; better key bindings for UltiSnipsExpandTrigger</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:UltiSnipsExpandTrigger = <span style="color:#4070a0">&#34;&lt;tab&gt;&#34;</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:UltiSnipsJumpForwardTrigger = <span style="color:#4070a0">&#34;&lt;tab&gt;&#34;</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:UltiSnipsJumpBackwardTrigger = <span style="color:#4070a0">&#34;&lt;s-tab&gt;&#34;</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;  支援更多 git </span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34; GBrower gitlab</span><span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:fugitive_gitlab_domains = [<span style="color:#4070a0">&#39;https://gitlab.silkrode.com.tw&#39;</span>]<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">let</span> g:gitlab_api_keys = {<span style="color:#4070a0">&#39;gitlab.silkrode.com.tw&#39;</span>: <span style="color:#4070a0">&#39;這個可能不能公開&#39;</span>}<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;  其他插件配置</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">&#34;==============================================================================</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; markdwon 的快捷键</span><span style="">
+</span><span style=""></span>map &lt;silent&gt; &lt;F5&gt; &lt;Plug&gt;MarkdownPreview<span style="">
+</span><span style=""></span>map &lt;silent&gt; &lt;F6&gt; &lt;Plug&gt;StopMarkdownPreview<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic">
+</span><span style="color:#60a0b0;font-style:italic">&#34; tab 标签页切换快捷键</span><span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">1</span> <span style="color:#40a070">1</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">2</span> <span style="color:#40a070">2</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">3</span> <span style="color:#40a070">3</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">4</span> <span style="color:#40a070">4</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">5</span> <span style="color:#40a070">5</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">6</span> <span style="color:#40a070">6</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">7</span> <span style="color:#40a070">7</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">8</span> <span style="color:#40a070">8</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">9</span> <span style="color:#40a070">8</span>gt<span style="">
+</span><span style=""></span>:nn &lt;Leader&gt;<span style="color:#40a070">0</span> :tablast&lt;CR&gt;<span style="">
+</span></code></pre></div><h3 id="安裝相關插件">安裝相關插件</h3>
+<h4 id="plug---vim-套件管理工具">Plug - vim 套件管理工具</h4>
+<p>我們要用 <code>Plug</code> 來裝插件 <a href="https://github.com/junegunn/vim-plug">https://github.com/junegunn/vim-plug</a></p>
+<p>unix 版本</p>
+<pre><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+</code></pre><p>然後輸入 <code>vim +PlugInstall</code> 開始安裝
+再來安裝 <code>vim +GoInstallBinaries</code> golang tools，雖然沒意外的話早就裝過惹呢XDD</p>
+<h4 id="你完成我---自動補齊工具">你完成我 - 自動補齊工具</h4>
+<p>YouCompleteMe 剛才已經用 Plug 下載下來了，不過還不能直接使用</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#007020">cd</span> .vim/plugged/YouCompleteMe
+
+brew install cmake macvim <span style="color:#60a0b0;font-style:italic"># 可選: python mono go nodejs</span>
+
+<span style="color:#60a0b0;font-style:italic"># 如果不指定 go 的話，他會安裝 C# Go JavaScript Rust Jaca</span>
+python3 install.py --go-completer
+</code></pre></div><h2 id="使用者筆記">使用者筆記</h2>
+<h3 id="插件們">插件們</h3>
+<p>雖然剛剛裝了滿滿的 plugin 但也要會用才行rrr 😂😂</p>
+<h4 id="nerdtree---左邊的-sidebar">NERDTree - 左邊的 Sidebar</h4>
+<ul>
+<li><code>C_w</code> + [上下左右] 切換到 [上下左右] 的分割視窗</li>
+<li><code>C_w</code> + <code>w</code> 切換到下一個分割視窗</li>
+<li>在 NERDTress 對檔案 <code>t</code> 開啟新分頁</li>
+<li>在 NERDTress 對檔案 <code>o</code> 開啟新分頁，並跳過去</li>
+<li>在 NERDTress 對資料夾 <code>o</code> 展開/縮合資料夾</li>
+<li>在 NERDTress 按下 <code>m</code> 會進入檔案管理模式，再來按 <code>a</code> 可以新增檔案</li>
+<li>切換到指定分頁 <code>&lt;Leader&gt;[1-9]</code> 或是上面有設定 <code>[1-9]gt</code></li>
+</ul>
+<h4 id="vim-fugitive-提供了很多在-vim-上面整合-git-的功能">vim-fugitive 提供了很多在 vim 上面整合 git 的功能</h4>
+<ul>
+<li><code>:Gdiffsplit</code> 水平分割 git diff 畫面 (上下)</li>
+<li><code>:Gvdiff</code> 垂直分割 git diff 畫面 (看左右好像比較習慣)</li>
+<li><code>:GBrowser</code> 直接在網頁(github, gitlab)上開啟目前的檔案</li>
+</ul>
+<h3 id="vim-基本常用指令">Vim 基本常用指令</h3>
+<ul>
+<li>多行修改: <code>C_V</code> 選取， <code>I</code> 進入修改模式</li>
+<li><code>C_d</code> 下滑一頁</li>
+<li><code>C_b</code> 上滑一頁</li>
+<li><code>:set syn=yaml</code> 設定語法高亮</li>
+</ul>
+<h2 id="ref">Ref</h2>
+<p><a href="https://learnku.com/articles/24924">https://learnku.com/articles/24924</a>
+<a href="https://github.com/ycm-core/YouCompleteMe">https://github.com/ycm-core/YouCompleteMe</a></p>
+
+  </div>
+
+  <div class="post-footer">
+    
+  </div>
+</article>
+
+
+  </main>
+</body>
+
+</html>

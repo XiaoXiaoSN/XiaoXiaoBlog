@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kops on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/kops/</link>
+    <description>Recent content in kops on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 31 Mar 2021 01:32:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.10oz.tw/tags/kops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>想用 Terraform 與 kOps 也得寫個筆記</title>
+      <link>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</link>
+      <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</guid>
+      <description>流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform
+brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key
+直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器👍
+provider &amp;quot;aws&amp;quot; { # access_key = &amp;quot;$AWS_ACCESS_KEY_ID&amp;quot; # secret_key = &amp;quot;$AWS_SECRET_ACCESS_KEY&amp;quot; region = &amp;quot;ap-northeast-1&amp;quot; } data &amp;quot;aws_ami&amp;quot; &amp;quot;ubuntu&amp;quot; { most_recent = true filter { name = &amp;quot;name&amp;quot; values = [&amp;quot;ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*&amp;quot;] } filter { name = &amp;quot;root-device-type&amp;quot; values = [&amp;quot;ebs&amp;quot;] } filter { name = &amp;quot;virtualization-type&amp;quot; values = [&amp;quot;hvm&amp;quot;] } owners = [&amp;quot;099720109477&amp;quot;] # Canonical } # resource &amp;lt;resource_type&amp;gt; &amp;lt;resource_name&amp;gt; resource &amp;quot;aws_instance&amp;quot; &amp;quot;example&amp;quot; { ami = data.</description>
+    </item>
+    
+  </channel>
+</rss>
