@@ -1,6 +1,6 @@
 ---
 title: "我要裝 vim"
-date: 2021-04-17T02:03:48+08:00
+date: 2020-09-26T02:03:48+08:00
 draft: false
 tags: ["vim", "golang"]
 ---

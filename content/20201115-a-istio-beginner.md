@@ -1,5 +1,5 @@
 ---
-title: "新米 Istio 篇"
+title: "新米 Istio - 安裝篇"
 date: 2020-11-15T01:36:30+08:00
 draft: false
 tags: ["kubernetes", "istio", "service-mesh"]

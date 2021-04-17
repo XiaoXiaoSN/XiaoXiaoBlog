@@ -4,11 +4,27 @@
     <ul class="posts-list">
       {{ range where .Paginator.Pages "Type" "page" }}
         <li class="posts-list-item">
+          <!-- The Article Title -->
           <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
+
+          <!-- Created Time -->
           <span class="posts-list-item-description">
             {{ partial "icon.html" (dict "ctx" $ "name" "clock") }} -
             {{ .PublishDate.Format "Jan 2, 2006" }}
           </span>
+
+          <!-- Tags of Article, if them exist -->
+          {{- with .Params.tags -}}
+          <div class="posts-list-item-description">
+            {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+            {{ range . -}}
+            {{- with $.Site.GetPage (printf "/%s/%s" "tags" . ) -}}
+            <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
+            {{- end -}}
+            {{- end -}}
+          </div>
+          {{- end -}}
+
         </li>
       {{ end }}
     </ul>

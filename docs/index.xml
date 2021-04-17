@@ -6,21 +6,10 @@
     <description>Recent content on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Apr 2021 02:03:48 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 09 Apr 2021 01:29:53 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>我要裝 vim</title>
-      <link>https://blog.10oz.tw/20200926-wanna-install-vim/</link>
-      <pubDate>Sat, 17 Apr 2021 02:03:48 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
-      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924
-設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
-&amp;#34;==============================================================================&amp;#34; vim 内置配置 &amp;#34;==============================================================================&amp;#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开&amp;#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡&amp;#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC&amp;#34; 关闭兼容模式set nocompatibleset nu &amp;#34; 设置行号set cursorline &amp;#34;突出显示当前行set showmatch &amp;#34; 显示括号匹配&amp;#34; tab 缩进set tabstop=4 &amp;#34; 设置Tab长度为4空格set shiftwidth=4 &amp;#34; 设置自动缩进长度为4空格set autoindent &amp;#34; 继承前一行的缩进方式，适用于多行注释&amp;#34; 定义快捷键的前缀，即&amp;lt;Leader&amp;gt;let mapleader=&amp;#34;,&amp;#34; &amp;#34; ==== 系统剪切板复制粘贴 ====&amp;#34; v 模式下复制内容到系统剪切板vmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下复制一行到系统剪切板nmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下粘贴系统剪切板的内容nmap &amp;lt;Leader&amp;gt;v &amp;#34;+p&amp;#34; 开启实时搜索set incsearch&amp;#34; 搜索时大小写不敏感set ignorecasesyntax enablesyntax on &amp;#34; 开启文件类型侦测filetype plugin indent on &amp;#34; 启用自动补全&amp;#34; 退出插入模式指定类型的文件自动保存au InsertLeave *.</description>
-    </item>
     
     <item>
       <title>究竟阿狗能做什麼呢</title>
@@ -148,7 +137,7 @@ enum Status { STATUS_OK = 0; STATUS_FAIL = 1;}message NullInt32 { bool valid = 1
     </item>
     
     <item>
-      <title>新米 Istio 篇</title>
+      <title>新米 Istio - 安裝篇</title>
       <link>https://blog.10oz.tw/20201115-a-istio-beginner/</link>
       <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
       
@@ -167,6 +156,17 @@ curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$
  Over Fetch Restful API 的回傳會是一整個 resource， /user/1 會回傳 id=1 的 User 的全部資料，然而在很多情況下我們不需要這麼多的資料，可能 我們僅僅只需要 user 的名字而已 在 GraphQL 你可以指定你所需要的欄位，大大的減少了傳輸無用資料的消耗 Under Fetch 也就是 n+1 問題，情景是 user 有很多的 friends，每個朋友都是一名 User，在 Restful 的設計中，每個 User resource 都是一支 API，想想就頭痛 QQ。因此會在後端客製化 API 做 eager loading，一次回傳這些資料 但到了 GraphQL 這完全不是問題，你可以向下定義你所需要的資料，並嵌入 User 中 query{User(id:1){NameAvatarURLfriends{IDName}}}  在設計上，GraphQL 關注 明確的解釋查詢語言與型態系統 而不去描述伺服器端實作，前後端之間以 Schema 定義溝通介面，雙方有共通的資料型態以及明確定義的詞彙來討論
 讓一切清楚且簡單～
 怎麼用r 工具會用一點 - GraphQL Playground 認識一些 GraphQL Schema GraphQL 定義自己的語法格式，他是個 SDL (Schema Define Language)</description>
+    </item>
+    
+    <item>
+      <title>我要裝 vim</title>
+      <link>https://blog.10oz.tw/20200926-wanna-install-vim/</link>
+      <pubDate>Sat, 26 Sep 2020 02:03:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
+      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&amp;#34;==============================================================================&amp;#34; vim 内置配置 &amp;#34;==============================================================================&amp;#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开&amp;#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡&amp;#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC&amp;#34; 关闭兼容模式set nocompatibleset nu &amp;#34; 设置行号set cursorline &amp;#34;突出显示当前行set showmatch &amp;#34; 显示括号匹配&amp;#34; tab 缩进set tabstop=4 &amp;#34; 设置Tab长度为4空格set shiftwidth=4 &amp;#34; 设置自动缩进长度为4空格set autoindent &amp;#34; 继承前一行的缩进方式，适用于多行注释&amp;#34; 定义快捷键的前缀，即&amp;lt;Leader&amp;gt;let mapleader=&amp;#34;,&amp;#34; &amp;#34; ==== 系统剪切板复制粘贴 ====&amp;#34; v 模式下复制内容到系统剪切板vmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下复制一行到系统剪切板nmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下粘贴系统剪切板的内容nmap &amp;lt;Leader&amp;gt;v &amp;#34;+p&amp;#34; 开启实时搜索set incsearch&amp;#34; 搜索时大小写不敏感set ignorecasesyntax enablesyntax on &amp;#34; 开启文件类型侦测filetype plugin indent on &amp;#34; 启用自动补全&amp;#34; 退出插入模式指定类型的文件自动保存au InsertLeave *.</description>
     </item>
     
     <item>
