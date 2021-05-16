@@ -1,0 +1,208 @@
+baseURL: https://blog.10oz.tw
+theme: pure
+title: "XiaoXiao Notes"
+copyright: "CC BY 4.0 CN"
+defaultContentLanguage: en  # en/zh/...
+footnoteReturnLinkContents: ↩
+hasCJKLanguage: true # auto-detect Chinese/Japanese/Korean Languages
+enableEmoji: true
+PygmentsCodeFences: false
+googleAnalytics: ""      # UA-XXXXXXXX-X 
+publishDir: docs
+staticDir: ["static"]
+
+# Default number of elements per page in pagination.
+paginate: 7
+paginatePath: pages
+
+permalinks:
+  posts: /:filename
+
+taxonomies:
+    category : categories
+    tag : tags
+    series : series
+
+outputFormats:          # use for search. recommend not to modify 
+  SearchIndex:
+    mediaType: "application/json"
+    baseName: "searchindex"
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+    home: ["HTML","RSS","SearchIndex"]  # recommend not to modify
+# sitemap
+sitemap:
+  changefreq: monthly
+  filename: sitemap.xml
+  priority: 0.5
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      title: Home
+      url: /
+      weight: 1
+
+    - identifier: archives
+      name: Archives
+      title: Archives
+      url: /posts/
+      weight: 2
+
+    # - identifier: categories
+    #   name: Categories
+    #   title: Categories
+    #   url: /categories/
+    #   weight: 3
+
+    - identifier: tags
+      name: Tags
+      title: Tags
+      url: /tags/
+      weight: 4
+
+    - identifier: about
+      name: About
+      title: About
+      url: /about/
+      weight: 5
+
+params:
+  config:
+    # theme color default is white. 
+    # other type [ theme-black, theme-blue, theme-green, theme-purple ]
+    skin: theme-black
+    layout: main-center # main-left main-center main-right
+    excerpt_link: Read More
+    toc: true
+
+  since: 2018
+  dateFormatToUse: "2006-01-02"
+  enablePostCopyright: false
+  copyright_link: http://creativecommons.org/licenses/by/4.0/deed.zh
+  # the directory under content folder that you want to render
+  mainSections: ["posts"]
+
+  # Icon Reference: http://blog.cofess.com/hexo-theme-pure/iconfont/demo_fontclass.html
+  enableMathJax: true # Enable mathjax support, to use mathematical notations
+
+  # refer to http://staticfile.org/, 
+  # search highlight.js, already have highlight.min.js
+  highlightjs:
+    langs: ["python", "javascript", "go"]
+
+  tag_cloud:
+    min: 6
+    max: 20
+  # Allows you to specify an override stylesheet
+  # put custom.css in $hugo_root_dir/static/
+  # customCSS: css/custom.css
+
+  profile:
+    enabled: true # Whether to show profile bar
+    avatar: avatar.jpg
+    gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+    author: "XiaoXiao Notes"
+    author_title: 
+    # author_description: Good Good Study, Day Day Up~
+    location: Taiwan,Taipei
+    follow: https://github.com/XiaoXiaoSN
+    # Social Links
+    social:
+      links:
+        github: https://github.com/XiaoXiaoSN
+        # weibo: http://weibo.com/{yourid}
+        # twitter: https://twitter.com/
+        # facebook: /
+        rss: /index.xml
+      link_tooltip: true # enable the social link  , options: true, false
+
+  site:
+    board: |
+      這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
+      有助於回憶過去曾經做過的事情
+
+  # Sidebar, disable when set false or "none"
+  sidebar: "right"
+
+  # Sidebar only the following widgets. you can remove any you don't like it.
+  widgets:
+    - board
+    - tag_cloud
+    - recent_posts
+
+  # menuIcons define Sidebar icon
+  menuIcons:
+    enable: true
+    home: icon-home-fill
+    archives: icon-archives-fill
+    categories: icon-folder
+    tags: icon-tags
+    repository: icon-project
+    books: icon-book-fill
+    links: icon-friendship
+    about: icon-cup-fill
+
+  # Search
+  # thanks for https://raw.githubusercontent.com/ppoffice/hexo-theme-icarus/master/source/js/insight.js
+  search:
+    enable: true
+
+  # Comment
+  comment:
+    type:  gitalk # support gitalk/disqus/valine
+    gitalk: # gitalk. https://gitalk.github.io/
+      owner: XiaoXiaoSN # GitHub repository 所有者，可以是个人或者组织。
+      admin: XiaoXiaoSN # GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。
+      repo: https://github.com/XiaoXiaoSN/XiaoXiaoBlog # GitHub repository.
+      ClientID: 8734c77d5c1155dc493c # GitHub Application Client ID.
+      ClientSecret: 0a2e5561106925c8d63cf511cc8a946c4976a26e # GitHub Application Client Secret.
+    # disqus: your_disqus_name # enter disqus shortname here
+    # valine: # Valine. https://valine.js.org
+    #   appid: # your leancloud application appid
+    #   appkey: # your leancloud application appkey
+    #   notify: # mail notifier , https://github.com/xCss/Valine/wiki
+    #   verify: # Verification code
+    #   placeholder: enjoy~ # comment box placeholder
+    #   avatar: mm # gravatar style
+    #   meta: nick,mail # custom comment header
+    #   pageSize: 10 # pagination size
+    #   visitor: false # Article reading statistic https://valine.js.org/visitor.html
+
+  # Share
+  # weibo,qq,qzone,wechat,tencent,douban,diandian,
+  # facebook,twitter,google,linkedIn
+  share:
+    enable: true
+    sites: facebook,twitter # PC 端显示的分享图标
+    mobile_sites: facebook,twitter # 移动端显示的分享图标
+
+  # 是否在文章內顯示預計閱讀時間和文章字數
+  postCount:
+    enable: true
+    wordcount: true # 文章字數
+    min2read: false # 預計閱讀時間
+
+  # # Donate
+  # donate:
+  #   enable: false
+  #   # 微信打赏
+  #   wechatpay:
+  #     qrcode: donate/wechatpayimg.png
+  #     title: 微信支付
+  #   # 支付宝打赏
+  #   alipay:
+  #     qrcode: donate/alipayimg.png
+  #     title: 支付宝
+
+  # # PV
+  # pv:
+  #   busuanzi:
+  #     enable: false # 不蒜子统计
+  #   leancloud:
+  #     enable: false # leancloud统计
+  #     app_id: # leancloud <AppID>
+  #     app_key: # leancloud <AppKey>
