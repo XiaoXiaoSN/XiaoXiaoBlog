@@ -1,139 +1,544 @@
-<!doctype html>
-<html lang="en-us">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        筆記 Laravel API 權限 (Passport) - XiaoXiao Notes
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="使用 JWT 版本 (2018/09 更新) 前面幾個步驟同官方安裝教學 步驟說明 1. composer 載回來 composer require laravel/passport 2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token) 3.創造 key php artisan passport:install 他會幫你的" />
+    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <title>筆記 Laravel API 權限 (Passport) - XiaoXiao Notes</title>
+    
+    
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.7f05eefbe4e8a5abb404479e9bccf1fef15386be80de86f7360e22fef68fd71a.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="筆記 Laravel API 權限 (Passport)" />
+<meta property="og:description" content="使用 JWT 版本 (2018/09 更新) 前面幾個步驟同官方安裝教學 步驟說明 1. composer 載回來 composer require laravel/passport 2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token) 3.創造 key php artisan passport:install 他會幫你的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-02-17T09:46:31&#43;08:00" />
+<meta property="article:modified_time" content="2019-02-17T09:46:31&#43;08:00" />
 
-<head>
-  <title>筆記 Laravel API 權限 (Passport) | XiaoXiao Notes</title>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.62.2" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Xiao Xiao" />
-  <meta name="description"
-    content="" />
-  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
-  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+<meta itemprop="name" content="筆記 Laravel API 權限 (Passport)">
+<meta itemprop="description" content="使用 JWT 版本 (2018/09 更新) 前面幾個步驟同官方安裝教學 步驟說明 1. composer 載回來 composer require laravel/passport 2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token) 3.創造 key php artisan passport:install 他會幫你的"><meta itemprop="datePublished" content="2019-02-17T09:46:31&#43;08:00" />
+<meta itemprop="dateModified" content="2019-02-17T09:46:31&#43;08:00" />
+<meta itemprop="wordCount" content="1330">
+<meta itemprop="keywords" content="php,laravel,passport,jwt," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="筆記 Laravel API 權限 (Passport)"/>
+<meta name="twitter:description" content="使用 JWT 版本 (2018/09 更新) 前面幾個步驟同官方安裝教學 步驟說明 1. composer 載回來 composer require laravel/passport 2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token) 3.創造 key php artisan passport:install 他會幫你的"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
 
   
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="筆記 Laravel API 權限 (Passport)"/>
-<meta name="twitter:description" content="使用 JWT 版本 (2018/09 更新)  前面幾個步驟同官方安裝教學
- 步驟說明 1. composer 載回來 composer require laravel/passport
-2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token)
-3.創造 key php artisan passport:install
-他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)
-同時也準備 2 個 Client Key 在 oauth_clients 資料表內
-Personal access client created successfully. Client ID: 1 Client Secret: ETOhMRq7faRSnb1jN2F168jlbYFcf25MOHj0cOxt Password grant client created successfully. Client ID: 2 Client Secret: fibc50RiIjAiYSLR7xceQyoxQE3oGWtIXpCLj9Co 4. 附加 passport 至 auth 系統  在 app\User."/>
+  
 
-  <meta property="og:title" content="筆記 Laravel API 權限 (Passport)" />
-<meta property="og:description" content="使用 JWT 版本 (2018/09 更新)  前面幾個步驟同官方安裝教學
- 步驟說明 1. composer 載回來 composer require laravel/passport
-2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token)
-3.創造 key php artisan passport:install
-他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)
-同時也準備 2 個 Client Key 在 oauth_clients 資料表內
-Personal access client created successfully. Client ID: 1 Client Secret: ETOhMRq7faRSnb1jN2F168jlbYFcf25MOHj0cOxt Password grant client created successfully. Client ID: 2 Client Secret: fibc50RiIjAiYSLR7xceQyoxQE3oGWtIXpCLj9Co 4. 附加 passport 至 auth 系統  在 app\User." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/" />
-<meta property="article:published_time" content="2019-02-17T09:46:31+08:00" />
-<meta property="article:modified_time" content="2019-02-17T09:46:31+08:00" />
-
-</head>
-
-<body>
-    
-  <header class="app-header">
-    <a href="https://blog.10oz.tw">
-      <img class="app-header-avatar" src="/profile.jpg"
-        alt="Xiao Xiao" />
-      <h1 class="title">XiaoXiao Notes</h1>
-    </a>
-    <p class="sub-title"> XiaoXiao 的筆記書</p>
-
-    <div class="social-icon">
-      
-      <a target="_blank" href="https://github.com/XiaoXiaoSN"
-        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
-  <title>github</title>
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-</svg></a>
-      
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/XiaoXiaoSN" target="_blank">
+            <img class="img-circle" src="https://blog.10oz.tw/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">XiaoXiao Notes</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
     </div>
-
-    <aside>
-      <ul class="start-menu">
-        
-        
-        
-            <li>
-            <a href="/">
-                <span>回到文章列表</span>
-            </a>
-            </li>
-        
-        
-        
-            <li>
-            <a href="/tags">
-                <span>用 Tags 分類</span>
-            </a>
-            </li>
-        
-        
-        
-            <li>
-            <a href="/about">
-                <span>關於 XiaoXiao</span>
-            </a>
-            </li>
-        
-        
-
-      </ul>
-    </aside>
   </header>
 
-
-  <main class="app-container">
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
+有助於回憶過去曾經做過的事情
 
-<article class="post">
-  <header class="post-header">
-    <h1 class="post-title">筆記 Laravel API 權限 (Passport)</h1>
-    <div class="post-meta">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <title>calendar</title>
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-        Feb 17, 2019
-      </div><div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
-  <title>tag</title>
-  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
-</svg>
-        <a class="tag" href="https://blog.10oz.tw/tags/php/">php</a><a class="tag" href="https://blog.10oz.tw/tags/laravel/">laravel</a><a class="tag" href="https://blog.10oz.tw/tags/passport/">passport</a><a class="tag" href="https://blog.10oz.tw/tags/jwt/">jwt</a></div></div>
-  </header>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <aside>
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#使用-jwt-版本-201809-更新">使用 JWT 版本 (2018/09 更新)</a>
-      <ul>
-        <li><a href="#步驟說明">步驟說明</a></li>
-        <li><a href="#參考">參考</a></li>
-      </ul>
-    </li>
-    <li><a href="#oauth2">OAuth2</a>
-      <ul>
-        <li><a href="#什麼是-oauth">什麼是 OAuth?</a></li>
-        <li><a href="#開始安裝---實戰時間">開始安裝 - 實戰時間</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </aside>
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://blog.10oz.tw/tags/argo/" class="tag-list-link" rel="1">argo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/artisan/" class="tag-list-link" rel="1">artisan<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/blockchain/" class="tag-list-link" rel="1">blockchain<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/buildx/" class="tag-list-link" rel="1">buildx<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/casbin/" class="tag-list-link" rel="1">casbin<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/cd/" class="tag-list-link" rel="1">cd<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/chromedp/" class="tag-list-link" rel="1">chromedp<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/chromium/" class="tag-list-link" rel="1">chromium<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/di/" class="tag-list-link" rel="1">di<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/docker/" class="tag-list-link" rel="2">docker<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/elasticsearch/" class="tag-list-link" rel="1">elasticsearch<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/eloquent/" class="tag-list-link" rel="1">eloquent<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/es/" class="tag-list-link" rel="1">es<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ethereum/" class="tag-list-link" rel="1">ethereum<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/flask/" class="tag-list-link" rel="1">flask<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/geth/" class="tag-list-link" rel="1">geth<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gfw/" class="tag-list-link" rel="1">gfw<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gitlab/" class="tag-list-link" rel="2">gitlab<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/go/" class="tag-list-link" rel="5">go<span
+               class="tag-list-count">5</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/golang/" class="tag-list-link" rel="8">golang<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/golnag/" class="tag-list-link" rel="1">golnag<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gomod/" class="tag-list-link" rel="1">gomod<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gql/" class="tag-list-link" rel="1">gql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/graphql/" class="tag-list-link" rel="1">graphql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/helm/" class="tag-list-link" rel="1">helm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/homebrew/" class="tag-list-link" rel="1">homebrew<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="1">hugo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ilm/" class="tag-list-link" rel="1">ilm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/istio/" class="tag-list-link" rel="1">istio<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/json/" class="tag-list-link" rel="2">json<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/jwt/" class="tag-list-link" rel="1">jwt<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/k8s/" class="tag-list-link" rel="1">k8s<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/keycloak/" class="tag-list-link" rel="1">keycloak<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/kops/" class="tag-list-link" rel="1">kops<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/kubernetes/" class="tag-list-link" rel="3">kubernetes<span
+               class="tag-list-count">3</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/laravel/" class="tag-list-link" rel="8">laravel<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="2">linux<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/log/" class="tag-list-link" rel="1">log<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mongodb/" class="tag-list-link" rel="1">mongodb<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/multi-arch/" class="tag-list-link" rel="1">multi-arch<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mysql/" class="tag-list-link" rel="1">mysql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mysqlclient/" class="tag-list-link" rel="1">mysqlclient<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/oauth/" class="tag-list-link" rel="1">oauth<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/orm/" class="tag-list-link" rel="1">orm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/passport/" class="tag-list-link" rel="1">passport<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/php/" class="tag-list-link" rel="8">php<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pokemon/" class="tag-list-link" rel="1">pokemon<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pokesay/" class="tag-list-link" rel="1">pokesay<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pretty/" class="tag-list-link" rel="1">pretty<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/python/" class="tag-list-link" rel="4">python<span
+               class="tag-list-count">4</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ruby/" class="tag-list-link" rel="1">ruby<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/service-mesh/" class="tag-list-link" rel="1">service-mesh<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/subgroup/" class="tag-list-link" rel="1">subgroup<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/terraform/" class="tag-list-link" rel="1">terraform<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/test/" class="tag-list-link" rel="1">test<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vagrant/" class="tag-list-link" rel="1">vagrant<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vim/" class="tag-list-link" rel="1">vim<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vm/" class="tag-list-link" rel="1">vm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vpn/" class="tag-list-link" rel="1">vpn<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vscode/" class="tag-list-link" rel="1">vscode<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/windows/" class="tag-list-link" rel="1">windows<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/wire/" class="tag-list-link" rel="1">wire<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/wsl2/" class="tag-list-link" rel="1">wsl2<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  6 ,  20 );
+  }
+};
 
-  <div class="post-content">
-    <h2 id="使用-jwt-版本-201809-更新">使用 JWT 版本 (2018/09 更新)</h2>
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210409-what-can-argocd-do/" class="title">究竟阿狗能做什麼呢</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-04-09 01:29:53 &#43;0800 CST" itemprop="datePublished">2021-04-09</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210402-what-k8s-node-disk-full/" class="title">啥? k8s node 硬碟空間滿了</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-04-02 01:19:30 &#43;0800 CST" itemprop="datePublished">2021-04-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/" class="title">想用 Terraform 與 kOps 也得寫個筆記</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-31 01:32:54 &#43;0800 CST" itemprop="datePublished">2021-03-31</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/" class="title">小紀錄更新 Rinkeby Ethereum 節點</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-26 01:41:50 &#43;0800 CST" itemprop="datePublished">2021-03-26</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/" class="title">helm3 說 has no deployed releases</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-26 01:24:28 &#43;0800 CST" itemprop="datePublished">2021-03-26</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/20190217-laravel-api-permission-by-passport/"
+    >筆記 Laravel API 權限 (Passport)</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/" class="article-date">
+  <time datetime="2019-02-17 09:46:31 &#43;0800 CST" itemprop="datePublished">2019-02-17</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/php/"> php </a>
+    <a class="article-tag-link" href="/tags/laravel/"> laravel </a>
+    <a class="article-tag-link" href="/tags/passport/"> passport </a>
+    <a class="article-tag-link" href="/tags/jwt/"> jwt </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/20190217-laravel-api-permission-by-passport/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1330 words</span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="使用-jwt-版本-201809-更新">使用 JWT 版本 (2018/09 更新)</h2>
 <blockquote>
 <p>前面幾個步驟同官方安裝教學</p>
 </blockquote>
@@ -153,91 +558,96 @@ Client Secret: ETOhMRq7faRSnb1jN2F168jlbYFcf25MOHj0cOxt
 Password grant client created successfully.
 Client ID: 2
 Client Secret: fibc50RiIjAiYSLR7xceQyoxQE3oGWtIXpCLj9Co
-</code></pre><h5 id="4-附加-passport-至-auth-系統">4. 附加 passport 至 auth 系統</h5>
+</code></pre>
+<h5 id="4-附加-passport-至-auth-系統">4. 附加 passport 至 auth 系統</h5>
 <ul>
 <li>在 <code>app\User.php</code> 新增 <code>Laravel\Passport\HasApiTokens</code></li>
 <li>line:5,11</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<pre><code class="language-php">&lt;?php
 
-<span style="color:#007020;font-weight:bold">namespace</span> App;
+namespace App;
 
-<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\HasApiTokens;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Notifications\Notifiable;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Auth\User <span style="color:#007020;font-weight:bold">as</span> Authenticatable;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">User</span> <span style="color:#007020;font-weight:bold">extends</span> Authenticatable
+class User extends Authenticatable
 {
-    <span style="color:#007020;font-weight:bold">use</span> HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable;
     
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span></code></pre></div><ul>
+    // ...
+</code></pre>
+<ul>
 <li>在 <code>app/Providers/AuthServiceProvider.php</code> 新增 passport 的 route  (我們 jwt 版本可以不用)</li>
 <li>line:29</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<pre><code class="language-php">&lt;?php
 
-<span style="color:#007020;font-weight:bold">namespace</span> App\Providers;
+namespace App\Providers;
 
-<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\Passport;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Support\Facades\Gate;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Support\Providers\AuthServiceProvider <span style="color:#007020;font-weight:bold">as</span> ServiceProvider;
+use Laravel\Passport\Passport;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">AuthServiceProvider</span> <span style="color:#007020;font-weight:bold">extends</span> ServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
-    <span style="color:#4070a0;font-style:italic">/**
-</span><span style="color:#4070a0;font-style:italic">     * The policy mappings for the application.
-</span><span style="color:#4070a0;font-style:italic">     *
-</span><span style="color:#4070a0;font-style:italic">     * @var array
-</span><span style="color:#4070a0;font-style:italic">     */</span>
-    <span style="color:#007020;font-weight:bold">protected</span> <span style="color:#bb60d5">$policies</span> <span style="color:#666">=</span> [
-        <span style="color:#4070a0">&#39;App\Model&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;App\Policies\ModelPolicy&#39;</span>,
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        'App\Model' =&gt; 'App\Policies\ModelPolicy',
     ];
 
-    <span style="color:#4070a0;font-style:italic">/**
-</span><span style="color:#4070a0;font-style:italic">     * Register any authentication / authorization services.
-</span><span style="color:#4070a0;font-style:italic">     *
-</span><span style="color:#4070a0;font-style:italic">     * @return void
-</span><span style="color:#4070a0;font-style:italic">     */</span>
-    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">boot</span>()
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
     {
-        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">registerPolicies</span>();
+        $this-&gt;registerPolicies();
 
-        Passport<span style="color:#666">::</span><span style="color:#4070a0">routes</span>();
+        Passport::routes();
         
-        <span style="color:#60a0b0;font-style:italic">// set when access tokens expire
-</span><span style="color:#60a0b0;font-style:italic"></span>        Passport<span style="color:#666">::</span><span style="color:#4070a0">tokensExpireIn</span>(now()<span style="color:#666">-&gt;</span><span style="color:#4070a0">addDays</span>(<span style="color:#40a070">15</span>));
+        // set when access tokens expire
+        Passport::tokensExpireIn(now()-&gt;addDays(15));
     }
 }
-</code></pre></div><ul>
+</code></pre>
+<ul>
 <li>在 <code>config/auth.php</code><br>
 修改 guard 使用 passport</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;guards&#39; =&gt; [
-    &#39;web&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;session&#39;,
-        &#39;provider&#39; =&gt; &#39;users&#39;,
+<pre><code class="language-php">'guards' =&gt; [
+    'web' =&gt; [
+        'driver' =&gt; 'session',
+        'provider' =&gt; 'users',
     ],
 
-    &#39;api&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;passport&#39;,
-        &#39;provider&#39; =&gt; &#39;users&#39;,
+    'api' =&gt; [
+        'driver' =&gt; 'passport',
+        'provider' =&gt; 'users',
     ],
 ],
-</code></pre></div><ul>
+</code></pre>
+<ul>
 <li>修改 <code>app/Http/Kernel.php</code><br>
 加進 web middleware 中 (此步驟 JWT 才需要)</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;web&#39; =&gt; [
+<pre><code class="language-php">'web' =&gt; [
     // Other middleware...
     \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
 ],
-</code></pre></div><h5 id="5-修改登入步驟">5. 修改登入步驟</h5>
+</code></pre>
+<h5 id="5-修改登入步驟">5. 修改登入步驟</h5>
 <p>當我們登入成功的時候，回傳加密過的 jwt<br>
 在 <code>app/Http/Controllers/Auth/LoginController.php</code> override 掉 authenticated function<br>
 當登入成功的時候會進入這個function<br>
 createToken 第一個參數是 token的名稱 第二個是權限領域(Scopes)，建立後可以在<code>oauth_xxx</code> 資料表中確認</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    /**
+<pre><code class="language-php">    /**
      * The user has been authenticated.
      * Do not use the origin response of success login with 302, create access token
      * and return json format
@@ -251,111 +661,117 @@ createToken 第一個參數是 token的名稱 第二個是權限領域(Scopes)�
     {
         if (!is_null($user)) {
             // create persionalAccessToken for authrizate API
-            $token = $user-&gt;createToken(&#39;access_token&#39;, [&#39;guard&#39;, &#39;employee&#39;])-&gt;accessToken ?: &#39;&#39;;
+            $token = $user-&gt;createToken('access_token', ['guard', 'employee'])-&gt;accessToken ?: '';
 
             return response()-&gt;json([
-                &#39;access_token&#39; =&gt; $token
+                'access_token' =&gt; $token
             ], 200);
         }
 
         // throw error
         return $this-&gt;sendFailedLoginResponse($request);
     }
-</code></pre></div><p>// 加入 scope middleware<br>
+</code></pre>
+<p>// 加入 scope middleware<br>
 // 在 <code>app/Http/Kernel.php</code> 裡面的 <code>$routeMiddleware</code><br>
 <code>scopes</code> 是你指定的 scope 們<strong>都要</strong>通過 (AND)<br>
 <code>scope</code> 則是你指定的 scope 們<strong>其中之一</strong>通過 (OR)<br>
 可以挑需要用的(我是兩種都加進去了啦)</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;scopes&#39; =&gt; \Laravel\Passport\Http\Middleware\CheckScopes::class,
-&#39;scope&#39; =&gt; \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
-</code></pre></div><ul>
+<pre><code class="language-php">'scopes' =&gt; \Laravel\Passport\Http\Middleware\CheckScopes::class,
+'scope' =&gt; \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+</code></pre>
+<ul>
 <li>回到 <code>app/Providers/AuthServiceProvider.php</code> 我們可以在這裡設定 <code>scpoe</code> 們</li>
 <li>line:35</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<pre><code class="language-php">&lt;?php
 
-<span style="color:#007020;font-weight:bold">namespace</span> App\Providers;
+namespace App\Providers;
 
-<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\Passport;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Support\Facades\Gate;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Support\Providers\AuthServiceProvider <span style="color:#007020;font-weight:bold">as</span> ServiceProvider;
+use Laravel\Passport\Passport;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">AuthServiceProvider</span> <span style="color:#007020;font-weight:bold">extends</span> ServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
-    <span style="color:#4070a0;font-style:italic">/**
-</span><span style="color:#4070a0;font-style:italic">     * The policy mappings for the application.
-</span><span style="color:#4070a0;font-style:italic">     *
-</span><span style="color:#4070a0;font-style:italic">     * @var array
-</span><span style="color:#4070a0;font-style:italic">     */</span>
-    <span style="color:#007020;font-weight:bold">protected</span> <span style="color:#bb60d5">$policies</span> <span style="color:#666">=</span> [
-        <span style="color:#4070a0">&#39;App\Model&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;App\Policies\ModelPolicy&#39;</span>,
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        'App\Model' =&gt; 'App\Policies\ModelPolicy',
     ];
 
-    <span style="color:#4070a0;font-style:italic">/**
-</span><span style="color:#4070a0;font-style:italic">     * Register any authentication / authorization services.
-</span><span style="color:#4070a0;font-style:italic">     *
-</span><span style="color:#4070a0;font-style:italic">     * @return void
-</span><span style="color:#4070a0;font-style:italic">     */</span>
-    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">boot</span>()
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
     {
-        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">registerPolicies</span>();
+        $this-&gt;registerPolicies();
         
-        <span style="color:#60a0b0;font-style:italic">// set when access tokens expire
-</span><span style="color:#60a0b0;font-style:italic"></span>        Passport<span style="color:#666">::</span><span style="color:#4070a0">tokensExpireIn</span>(now()<span style="color:#666">-&gt;</span><span style="color:#4070a0">addDays</span>(<span style="color:#40a070">15</span>));
+        // set when access tokens expire
+        Passport::tokensExpireIn(now()-&gt;addDays(15));
 
-        <span style="color:#60a0b0;font-style:italic">// set when refresh tokens expire
-</span><span style="color:#60a0b0;font-style:italic"></span>        Passport<span style="color:#666">::</span><span style="color:#4070a0">refreshTokensExpireIn</span>(now()<span style="color:#666">-&gt;</span><span style="color:#4070a0">addDays</span>(<span style="color:#40a070">30</span>));
+        // set when refresh tokens expire
+        Passport::refreshTokensExpireIn(now()-&gt;addDays(30));
 
-        Passport<span style="color:#666">::</span><span style="color:#4070a0">tokensCan</span>([
-            <span style="color:#4070a0">&#39;admin&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;system admin&#39;</span>,
-            <span style="color:#4070a0">&#39;guard&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;a good guy&#39;</span>,
-            <span style="color:#4070a0">&#39;employee&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;just a poor engineer&#39;</span>
+        Passport::tokensCan([
+            'admin' =&gt; 'system admin',
+            'guard' =&gt; 'a good guy',
+            'employee' =&gt; 'just a poor engineer'
         ]);
     }
 }
 
-</code></pre></div><h5 id="6-裝備上去">6. 裝備上去</h5>
+</code></pre>
+<h5 id="6-裝備上去">6. 裝備上去</h5>
 <p>在 <code>routes/api.php</code> 加上 middleware <code>auth</code> 並指定 guard 是 <code>api</code>
 這樣有加上 middleware 的 API 們， 沒有 token 就進不去囉！</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Route::apiResource(&#39;report&#39;, &#39;API\ReportController&#39;)
-    -&gt;middleware(&#39;auth:api&#39;)-&gt;middleware(&#39;scope:employee,guard&#39;);
+<pre><code class="language-php">Route::apiResource('report', 'API\ReportController')
+    -&gt;middleware('auth:api')-&gt;middleware('scope:employee,guard');
     
-Route::post(&#39;/report/multi_assign&#39;, &#39;API\ReportController@assignReports&#39;)
-    -&gt;middleware(&#39;auth:api&#39;)-&gt;middleware(&#39;scope:guard&#39;);
-</code></pre></div><h5 id="7-前端接收">7. 前端接收</h5>
+Route::post('/report/multi_assign', 'API\ReportController@assignReports')
+    -&gt;middleware('auth:api')-&gt;middleware('scope:guard');
+</code></pre>
+<h5 id="7-前端接收">7. 前端接收</h5>
 <p>在這裡我將token存在local storage裡面<br>
 為了接收內容，所以將 make:auth產生的模板修改成 vue component 了<br>
 範例使用 ajax 做登入</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">axios.post(<span style="color:#4070a0">&#39;/login&#39;</span>, {
-    <span style="color:#4070a0">&#39;email&#39;</span><span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">this</span>.email,
-    <span style="color:#4070a0">&#39;password&#39;</span><span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">this</span>.password
+<pre><code class="language-javascript">axios.post('/login', {
+    'email': this.email,
+    'password': this.password
   })
   .then(res =&gt; {
-    <span style="color:#007020">window</span>.localStorage.setItem(<span style="color:#4070a0">&#39;accessToken&#39;</span>, res.data.access_token)
-    <span style="color:#007020">window</span>.location.href <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.redirect_to
+    window.localStorage.setItem('accessToken', res.data.access_token)
+    window.location.href = this.redirect_to
   })
-  .<span style="color:#007020;font-weight:bold">catch</span>(err =&gt; {
-    console.error(<span style="color:#4070a0">&#39;login failed&#39;</span>)
-    <span style="color:#60a0b0;font-style:italic">// 處理回傳的錯誤訊息
-</span><span style="color:#60a0b0;font-style:italic"></span>  })
-</code></pre></div><p>在 <code>resources/assets/js/bootstrap.js</code><br>
+  .catch(err =&gt; {
+    console.error('login failed')
+    // 處理回傳的錯誤訊息
+  })
+</code></pre>
+<p>在 <code>resources/assets/js/bootstrap.js</code><br>
 為了不用每一次送 API 請求都要手動加上 token， 我們修改 axios 的預設</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#60a0b0;font-style:italic">/**
-</span><span style="color:#60a0b0;font-style:italic"> * We will use laravel/passport JWT to verify API permission.
-</span><span style="color:#60a0b0;font-style:italic"> * Once user success to login, get a access token. The access token will be
-</span><span style="color:#60a0b0;font-style:italic"> * stored in the Local Storage of browser.
-</span><span style="color:#60a0b0;font-style:italic"> */</span>
-<span style="color:#007020;font-weight:bold">let</span> accessToken <span style="color:#666">=</span> JSON.parse(<span style="color:#007020">window</span>.localStorage.getItem(<span style="color:#4070a0">&#39;accessToken&#39;</span>)<span style="color:#666">||</span> <span style="color:#007020;font-weight:bold">null</span>);
+<pre><code class="language-javascript">/**
+ * We will use laravel/passport JWT to verify API permission.
+ * Once user success to login, get a access token. The access token will be
+ * stored in the Local Storage of browser.
+ */
+let accessToken = JSON.parse(window.localStorage.getItem('accessToken')|| null);
 
-<span style="color:#007020;font-weight:bold">if</span> (accessToken) {
-    <span style="color:#007020">window</span>.axios.defaults.headers.common[<span style="color:#4070a0">&#39;Authorization&#39;</span>] <span style="color:#666">=</span> accessToken;
+if (accessToken) {
+    window.axios.defaults.headers.common['Authorization'] = accessToken;
 }
-</code></pre></div><ul>
+</code></pre>
+<ul>
 <li>補充<br>
 可以在 <code>app/Exceptions/Handler.php</code> 做 error handle<br>
 在這裡把全部的 api error 都回傳 <code>401 未驗證</code>， 不良示範XDD</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">/**
+<pre><code class="language-php">/**
  * Convert an authentication exception into an unauthenticated response.
  *
  * @param  \Illuminate\Http\Request  $request
@@ -365,22 +781,23 @@ Route::post(&#39;/report/multi_assign&#39;, &#39;API\ReportController@assignRepo
 protected function unauthenticated($request, AuthenticationException $exception)
 {
     if ($request-&gt;expectsJson()) {
-        return response()-&gt;json([&#39;error&#39; =&gt; &#39;Unauthenticated.&#39;], 401);
+        return response()-&gt;json(['error' =&gt; 'Unauthenticated.'], 401);
     }
 
     $guard = array_get($exception-&gt;guards(), 0);
     switch ($guard) {
-        case &#39;web&#39;:
-            $login = &#39;login&#39;;
+        case 'web':
+            $login = 'login';
             break;
-        case &#39;api&#39;:
-            return response()-&gt;json([&#39;error&#39; =&gt; &#39;API Unauthenticated.&#39;], 401);
+        case 'api':
+            return response()-&gt;json(['error' =&gt; 'API Unauthenticated.'], 401);
             break;
     }
 
     return redirect()-&gt;guest(route($login));
 }
-</code></pre></div><h3 id="參考">參考</h3>
+</code></pre>
+<h3 id="參考">參考</h3>
 <p><a href="https://laravel.com/docs/master/passport#installation">Laravel 官方</a>
 <a href="http://chatterjee.pw/larvel-passport-jwt-authentication/">Laravel Passport JWT Authentication</a></p>
 <hr>
@@ -423,7 +840,7 @@ protected function unauthenticated($request, AuthenticationException $exception)
 <h5 id="2-開表">2. 開表</h5>
 <p><code>php artisan migrate</code><br>
 然後你會多 5 張表 (主要使用到 <code>oauth_access_token</code>)</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ php artisan migrate
+<pre><code class="language-sh">$ php artisan migrate
 Migrating: 2016_06_01_000001_create_oauth_auth_codes_table
 Migrated:  2016_06_01_000001_create_oauth_auth_codes_table
 Migrating: 2016_06_01_000002_create_oauth_access_tokens_table
@@ -434,100 +851,225 @@ Migrating: 2016_06_01_000004_create_oauth_clients_table
 Migrated:  2016_06_01_000004_create_oauth_clients_table
 Migrating: 2016_06_01_000005_create_oauth_personal_access_clients_table
 Migrated:  2016_06_01_000005_create_oauth_personal_access_clients_table
-</code></pre></div><h5 id="3-創造-key">3. 創造 key</h5>
+</code></pre>
+<h5 id="3-創造-key">3. 創造 key</h5>
 <p><code>php artisan passport:install</code><br>
 他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)<br>
 同時也準備一組 Client Key 在 <code>oauth_clients</code> 資料表內</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ php artisan passport:install
+<pre><code class="language-sh">$ php artisan passport:install
 Encryption keys generated successfully.
 Personal access client created successfully.
-Client ID: <span style="color:#40a070">1</span>
+Client ID: 1
 Client secret: VJZEYfTpsHBkNCv9ULUyHvGBbJvYiD1ZVP86cbYu
 Password grant client created successfully.
-Client ID: <span style="color:#40a070">2</span>
+Client ID: 2
 Client secret: l4kh71C2DpdUsNmJFipi0hiDnhdgj6VfF5lGGDam
-</code></pre></div><h5 id="4-附加-passport-至-auth-系統-1">4. 附加 passport 至 auth 系統</h5>
+</code></pre>
+<h5 id="4-附加-passport-至-auth-系統-1">4. 附加 passport 至 auth 系統</h5>
 <ul>
 <li>在 <code>app\User.php</code> 新增一個 trait <code>Laravel\Passport\HasApiTokens</code></li>
 <li>line:5,11</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<pre><code class="language-php">&lt;?php
 
-<span style="color:#007020;font-weight:bold">namespace</span> App;
+namespace App;
 
-<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\HasApiTokens;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Notifications\Notifiable;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Auth\User <span style="color:#007020;font-weight:bold">as</span> Authenticatable;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">User</span> <span style="color:#007020;font-weight:bold">extends</span> Authenticatable
+class User extends Authenticatable
 {
-    <span style="color:#007020;font-weight:bold">use</span> HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable;
     
-    <span style="color:#60a0b0;font-style:italic">// other code...
-</span></code></pre></div><ul>
+    // other code...
+</code></pre>
+<ul>
 <li>在 <code>app/Providers/AuthServiceProvider.php</code> 新增 passport 的 route</li>
 <li>line:5 import passport</li>
 <li>line:29 add passport routes</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<pre><code class="language-php">&lt;?php
 
-<span style="color:#007020;font-weight:bold">namespace</span> App\Providers;
+namespace App\Providers;
 
-<span style="color:#007020;font-weight:bold">use</span> Laravel\Passport\Passport;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Support\Facades\Gate;
-<span style="color:#007020;font-weight:bold">use</span> Illuminate\Foundation\Support\Providers\AuthServiceProvider <span style="color:#007020;font-weight:bold">as</span> ServiceProvider;
+use Laravel\Passport\Passport;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">AuthServiceProvider</span> <span style="color:#007020;font-weight:bold">extends</span> ServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
-    <span style="color:#4070a0;font-style:italic">/**
-</span><span style="color:#4070a0;font-style:italic">     * The policy mappings for the application.
-</span><span style="color:#4070a0;font-style:italic">     *
-</span><span style="color:#4070a0;font-style:italic">     * @var array
-</span><span style="color:#4070a0;font-style:italic">     */</span>
-    <span style="color:#007020;font-weight:bold">protected</span> <span style="color:#bb60d5">$policies</span> <span style="color:#666">=</span> [
-        <span style="color:#4070a0">&#39;App\Model&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;App\Policies\ModelPolicy&#39;</span>,
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        'App\Model' =&gt; 'App\Policies\ModelPolicy',
     ];
 
-    <span style="color:#4070a0;font-style:italic">/**
-</span><span style="color:#4070a0;font-style:italic">     * Register any authentication / authorization services.
-</span><span style="color:#4070a0;font-style:italic">     *
-</span><span style="color:#4070a0;font-style:italic">     * @return void
-</span><span style="color:#4070a0;font-style:italic">     */</span>
-    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">boot</span>()
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
     {
-        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">registerPolicies</span>();
+        $this-&gt;registerPolicies();
 
-        Passport<span style="color:#666">::</span><span style="color:#4070a0">routes</span>();
+        Passport::routes();
         
-        <span style="color:#60a0b0;font-style:italic">// set when access tokens expire
-</span><span style="color:#60a0b0;font-style:italic"></span>        Passport<span style="color:#666">::</span><span style="color:#4070a0">tokensExpireIn</span>(now()<span style="color:#666">-&gt;</span><span style="color:#4070a0">addDays</span>(<span style="color:#40a070">15</span>));
+        // set when access tokens expire
+        Passport::tokensExpireIn(now()-&gt;addDays(15));
     }
 }
-</code></pre></div><ul>
+</code></pre>
+<ul>
 <li>在 <code>config/auth.php</code><br>
 修改 guard 使用 passport</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;guards&#39; =&gt; [
-    &#39;web&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;session&#39;,
-        &#39;provider&#39; =&gt; &#39;users&#39;,
+<pre><code class="language-php">'guards' =&gt; [
+    'web' =&gt; [
+        'driver' =&gt; 'session',
+        'provider' =&gt; 'users',
     ],
 
-    &#39;api&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;passport&#39;,
-        &#39;provider&#39; =&gt; &#39;users&#39;,
+    'api' =&gt; [
+        'driver' =&gt; 'passport',
+        'provider' =&gt; 'users',
     ],
 ],
-</code></pre></div>
-  </div>
+</code></pre>
 
-  <div class="post-footer">
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://blog.10oz.tw/20190123-a-new-in-laravel/" title="筆記 laravel 真新手時間"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/"
+                    title="筆記 Laravel Eloquent Model 的 relation"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="facebook,twitter"
+                data-mobile-sites="facebook,twitter"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/XiaoXiaoSN" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://blog.10oz.tw/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2018  -
+    2021
     
   </div>
-</article>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
 
 
-  </main>
-</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://blog.10oz.tw/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
+<script src="https://blog.10oz.tw/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
 
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/blog.10oz.tw',
+            CONTENT_URL: 'https:\/\/blog.10oz.tw\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.f524361edf8dbdb8f5a489b944aa1badc577caf06a6194a652f12f68416d13afbf0044863d273b7aacec793f8359c2711d9d2b3615b98b81ac6af8d7ac0f9521.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '8734c77d5c1155dc493c',
+        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
+        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        owner: 'XiaoXiaoSN',
+        admin: ['XiaoXiaoSN'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
+
+  </body>
 </html>

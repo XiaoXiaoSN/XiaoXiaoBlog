@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/categories/</link>
+    <description>Recent content in Categories on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY 4.0 CN</copyright>
+    
+        <atom:link href="https://blog.10oz.tw/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Golang 漂亮的輸出 JSON</title>
+      <link>https://blog.10oz.tw/20200229-golang-pretty-print/</link>
+      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200229-golang-pretty-print/</guid>
+      <description>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！ 我需要排版！！趕快筆記一下 一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &amp;quot;&amp;quot;, &amp;quot; &amp;quot;) if err != nil { fmt.Println(&amp;quot;&amp;quot;) }</description>
+    </item>
+    
+    <item>
+      <title>Golang 怎麼處理 JSON</title>
+      <link>https://blog.10oz.tw/20200228-golang-json-marshal/</link>
+      <pubDate>Fri, 28 Feb 2020 23:22:36 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200228-golang-json-marshal/</guid>
+      <description>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成</description>
+    </item>
+    
+    <item>
+      <title>製造一個 hugo 部落格</title>
+      <link>https://blog.10oz.tw/20200124-make-a-hugo-blog/</link>
+      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200124-make-a-hugo-blog/</guid>
+      <description>步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！ 所以我們需要: 一人份的 github 帳號 安裝 hugo 點我看教學</description>
+    </item>
+    
+    <item>
+      <title>筆記 Install php MongoDB driver on MacOS</title>
+      <link>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</link>
+      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</guid>
+      <description>** 2019.08 更新** https://www.php.net/manual/en/mongodb.installation.homebrew.php mac php72 請使用 pecl install mongodb 安裝 mongodb driver 因為 mongodb, xdebug 從 homebrew 被移除了 [time=Thu, Aug 15, 2019 7:59 PM] 問題描述 想在 Laravel 用 MongoDB composer require jenssegers/mongodb 錯誤： the requested PHP extension mongodb is missing from your system. =&amp;gt; 沒有裝 php 的擴展 解決</description>
+    </item>
+    
+    <item>
+      <title>Learning Elasticsearch</title>
+      <link>https://blog.10oz.tw/20190814-learning-elasticsearch/</link>
+      <pubDate>Wed, 14 Aug 2019 00:15:26 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190814-learning-elasticsearch/</guid>
+      <description>@elasticsearch version 6.8 STRUCTURE 可以這樣想像 Relational DB -&amp;gt; Databases -&amp;gt; Tables -&amp;gt; Rows -&amp;gt; Columns Elasticsearch -&amp;gt; Indices -&amp;gt; Types -&amp;gt; Documents -&amp;gt; Fields 不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義） Indices</description>
+    </item>
+    
+    <item>
+      <title>筆記 laravel test - 我們也來寫測試</title>
+      <link>https://blog.10oz.tw/20190703-laravel-testing/</link>
+      <pubDate>Wed, 03 Jul 2019 13:18:13 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190703-laravel-testing/</guid>
+      <description>laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM] 開始之前 test 的設定檔在 ./phpunit.xml ， &amp;lt;!-- phpunit.xml --&amp;gt; &amp;lt;phpunit&amp;gt; &amp;lt;php&amp;gt; &amp;lt;!-- laravel 環境設定檔案使用 .emv.testing --&amp;gt; &amp;lt;server name=&amp;quot;APP_ENV&amp;quot; value=&amp;quot;testing&amp;quot;/&amp;gt; &amp;lt;!-- 測試環境的資料庫連線設定，我們將使用 sqlite --&amp;gt; &amp;lt;server name=&amp;quot;DB_CONNECTION&amp;quot; value=&amp;quot;sqlite_for_testing&amp;quot;/&amp;gt; &amp;lt;env name=&amp;quot;DB_DATABASE&amp;quot; value=&amp;quot;:memory:&amp;quot;/&amp;gt; &amp;lt;/php&amp;gt; &amp;lt;/phpunit&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>筆記 artisan 的大紅色好刺眼啊啊啊啊</title>
+      <link>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</link>
+      <pubDate>Thu, 23 May 2019 02:51:38 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</guid>
+      <description>Laravel 5.8 $kernel = $app-&amp;gt;make(Illuminate\Contracts\Console\Kernel::class); $output = new Symfony\Component\Console\Output\ConsoleOutput; $output-&amp;gt;getFormatter() -&amp;gt;setStyle(&#39;error&#39;, new \Symfony\Component\Console\Formatter\OutputFormatterStyle(&#39;yellow&#39;)); $status = $kernel-&amp;gt;handle( $input = new Symfony\Component\Console\Input\ArgvInput, $output ); 修改的話在 line:37 可以帶三種參數 public function __construct( string $foreground = null, string $background = null, array $options = []){ /****/ } 三種參數可以參考 private static $availableForegroundColors = [ &#39;black&#39; =&amp;gt; [&#39;set&#39; =&amp;gt; 30,</description>
+    </item>
+    
+    <item>
+      <title>筆記 安裝 Golang 與他們的套件管理工具</title>
+      <link>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</link>
+      <pubDate>Wed, 01 May 2019 11:50:36 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</guid>
+      <description>從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔 在這之前的版本使用環境變數 GOMODULE111=true 來做管理 安裝 golang (on Mac) 1. 第一步當然是拿到 golnag 囉 brew install go 2. 環境設</description>
+    </item>
+    
+    <item>
+      <title>筆記 我是個 go module 的菜鳥</title>
+      <link>https://blog.10oz.tw/20190501-a-new-in-go-module/</link>
+      <pubDate>Wed, 01 May 2019 01:28:22 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190501-a-new-in-go-module/</guid>
+      <description>簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控</description>
+    </item>
+    
+    <item>
+      <title>筆記 Laravel with Keycloak</title>
+      <link>https://blog.10oz.tw/20190424-laravel-with-keycloak/</link>
+      <pubDate>Wed, 24 Apr 2019 10:05:56 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190424-laravel-with-keycloak/</guid>
+      <description>laravel version: 5.8 一、安裝篇 裝這個，跟著他的步驟做 https://github.com/robsontenorio/laravel-keycloak-guard 二、使用篇 我們假設 Keycloak Server 有大大幫你開好了 (沒有請點我) 取得 Keycloak 金鑰 https://auth.leotekiot.com 預設帳號: admin 預設密碼: Pa55w0rd 登入後，依序</description>
+    </item>
+    
+    <item>
+      <title>筆記 Laravel Eloquent Model 的 relation</title>
+      <link>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</link>
+      <pubDate>Tue, 16 Apr 2019 20:35:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</guid>
+      <description>版本 Larael 5.7 範例模型 accounts CREATE TABLE `accounts` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `website_id` int(10) unsigned NOT NULL, `account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, `deleted_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ); websites CREATE TABLE `websites` ( `id` int(10) unsigned NOT</description>
+    </item>
+    
+    <item>
+      <title>筆記 Laravel API 權限 (Passport)</title>
+      <link>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</link>
+      <pubDate>Sun, 17 Feb 2019 09:46:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</guid>
+      <description>使用 JWT 版本 (2018/09 更新) 前面幾個步驟同官方安裝教學 步驟說明 1. composer 載回來 composer require laravel/passport 2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token) 3.創造 key php artisan passport:install 他會幫你的</description>
+    </item>
+    
+    <item>
+      <title>筆記 laravel 真新手時間</title>
+      <link>https://blog.10oz.tw/20190123-a-new-in-laravel/</link>
+      <pubDate>Wed, 23 Jan 2019 20:36:55 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190123-a-new-in-laravel/</guid>
+      <description>新手入門 結構介紹 我們現在在 laravel v5.7 一起來看一下 laravel 專案的結構吧 app 大部份的網頁後端主要程式碼 也就是說他很重要 (Model)放在外面的大寫開頭們～ 例如</description>
+    </item>
+    
+    <item>
+      <title>筆記 安裝 Laravel on MacOS</title>
+      <link>https://blog.10oz.tw/20190117-install-laravel-on-macos/</link>
+      <pubDate>Thu, 17 Jan 2019 12:03:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190117-install-laravel-on-macos/</guid>
+      <description>Step by Step 安裝指南 事前準備 HomeBrew 首先安裝 HomeBrew，他是 Mac 上的套件管理工具 在終端機執行他： (裝過了可以跳過) /usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; ＊ Docker 安裝 Docker， 以</description>
+    </item>
+    
+    <item>
+      <title>筆記 自定義 flask 的 console log 之路</title>
+      <link>https://blog.10oz.tw/20181128-custom-flask-console-log/</link>
+      <pubDate>Wed, 28 Nov 2018 03:19:15 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20181128-custom-flask-console-log/</guid>
+      <description>需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip 實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9 import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string</description>
+    </item>
+    
+    <item>
+      <title>筆記 python: Error 24: too many open files</title>
+      <link>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</link>
+      <pubDate>Tue, 20 Nov 2018 03:19:29 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</guid>
+      <description>問題描述 同時開太多連線啦 環境 Ubuntu 16.04 解決方法 https://blog.csdn.net/qq_23926575/article/details/76619827 開啟這個檔案 sudo vim /etc/security/limits.conf 在最底下新增兩行 * soft nofile 10000 * hard nofile 10000 記得重開Server</description>
+    </item>
+    
+    <item>
+      <title>筆記 mysqlclient 安裝, error: python setup.py egg_info </title>
+      <link>https://blog.10oz.tw/20181117-install-mysqlclient/</link>
+      <pubDate>Sat, 17 Nov 2018 14:11:06 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20181117-install-mysqlclient/</guid>
+      <description>錯誤: 目標是成功執行它： pip3 install mysqlclient arios@AriosMac: pymysql_pool » pip3 install mysqlclient Collecting mysqlclient Using cached https://files.pythonhosted.org/packages/ec/fd/83329b9d3e14f7344d1cb31f128e6dbba70c5975c9e57896815dbb1988ad/mysqlclient-1.3.13.tar.gz Complete output from command python setup.py egg_info: /bin/sh: mysql_config: command not found Traceback (most recent call last): File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt; File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup.py&amp;quot;, line 18, in &amp;lt;module&amp;gt; metadata, options = get_config() File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;quot;, line 53, inget_config libs = mysql_config(&amp;quot;libs_r&amp;quot;) File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;quot;, line</description>
+    </item>
+    
+    <item>
+      <title>筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容</title>
+      <link>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</link>
+      <pubDate>Thu, 08 Nov 2018 12:04:17 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</guid>
+      <description>問題 當你的函示庫底層使用 C語言 而不是純 python 編寫時 pylint 可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上 解決方法</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>XiaoXiao Notes</title>
     <link>https://blog.10oz.tw/</link>
     <description>Recent content on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <copyright>CC BY 4.0 CN</copyright>
     <lastBuildDate>Fri, 09 Apr 2021 01:29:53 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,10 +17,7 @@
       <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20210409-what-can-argocd-do/</guid>
-      <description>你問阿狗是什麼 GitOps + Kubernetes 的產物，相當不錯的運維工具
-先來裝 Argo CD 我們要用 helm 安裝裝起來喔
-helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml
-installCRDs:falseglobal:image:tag:v1.8.6dex:enabled:falseserver:extraArgs:---insecure# 如果說你有需要用反向代理抓 subpath，可以在這裡設定# - --basehref=https://blog.10oz.tw/argo# - --rootpath=/argoconfig:# 這裡要把你要監看的 git repo 放上來，# 範例是私有 Gitlab 的設定方式repositories:| - name: dev-argoinsecure:trueinsecureIgnoreHostKey:truesshPrivateKeySecret:name:argocd-secretkey:webhook.gitlab.secrettype:giturl:git@gitlab.10oz.tw:self_group/dev-argo.gitmetrics:enabled:trueconfigs:secret:# 這裡產生一個 ssh key 來設定 gitlab repo 裡面的 deploy key# 然後把相應的 private 提供給 Argo 使用gitlabSecret:|- first set ssh-public-key in gitlab repo, Settings &amp;gt; Repository &amp;gt; Deploy Keysandreplacethefieldwithssh-private-key PS: 後面有說這裏的 Repository 跟 Secret 在哪裡弄 :) 反正先裝等等還能改 XDD</description>
+      <description>你問阿狗是什麼 GitOps + Kubernetes 的產物，相當不錯的運維工具 先來裝 Argo CD 我們要用 helm 安裝裝起來喔 helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml installCRDs: false global: image: tag: v1.8.6 dex: enabled: false server: extraArgs: - --insecure # 如果說你</description>
     </item>
     
     <item>
@@ -29,9 +26,7 @@ installCRDs:falseglobal:image:tag:v1.8.6dex:enabled:falseserver:extraArgs:---ins
       <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</guid>
-      <description>發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼
-dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs 5.0M 0 5.0M 0% /run/lock tmpfs 5.9G 0 5.9G 0% /sys/fs/cgroup /dev/sda2 976M 213M 696M 24% /boot tmpfs 1.2G 0 1.2G 0% /run/user/1000 閉眼先清空一波 Docker image, volumn&amp;hellip;
-docker system prune -a 檢查一下還有啥米東西佔用了我們的空間</description>
+      <description>發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs</description>
     </item>
     
     <item>
@@ -40,10 +35,7 @@ docker system prune -a 檢查一下還有啥米東西佔用了我們的空間</d
       <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</guid>
-      <description>流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform
-brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key
-直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器👍
-provider &amp;quot;aws&amp;quot; { # access_key = &amp;quot;$AWS_ACCESS_KEY_ID&amp;quot; # secret_key = &amp;quot;$AWS_SECRET_ACCESS_KEY&amp;quot; region = &amp;quot;ap-northeast-1&amp;quot; } data &amp;quot;aws_ami&amp;quot; &amp;quot;ubuntu&amp;quot; { most_recent = true filter { name = &amp;quot;name&amp;quot; values = [&amp;quot;ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*&amp;quot;] } filter { name = &amp;quot;root-device-type&amp;quot; values = [&amp;quot;ebs&amp;quot;] } filter { name = &amp;quot;virtualization-type&amp;quot; values = [&amp;quot;hvm&amp;quot;] } owners = [&amp;quot;099720109477&amp;quot;] # Canonical } # resource &amp;lt;resource_type&amp;gt; &amp;lt;resource_name&amp;gt; resource &amp;quot;aws_instance&amp;quot; &amp;quot;example&amp;quot; { ami = data.</description>
+      <description>流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key 直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器</description>
     </item>
     
     <item>
@@ -52,13 +44,7 @@ provider &amp;quot;aws&amp;quot; { # access_key = &amp;quot;$AWS_ACCESS_KEY_ID&a
       <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</guid>
-      <description>這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事
- 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢包充值 發現！ 不妙！ 充不進去耶，怎麼沒反應咧？
-找 log 但一切正常，這時發現卡在 8,290,928 想說這個位置是不是發生了什麼奇怪的交易，來查查看好了～ google 後發現， EIP 1559 實裝在 Rinkeby 惹！ 雖然之前沒有認真關注這個提案，但還是知道他是一個吵很大的硬分叉 馬上 ssh 連到我們的 full node 去看看，最高節點就是在 8,290,928 的位置
-好啦，找到原因了～～ 我們來跟一下硬分叉吧
-更新一下 首先下載最新的包~~
-sudo add-apt-repository -y ppa:ethereum/ethereum -y apt-cache policy ethereum # 確認版本 sudo apt-get upgrade ethereal geth version # 確認版本 然後重啟就好囉
-# 再重新開回服務 geth --rinkeby --http --http.addr 0.0.0.0 --ws --ws.</description>
+      <description>這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢</description>
     </item>
     
     <item>
@@ -67,10 +53,7 @@ sudo add-apt-repository -y ppa:ethereum/ethereum -y apt-cache policy ethereum # 
       <pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</guid>
-      <description>問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本
-Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他跑下去就好
-或者說去找到 secrets sh.helm.release.v1.{server_name}.v{version} 修改一下裡面的 labels status，改成 deployed
-metadata:name:sh.helm.release.v1.code-server.v31namespace:foouid:b94b5861-8f98-4e8c-bb81-e715975d8c22resourceVersion:&amp;#39;46153334&amp;#39;creationTimestamp:&amp;#39;2021-03-04T06:12:08Z&amp;#39;labels:modifiedAt:&amp;#39;1614838331&amp;#39;name:code-serverowner:helmstatus:failed# 改這裏成 deployedversion:&amp;#39;31&amp;#39;再重新 Retry 一下 helm upgrade 就可以囉</description>
+      <description>問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本 Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他</description>
     </item>
     
     <item>
@@ -79,11 +62,7 @@ metadata:name:sh.helm.release.v1.code-server.v31namespace:foouid:b94b5861-8f98-4
       <pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</guid>
-      <description>GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64
- 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援
-Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env
-export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod
-module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo =&amp;gt; gitlab.com/org/subgroup/repo.git/pkg/foo v1.0.0 Ref https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785</description>
+      <description>GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援 Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo</description>
     </item>
     
     <item>
@@ -92,12 +71,7 @@ module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 repl
       <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20210306-chromedp-zombi-process/</guid>
-      <description>問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積
-因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗試用 pprof 錄了一段後發現沒有直接的上升，於是直接進入容器裡面觀察 process 佔用的資源
-哇嗚，發現好多 chrome 的屍體 好了，開始研究為什麼 chromedp 沒幫我們把它關掉。 此時發現一張 Issue 有這個問題和其他人的研究成果
-解決方法 其實解決方法 chromedp 已經給你了
-FROM chromedp/headless-shell:latest ... # Install dumb-init or tini RUN apt install dumb-init # or RUN apt install tini ... ENTRYPOINT [&amp;quot;dumb-init&amp;quot;, &amp;quot;--&amp;quot;] # or ENTRYPOINT [&amp;quot;tini&amp;quot;, &amp;quot;--&amp;quot;] CMD [&amp;quot;/path/to/your/program&amp;quot;] 就是第 7 行的那個，在 docker image 中不要直接去跑你的程式而是用 dumb-init 去包起來跑！ 就可以避免殭屍進程了
-原因是這樣的，一般來說在執行 OS 的時候 Pid 為 1 的服務會是系統服務(ex: systemd, launchd)，然而在 Container 裡面 Pid=1 是我們自己的程式！</description>
+      <description>問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積 因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗</description>
     </item>
     
     <item>
@@ -106,16 +80,7 @@ FROM chromedp/headless-shell:latest ... # Install dumb-init or tini RUN apt inst
       <pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20210124-vpn-and-gfw/</guid>
-      <description>GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由的需求，幫 QQ
-GFW 擋掉的方法有域名污染、關鍵字阻斷、特徵攔截&amp;hellip;等等，只要他看見你的封包含有他不喜歡的關鍵字，或是黑名單的 IP 就直接斷掉你的網路封包。
-因此想要繞過 GFW 的審核，就需要用上封包加密，他看不懂的東西他不會隨便的就把你給封鎖掉，也就有機會可以碰觸到外面的世界。 不過這樣會面臨到另一個問題，加密的內容 GFW 看不懂，google 也一樣看不懂，因此需要有一台跳板機來解密，然後跳板機幫你做到你真正想要做的事情，再將結果加密傳回去給你。
-常用技術與工具們 VPS (Virtual Private Server) 也就是跳板機啦，常用的供應商有 Linode, Vultr，都是老牌穩定價格合理的廠商。
-他們會租借一台虛擬的主機和 IP 給你，就好像有一台實際的電腦，你可以連線進去在上面做任何的事情~~ 當然也包含架設 VPN 跳板喔
-socks5 跑在第五層(Session Layer)的代理服務，很常被用來作為 VPN 服務的代理，不過這個協定不包含加密，因此一般會再搭配其他服務一起使用。 另外他無法做到全局代理，例如更低層級的 TCP, ICMP 這些協定，你 ping 回來還會是自己的 IP
-可以使用類似 tun2sock 這類工具，轉換所有的流量至 socks5，以達到全局代理的效果，當然別忘記還沒加密嘿
-ShadowSocks (SS, SSR) 最有知名度的翻牆工具，內容就是簡單的對封包做對稱加密，支援多種加密法，也有各種語言實作套件，不過也因為他簡單所以有很多人都表示這種翻牆的特徵已經能夠被 GFW 識別出來了，然而目前的翻牆最大宗還是使用 ShadowSocks 再加上 socks5 代理
-然後作者在 github 上突然的消失好幾個月惹，大家都說他被中國政府抓去喝茶惹
-SSR(ShadowSocksR) 是 ShadowSocks 的 fork 修改版</description>
+      <description>GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由</description>
     </item>
     
     <item>
@@ -124,16 +89,7 @@ SSR(ShadowSocksR) 是 ShadowSocks 的 fork 修改版</description>
       <pubDate>Mon, 23 Nov 2020 00:56:51 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</guid>
-      <description>關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！
-option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option 去產生一個 nullable 的欄位
-syntax = &amp;#34;proto3&amp;#34;;message Foo { int32 bar = 1; optional int32 baz = 2;}https://stackoverflow.com/a/62566052/6695274
-wrappers 不過， gogo-proto 並不支援阿QQ，
-但也不能就這麼捨棄 gogo-proto，因此我們需要選擇另一個方案
-import &amp;#34;google/protobuf/wrappers.proto&amp;#34;;message Foo { int32 bar = 1; google.protobuf.Int32Value baz = 2;}https://stackoverflow.com/a/50099927/6695274
-記得在 --go-output= 內加上 Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types
-但是但是，無法支援 enum 我難過
-custom wrappers 只好自己動手做 (?
-enum Status { STATUS_OK = 0; STATUS_FAIL = 1;}message NullInt32 { bool valid = 1; int32 value = 2;}message NullStatus { bool valid = 1; Status value = 2;}message Foo { int32 bar = 1; NullInt32 baz = 2; NullStatus status = 3;}gen 成 golang 的 code 之後就這樣用，基本上跟 wrappers 的用法是一樣的</description>
+      <description>關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！ option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option</description>
     </item>
     
     <item>
@@ -142,8 +98,7 @@ enum Status { STATUS_OK = 0; STATUS_FAIL = 1;}message NullInt32 { bool valid = 1
       <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid>
-      <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧
-curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 | | default | demo | minimal | remote | empty | preview | | | &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; | &amp;mdash;&amp;mdash;- | &amp;mdash;- | &amp;mdash;&amp;mdash;- | &amp;mdash;&amp;mdash; | &amp;mdash;&amp;ndash; | &amp;mdash;&amp;mdash;- | &amp;mdash; | | Core components | | | | | | | | | istio-egressgateway | | X | | | | | | | istio-ingressgateway | X | X | | | | X | | | istiod | X | X | X | | | X | |</description>
+      <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧 curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 default demo minimal remote empty preview Core components istio-egressgateway X istio-ingressgateway</description>
     </item>
     
     <item>
@@ -152,10 +107,7 @@ curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$
       <pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20201009-hello-graphql/</guid>
-      <description>介紹一下 在遇見 GraphQL 的時候最常被比較的就是 Restful API，畢竟 Rustful API 是目前的主流設計，此時我們就必須了解到什麼情況下使用 GraphQL 能帶來效益
- Over Fetch Restful API 的回傳會是一整個 resource， /user/1 會回傳 id=1 的 User 的全部資料，然而在很多情況下我們不需要這麼多的資料，可能 我們僅僅只需要 user 的名字而已 在 GraphQL 你可以指定你所需要的欄位，大大的減少了傳輸無用資料的消耗 Under Fetch 也就是 n+1 問題，情景是 user 有很多的 friends，每個朋友都是一名 User，在 Restful 的設計中，每個 User resource 都是一支 API，想想就頭痛 QQ。因此會在後端客製化 API 做 eager loading，一次回傳這些資料 但到了 GraphQL 這完全不是問題，你可以向下定義你所需要的資料，並嵌入 User 中 query{User(id:1){NameAvatarURLfriends{IDName}}}  在設計上，GraphQL 關注 明確的解釋查詢語言與型態系統 而不去描述伺服器端實作，前後端之間以 Schema 定義溝通介面，雙方有共通的資料型態以及明確定義的詞彙來討論
-讓一切清楚且簡單～
-怎麼用r 工具會用一點 - GraphQL Playground 認識一些 GraphQL Schema GraphQL 定義自己的語法格式，他是個 SDL (Schema Define Language)</description>
+      <description>介紹一下 在遇見 GraphQL 的時候最常被比較的就是 Restful API，畢竟 Rustful API 是目前的主流設計，此時我們就必須了解到什麼情況下使用 GraphQL 能帶來效益 Over Fetch Restful API 的回傳會是一</description>
     </item>
     
     <item>
@@ -164,9 +116,7 @@ curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$
       <pubDate>Sat, 26 Sep 2020 02:03:48 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
-      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924
-設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
-&amp;#34;==============================================================================&amp;#34; vim 内置配置 &amp;#34;==============================================================================&amp;#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开&amp;#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡&amp;#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC&amp;#34; 关闭兼容模式set nocompatibleset nu &amp;#34; 设置行号set cursorline &amp;#34;突出显示当前行set showmatch &amp;#34; 显示括号匹配&amp;#34; tab 缩进set tabstop=4 &amp;#34; 设置Tab长度为4空格set shiftwidth=4 &amp;#34; 设置自动缩进长度为4空格set autoindent &amp;#34; 继承前一行的缩进方式，适用于多行注释&amp;#34; 定义快捷键的前缀，即&amp;lt;Leader&amp;gt;let mapleader=&amp;#34;,&amp;#34; &amp;#34; ==== 系统剪切板复制粘贴 ====&amp;#34; v 模式下复制内容到系统剪切板vmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下复制一行到系统剪切板nmap &amp;lt;Leader&amp;gt;c &amp;#34;+yy&amp;#34; n 模式下粘贴系统剪切板的内容nmap &amp;lt;Leader&amp;gt;v &amp;#34;+p&amp;#34; 开启实时搜索set incsearch&amp;#34; 搜索时大小写不敏感set ignorecasesyntax enablesyntax on &amp;#34; 开启文件类型侦测filetype plugin indent on &amp;#34; 启用自动补全&amp;#34; 退出插入模式指定类型的文件自动保存au InsertLeave *.</description>
+      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924 設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣 &amp;quot;============================================================================== &amp;quot; vim 内置配置 &amp;quot;============================================================================== &amp;quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &amp;quot; 建议配置完成后将这</description>
     </item>
     
     <item>
@@ -175,19 +125,7 @@ curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$
       <pubDate>Sat, 19 Sep 2020 00:56:51 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</guid>
-      <description>這次筆記內容會圍繞在比特幣這個區塊鍊加密貨幣系統 然後比特幣是一種讓北極熊沒有家住的技術 (?
- 區塊鏈的安全  區塊鏈鏈的模式，保證新的區塊接續前一個區塊，當區塊越多越難被修改 共識機制需要多數節點認同保護資料不易被竄改，也就是去中心化的部分啦 密碼學上的困難問題保護使用資產不會被任意取用，也在建立新的區塊時增加難度，就是挖礦的部分啦  共識機制 這是在分散式系統中相當常見的問題，當節點多了，在同步上出現分歧時應該要聽誰的? 究竟誰手中的資料才是正確的呢?
-拜占庭將軍問題 描述有數個將軍各自在不同地方，但有著相同的任務，而這個任務非常艱難，必須要每個將軍同時進攻、或是同時撤退，否則就會失敗。
-因此在出發之前，每位將軍會投票決定之後才開始行動， 然而&amp;hellip;在這樣的條件下，竟有還有幾位將軍是隱藏身分的間諜!?
-在節點中，同樣會遇到這樣的問題，當節點中出現了不遵守規定的惡意節點時，該如何將它的影響降低呢?
-挖礦 也就是增加難度，比特幣使用 PoW(Proof-of-Work)，讓北極熊沒地方住 ，讓每個節點用工作量來證明自己。如果你想要搞破壞的話，你必須付出比整個鏈上過半的計算能力，然而在現在廣大的比特鏈生態來說，這是不可能的。
- 每個鏈上的共識機制都不同，例如乙太鍊上使用的是 PoS
- 激勵機制 在前一個段落的區塊鍊安全那邊有說到使用 PoW 來保證難以隨意的添加區塊，但是認真想想誰要做這麼吃力的事情? 因此激勵機制的部分就是 給你錢幫我算 (*´∀`)~♥ xdd
-區塊鏈節點 身為一個去中心化的點對點系統，當然一定要有節點。在比特鏈上可以大致分兩種節點，全節點(Full Node)與輕量節點(Light Node)
- 全節點: 存放著完整的比特鏈資訊(好幾十GB)，工作是打包區塊上鏈以及驗證其他人上傳區塊的合法性 輕量節點: 也稱為簡單支付驗證（SPV）節點，不需要儲存所有區塊資訊，也不會對鏈上的安全性做出貢獻，就只是個 read user。可以是手機或是電腦的客戶端軟體，他能夠驗證某一筆交易是否在區塊鏈中 礦工仔: 準確來說礦工不一定是比特網路的一部分，礦工只需要向全節點要求交易回來打包、計算，再將節點廣播出去給所有的全節點驗證就好了  挖礦仔常見問題  Q: 挖礦是啥米?
- 當有一筆交易要進行的時候，交易方拋出他的交易資訊，請人幫他簽核，成功幫他完成任務的人會有獎金
- Q: 這個簽核任務有是啥米?
- 礦工們會將交易區塊資訊 + Nonce 拿去 hash，不斷的替換 Nonce 取得某一組 hash 值開頭是 n 個 bits 為 0 的解答，第一個拿到解答的就是這次挖礦的成功者。因此越多人參與解題就越難挖到礦</description>
+      <description>這次筆記內容會圍繞在比特幣這個區塊鍊加密貨幣系統 然後比特幣是一種讓北極熊沒有家住的技術 (? 區塊鏈的安全 區塊鏈鏈的模式，保證新的區塊接續前一個區</description>
     </item>
     
     <item>
@@ -196,12 +134,7 @@ curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$
       <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200908-golang-di-tool-wire/</guid>
-      <description>wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。
-能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤
- Q: Should I use Wire for small applications? Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler. 不複雜的小型專案還是手動注入會更乾淨喔~
- go build tag 菜鳥如我這時候才知道，在 .go 檔案最前面加入 build tag 的檔案，在編譯的時候是不會被加進去的(ex: //+build foo ) 所以可以放重複的 function 在同一個 package 裡面，這個操作在 lorca 那篇也有出現過，可以交叉比較一下～
-這是一個 wire.go 檔案
-//+build wireinject package main import ( &amp;quot;learnGo/wire/repo&amp;quot; &amp;quot;learnGo/wire/service&amp;quot; &amp;quot;github.</description>
+      <description>wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產</description>
     </item>
     
     <item>
@@ -210,15 +143,7 @@ curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$
       <pubDate>Mon, 31 Aug 2020 01:34:04 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200831-known-fire-gitio/</guid>
-      <description>介紹 GitHub 在 2018 年推出的短網址服務: git.io
-他可以把 GitHub 的網址縮短~
-with fish 其實會發現他的原因，是因為在尋找 fish 的 plugin
-https://github.com/jorgebucaran/gitio.fish
-fisher 是一個 fish 的套件管理工具，我們用它來安裝 fish 版 gitio
-fisher add jorgebucaran/gitio.fish 用這個工具的話可以自定義名稱喔！ 網頁版的 UI 好像就沒有這個選項 QQ
-安裝完成後 gitio key=url 就可以了
-gitio yamcha=https://github.com/XiaoXiaoSN/YamCha # https://git.io/yamcha without fish? 直接自己組 queryString 打過去也是可以的
-export url=https://github.com/XiaoXiaoSN/YamCha export code=yamcha curl https://git.io/ --data-urlencode &amp;#34;url=$url&amp;#34; --data-urlencode code=&amp;#34;$code&amp;#34; </description>
+      <description>介紹 GitHub 在 2018 年推出的短網址服務: git.io 他可以把 GitHub 的網址縮短~ with fish 其實會發現他的原因，是因為在尋找 fish 的 plugin https://github.com/jorgebucaran/gitio.fish fisher 是一個 fish 的套件管理工具，我們用它來安裝 fish</description>
     </item>
     
     <item>
@@ -227,15 +152,7 @@ export url=https://github.com/XiaoXiaoSN/YamCha export code=yamcha curl https://
       <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</guid>
-      <description>環境 我們先用 macOS Catalina 10.15.2 來做筆記喔
-1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～
-1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10
-支援的 virtual box 版本沒有到最新的 6， 我們到這邊下載舊版吧
-https://www.virtualbox.org/wiki/
- 如果 mac 不給你開的話，記得可以到 系統偏好設定 &amp;gt; 安全性與隱私 &amp;gt; 一般 開啟權限
- 1.2 設定 vagrant 第一步要先建立一個 Vagrantfile，我們選用 ubuntu 16.04 TLS
-這邊也有更多選擇 &amp;ndash;&amp;gt; https://app.vagrantup.com/boxes/search
-# 先在你喜歡的地方開個資料夾吧 mkdir -p ~/projects/vagrant/k8s-master cd ~/projects/vagrant/k8s-master vim Vagrantfile # -*- mode: ruby -*- # vi: set ft=ruby : Vagrant.</description>
+      <description>環境 我們先用 macOS Catalina 10.15.2 來做筆記喔 1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～ 1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10 支援的 virtual box 版本沒有到最</description>
     </item>
     
     <item>
@@ -244,7 +161,7 @@ https://www.virtualbox.org/wiki/
       <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</guid>
-      <description>問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境  » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental: true Server: Docker Engine - Community Engine: Version: 19.03.12 API version: 1.40 (minimum version 1.12) Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:49:27 2020 OS/Arch: linux/amd64 Experimental: true containerd: Version: v1.2.13 GitCommit: 7ad184331fa3e55e52b890ea95e65ba581ae3429 runc: Version: 1.</description>
+      <description>問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境 » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental:</description>
     </item>
     
     <item>
@@ -253,16 +170,7 @@ https://www.virtualbox.org/wiki/
       <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</guid>
-      <description>Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c++, rust
-所以學學看應該很不錯吧！
-Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際操作更好了解！
-首先要了解 Model, Policy 是什麼呢?
-  Policy 是規則，裡面寫了一系列的權限像是
-{小明} 可以對 {文件} {查看}
-{小明} 可以對 {程式} {查看}
-{小明} 可以對 {程式} {修改}
-  Model 是用來定義 Input 的格式， Policy 的格式， Policy 的使用方法 像是前面 Policy 的寫法就是在這裡來定義
-  Model 權限模組 r request_definition 用來表示輸入，例如說 r = sub, obj, act 就有 3 種輸入，分別表示Subject(人) Object(資源) 動作(Action)</description>
+      <description>Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可</description>
     </item>
     
     <item>
@@ -271,14 +179,7 @@ Model, Policy 語法 開啟編輯器的畫面 https://casbin.org/editor/ 實際�
       <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200811-homebrew-create-app/</guid>
-      <description>馬上試試 pokesay
-brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要他說的話XDD
-我用得很快樂的時候發現一件事很不快樂，當一行太多字的時候會換行
-你看！都擠在一起了R
-這時我想到 cowsay 應該有這個功能才對呀！ 查詢了之後發現 在 pokemonsay 裡面 -n 被用在 Do not tell the pokémon name. 也就是最底下不要 show pokemon 的名字
-QQ 我不依，我自己改!
-介紹 Homebrew 首先先介紹一下 homebrew 這個軟體～ 他是 MacOS 上的套件管理工具，是 mac 最重要的必裝軟體之一
- brew 這個字是釀造的意思，homebrew 在家釀造也就是自釀的意思 tap 第三方套件的倉庫，就相當於是 apt 的 ppa 一樣的角色 formula 公式、配方，上面寫著軟體安裝的步驟，也就是釀製(brew)的方法 cellar 酒窖存放釀好的酒，預設存在 /usr/local/Cellar，每個資料夾裡面也存有不同的版本，當 brew switch 某個套件版本的時候就是把 /usr/local/bin 的 link 指過去    補充: brew cask 用來安裝 macOS apps 也就是可以直接在應用程式裡面看到的圖像化軟體，像是 Chrome, Firefox, 360Safe 之類的</description>
+      <description>馬上試試 pokesay brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要他說的話XDD</description>
     </item>
     
     <item>
@@ -287,267 +188,7 @@ QQ 我不依，我自己改!
       <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
       
       <guid>https://blog.10oz.tw/20200728-journey-in-wsl2/</guid>
-      <description>步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &amp;raquo; https://www.microsoft.com/en-us/software-download/windows10
-開啟環境設定 用系統管理員身分開啟 PowerShell 後，輸入指令開啟 Linux Subsystem 的支援和 HyperV 的虛擬機器平台 用 HyperV 要記得到 BIOS 開啟虛擬機器的支援喔
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 這時候你需要重啟一下電腦~
-然後要更新 linux subsystem kernel https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel
-安裝 Linux 發行版 按一下 Windows 鍵輸入 Microsoft Store 後開啟商店選擇你要的 Linux 版本，在這裡我選擇 Ubuntu1804 另外偷偷下載了 windows terminal，有比較漂亮R 看一看 WSL2 的設定 更新完後開啟 PowerShell 將 WSL 預設版本改為 2</description>
-    </item>
-    
-    <item>
-      <title>Golang 漂亮的輸出 JSON</title>
-      <link>https://blog.10oz.tw/20200229-golang-pretty-print/</link>
-      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200229-golang-pretty-print/</guid>
-      <description>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！
-我需要排版！！趕快筆記一下
-一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &amp;#34;&amp;#34;, &amp;#34; &amp;#34;) if err != nil { fmt.Println(&amp;#34;&amp;#34;) } fmt.Printf(&amp;#34;%s\n&amp;#34;, jsonByte) } 二、我有一個 json byte func prettyPrintByte(jsonByte []byte) { var buf bytes.Buffer err := json.Indent(&amp;amp;buf, jsonByte, &amp;#34;&amp;#34;, &amp;#34; &amp;#34;) if err == nil { jsonByte = buf.Bytes() } fmt.Printf(&amp;#34;%s\n&amp;#34;, jsonByte) } 參考 https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889</description>
-    </item>
-    
-    <item>
-      <title>Golang 怎麼處理 JSON</title>
-      <link>https://blog.10oz.tw/20200228-golang-json-marshal/</link>
-      <pubDate>Fri, 28 Feb 2020 23:22:36 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200228-golang-json-marshal/</guid>
-      <description>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成常用處理json、自定義處理 json和多層處理 三個 part， GOGO
-一、常用方法 package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) // Box 是個箱子 type Box struct { Name string `json:&amp;#34;name&amp;#34;` Color string `json:&amp;#34;color&amp;#34;` } func main() { jsonStr := `{&amp;#34;name&amp;#34;: &amp;#34;喵喵&amp;#34;, &amp;#34;color&amp;#34;: &amp;#34;blue&amp;#34; }` box := new(Box) // 把 bytes 寫進去 Box 物件裡面 	_ = json.Unmarshal([]byte(jsonStr), box) fmt.Printf(&amp;#34;%+v\n&amp;#34;, box) // {Name:喵喵 Color:blue}  // 再把物件寫回去 binary json 	box.Color = &amp;#34;黃色的&amp;#34; byteJSON, _ := json.</description>
-    </item>
-    
-    <item>
-      <title>製造一個 hugo 部落格</title>
-      <link>https://blog.10oz.tw/20200124-make-a-hugo-blog/</link>
-      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200124-make-a-hugo-blog/</guid>
-      <description>步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！
-所以我們需要:
- 一人份的 github 帳號 安裝 hugo 點我看教學 挑選喜歡的 hugo 模板 點我參觀  $ hugo version Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown 二、開跑囉 開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字
-$ hugo new site xiaoxiao $ cd xiaoxiao 會看到目錄長這樣:
-├── archetypes │ └── default.md # 產生新文章時的模板 ├── config.toml # 最主要的設定檔案 ├── content # Markdown 的文章在這邊 ├── data ├── layouts ├── resources │ └── _gen ├── static └── themes # 套用的主題包們 └── hugo-theme-m10c 接著挑選一個漂亮的 hugo 模板來下載，我用人家教學示範的模板</description>
-    </item>
-    
-    <item>
-      <title>筆記 Install php MongoDB driver on MacOS</title>
-      <link>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</link>
-      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</guid>
-      <description>** 2019.08 更新** https://www.php.net/manual/en/mongodb.installation.homebrew.php mac php72 請使用 pecl install mongodb 安裝 mongodb driver 因為 mongodb, xdebug 從 homebrew 被移除了
-[time=Thu, Aug 15, 2019 7:59 PM]
- 問題描述 想在 Laravel 用 MongoDB
-composer require jenssegers/mongodb 錯誤：
-the requested PHP extension mongodb is missing from your system. =&amp;gt; 沒有裝 php 的擴展
-解決方案 先來個悲劇， homebrew 拿掉 php-mongodb 的擴展了QQ
-只好去裝人家的，我的 php 版本是 7.1 所以裝 php71-mongodb 忘記版本的話可以用 php --version 查看
-brew tap kyslik/php brew install phpxx-mongodb {xx = 71,72} 裝完惹！ 但是當我輸入 php -i 檢查的時候 dyld: Library not loaded: /usr/local/opt/readline/lib/libreadline.</description>
-    </item>
-    
-    <item>
-      <title>Learning Elasticsearch</title>
-      <link>https://blog.10oz.tw/20190814-learning-elasticsearch/</link>
-      <pubDate>Wed, 14 Aug 2019 00:15:26 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190814-learning-elasticsearch/</guid>
-      <description>@elasticsearch version 6.8
- STRUCTURE 可以這樣想像
-Relational DB -&amp;gt; Databases -&amp;gt; Tables -&amp;gt; Rows -&amp;gt; Columns
-Elasticsearch -&amp;gt; Indices -&amp;gt; Types -&amp;gt; Documents -&amp;gt; Fields
-不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義）
-Indices created in 6.x only allow a single-type per index. 6.x 後建議 type 使用 _doc，
-然後 8.x: Specifying types in requests is no longer supported.
-我發現我發現 看一眼 reindex 就很清楚他改了什麼了喔！
-POST _reindex { &amp;quot;source&amp;quot;: { &amp;quot;index&amp;quot;: &amp;quot;twitter&amp;quot; }, &amp;quot;dest&amp;quot;: { &amp;quot;index&amp;quot;: &amp;quot;new_twitter&amp;quot; }, &amp;quot;script&amp;quot;: { &amp;quot;source&amp;quot;: &amp;quot;&amp;quot;&amp;quot; ctx.</description>
-    </item>
-    
-    <item>
-      <title>筆記 laravel test - 我們也來寫測試</title>
-      <link>https://blog.10oz.tw/20190703-laravel-testing/</link>
-      <pubDate>Wed, 03 Jul 2019 13:18:13 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190703-laravel-testing/</guid>
-      <description>laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM]
- 開始之前 test 的設定檔在 ./phpunit.xml ，
-&amp;lt;!--phpunit.xml --&amp;gt; &amp;lt;phpunit&amp;gt; &amp;lt;php&amp;gt; &amp;lt;!--laravel 環境設定檔案使用 .emv.testing --&amp;gt; &amp;lt;server name=&amp;#34;APP_ENV&amp;#34; value=&amp;#34;testing&amp;#34;/&amp;gt; &amp;lt;!--測試環境的資料庫連線設定，我們將使用 sqlite --&amp;gt; &amp;lt;server name=&amp;#34;DB_CONNECTION&amp;#34; value=&amp;#34;sqlite_for_testing&amp;#34;/&amp;gt; &amp;lt;env name=&amp;#34;DB_DATABASE&amp;#34; value=&amp;#34;:memory:&amp;#34;/&amp;gt; &amp;lt;/php&amp;gt; &amp;lt;/phpunit&amp;gt; php 也要加在 Config/dataset.php
-/* Config/dataset.php */ &amp;lt;?php &amp;#39;connections&amp;#39; =&amp;gt; [ // ...other db connection configuration  // 為了方便測試，使用 memory sqlite 做為我們的資料庫 	&amp;#39;sqlite_for_testing&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;sqlite&amp;#39;, &amp;#39;database&amp;#39; =&amp;gt; &amp;#39;:memory:&amp;#39;, &amp;#39;prefix&amp;#39; =&amp;gt; &amp;#39;&amp;#39;, &amp;#39;foreign_key_constraints&amp;#39; =&amp;gt; true, ], ] 確認好設定後，我們執行起來</description>
-    </item>
-    
-    <item>
-      <title>筆記 artisan 的大紅色好刺眼啊啊啊啊</title>
-      <link>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</link>
-      <pubDate>Thu, 23 May 2019 02:51:38 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</guid>
-      <description> Laravel 5.8
- $kernel = $app-&amp;gt;make(Illuminate\Contracts\Console\Kernel::class); $output = new Symfony\Component\Console\Output\ConsoleOutput; $output-&amp;gt;getFormatter() -&amp;gt;setStyle(&amp;#39;error&amp;#39;, new \Symfony\Component\Console\Formatter\OutputFormatterStyle(&amp;#39;yellow&amp;#39;)); $status = $kernel-&amp;gt;handle( $input = new Symfony\Component\Console\Input\ArgvInput, $output ); 修改的話在 line:37 可以帶三種參數
-public function __construct( string $foreground = null, string $background = null, array $options = []){ /****/ } 三種參數可以參考
-private static $availableForegroundColors = [ &amp;#39;black&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 30, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;red&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 31, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;green&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 32, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;yellow&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 33, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;blue&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 34, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;magenta&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 35, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;cyan&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 36, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;white&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 37, &amp;#39;unset&amp;#39; =&amp;gt; 39], &amp;#39;default&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 39, &amp;#39;unset&amp;#39; =&amp;gt; 39], ]; private static $availableBackgroundColors = [ &amp;#39;black&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 40, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;red&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 41, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;green&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 42, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;yellow&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 43, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;blue&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 44, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;magenta&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 45, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;cyan&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 46, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;white&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 47, &amp;#39;unset&amp;#39; =&amp;gt; 49], &amp;#39;default&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 49, &amp;#39;unset&amp;#39; =&amp;gt; 49], ]; private static $availableOptions = [ &amp;#39;bold&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 1, &amp;#39;unset&amp;#39; =&amp;gt; 22], &amp;#39;underscore&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 4, &amp;#39;unset&amp;#39; =&amp;gt; 24], &amp;#39;blink&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 5, &amp;#39;unset&amp;#39; =&amp;gt; 25], &amp;#39;reverse&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 7, &amp;#39;unset&amp;#39; =&amp;gt; 27], &amp;#39;conceal&amp;#39; =&amp;gt; [&amp;#39;set&amp;#39; =&amp;gt; 8, &amp;#39;unset&amp;#39; =&amp;gt; 28], ]; </description>
-    </item>
-    
-    <item>
-      <title>筆記 安裝 Golang 與他們的套件管理工具</title>
-      <link>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</link>
-      <pubDate>Wed, 01 May 2019 11:50:36 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</guid>
-      <description>從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔 在這之前的版本使用環境變數 GOMODULE111=true 來做管理
- 安裝 golang (on Mac) 1. 第一步當然是拿到 golnag 囉 brew install go 2. 環境設定 試著在 terminal 輸入 go env，能夠拿到 golang 用到的環境變數 特別注意一下幾個環境變數
- GOROOT: 是你 golang 執行環境住的地方 GOPATH: 是你的 golang 程式 和 用到的套件們所住的地方 GOBIN: 因為 golang 是編譯式的語言，他可以把相依套件事先build 好，製作成 .a 的二進位檔，存在 GOBIN 裡面  # create GOPATH dir mkdir $HOME/gocode 永久設定~~ 如果你的 shell 是 bash 的話 (預設) 開啟編輯器修改 $HOME/.bashrc 檔案，bash 在登入後會做上面的事情</description>
-    </item>
-    
-    <item>
-      <title>筆記 我是個 go module 的菜鳥</title>
-      <link>https://blog.10oz.tw/20190501-a-new-in-go-module/</link>
-      <pubDate>Wed, 01 May 2019 01:28:22 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190501-a-new-in-go-module/</guid>
-      <description>簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控制行為：
- off: go command 不使用 modules 功能，而是沿用舊有的 GOPATH 模式 on: 強制使用 modules 功能，只根據 go.mod 下載 dependency 而完全忽略 GOPATH 以及 vendor 目錄 auto: Golang 1.11 預設值，go command 根據當前工作目錄狀態決定是否啟用 modules 功能，滿足任一條件時才啟動此功能:  當前目錄位於 GOPATH/src 之外並且包含 go.mod 文件 當前目錄位於包含 go.mod 文件的目錄下    因此，我們的第一步就是開啟他
-export GO111MODULE=on 來吧，新專案 mkdir goModTest cd goModTest main.go // at goModTest/main.go package main import ( &amp;quot;net/http&amp;quot; &amp;quot;github.</description>
-    </item>
-    
-    <item>
-      <title>筆記 Laravel with Keycloak</title>
-      <link>https://blog.10oz.tw/20190424-laravel-with-keycloak/</link>
-      <pubDate>Wed, 24 Apr 2019 10:05:56 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190424-laravel-with-keycloak/</guid>
-      <description>laravel version: 5.8
- 一、安裝篇 裝這個，跟著他的步驟做 https://github.com/robsontenorio/laravel-keycloak-guard
-二、使用篇 我們假設 Keycloak Server 有大大幫你開好了 (沒有請點我)
-取得 Keycloak 金鑰 https://auth.leotekiot.com 預設帳號: admin 預設密碼: Pa55w0rd
-登入後，依序操作得到金鑰 Realm Setting &amp;gt; Keys &amp;gt; RS256 Public key 放到 laravel 的 .env 設定中
-KEYCLOAK_REALM_PUBLIC_KEY=你的公開金鑰 登入 Keycloak Clients &amp;gt; {{ 選個Client }} &amp;gt; Credentials Secret 那邊就是我們的 Client Secret 了 User &amp;gt; View all users &amp;gt; {{ 選個User }} 或是你要新創一個也可以， 總之要記得你的帳號密碼喔
-移駕到 Postman 來嘗試登入 用這個 API 取得 token， auth_realm 填上現在使用的 Realm 預設是 Master</description>
-    </item>
-    
-    <item>
-      <title>筆記 Laravel Eloquent Model 的 relation</title>
-      <link>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</link>
-      <pubDate>Tue, 16 Apr 2019 20:35:16 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</guid>
-      <description>版本 Larael 5.7
- 範例模型 accounts
-CREATE TABLE `accounts` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `website_id` int(10) unsigned NOT NULL, `account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, `deleted_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ); websites
-CREATE TABLE `websites` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ) accounts table 底下有個 cloumn website_id 用來關聯 websites 這張表。</description>
-    </item>
-    
-    <item>
-      <title>筆記 Laravel API 權限 (Passport)</title>
-      <link>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</link>
-      <pubDate>Sun, 17 Feb 2019 09:46:31 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</guid>
-      <description>使用 JWT 版本 (2018/09 更新)  前面幾個步驟同官方安裝教學
- 步驟說明 1. composer 載回來 composer require laravel/passport
-2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token)
-3.創造 key php artisan passport:install
-他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)
-同時也準備 2 個 Client Key 在 oauth_clients 資料表內
-Personal access client created successfully. Client ID: 1 Client Secret: ETOhMRq7faRSnb1jN2F168jlbYFcf25MOHj0cOxt Password grant client created successfully. Client ID: 2 Client Secret: fibc50RiIjAiYSLR7xceQyoxQE3oGWtIXpCLj9Co 4. 附加 passport 至 auth 系統  在 app\User.</description>
-    </item>
-    
-    <item>
-      <title>筆記 laravel 真新手時間</title>
-      <link>https://blog.10oz.tw/20190123-a-new-in-laravel/</link>
-      <pubDate>Wed, 23 Jan 2019 20:36:55 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190123-a-new-in-laravel/</guid>
-      <description>新手入門 結構介紹 我們現在在 laravel v5.7
-一起來看一下 laravel 專案的結構吧
-app 大部份的網頁後端主要程式碼 也就是說他很重要
-  (Model)放在外面的大寫開頭們～
-例如說 User.php 就是， 他們是 Model，定義了資料庫的物件模式
-  Http/
- Controllers/
-controller可以作為路由進來後的流程控制器，可以想像它負責告訴大家要做什麼 Middleware/
-middleware叫做中間層，用來包著你的程式內容，request 進出都會經過    bootstrap 程式啟動第一個執行的套件
-config 所有應用的設定檔們
-database 顧名思義：資料庫～
- migrations/
-紀錄了資料庫的心路歷程
-其中定義了up跟down，模擬建立資料還有需要rollback回去時的動作 fatories/
-定義了一些資料的模式，可以使用seeder批量製造 seeds/
-他是一顆會長出資料的種子，當你需要產生測試用的資料的時候很常遇到他  public 對外公開給使用者看得到的資源
- Ex: 圖片、webpack包裝過的檔案  resources 本地資源
-  Ex: js的原始碼、CSS&amp;hellip;
-  /assets
- /js/components
-裡面寫了好多 vue component 們，他們是前端主力!    /views</description>
-    </item>
-    
-    <item>
-      <title>筆記 安裝 Laravel on MacOS</title>
-      <link>https://blog.10oz.tw/20190117-install-laravel-on-macos/</link>
-      <pubDate>Thu, 17 Jan 2019 12:03:16 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190117-install-laravel-on-macos/</guid>
-      <description>Step by Step 安裝指南 事前準備 HomeBrew 首先安裝 HomeBrew，他是 Mac 上的套件管理工具
-在終端機執行他： (裝過了可以跳過)
-/usr/bin/ruby -e &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;#34; ＊ Docker 安裝 Docker， 以會需要他多多照顧
-不想登入可以直接點 下載連結 下載 .dmg 並安裝
-安裝 python3 用 brew 裝，已經裝好了，跳過
-安裝 docker-compose 就是把 docker 組隊，一次把一群不同 docker 給開起來的工具
-pip3 install docker-compose ＊ 安裝 PHP (7.1.3以上) brew install php@7.2 ＊ 下載 Composer composer 是 php 的套件管理工具，想像他跟 pip, npm 這些的傢伙是一樣的
-可以直接跑下面的指令，或是到下載頁面下載 php -r &amp;#34;copy(&amp;#39;https://getcomposer.org/installer&amp;#39;, &amp;#39;composer-setup.php&amp;#39;);&amp;#34; php -r &amp;#34;if (hash_file(&amp;#39;sha384&amp;#39;, &amp;#39;composer-setup.php&amp;#39;) === &amp;#39;93b544968e392c0362774670ac182b134cd3b3a09695e5dca5e53c3728f1a9f115f20b3b754bf9a1be329d521bdaa8b26ac6a13e9a62d6444cdb0dc8a1da0806156398a5cbe587c3f0fe57a54d8f5&amp;#39;) { echo &amp;#39;Installer verified&amp;#39;; } else { echo &amp;#39;Installer corrupt&amp;#39;; unlink(&amp;#39;composer-setup.</description>
-    </item>
-    
-    <item>
-      <title>筆記 自定義 flask 的 console log 之路</title>
-      <link>https://blog.10oz.tw/20181128-custom-flask-console-log/</link>
-      <pubDate>Wed, 28 Nov 2018 03:19:15 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20181128-custom-flask-console-log/</guid>
-      <description>需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip
-實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9
-import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string = lambda self: \ self.headers.get(&#39;X-Forwarded-For&#39;) if self.headers.get(&#39;X-Forwarded-For&#39;) else self.client_address[0] WSGIRequestHandler.log = lambda self, type, message, *args: \ getattr(werkzeug_logger, type)(&#39;%s %s&#39; % (self.</description>
-    </item>
-    
-    <item>
-      <title>筆記 python: Error 24: too many open files</title>
-      <link>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</link>
-      <pubDate>Tue, 20 Nov 2018 03:19:29 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</guid>
-      <description>問題描述 同時開太多連線啦
-環境 Ubuntu 16.04
-解決方法 https://blog.csdn.net/qq_23926575/article/details/76619827
-開啟這個檔案 sudo vim /etc/security/limits.conf
-在最底下新增兩行
-* soft nofile 10000 * hard nofile 10000 記得重開Server</description>
-    </item>
-    
-    <item>
-      <title>筆記 mysqlclient 安裝, error: python setup.py egg_info </title>
-      <link>https://blog.10oz.tw/20181117-install-mysqlclient/</link>
-      <pubDate>Sat, 17 Nov 2018 14:11:06 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20181117-install-mysqlclient/</guid>
-      <description>錯誤: 目標是成功執行它：
-pip3 install mysqlclient arios@AriosMac: pymysql_pool » pip3 install mysqlclient Collecting mysqlclient Using cached https://files.pythonhosted.org/packages/ec/fd/83329b9d3e14f7344d1cb31f128e6dbba70c5975c9e57896815dbb1988ad/mysqlclient-1.3.13.tar.gz Complete output from command python setup.py egg_info: /bin/sh: mysql_config: command not found Traceback (most recent call last): File &amp;#34;&amp;lt;string&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; File &amp;#34;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup.py&amp;#34;, line 18, in &amp;lt;module&amp;gt; metadata, options = get_config() File &amp;#34;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;#34;, line 53, inget_config libs = mysql_config(&amp;#34;libs_r&amp;#34;) File &amp;#34;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;#34;, line 28, inmysql_config raise EnvironmentError(&amp;#34;%s not found&amp;#34; % (mysql_config.path,)) OSError: mysql_config not found ---------------------------------------- Command &amp;#34;python setup.</description>
-    </item>
-    
-    <item>
-      <title>筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容</title>
-      <link>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</link>
-      <pubDate>Thu, 08 Nov 2018 12:04:17 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</guid>
-      <description>問題 當你的函示庫底層使用 C語言 而不是純 python 編寫時 pylint 可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上
-解決方法 加入以下至白名單 $vim ~/.pylintrc
-extension-pkg-whitelist=MySQLdb </description>
-    </item>
-    
-    <item>
-      <title>關於 XiaoXiao</title>
-      <link>https://blog.10oz.tw/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.10oz.tw/about/</guid>
-      <description>什麼都有趣、什麼都好玩、什麼都想試試看
-但是我金魚QQ 所以要寫筆記 喵</description>
+      <description>步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &amp;raquo; https://www.microsoft.com/en-us/software-download/windows10 開啟環境設定 用系統管理員</description>
     </item>
     
   </channel>

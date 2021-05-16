@@ -1,29 +1,194 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>oauth on XiaoXiao Notes</title>
     <link>https://blog.10oz.tw/tags/oauth/</link>
     <description>Recent content in oauth on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <copyright>CC BY 4.0 CN</copyright>
     <lastBuildDate>Wed, 24 Apr 2019 10:05:56 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.10oz.tw/tags/oauth/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://blog.10oz.tw/tags/oauth/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>筆記 Laravel with Keycloak</title>
-      <link>https://blog.10oz.tw/20190424-laravel-with-keycloak/</link>
-      <pubDate>Wed, 24 Apr 2019 10:05:56 +0800</pubDate>
+      <title>究竟阿狗能做什麼呢</title>
+      <link>https://blog.10oz.tw/20210409-what-can-argocd-do/</link>
+      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
       
-      <guid>https://blog.10oz.tw/20190424-laravel-with-keycloak/</guid>
-      <description>laravel version: 5.8
- 一、安裝篇 裝這個，跟著他的步驟做 https://github.com/robsontenorio/laravel-keycloak-guard
-二、使用篇 我們假設 Keycloak Server 有大大幫你開好了 (沒有請點我)
-取得 Keycloak 金鑰 https://auth.leotekiot.com 預設帳號: admin 預設密碼: Pa55w0rd
-登入後，依序操作得到金鑰 Realm Setting &amp;gt; Keys &amp;gt; RS256 Public key 放到 laravel 的 .env 設定中
-KEYCLOAK_REALM_PUBLIC_KEY=你的公開金鑰 登入 Keycloak Clients &amp;gt; {{ 選個Client }} &amp;gt; Credentials Secret 那邊就是我們的 Client Secret 了 User &amp;gt; View all users &amp;gt; {{ 選個User }} 或是你要新創一個也可以， 總之要記得你的帳號密碼喔
-移駕到 Postman 來嘗試登入 用這個 API 取得 token， auth_realm 填上現在使用的 Realm 預設是 Master</description>
+      <guid>https://blog.10oz.tw/20210409-what-can-argocd-do/</guid>
+      <description>你問阿狗是什麼 GitOps + Kubernetes 的產物，相當不錯的運維工具 先來裝 Argo CD 我們要用 helm 安裝裝起來喔 helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml installCRDs: false global: image: tag: v1.8.6 dex: enabled: false server: extraArgs: - --insecure # 如果說你</description>
+    </item>
+    
+    <item>
+      <title>啥? k8s node 硬碟空間滿了</title>
+      <link>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</link>
+      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</guid>
+      <description>發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs</description>
+    </item>
+    
+    <item>
+      <title>想用 Terraform 與 kOps 也得寫個筆記</title>
+      <link>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</link>
+      <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</guid>
+      <description>流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key 直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器</description>
+    </item>
+    
+    <item>
+      <title>小紀錄更新 Rinkeby Ethereum 節點</title>
+      <link>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</link>
+      <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</guid>
+      <description>這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢</description>
+    </item>
+    
+    <item>
+      <title>helm3 說 has no deployed releases</title>
+      <link>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</link>
+      <pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</guid>
+      <description>問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本 Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他</description>
+    </item>
+    
+    <item>
+      <title>go get 與私有 Gitlab</title>
+      <link>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</link>
+      <pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</guid>
+      <description>GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援 Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo</description>
+    </item>
+    
+    <item>
+      <title>Chromedp 殭屍進程</title>
+      <link>https://blog.10oz.tw/20210306-chromedp-zombi-process/</link>
+      <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210306-chromedp-zombi-process/</guid>
+      <description>問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積 因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗</description>
+    </item>
+    
+    <item>
+      <title>VPN &amp; GFW - 科學上網</title>
+      <link>https://blog.10oz.tw/20210124-vpn-and-gfw/</link>
+      <pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210124-vpn-and-gfw/</guid>
+      <description>GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由</description>
+    </item>
+    
+    <item>
+      <title>gRPC - protobuf v3 產生 nullable 欄位</title>
+      <link>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</link>
+      <pubDate>Mon, 23 Nov 2020 00:56:51 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</guid>
+      <description>關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！ option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option</description>
+    </item>
+    
+    <item>
+      <title>新米 Istio - 安裝篇</title>
+      <link>https://blog.10oz.tw/20201115-a-istio-beginner/</link>
+      <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid>
+      <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧 curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 default demo minimal remote empty preview Core components istio-egressgateway X istio-ingressgateway</description>
+    </item>
+    
+    <item>
+      <title>GraphQL 打招呼</title>
+      <link>https://blog.10oz.tw/20201009-hello-graphql/</link>
+      <pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201009-hello-graphql/</guid>
+      <description>介紹一下 在遇見 GraphQL 的時候最常被比較的就是 Restful API，畢竟 Rustful API 是目前的主流設計，此時我們就必須了解到什麼情況下使用 GraphQL 能帶來效益 Over Fetch Restful API 的回傳會是一</description>
+    </item>
+    
+    <item>
+      <title>我要裝 vim</title>
+      <link>https://blog.10oz.tw/20200926-wanna-install-vim/</link>
+      <pubDate>Sat, 26 Sep 2020 02:03:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
+      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924 設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣 &amp;quot;============================================================================== &amp;quot; vim 内置配置 &amp;quot;============================================================================== &amp;quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &amp;quot; 建议配置完成后将这</description>
+    </item>
+    
+    <item>
+      <title>新米 blockchain 混亂中</title>
+      <link>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</link>
+      <pubDate>Sat, 19 Sep 2020 00:56:51 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</guid>
+      <description>這次筆記內容會圍繞在比特幣這個區塊鍊加密貨幣系統 然後比特幣是一種讓北極熊沒有家住的技術 (? 區塊鏈的安全 區塊鏈鏈的模式，保證新的區塊接續前一個區</description>
+    </item>
+    
+    <item>
+      <title>golng 注入工具 wire</title>
+      <link>https://blog.10oz.tw/20200908-golang-di-tool-wire/</link>
+      <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200908-golang-di-tool-wire/</guid>
+      <description>wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產</description>
+    </item>
+    
+    <item>
+      <title>已知用火 - git.io 短網址</title>
+      <link>https://blog.10oz.tw/20200831-known-fire-gitio/</link>
+      <pubDate>Mon, 31 Aug 2020 01:34:04 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200831-known-fire-gitio/</guid>
+      <description>介紹 GitHub 在 2018 年推出的短網址服務: git.io 他可以把 GitHub 的網址縮短~ with fish 其實會發現他的原因，是因為在尋找 fish 的 plugin https://github.com/jorgebucaran/gitio.fish fisher 是一個 fish 的套件管理工具，我們用它來安裝 fish</description>
+    </item>
+    
+    <item>
+      <title>我們想在虛擬機上跑個 k8s</title>
+      <link>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</link>
+      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</guid>
+      <description>環境 我們先用 macOS Catalina 10.15.2 來做筆記喔 1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～ 1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10 支援的 virtual box 版本沒有到最</description>
+    </item>
+    
+    <item>
+      <title>Docker 建立不同架構的 Image</title>
+      <link>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</link>
+      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</guid>
+      <description>問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境 » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental:</description>
+    </item>
+    
+    <item>
+      <title>Casbin 權限管理模組</title>
+      <link>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</link>
+      <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</guid>
+      <description>Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可</description>
+    </item>
+    
+    <item>
+      <title>Homebrew 自己寫配方一起來釀酒</title>
+      <link>https://blog.10oz.tw/20200811-homebrew-create-app/</link>
+      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200811-homebrew-create-app/</guid>
+      <description>馬上試試 pokesay brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要他說的話XDD</description>
+    </item>
+    
+    <item>
+      <title>出發尋找 WSL2 的旅程</title>
+      <link>https://blog.10oz.tw/20200728-journey-in-wsl2/</link>
+      <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200728-journey-in-wsl2/</guid>
+      <description>步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &amp;raquo; https://www.microsoft.com/en-us/software-download/windows10 開啟環境設定 用系統管理員</description>
     </item>
     
   </channel>

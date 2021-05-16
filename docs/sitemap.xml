@@ -1,528 +1,751 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://blog.10oz.tw/tags/argo/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/cd/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/gitlab/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/posts/</loc>
+    <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20210409-what-can-argocd-do/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/docker/</loc>
     <lastmod>2021-04-02T01:19:30+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/linux/</loc>
     <lastmod>2021-04-02T01:19:30+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/log/</loc>
     <lastmod>2021-04-02T01:19:30+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</loc>
     <lastmod>2021-04-02T01:19:30+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/kops/</loc>
     <lastmod>2021-03-31T01:32:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/terraform/</loc>
     <lastmod>2021-03-31T01:32:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</loc>
     <lastmod>2021-03-31T01:32:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/blockchain/</loc>
     <lastmod>2021-03-26T01:41:50+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/ethereum/</loc>
     <lastmod>2021-03-26T01:41:50+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/geth/</loc>
     <lastmod>2021-03-26T01:41:50+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</loc>
     <lastmod>2021-03-26T01:41:50+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/helm/</loc>
     <lastmod>2021-03-26T01:24:28+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</loc>
     <lastmod>2021-03-26T01:24:28+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/kubernetes/</loc>
     <lastmod>2021-03-26T01:24:28+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</loc>
     <lastmod>2021-03-16T01:49:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/golnag/</loc>
     <lastmod>2021-03-16T01:49:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/subgroup/</loc>
     <lastmod>2021-03-16T01:49:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/chromedp/</loc>
     <lastmod>2021-03-06T01:26:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20210306-chromedp-zombi-process/</loc>
     <lastmod>2021-03-06T01:26:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/chromium/</loc>
     <lastmod>2021-03-06T01:26:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/golang/</loc>
     <lastmod>2021-03-06T01:26:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/gfw/</loc>
     <lastmod>2021-01-24T01:52:48+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/vpn/</loc>
     <lastmod>2021-01-24T01:52:48+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20210124-vpn-and-gfw/</loc>
     <lastmod>2021-01-24T01:52:48+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</loc>
     <lastmod>2020-11-23T00:56:51+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/istio/</loc>
     <lastmod>2020-11-15T01:36:30+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/service-mesh/</loc>
     <lastmod>2020-11-15T01:36:30+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20201115-a-istio-beginner/</loc>
     <lastmod>2020-11-15T01:36:30+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/gql/</loc>
     <lastmod>2020-10-09T01:17:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/graphql/</loc>
     <lastmod>2020-10-09T01:17:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20201009-hello-graphql/</loc>
     <lastmod>2020-10-09T01:17:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/vim/</loc>
     <lastmod>2020-09-26T02:03:48+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200926-wanna-install-vim/</loc>
     <lastmod>2020-09-26T02:03:48+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</loc>
     <lastmod>2020-09-19T00:56:51+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/di/</loc>
     <lastmod>2020-09-08T02:00:42+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200908-golang-di-tool-wire/</loc>
     <lastmod>2020-09-08T02:00:42+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/wire/</loc>
     <lastmod>2020-09-08T02:00:42+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200831-known-fire-gitio/</loc>
     <lastmod>2020-08-31T01:34:04+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/k8s/</loc>
     <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/vagrant/</loc>
     <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/vm/</loc>
     <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</loc>
     <lastmod>2020-08-30T21:38:12+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/buildx/</loc>
     <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</loc>
     <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/multi-arch/</loc>
     <lastmod>2020-08-14T23:11:03+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/casbin/</loc>
     <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</loc>
     <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/go/</loc>
     <lastmod>2020-08-13T00:33:03+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/homebrew/</loc>
     <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200811-homebrew-create-app/</loc>
     <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/pokemon/</loc>
     <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/pokesay/</loc>
     <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/ruby/</loc>
     <lastmod>2020-08-11T23:16:31+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/windows/</loc>
     <lastmod>2020-07-28T10:29:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/wsl2/</loc>
     <lastmod>2020-07-28T10:29:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200728-journey-in-wsl2/</loc>
     <lastmod>2020-07-28T10:29:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200229-golang-pretty-print/</loc>
     <lastmod>2020-02-29T16:18:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/json/</loc>
     <lastmod>2020-02-29T16:18:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/pretty/</loc>
     <lastmod>2020-02-29T16:18:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200228-golang-json-marshal/</loc>
     <lastmod>2020-02-28T23:22:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/hugo/</loc>
     <lastmod>2020-01-24T23:02:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20200124-make-a-hugo-blog/</loc>
     <lastmod>2020-01-24T23:02:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/laravel/</loc>
     <lastmod>2019-08-15T19:59:34+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/mongodb/</loc>
     <lastmod>2019-08-15T19:59:34+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/php/</loc>
     <lastmod>2019-08-15T19:59:34+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</loc>
     <lastmod>2019-08-15T19:59:34+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/elasticsearch/</loc>
     <lastmod>2019-08-14T00:15:26+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/es/</loc>
     <lastmod>2019-08-14T00:15:26+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/ilm/</loc>
     <lastmod>2019-08-14T00:15:26+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190814-learning-elasticsearch/</loc>
     <lastmod>2019-08-14T00:15:26+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/test/</loc>
     <lastmod>2019-07-03T13:18:13+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190703-laravel-testing/</loc>
     <lastmod>2019-07-03T13:18:13+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/artisan/</loc>
     <lastmod>2019-05-23T02:51:38+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</loc>
     <lastmod>2019-05-23T02:51:38+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</loc>
     <lastmod>2019-05-01T11:50:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/gomod/</loc>
     <lastmod>2019-05-01T01:28:22+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190501-a-new-in-go-module/</loc>
     <lastmod>2019-05-01T01:28:22+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/keycloak/</loc>
     <lastmod>2019-04-24T10:05:56+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/oauth/</loc>
     <lastmod>2019-04-24T10:05:56+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190424-laravel-with-keycloak/</loc>
     <lastmod>2019-04-24T10:05:56+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/eloquent/</loc>
     <lastmod>2019-04-16T20:35:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/orm/</loc>
     <lastmod>2019-04-16T20:35:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</loc>
     <lastmod>2019-04-16T20:35:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/jwt/</loc>
     <lastmod>2019-02-17T09:46:31+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/passport/</loc>
     <lastmod>2019-02-17T09:46:31+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</loc>
     <lastmod>2019-02-17T09:46:31+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190123-a-new-in-laravel/</loc>
     <lastmod>2019-01-23T20:36:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20190117-install-laravel-on-macos/</loc>
     <lastmod>2019-01-17T12:03:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/flask/</loc>
     <lastmod>2018-11-28T03:19:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/python/</loc>
     <lastmod>2018-11-28T03:19:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20181128-custom-flask-console-log/</loc>
     <lastmod>2018-11-28T03:19:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</loc>
     <lastmod>2018-11-20T03:19:29+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/mysql/</loc>
     <lastmod>2018-11-17T14:11:06+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/mysqlclient/</loc>
     <lastmod>2018-11-17T14:11:06+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20181117-install-mysqlclient/</loc>
     <lastmod>2018-11-17T14:11:06+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/tags/vscode/</loc>
     <lastmod>2018-11-08T12:04:17+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</loc>
     <lastmod>2018-11-08T12:04:17+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.10oz.tw/categories/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://blog.10oz.tw/about/</loc>
+    <loc>https://blog.10oz.tw/tags/index/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/series/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
 </urlset>

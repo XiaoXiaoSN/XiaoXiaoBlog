@@ -1,138 +1,680 @@
-<!doctype html>
-<html lang="en-us">
-
-<head>
-  <title>docker | XiaoXiao Notes</title>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.62.2" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Xiao Xiao" />
-  <meta name="description"
-    content="" />
-  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
-  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
-
-  
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docker"/>
-<meta name="twitter:description" content="XiaoXiao 的筆記書"/>
-
-  <meta property="og:title" content="docker" />
-<meta property="og:description" content="XiaoXiao 的筆記書" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        XiaoXiao Notes</title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    
+    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <title>XiaoXiao Notes</title>
+    
+    <link rel="alternate" type="application/rss+xml" href="https://blog.10oz.tw/tags/docker/index.xml" title="XiaoXiao Notes" />
+    
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.7f05eefbe4e8a5abb404479e9bccf1fef15386be80de86f7360e22fef68fd71a.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="docker" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.10oz.tw/tags/docker/" />
-<meta property="og:updated_time" content="2021-04-02T01:19:30+08:00" />
 
-</head>
+<meta itemprop="name" content="docker">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="docker"/>
+<meta name="twitter:description" content=""/>
 
-<body>
-    
-  <header class="app-header">
-    <a href="https://blog.10oz.tw">
-      <img class="app-header-avatar" src="/profile.jpg"
-        alt="Xiao Xiao" />
-      <h1 class="title">XiaoXiao Notes</h1>
-    </a>
-    <p class="sub-title"> XiaoXiao 的筆記書</p>
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
 
-    <div class="social-icon">
-      
-      <a target="_blank" href="https://github.com/XiaoXiaoSN"
-        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
-  <title>github</title>
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-</svg></a>
-      
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/XiaoXiaoSN" target="_blank">
+            <img class="img-circle" src="https://blog.10oz.tw/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">XiaoXiao Notes</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
     </div>
-
-    <aside>
-      <ul class="start-menu">
-        
-        
-        
-            <li>
-            <a href="/">
-                <span>回到文章列表</span>
-            </a>
-            </li>
-        
-        
-        
-            <li>
-            <a href="/tags">
-                <span>用 Tags 分類</span>
-            </a>
-            </li>
-        
-        
-        
-            <li>
-            <a href="/about">
-                <span>關於 XiaoXiao</span>
-            </a>
-            </li>
-        
-        
-
-      </ul>
-    </aside>
   </header>
 
-
-  <main class="app-container">
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
-  <article>
-    <h1 class="posts-list-title">docker</h1>
-    <ul class="posts-list">
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
+有助於回憶過去曾經做過的事情
+
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://blog.10oz.tw/tags/argo/" class="tag-list-link" rel="1">argo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/artisan/" class="tag-list-link" rel="1">artisan<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/blockchain/" class="tag-list-link" rel="1">blockchain<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/buildx/" class="tag-list-link" rel="1">buildx<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/casbin/" class="tag-list-link" rel="1">casbin<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/cd/" class="tag-list-link" rel="1">cd<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/chromedp/" class="tag-list-link" rel="1">chromedp<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/chromium/" class="tag-list-link" rel="1">chromium<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/di/" class="tag-list-link" rel="1">di<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/docker/" class="tag-list-link" rel="2">docker<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/elasticsearch/" class="tag-list-link" rel="1">elasticsearch<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/eloquent/" class="tag-list-link" rel="1">eloquent<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/es/" class="tag-list-link" rel="1">es<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ethereum/" class="tag-list-link" rel="1">ethereum<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/flask/" class="tag-list-link" rel="1">flask<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/geth/" class="tag-list-link" rel="1">geth<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gfw/" class="tag-list-link" rel="1">gfw<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gitlab/" class="tag-list-link" rel="2">gitlab<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/go/" class="tag-list-link" rel="5">go<span
+               class="tag-list-count">5</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/golang/" class="tag-list-link" rel="8">golang<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/golnag/" class="tag-list-link" rel="1">golnag<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gomod/" class="tag-list-link" rel="1">gomod<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gql/" class="tag-list-link" rel="1">gql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/graphql/" class="tag-list-link" rel="1">graphql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/helm/" class="tag-list-link" rel="1">helm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/homebrew/" class="tag-list-link" rel="1">homebrew<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="1">hugo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ilm/" class="tag-list-link" rel="1">ilm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/istio/" class="tag-list-link" rel="1">istio<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/json/" class="tag-list-link" rel="2">json<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/jwt/" class="tag-list-link" rel="1">jwt<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/k8s/" class="tag-list-link" rel="1">k8s<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/keycloak/" class="tag-list-link" rel="1">keycloak<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/kops/" class="tag-list-link" rel="1">kops<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/kubernetes/" class="tag-list-link" rel="3">kubernetes<span
+               class="tag-list-count">3</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/laravel/" class="tag-list-link" rel="8">laravel<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="2">linux<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/log/" class="tag-list-link" rel="1">log<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mongodb/" class="tag-list-link" rel="1">mongodb<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/multi-arch/" class="tag-list-link" rel="1">multi-arch<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mysql/" class="tag-list-link" rel="1">mysql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mysqlclient/" class="tag-list-link" rel="1">mysqlclient<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/oauth/" class="tag-list-link" rel="1">oauth<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/orm/" class="tag-list-link" rel="1">orm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/passport/" class="tag-list-link" rel="1">passport<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/php/" class="tag-list-link" rel="8">php<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pokemon/" class="tag-list-link" rel="1">pokemon<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pokesay/" class="tag-list-link" rel="1">pokesay<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pretty/" class="tag-list-link" rel="1">pretty<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/python/" class="tag-list-link" rel="4">python<span
+               class="tag-list-count">4</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ruby/" class="tag-list-link" rel="1">ruby<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/service-mesh/" class="tag-list-link" rel="1">service-mesh<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/subgroup/" class="tag-list-link" rel="1">subgroup<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/terraform/" class="tag-list-link" rel="1">terraform<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/test/" class="tag-list-link" rel="1">test<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vagrant/" class="tag-list-link" rel="1">vagrant<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vim/" class="tag-list-link" rel="1">vim<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vm/" class="tag-list-link" rel="1">vm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vpn/" class="tag-list-link" rel="1">vpn<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vscode/" class="tag-list-link" rel="1">vscode<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/windows/" class="tag-list-link" rel="1">windows<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/wire/" class="tag-list-link" rel="1">wire<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/wsl2/" class="tag-list-link" rel="1">wsl2<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  6 ,  20 );
+  }
+};
+
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
       
-        <li class="posts-list-item">
-          
-          <a class="posts-list-item-title" href="https://blog.10oz.tw/20210402-what-k8s-node-disk-full/">啥? k8s node 硬碟空間滿了</a>
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210409-what-can-argocd-do/" class="title">究竟阿狗能做什麼呢</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-04-09 01:29:53 &#43;0800 CST" itemprop="datePublished">2021-04-09</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210402-what-k8s-node-disk-full/" class="title">啥? k8s node 硬碟空間滿了</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-04-02 01:19:30 &#43;0800 CST" itemprop="datePublished">2021-04-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/" class="title">想用 Terraform 與 kOps 也得寫個筆記</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-31 01:32:54 &#43;0800 CST" itemprop="datePublished">2021-03-31</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/" class="title">小紀錄更新 Rinkeby Ethereum 節點</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-26 01:41:50 &#43;0800 CST" itemprop="datePublished">2021-03-26</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/" class="title">helm3 說 has no deployed releases</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-26 01:24:28 &#43;0800 CST" itemprop="datePublished">2021-03-26</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
 
-          
-          <span class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <title>clock</title>
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg> -
-            Apr 2, 2021
-          </span>
-
-          <div class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
-  <title>tag</title>
-  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
-</svg>
-            <a class="tag" href="https://blog.10oz.tw/tags/docker/">docker</a><a class="tag" href="https://blog.10oz.tw/tags/linux/">linux</a><a class="tag" href="https://blog.10oz.tw/tags/log/">log</a></div></li>
-      
-        <li class="posts-list-item">
-          
-          <a class="posts-list-item-title" href="https://blog.10oz.tw/20200814-docker-mutli-arch-image/">Docker 建立不同架構的 Image</a>
-
-          
-          <span class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <title>clock</title>
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg> -
-            Aug 14, 2020
-          </span>
-
-          <div class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
-  <title>tag</title>
-  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
-</svg>
-            <a class="tag" href="https://blog.10oz.tw/tags/docker/">docker</a><a class="tag" href="https://blog.10oz.tw/tags/multi-arch/">multi-arch</a><a class="tag" href="https://blog.10oz.tw/tags/buildx/">buildx</a></div></li>
-      
-    </ul>
     
+    
+<main class="main" role="main">
+    <article class="content article article-tags post-type-list" itemscope="">
+        <header class="article-header">
+            <h1 itemprop="name" class="hidden-xs">docker</h1>
+            <p class="text-muted hidden-xs">Total 64 tags</p>
+            <nav role="navigation" id="nav-main" class="okayNav">
+                <ul>
+                    <li><a href="https://blog.10oz.tw/tags">All</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/argo/">argo</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/artisan/">artisan</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/blockchain/">blockchain</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/buildx/">buildx</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/casbin/">casbin</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/cd/">cd</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/chromedp/">chromedp</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/chromium/">chromium</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/di/">di</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/docker/">docker</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/elasticsearch/">elasticsearch</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/eloquent/">eloquent</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/es/">es</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/ethereum/">ethereum</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/flask/">flask</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/geth/">geth</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/gfw/">gfw</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/gitlab/">gitlab</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/go/">go</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/golang/">golang</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/golnag/">golnag</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/gomod/">gomod</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/gql/">gql</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/graphql/">graphql</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/helm/">helm</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/homebrew/">homebrew</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/hugo/">hugo</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/ilm/">ilm</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/index/">index</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/istio/">istio</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/json/">json</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/jwt/">jwt</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/k8s/">k8s</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/keycloak/">keycloak</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/kops/">kops</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/kubernetes/">kubernetes</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/laravel/">laravel</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/linux/">linux</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/log/">log</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/mongodb/">mongodb</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/multi-arch/">multi-arch</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/mysql/">mysql</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/mysqlclient/">mysqlclient</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/oauth/">oauth</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/orm/">orm</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/passport/">passport</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/php/">php</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/pokemon/">pokemon</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/pokesay/">pokesay</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/pretty/">pretty</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/python/">python</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/ruby/">ruby</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/service-mesh/">service-mesh</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/subgroup/">subgroup</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/terraform/">terraform</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/test/">test</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/vagrant/">vagrant</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/vim/">vim</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/vm/">vm</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/vpn/">vpn</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/vscode/">vscode</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/windows/">windows</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/wire/">wire</a></li>
+                    <li><a href="https://blog.10oz.tw/tags/wsl2/">wsl2</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="article-body">
+            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="panel-body">
+        <div class="article-meta">
+            <time datetime="2021-04-02 01:19:30 &#43;0800 CST"
+                itemprop="datePublished">2021-04-02</time>
+        </div>
+        <h3 class="article-title" itemprop="name">
+            <a class="article-link" href="https://blog.10oz.tw/20210402-what-k8s-node-disk-full/">啥? k8s node 硬碟空間滿了</a>
+        </h3>
+    </div>
+    <div class="panel-footer">
+        <a href="https://blog.10oz.tw/tags/docker" class="label label-default mb">docker</a>
+        <a href="https://blog.10oz.tw/tags/linux" class="label label-default mb">linux</a>
+        <a href="https://blog.10oz.tw/tags/log" class="label label-default mb">log</a>
+    </div>
+</article>
+            </div>
+            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="panel-body">
+        <div class="article-meta">
+            <time datetime="2020-08-14 23:11:03 &#43;0800 CST"
+                itemprop="datePublished">2020-08-14</time>
+        </div>
+        <h3 class="article-title" itemprop="name">
+            <a class="article-link" href="https://blog.10oz.tw/20200814-docker-mutli-arch-image/">Docker 建立不同架構的 Image</a>
+        </h3>
+    </div>
+    <div class="panel-footer">
+        <a href="https://blog.10oz.tw/tags/docker" class="label label-default mb">docker</a>
+        <a href="https://blog.10oz.tw/tags/multi-arch" class="label label-default mb">multi-arch</a>
+        <a href="https://blog.10oz.tw/tags/buildx" class="label label-default mb">buildx</a>
+    </div>
+</article>
+            </div>
+        </div>
+    </article>
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/XiaoXiaoSN" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://blog.10oz.tw/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2018  -
+    2021
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://blog.10oz.tw/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
+<script src="https://blog.10oz.tw/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
 
-  </article>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/blog.10oz.tw',
+            CONTENT_URL: 'https:\/\/blog.10oz.tw\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.f524361edf8dbdb8f5a489b944aa1badc577caf06a6194a652f12f68416d13afbf0044863d273b7aacec793f8359c2711d9d2b3615b98b81ac6af8d7ac0f9521.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
 
-  </main>
-</body>
-
+  </body>
 </html>

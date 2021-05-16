@@ -1,131 +1,543 @@
-<!doctype html>
-<html lang="en-us">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Docker 建立不同架構的 Image - XiaoXiao Notes
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境 » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental:" />
+    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <title>Docker 建立不同架構的 Image - XiaoXiao Notes</title>
+    
+    
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.7f05eefbe4e8a5abb404479e9bccf1fef15386be80de86f7360e22fef68fd71a.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Docker 建立不同架構的 Image" />
+<meta property="og:description" content="問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境 » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20200814-docker-mutli-arch-image/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-08-14T23:11:03&#43;08:00" />
+<meta property="article:modified_time" content="2020-08-14T23:11:03&#43;08:00" />
 
-<head>
-  <title>Docker 建立不同架構的 Image | XiaoXiao Notes</title>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.62.2" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Xiao Xiao" />
-  <meta name="description"
-    content="" />
-  <link rel="stylesheet" href="https://blog.10oz.tw/css/main.min.5ade29aff989990df1b116e145537ab55c8452957abda497ceebd8704d182b4c.css" />
-  <link rel="shortcut icon" href="https://blog.10oz.tw/favicon.ico">
+<meta itemprop="name" content="Docker 建立不同架構的 Image">
+<meta itemprop="description" content="問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境 » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental:"><meta itemprop="datePublished" content="2020-08-14T23:11:03&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-14T23:11:03&#43;08:00" />
+<meta itemprop="wordCount" content="951">
+<meta itemprop="keywords" content="docker,multi-arch,buildx," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker 建立不同架構的 Image"/>
+<meta name="twitter:description" content="問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境 » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental:"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
 
   
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker 建立不同架構的 Image"/>
-<meta name="twitter:description" content="問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境  » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental: true Server: Docker Engine - Community Engine: Version: 19.03.12 API version: 1.40 (minimum version 1.12) Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:49:27 2020 OS/Arch: linux/amd64 Experimental: true containerd: Version: v1.2.13 GitCommit: 7ad184331fa3e55e52b890ea95e65ba581ae3429 runc: Version: 1."/>
+  
 
-  <meta property="og:title" content="Docker 建立不同架構的 Image" />
-<meta property="og:description" content="問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境  » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental: true Server: Docker Engine - Community Engine: Version: 19.03.12 API version: 1.40 (minimum version 1.12) Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:49:27 2020 OS/Arch: linux/amd64 Experimental: true containerd: Version: v1.2.13 GitCommit: 7ad184331fa3e55e52b890ea95e65ba581ae3429 runc: Version: 1." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.10oz.tw/20200814-docker-mutli-arch-image/" />
-<meta property="article:published_time" content="2020-08-14T23:11:03+08:00" />
-<meta property="article:modified_time" content="2020-08-14T23:11:03+08:00" />
-
-</head>
-
-<body>
-    
-  <header class="app-header">
-    <a href="https://blog.10oz.tw">
-      <img class="app-header-avatar" src="/profile.jpg"
-        alt="Xiao Xiao" />
-      <h1 class="title">XiaoXiao Notes</h1>
-    </a>
-    <p class="sub-title"> XiaoXiao 的筆記書</p>
-
-    <div class="social-icon">
-      
-      <a target="_blank" href="https://github.com/XiaoXiaoSN"
-        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
-  <title>github</title>
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-</svg></a>
-      
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/XiaoXiaoSN" target="_blank">
+            <img class="img-circle" src="https://blog.10oz.tw/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">XiaoXiao Notes</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
     </div>
-
-    <aside>
-      <ul class="start-menu">
-        
-        
-        
-            <li>
-            <a href="/">
-                <span>回到文章列表</span>
-            </a>
-            </li>
-        
-        
-        
-            <li>
-            <a href="/tags">
-                <span>用 Tags 分類</span>
-            </a>
-            </li>
-        
-        
-        
-            <li>
-            <a href="/about">
-                <span>關於 XiaoXiao</span>
-            </a>
-            </li>
-        
-        
-
-      </ul>
-    </aside>
   </header>
 
-
-  <main class="app-container">
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
+有助於回憶過去曾經做過的事情
 
-<article class="post">
-  <header class="post-header">
-    <h1 class="post-title">Docker 建立不同架構的 Image</h1>
-    <div class="post-meta">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <title>calendar</title>
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-        Aug 14, 2020
-      </div><div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
-  <title>tag</title>
-  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
-</svg>
-        <a class="tag" href="https://blog.10oz.tw/tags/docker/">docker</a><a class="tag" href="https://blog.10oz.tw/tags/multi-arch/">multi-arch</a><a class="tag" href="https://blog.10oz.tw/tags/buildx/">buildx</a></div></div>
-  </header>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <aside>
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#問題起源">問題起源</a></li>
-    <li><a href="#執行環境">執行環境</a></li>
-    <li><a href="#開始正題-buildx-快速版">開始正題 (buildx 快速版)</a>
-      <ul>
-        <li><a href="#設定環節">設定環節</a></li>
-        <li><a href="#編譯-image">編譯 Image</a></li>
-      </ul>
-    </li>
-    <li><a href="#開始正題-懷舊版">開始正題 (懷舊版)</a>
-      <ul>
-        <li><a href="#編譯-images">編譯 Images</a></li>
-        <li><a href="#包裝-manifest-檔案">包裝 manifest 檔案</a></li>
-      </ul>
-    </li>
-    <li><a href="#一言不合就-cicd-example-for-buildx">一言不合就 CI/CD (example for buildx)</a></li>
-    <li><a href="#ref">Ref</a></li>
-  </ul>
-</nav>
-  </aside>
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://blog.10oz.tw/tags/argo/" class="tag-list-link" rel="1">argo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/artisan/" class="tag-list-link" rel="1">artisan<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/blockchain/" class="tag-list-link" rel="1">blockchain<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/buildx/" class="tag-list-link" rel="1">buildx<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/casbin/" class="tag-list-link" rel="1">casbin<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/cd/" class="tag-list-link" rel="1">cd<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/chromedp/" class="tag-list-link" rel="1">chromedp<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/chromium/" class="tag-list-link" rel="1">chromium<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/di/" class="tag-list-link" rel="1">di<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/docker/" class="tag-list-link" rel="2">docker<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/elasticsearch/" class="tag-list-link" rel="1">elasticsearch<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/eloquent/" class="tag-list-link" rel="1">eloquent<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/es/" class="tag-list-link" rel="1">es<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ethereum/" class="tag-list-link" rel="1">ethereum<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/flask/" class="tag-list-link" rel="1">flask<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/geth/" class="tag-list-link" rel="1">geth<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gfw/" class="tag-list-link" rel="1">gfw<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gitlab/" class="tag-list-link" rel="2">gitlab<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/go/" class="tag-list-link" rel="5">go<span
+               class="tag-list-count">5</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/golang/" class="tag-list-link" rel="8">golang<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/golnag/" class="tag-list-link" rel="1">golnag<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gomod/" class="tag-list-link" rel="1">gomod<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/gql/" class="tag-list-link" rel="1">gql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/graphql/" class="tag-list-link" rel="1">graphql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/helm/" class="tag-list-link" rel="1">helm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/homebrew/" class="tag-list-link" rel="1">homebrew<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="1">hugo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ilm/" class="tag-list-link" rel="1">ilm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/istio/" class="tag-list-link" rel="1">istio<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/json/" class="tag-list-link" rel="2">json<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/jwt/" class="tag-list-link" rel="1">jwt<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/k8s/" class="tag-list-link" rel="1">k8s<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/keycloak/" class="tag-list-link" rel="1">keycloak<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/kops/" class="tag-list-link" rel="1">kops<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/kubernetes/" class="tag-list-link" rel="3">kubernetes<span
+               class="tag-list-count">3</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/laravel/" class="tag-list-link" rel="8">laravel<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="2">linux<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/log/" class="tag-list-link" rel="1">log<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mongodb/" class="tag-list-link" rel="1">mongodb<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/multi-arch/" class="tag-list-link" rel="1">multi-arch<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mysql/" class="tag-list-link" rel="1">mysql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/mysqlclient/" class="tag-list-link" rel="1">mysqlclient<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/oauth/" class="tag-list-link" rel="1">oauth<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/orm/" class="tag-list-link" rel="1">orm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/passport/" class="tag-list-link" rel="1">passport<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/php/" class="tag-list-link" rel="8">php<span
+               class="tag-list-count">8</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pokemon/" class="tag-list-link" rel="1">pokemon<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pokesay/" class="tag-list-link" rel="1">pokesay<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/pretty/" class="tag-list-link" rel="1">pretty<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/python/" class="tag-list-link" rel="4">python<span
+               class="tag-list-count">4</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/ruby/" class="tag-list-link" rel="1">ruby<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/service-mesh/" class="tag-list-link" rel="1">service-mesh<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/subgroup/" class="tag-list-link" rel="1">subgroup<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/terraform/" class="tag-list-link" rel="1">terraform<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/test/" class="tag-list-link" rel="1">test<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vagrant/" class="tag-list-link" rel="1">vagrant<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vim/" class="tag-list-link" rel="1">vim<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vm/" class="tag-list-link" rel="1">vm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vpn/" class="tag-list-link" rel="1">vpn<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/vscode/" class="tag-list-link" rel="1">vscode<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/windows/" class="tag-list-link" rel="1">windows<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/wire/" class="tag-list-link" rel="1">wire<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://blog.10oz.tw/tags/wsl2/" class="tag-list-link" rel="1">wsl2<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  6 ,  20 );
+  }
+};
 
-  <div class="post-content">
-    <h2 id="問題起源">問題起源</h2>
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210409-what-can-argocd-do/" class="title">究竟阿狗能做什麼呢</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-04-09 01:29:53 &#43;0800 CST" itemprop="datePublished">2021-04-09</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210402-what-k8s-node-disk-full/" class="title">啥? k8s node 硬碟空間滿了</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-04-02 01:19:30 &#43;0800 CST" itemprop="datePublished">2021-04-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/" class="title">想用 Terraform 與 kOps 也得寫個筆記</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-31 01:32:54 &#43;0800 CST" itemprop="datePublished">2021-03-31</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/" class="title">小紀錄更新 Rinkeby Ethereum 節點</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-26 01:41:50 &#43;0800 CST" itemprop="datePublished">2021-03-26</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/" class="title">helm3 說 has no deployed releases</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-03-26 01:24:28 &#43;0800 CST" itemprop="datePublished">2021-03-26</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/20200814-docker-mutli-arch-image/"
+    >Docker 建立不同架構的 Image</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://blog.10oz.tw/20200814-docker-mutli-arch-image/" class="article-date">
+  <time datetime="2020-08-14 23:11:03 &#43;0800 CST" itemprop="datePublished">2020-08-14</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/docker/"> docker </a>
+    <a class="article-tag-link" href="/tags/multi-arch/"> multi-arch </a>
+    <a class="article-tag-link" href="/tags/buildx/"> buildx </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/20200814-docker-mutli-arch-image/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 951 words</span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="問題起源">問題起源</h2>
 <p>看看人家，一個 <code>latest</code> 有這麼多種架構的版本
 羨慕耶 我也想要編一個給我的樹莓派
 <img src="https://i.imgur.com/2f2SBiR.png" alt=""></p>
@@ -158,13 +570,14 @@ Server: Docker Engine - Community
  docker-init:
   Version:          0.18.0
   GitCommit:        fec3683
-</code></pre><h2 id="開始正題-buildx-快速版">開始正題 (buildx 快速版)</h2>
+</code></pre>
+<h2 id="開始正題-buildx-快速版">開始正題 (buildx 快速版)</h2>
 <p>這是實驗性功能~
 Mac &amp; Windows 請進，linux 先來這看看 &gt; <a href="https://github.com/docker/buildx">https://github.com/docker/buildx</a> ，或是下滑懷舊版</p>
 <h3 id="設定環節">設定環節</h3>
 <p>首先我們要開啟 docker 實驗功能
 <code>vim ~/.docker/config.json</code> 加上 16 行的 <code>experimental: &quot;enabled&quot;</code></p>
-<pre><code class="language-json=" data-lang="json=">{
+<pre><code class="language-json=">{
     &quot;auths&quot;: {
         &quot;474872403908.dkr.ecr.us-east-1.amazonaws.com&quot;: {},
         &quot;917719776018.dkr.ecr.ap-northeast-1.amazonaws.com&quot;: {},
@@ -182,7 +595,8 @@ Mac &amp; Windows 請進，linux 先來這看看 &gt; <a href="https://github.co
     &quot;experimental&quot;: &quot;enabled&quot;,
     &quot;debug&quot;: true
 }
-</code></pre><p>這樣就可以下指令查看 image 的相關資料
+</code></pre>
+<p>這樣就可以下指令查看 image 的相關資料
 <code>docker manifest inspect --verbose xiao4011/toolbox:latest</code>
 再來下個指令看看別人的多架構版
 <code>docker manifest inspect --verbose redis:latest</code>
@@ -190,31 +604,33 @@ Mac &amp; Windows 請進，linux 先來這看看 &gt; <a href="https://github.co
 <h3 id="編譯-image">編譯 Image</h3>
 <p>拿出你的 Dockerfile 在 From 前面加上你要執行的 target
 像這樣 <code>--platform=$TARGETPLATFORM</code></p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#60a0b0;font-style:italic"># Build code</span><span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> --platform=$TARGETPLATFORM golang:alpine as builder</span><span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">ENV</span> <span style="color:#bb60d5">GO111MODULE</span><span style="color:#666">=</span>on
+<pre><code class="language-dockerfile"># Build code
+FROM --platform=$TARGETPLATFORM golang:alpine as builder
+ENV GO111MODULE=on
 
-<span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> /app</span><span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> apk add --update git ca-certificates<span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> go mod download <span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> go build -o app .<span style="">
-</span><span style=""></span><span style="">
-</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># pull the binary file and service work really in the layer</span><span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> --platform=$TARGETPLATFORM alpine:latest</span><span style="">
-</span><span style=""></span><span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> /srv/application</span><span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span>builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span>builder /app/app /srv/application/toolbox<span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span>builder /app/public /srv/application/public<span style="">
-</span><span style=""></span><span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">ENTRYPOINT</span> [<span style="color:#4070a0">&#34;./toolbox&#34;</span>]<span style="">
-</span></code></pre></div><p>改好了之後呢
+WORKDIR /app
+COPY . .
+RUN apk add --update git ca-certificates
+RUN go mod download 
+RUN go build -o app .
+
+# pull the binary file and service work really in the layer
+FROM --platform=$TARGETPLATFORM alpine:latest
+
+WORKDIR /srv/application
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /app/app /srv/application/toolbox
+COPY --from=builder /app/public /srv/application/public
+
+ENTRYPOINT [&quot;./toolbox&quot;]
+</code></pre>
+<p>改好了之後呢
 編譯給他跑下去，可以選擇幾個你喜歡的 &ndash;platform 內容來跑</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker buildx build <span style="color:#4070a0;font-weight:bold">\
-</span><span style="color:#4070a0;font-weight:bold"></span>--push <span style="color:#4070a0;font-weight:bold">\
-</span><span style="color:#4070a0;font-weight:bold"></span>--platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 --tag xiao4011/toolbox:latest .
-</code></pre></div><p>如果不知道你的環境有什麼 platform 可以編譯的話
+<pre><code class="language-sh">docker buildx build \
+--push \
+--platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 --tag xiao4011/toolbox:latest .
+</code></pre>
+<p>如果不知道你的環境有什麼 platform 可以編譯的話
 可以輸入<code>docker buildx inspect --bootstrap</code>
 <img src="https://i.imgur.com/euLWtTW.png" alt=""></p>
 <p>因為我們有加上 <code>--push</code> 所以直接出發到 docker hub 上面看一下狀況
@@ -228,74 +644,79 @@ Mac &amp; Windows 請進，linux 先來這看看 &gt; <a href="https://github.co
 <li>方法1： 指定架構拉取 image
 這個方法是建立在別人的 mutli-arch image 上的，用不同架構直接來編譯</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># 編譯 amd64 架構</span>
+<pre><code class="language-sh"># 編譯 amd64 架構
 docker build --platform linux/amd64 --pull . -t xiao4011/toolbox:amd64
 docker push xiao4011/toolbox:amd64
 
-<span style="color:#60a0b0;font-style:italic"># 編譯 armv7 架構</span>
+# 編譯 armv7 架構
 docker build --platform linux/arm/v7 --pull . -t xiao4011/toolbox:armv7
 docker push xiao4011/toolbox:armv7
-</code></pre></div><ul>
+</code></pre>
+<ul>
 <li>方法2： 手動更換編譯平台架構 image
 在 Dockerfile 中加入 <code>ARG ARCH</code> 加入一個編譯變數叫做 ARCH 來指定編譯的架構</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#007020;font-weight:bold">ARG</span> ARCH<span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> $ARCH/golang:alpine as builder</span><span style="">
-</span><span style=""></span><span style="">
-</span><span style=""></span>// 更多操作 dockerfile...<span style="">
-</span></code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># 執行編譯</span>
-<span style="color:#007020">export</span> <span style="color:#bb60d5">ARCH</span><span style="color:#666">=</span>arm32v7; docker build --build-arg <span style="color:#bb60d5">ARCH</span><span style="color:#666">=</span><span style="color:#bb60d5">$ARCH</span> . -t xiao4011/toolbox:<span style="color:#bb60d5">$ARCH</span>
-docker push xiao4011/toolbox:<span style="color:#bb60d5">$ARCH</span>
-</code></pre></div><h3 id="包裝-manifest-檔案">包裝 manifest 檔案</h3>
+<pre><code class="language-Dockerfile">ARG ARCH
+FROM $ARCH/golang:alpine as builder
+
+// 更多操作 dockerfile...
+</code></pre>
+<pre><code class="language-sh"># 執行編譯
+export ARCH=arm32v7; docker build --build-arg ARCH=$ARCH . -t xiao4011/toolbox:$ARCH
+docker push xiao4011/toolbox:$ARCH
+</code></pre>
+<h3 id="包裝-manifest-檔案">包裝 manifest 檔案</h3>
 <p>發出去~~</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker manifest create xiao4011/toolbox:manifest <span style="color:#4070a0;font-weight:bold">\
-</span><span style="color:#4070a0;font-weight:bold"></span>    --amend xiao4011/toolbox:amd64 <span style="color:#4070a0;font-weight:bold">\
-</span><span style="color:#4070a0;font-weight:bold"></span>    --amend xiao4011/toolbox:armv7
+<pre><code class="language-sh">docker manifest create xiao4011/toolbox:manifest \
+    --amend xiao4011/toolbox:amd64 \
+    --amend xiao4011/toolbox:armv7
 
 docker manifest push xiao4011/toolbox:manifest
-</code></pre></div><h2 id="一言不合就-cicd-example-for-buildx">一言不合就 CI/CD (example for buildx)</h2>
+</code></pre>
+<h2 id="一言不合就-cicd-example-for-buildx">一言不合就 CI/CD (example for buildx)</h2>
 <p>更新 images 這種事情當然要自動化一下啊！這次跟著 docker 官方介紹第一次認識了 github actions，他是 github 內建的 pipeline 工具
 有個有趣的地方是可以插入別人寫的 actions，幾乎每個步驟都有人給你包好了，只要 call function 就對了</p>
 <p>首先我們建立檔案 <code>vim .github/workflows/cicd.yml</code></p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#60a0b0;font-style:italic"># .github/workflows/cicd.yml</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span>name:<span style="color:#bbb"> </span>build<span style="color:#bbb"> </span>our<span style="color:#bbb"> </span>image<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span>on:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>push:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>branches:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>master<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span>jobs:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>build:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>runs-on:<span style="color:#bbb"> </span>ubuntu-latest<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>steps:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>install<span style="color:#bbb"> </span>Go<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>uses:<span style="color:#bbb"> </span>actions/setup-go@v1<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>with:<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>go-version:<span style="color:#bbb"> </span>${{<span style="color:#bbb"> </span>matrix.go-version<span style="color:#bbb"> </span>}}<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>check<span style="color:#bbb"> </span>out<span style="color:#bbb"> </span>path<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>uses:<span style="color:#bbb"> </span>actions/checkout@v2<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>testing<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>run:<span style="color:#bbb"> </span>go<span style="color:#bbb"> </span>test<span style="color:#bbb"> </span>./...<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>install<span style="color:#bbb"> </span>buildx<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>id:<span style="color:#bbb"> </span>buildx<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>uses:<span style="color:#bbb"> </span>crazy-max/ghaction-docker-buildx@v1<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>with:<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>version:<span style="color:#bbb"> </span>latest<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>login<span style="color:#bbb"> </span>to<span style="color:#bbb"> </span>docker<span style="color:#bbb"> </span>hub<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>run:<span style="color:#bbb"> </span>echo<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;${{ secrets.DOCKER_PASSWORD }}&#34;</span><span style="color:#bbb"> </span>|<span style="color:#bbb"> </span>docker<span style="color:#bbb"> </span>login<span style="color:#bbb"> </span>-u<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;${{ secrets.DOCKER_USERNAME }}&#34;</span><span style="color:#bbb"> </span>--password-stdin<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>name:<span style="color:#bbb"> </span>build<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>image<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>run:<span style="color:#bbb"> </span><span style="color:#4070a0;font-style:italic">|
-</span><span style="color:#4070a0;font-style:italic">         </span><span style="color:#4070a0;font-style:italic"> </span><span style="color:#4070a0;font-style:italic">docker buildx build \</span><span style="color:#bbb">
-</span><span style="color:#bbb">            </span>--push<span style="color:#bbb"> </span>\<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>--tag<span style="color:#bbb"> </span>xiao4011/toolbox:latest<span style="color:#bbb"> </span>\<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>--platform<span style="color:#bbb"> </span>linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6<span style="color:#bbb">  </span>.<span style="color:#bbb">
-</span></code></pre></div><p>接下來要去 github 設定 Secrets，開啟專案頁面後選擇 Setting &gt; Secrets 選擇 <code>New secret</code>
+<pre><code class="language-yaml"># .github/workflows/cicd.yml
+name: build our image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: check out path
+        uses: actions/checkout@v2
+
+      - name: testing
+        run: go test ./...
+
+      - name: install buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+
+      - name: login to docker hub
+        run: echo &quot;${{ secrets.DOCKER_PASSWORD }}&quot; | docker login -u &quot;${{ secrets.DOCKER_USERNAME }}&quot; --password-stdin
+
+      - name: build the image
+        run: |
+          docker buildx build \
+            --push \
+            --tag xiao4011/toolbox:latest \
+            --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6  .
+</code></pre>
+<p>接下來要去 github 設定 Secrets，開啟專案頁面後選擇 Setting &gt; Secrets 選擇 <code>New secret</code>
 加入 docker 的帳號密碼，等一下 pipeline 在 push image 的時候會使用到</p>
 <blockquote>
 <p>也可以額外設定除錯模式
@@ -308,15 +729,135 @@ docker manifest push xiao4011/toolbox:manifest
 <p><a href="https://hub.docker.com/r/ckulka/multi-arch-example">https://hub.docker.com/r/ckulka/multi-arch-example</a></p>
 <p><a href="https://docs.docker.com/buildx/working-with-buildx/">https://docs.docker.com/buildx/working-with-buildx/</a></p>
 
-  </div>
+    </div>
+    <div class="article-footer">
 
-  <div class="post-footer">
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://blog.10oz.tw/20200813-casbin-the-access-control-model/" title="Casbin 權限管理模組"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://blog.10oz.tw/20200830-run-kubernetes-on-vm/"
+                    title="我們想在虛擬機上跑個 k8s"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="facebook,twitter"
+                data-mobile-sites="facebook,twitter"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/XiaoXiaoSN" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://blog.10oz.tw/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2018  -
+    2021
     
   </div>
-</article>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
 
 
-  </main>
-</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://blog.10oz.tw/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
+<script src="https://blog.10oz.tw/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
 
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/blog.10oz.tw',
+            CONTENT_URL: 'https:\/\/blog.10oz.tw\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.f524361edf8dbdb8f5a489b944aa1badc577caf06a6194a652f12f68416d13afbf0044863d273b7aacec793f8359c2711d9d2b3615b98b81ac6af8d7ac0f9521.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '8734c77d5c1155dc493c',
+        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
+        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        owner: 'XiaoXiaoSN',
+        admin: ['XiaoXiaoSN'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
+
+  </body>
 </html>
