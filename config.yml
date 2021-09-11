@@ -2,12 +2,12 @@ baseURL: https://blog.10oz.tw
 theme: pure
 title: "XiaoXiao Notes"
 copyright: "CC BY 4.0 CN"
-defaultContentLanguage: en  # en/zh/...
+defaultContentLanguage: en # en/zh/...
 footnoteReturnLinkContents: ↩
 hasCJKLanguage: true # auto-detect Chinese/Japanese/Korean Languages
 enableEmoji: true
 PygmentsCodeFences: false
-googleAnalytics: ""      # UA-XXXXXXXX-X 
+googleAnalytics: "" # UA-XXXXXXXX-X
 publishDir: docs
 staticDir: ["static"]
 
@@ -19,11 +19,11 @@ permalinks:
   posts: /:filename
 
 taxonomies:
-    category : categories
-    tag : tags
-    series : series
+  category: categories
+  tag: tags
+  series: series
 
-outputFormats:          # use for search. recommend not to modify 
+outputFormats: # use for search. recommend not to modify
   SearchIndex:
     mediaType: "application/json"
     baseName: "searchindex"
@@ -31,7 +31,7 @@ outputFormats:          # use for search. recommend not to modify
     notAlternative: true
 
 outputs:
-    home: ["HTML","RSS","SearchIndex"]  # recommend not to modify
+  home: ["HTML", "RSS", "SearchIndex"] # recommend not to modify
 # sitemap
 sitemap:
   changefreq: monthly
@@ -72,7 +72,7 @@ menu:
 
 params:
   config:
-    # theme color default is white. 
+    # theme color default is white.
     # other type [ theme-black, theme-blue, theme-green, theme-purple ]
     skin: theme-black
     layout: main-center # main-left main-center main-right
@@ -89,7 +89,7 @@ params:
   # Icon Reference: http://blog.cofess.com/hexo-theme-pure/iconfont/demo_fontclass.html
   enableMathJax: true # Enable mathjax support, to use mathematical notations
 
-  # refer to http://staticfile.org/, 
+  # refer to http://staticfile.org/,
   # search highlight.js, already have highlight.min.js
   highlightjs:
     langs: ["python", "javascript", "go"]
@@ -106,7 +106,7 @@ params:
     avatar: avatar.jpg
     gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
     author: "XiaoXiao Notes"
-    author_title: 
+    author_title:
     # author_description: Good Good Study, Day Day Up~
     location: Taiwan,Taipei
     follow: https://github.com/XiaoXiaoSN
@@ -153,7 +153,7 @@ params:
 
   # Comment
   comment:
-    type:  gitalk # support gitalk/disqus/valine
+    type: gitalk # support gitalk/disqus/valine
     gitalk: # gitalk. https://gitalk.github.io/
       owner: XiaoXiaoSN # GitHub repository 所有者，可以是个人或者组织。
       admin: XiaoXiaoSN # GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。
@@ -185,6 +185,7 @@ params:
     enable: true
     wordcount: true # 文章字數
     min2read: false # 預計閱讀時間
+
 
   # # Donate
   # donate:
