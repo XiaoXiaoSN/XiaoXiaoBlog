@@ -1,7 +1,7 @@
 baseURL: https://blog.10oz.tw
 theme: pure
 title: "XiaoXiao Notes"
-copyright: "CC BY 4.0 CN"
+copyright: "MIT"
 defaultContentLanguage: en # en/zh/...
 footnoteReturnLinkContents: ↩
 hasCJKLanguage: true # auto-detect Chinese/Japanese/Korean Languages
@@ -82,7 +82,7 @@ params:
   since: 2018
   dateFormatToUse: "2006-01-02"
   enablePostCopyright: false
-  copyright_link: http://creativecommons.org/licenses/by/4.0/deed.zh
+  copyright_link: "https://opensource.org/licenses/MIT"
   # the directory under content folder that you want to render
   mainSections: ["posts"]
 
@@ -109,7 +109,7 @@ params:
     author_title:
     # author_description: Good Good Study, Day Day Up~
     location: Taiwan,Taipei
-    follow: https://github.com/XiaoXiaoSN
+    follow: /
     # Social Links
     social:
       links:
