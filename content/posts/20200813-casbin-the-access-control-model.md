@@ -1,7 +1,7 @@
 ---
 title: "Casbin 權限管理模組"
 date: 2020-08-13T00:33:03+08:00
-tags: ["go", "golang", "casbin"]
+tags: ["golang", "casbin"]
 ---
 
 

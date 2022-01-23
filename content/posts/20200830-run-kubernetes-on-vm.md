@@ -1,7 +1,7 @@
 ---
-title: "我們想在虛擬機上跑個 k8s"
+title: "我們想在虛擬機上跑個 K8s"
 date: 2020-08-30T21:38:12+08:00
-tags: ["kubernetes", "k8s", "vm", "vagrant"]
+tags: ["kubernetes", "vm", "vagrant"]
 ---
 
 ## 環境

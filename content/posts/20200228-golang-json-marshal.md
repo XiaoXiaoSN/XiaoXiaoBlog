@@ -1,7 +1,7 @@
 ---
 title: "Golang 怎麼處理 JSON"
 date: 2020-02-28T23:22:36+08:00
-tags: ["go", "golang", "json"]
+tags: ["golang", "json"]
 ---
 
 json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！

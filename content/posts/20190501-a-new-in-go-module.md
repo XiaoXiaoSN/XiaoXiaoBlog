@@ -1,7 +1,7 @@
 ---
 title: 筆記 我是個 go module 的菜鳥
 date: 2019-05-01T01:28:22+08:00
-tags: ["go", "golang", "gomod"]
+tags: ["golang", "gomod"]
 ---
 
 ## 簡介

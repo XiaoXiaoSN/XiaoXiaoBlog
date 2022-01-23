@@ -1,7 +1,7 @@
 ---
 title: 筆記 安裝 Golang 與他們的套件管理工具
 date: 2019-05-01T11:50:36+08:00
-tags: ["go", "golang"]
+tags: ["golang"]
 ---
 
 > 從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔
