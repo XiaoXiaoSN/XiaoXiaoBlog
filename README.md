@@ -26,3 +26,11 @@ Use Hugo to build the static Hugo site.
 ```
 hugo
 ```
+
+## TODO
+### Known issues
+- `/about` 404 not found
+- `TOC` feature not implement
+
+### Features
+- Spell check
