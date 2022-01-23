@@ -3,6 +3,69 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.10oz.tw/tags/git/</loc>
+    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/hugo/</loc>
+    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/posts/</loc>
+    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/</loc>
+    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/</loc>
+    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20220124-use-git-submodule/</loc>
+    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/de/</loc>
+    <lastmod>2021-07-06T13:11:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/linux/</loc>
+    <lastmod>2021-07-06T13:11:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210706-known-popular-linux-de/</loc>
+    <lastmod>2021-07-06T13:11:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.10oz.tw/tags/argo/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -24,27 +87,6 @@
   </url>
   
   <url>
-    <loc>https://blog.10oz.tw/posts/</loc>
-    <lastmod>2021-04-09T01:29:53+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/</loc>
-    <lastmod>2021-04-09T01:29:53+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/</loc>
-    <lastmod>2021-04-09T01:29:53+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.10oz.tw/20210409-what-can-argocd-do/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -53,13 +95,6 @@
   
   <url>
     <loc>https://blog.10oz.tw/tags/docker/</loc>
-    <lastmod>2021-04-02T01:19:30+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/linux/</loc>
     <lastmod>2021-04-02T01:19:30+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -453,13 +488,6 @@
   <url>
     <loc>https://blog.10oz.tw/20200228-golang-json-marshal/</loc>
     <lastmod>2020-02-28T23:22:36+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/hugo/</loc>
-    <lastmod>2020-01-24T23:02:16+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

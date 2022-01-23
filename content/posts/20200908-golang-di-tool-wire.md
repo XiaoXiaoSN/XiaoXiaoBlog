@@ -1,15 +1,16 @@
 ---
-title: "golng 注入工具 wire"
+title: "golang 注入工具 wire"
 date: 2020-09-08T02:00:42+08:00
 draft: false
 tags: ["golang", "di", "wire"]
 ---
 
 ## wire 是個啥米
-`wire` 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 `reflect` 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。  
+`wire` 是一個靜態的注入工具，不像是其他的注入工具(`uber/fx`, `facebook/inject`)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。  
 能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤
 
 > Q: Should I use Wire for small applications?
+> 
 > Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler.
 不複雜的小型專案還是手動注入會更乾淨喔~
 
@@ -88,7 +89,7 @@ func main() {
 
 > 踩到坑: 如果用 `go run *.go` 來跑，那麼你會得到 `{function} redeclared in this block`，你的所有檔案還是會被拿來用QQ
 
-## 關於 wire 的開始方法
+## Wire 的使用方法
 使用上一段落的範例， `wire_gen.go` 是怎麼長出來的呢？
 首先需要安裝 `wire`
 
@@ -117,5 +118,46 @@ wire
 // ...
 ```
 
+### 注入 Interface
+在 github 的 document guide 上有寫，很實用也寫一份易讀版
+
+> 任務:
+> repo.NewRepo 回傳 *repo.DefaultRepo (他實作 repo.Repoer)
+> svc.NewService 需要一個 repo.Repoer
+> 因此我們需要多做一層將 pointer 轉成 interface
+
+```go
+// Repo ...
+type Repoer interface {
+	// 
+}
+
+// NewRepo ...
+func NewRepo(cfg *config.Config) *DefultRepo {
+	return &DefultRepo{
+		Prefix: cfg.DBCfg.Prefix,
+	}
+}
+
+// NewService ...
+func NewService(repo repo.Repoer) *DefultService {
+	return &DefultService{
+		repo: repo,
+	}
+}
+
+var Set = wire.NewSet(
+    // 產生 *DefaultRepo
+    repo.NewRepo,
+    
+    // 將 *DefaultRepo 轉成 Repoer
+    wire.Bind(new(repo.Repo), new(*repo.DefultRepo)),
+    
+    // 注入需要 Repoer
+    service.NewService,
+)
+```
+
 ## Ref
 https://medium.com/@dche423/master-wire-cn-d57de86caa1b
+https://github.com/google/wire/blob/main/docs/guide.md

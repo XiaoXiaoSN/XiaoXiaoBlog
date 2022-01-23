@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>
-        golng 注入工具 wire - XiaoXiao Notes
+        golang 注入工具 wire - XiaoXiao Notes
       </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,7 +22,7 @@
     
     <meta name="description" content="wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產" />
     <meta name="generator" content="Hugo 0.83.1 with theme pure" />
-    <title>golng 注入工具 wire - XiaoXiao Notes</title>
+    <title>golang 注入工具 wire - XiaoXiao Notes</title>
     
     
     <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.120f45fbb4a252b9224903be5cb8f6c86c301ab60b855bec62e26cab8f48e24c.css">
@@ -30,19 +30,19 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="golng 注入工具 wire" />
+    <meta property="og:title" content="golang 注入工具 wire" />
 <meta property="og:description" content="wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.10oz.tw/20200908-golang-di-tool-wire/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-08T02:00:42&#43;08:00" />
 <meta property="article:modified_time" content="2020-09-08T02:00:42&#43;08:00" />
 
-<meta itemprop="name" content="golng 注入工具 wire">
+<meta itemprop="name" content="golang 注入工具 wire">
 <meta itemprop="description" content="wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產"><meta itemprop="datePublished" content="2020-09-08T02:00:42&#43;08:00" />
 <meta itemprop="dateModified" content="2020-09-08T02:00:42&#43;08:00" />
-<meta itemprop="wordCount" content="699">
+<meta itemprop="wordCount" content="815">
 <meta itemprop="keywords" content="golang,di,wire," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="golng 注入工具 wire"/>
+<meta name="twitter:title" content="golang 注入工具 wire"/>
 <meta name="twitter:description" content="wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產"/>
 
     <!--[if lte IE 9]>
@@ -183,6 +183,10 @@
                class="tag-list-count">1</span></a>
             
             
+            <a href="https://blog.10oz.tw/tags/de/" class="tag-list-link" rel="1">de<span
+               class="tag-list-count">1</span></a>
+            
+            
             <a href="https://blog.10oz.tw/tags/di/" class="tag-list-link" rel="1">di<span
                class="tag-list-count">1</span></a>
             
@@ -219,6 +223,10 @@
                class="tag-list-count">1</span></a>
             
             
+            <a href="https://blog.10oz.tw/tags/git/" class="tag-list-link" rel="1">git<span
+               class="tag-list-count">1</span></a>
+            
+            
             <a href="https://blog.10oz.tw/tags/gitlab/" class="tag-list-link" rel="2">gitlab<span
                class="tag-list-count">2</span></a>
             
@@ -251,8 +259,8 @@
                class="tag-list-count">1</span></a>
             
             
-            <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="1">hugo<span
-               class="tag-list-count">1</span></a>
+            <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="2">hugo<span
+               class="tag-list-count">2</span></a>
             
             
             <a href="https://blog.10oz.tw/tags/ilm/" class="tag-list-link" rel="1">ilm<span
@@ -291,8 +299,8 @@
                class="tag-list-count">8</span></a>
             
             
-            <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="2">linux<span
-               class="tag-list-count">2</span></a>
+            <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="3">linux<span
+               class="tag-list-count">3</span></a>
             
             
             <a href="https://blog.10oz.tw/tags/log/" class="tag-list-link" rel="1">log<span
@@ -431,6 +439,26 @@ function tagCloud(where, min, max) {
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://blog.10oz.tw/20220124-use-git-submodule/" class="title">用一下 Git Submodule 啦</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-24 01:06:08 &#43;0800 CST" itemprop="datePublished">2022-01-24</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20210706-known-popular-linux-de/" class="title">認識一次常見 Linux GUI (Desktop Environments)</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-07-06 13:11:08 &#43;0800 CST" itemprop="datePublished">2021-07-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://blog.10oz.tw/20210409-what-can-argocd-do/" class="title">究竟阿狗能做什麼呢</a>
                     </p>
                     <p class="item-date">
@@ -455,26 +483,6 @@ function tagCloud(where, min, max) {
                     </p>
                     <p class="item-date">
                         <time datetime="2021-03-31 01:32:54 &#43;0800 CST" itemprop="datePublished">2021-03-31</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/" class="title">小紀錄更新 Rinkeby Ethereum 節點</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-03-26 01:41:50 &#43;0800 CST" itemprop="datePublished">2021-03-26</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/" class="title">helm3 說 has no deployed releases</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-03-26 01:24:28 &#43;0800 CST" itemprop="datePublished">2021-03-26</time>
                     </p>
                 </div>
             </li>
@@ -503,7 +511,7 @@ function tagCloud(where, min, max) {
   <a
     class="article-title"
     href="/20200908-golang-di-tool-wire/"
-    >golng 注入工具 wire</a
+    >golang 注入工具 wire</a
   >
 </h1>
 
@@ -525,16 +533,16 @@ function tagCloud(where, min, max) {
 
         <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/20200908-golang-di-tool-wire/#comments"
             class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 699 words</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 815 words</span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <h2 id="wire-是個啥米">wire 是個啥米</h2>
-<p><code>wire</code> 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 <code>reflect</code> 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。<br>
+<p><code>wire</code> 是一個靜態的注入工具，不像是其他的注入工具(<code>uber/fx</code>, <code>facebook/inject</code>)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。<br>
 能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤</p>
 <blockquote>
-<p>Q: Should I use Wire for small applications?
-Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler.
+<p>Q: Should I use Wire for small applications?</p>
+<p>Probably not. Wire is designed to automate more intricate setup code found in larger applications. For small applications, hand-wiring dependencies is simpler.
 不複雜的小型專案還是手動注入會更乾淨喔~</p>
 </blockquote>
 <h2 id="go-build-tag">go build tag</h2>
@@ -603,7 +611,7 @@ func main() {
 <blockquote>
 <p>踩到坑: 如果用 <code>go run *.go</code> 來跑，那麼你會得到 <code>{function} redeclared in this block</code>，你的所有檔案還是會被拿來用QQ</p>
 </blockquote>
-<h2 id="關於-wire-的開始方法">關於 wire 的開始方法</h2>
+<h2 id="wire-的使用方法">Wire 的使用方法</h2>
 <p>使用上一段落的範例， <code>wire_gen.go</code> 是怎麼長出來的呢？
 首先需要安裝 <code>wire</code></p>
 <pre><code>go get github.com/google/wire/cmd/wire
@@ -625,8 +633,47 @@ func main() {
 
 // ...
 </code></pre>
+<h3 id="注入-interface">注入 Interface</h3>
+<p>在 github 的 document guide 上有寫，很實用也寫一份易讀版</p>
+<blockquote>
+<p>任務:
+repo.NewRepo 回傳 *repo.DefaultRepo (他實作 repo.Repoer)
+svc.NewService 需要一個 repo.Repoer
+因此我們需要多做一層將 pointer 轉成 interface</p>
+</blockquote>
+<pre><code class="language-go">// Repo ...
+type Repoer interface {
+	// 
+}
+
+// NewRepo ...
+func NewRepo(cfg *config.Config) *DefultRepo {
+	return &amp;DefultRepo{
+		Prefix: cfg.DBCfg.Prefix,
+	}
+}
+
+// NewService ...
+func NewService(repo repo.Repoer) *DefultService {
+	return &amp;DefultService{
+		repo: repo,
+	}
+}
+
+var Set = wire.NewSet(
+    // 產生 *DefaultRepo
+    repo.NewRepo,
+    
+    // 將 *DefaultRepo 轉成 Repoer
+    wire.Bind(new(repo.Repo), new(*repo.DefultRepo)),
+    
+    // 注入需要 Repoer
+    service.NewService,
+)
+</code></pre>
 <h2 id="ref">Ref</h2>
-<p><a href="https://medium.com/@dche423/master-wire-cn-d57de86caa1b">https://medium.com/@dche423/master-wire-cn-d57de86caa1b</a></p>
+<p><a href="https://medium.com/@dche423/master-wire-cn-d57de86caa1b">https://medium.com/@dche423/master-wire-cn-d57de86caa1b</a>
+<a href="https://github.com/google/wire/blob/main/docs/guide.md">https://github.com/google/wire/blob/main/docs/guide.md</a></p>
 
     </div>
     <div class="article-footer">

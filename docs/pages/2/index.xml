@@ -6,10 +6,28 @@
     <description>Recent content on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>MIT</copyright>
-    <lastBuildDate>Fri, 09 Apr 2021 01:29:53 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 24 Jan 2022 01:06:08 +0800</lastBuildDate>
     
         <atom:link href="https://blog.10oz.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Homebrew 自己寫配方一起來釀酒</title>
+      <link>https://blog.10oz.tw/20200811-homebrew-create-app/</link>
+      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200811-homebrew-create-app/</guid>
+      <description>不囉唆直接上圖 馬上試試 pokesay brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要</description>
+    </item>
+    
+    <item>
+      <title>出發尋找 WSL2 的旅程</title>
+      <link>https://blog.10oz.tw/20200728-journey-in-wsl2/</link>
+      <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200728-journey-in-wsl2/</guid>
+      <description>步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &amp;raquo; https://www.microsoft.com/en-us/software-download/windows10 開啟環境設定 用系統管理員</description>
+    </item>
     
     <item>
       <title>Golang 漂亮的輸出 JSON</title>
