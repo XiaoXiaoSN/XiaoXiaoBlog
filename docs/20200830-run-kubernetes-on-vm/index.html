@@ -21,7 +21,7 @@
     
     
     <meta name="description" content="環境 我們先用 macOS Catalina 10.15.2 來做筆記喔 1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～ 1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10 支援的 virtual box 版本沒有到最" />
-    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
     <title>我們想在虛擬機上跑個 K8s - XiaoXiao Notes</title>
     
     
@@ -34,12 +34,12 @@
 <meta property="og:description" content="環境 我們先用 macOS Catalina 10.15.2 來做筆記喔 1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～ 1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10 支援的 virtual box 版本沒有到最" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.10oz.tw/20200830-run-kubernetes-on-vm/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-08-30T21:38:12&#43;08:00" />
-<meta property="article:modified_time" content="2020-08-30T21:38:12&#43;08:00" />
+<meta property="article:published_time" content="2020-08-30T21:38:12+08:00" />
+<meta property="article:modified_time" content="2020-08-30T21:38:12+08:00" />
 
 <meta itemprop="name" content="我們想在虛擬機上跑個 K8s">
-<meta itemprop="description" content="環境 我們先用 macOS Catalina 10.15.2 來做筆記喔 1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～ 1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10 支援的 virtual box 版本沒有到最"><meta itemprop="datePublished" content="2020-08-30T21:38:12&#43;08:00" />
-<meta itemprop="dateModified" content="2020-08-30T21:38:12&#43;08:00" />
+<meta itemprop="description" content="環境 我們先用 macOS Catalina 10.15.2 來做筆記喔 1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～ 1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10 支援的 virtual box 版本沒有到最"><meta itemprop="datePublished" content="2020-08-30T21:38:12+08:00" />
+<meta itemprop="dateModified" content="2020-08-30T21:38:12+08:00" />
 <meta itemprop="wordCount" content="1276">
 <meta itemprop="keywords" content="kubernetes,vm,vagrant," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="我們想在虛擬機上跑個 K8s"/>
@@ -881,17 +881,18 @@ kubeadm join 172.16.16.100:6443 --token 7fz9ob.a6sno93d0zwcz3v9     --discovery-
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        clientID: '8734c77d5c1155dc493c',
-        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
-        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        clientID: 'b280655e41309872e620',
+        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
+        repo: 'XiaoXiaoBlog',
         owner: 'XiaoXiaoSN',
         admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
+        id: md5(location.pathname), 
+        distractionFreeMode: true   
     });
     gitalk.render('comments');
 </script>

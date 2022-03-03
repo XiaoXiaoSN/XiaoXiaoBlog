@@ -21,7 +21,7 @@
     
     
     <meta name="description" content="問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積 因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗" />
-    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
     <title>Chromedp 殭屍進程 - XiaoXiao Notes</title>
     
     
@@ -34,12 +34,12 @@
 <meta property="og:description" content="問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積 因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.10oz.tw/20210306-chromedp-zombi-process/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-06T01:26:39&#43;08:00" />
-<meta property="article:modified_time" content="2021-03-06T01:26:39&#43;08:00" />
+<meta property="article:published_time" content="2021-03-06T01:26:39+08:00" />
+<meta property="article:modified_time" content="2021-03-06T01:26:39+08:00" />
 
 <meta itemprop="name" content="Chromedp 殭屍進程">
-<meta itemprop="description" content="問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積 因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗"><meta itemprop="datePublished" content="2021-03-06T01:26:39&#43;08:00" />
-<meta itemprop="dateModified" content="2021-03-06T01:26:39&#43;08:00" />
+<meta itemprop="description" content="問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積 因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗"><meta itemprop="datePublished" content="2021-03-06T01:26:39+08:00" />
+<meta itemprop="dateModified" content="2021-03-06T01:26:39+08:00" />
 <meta itemprop="wordCount" content="424">
 <meta itemprop="keywords" content="chromedp,chromium,golang,linux," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Chromedp 殭屍進程"/>
@@ -687,17 +687,18 @@ launchd &ndash; System wide and per-user daemon/agent manager</p>
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        clientID: '8734c77d5c1155dc493c',
-        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
-        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        clientID: 'b280655e41309872e620',
+        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
+        repo: 'XiaoXiaoBlog',
         owner: 'XiaoXiaoSN',
         admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
+        id: md5(location.pathname), 
+        distractionFreeMode: true   
     });
     gitalk.render('comments');
 </script>

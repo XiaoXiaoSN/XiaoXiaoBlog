@@ -21,7 +21,7 @@
     
     
     <meta name="description" content="需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip 實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9 import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string" />
-    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
     <title>筆記 自定義 flask 的 console log 之路 - XiaoXiao Notes</title>
     
     
@@ -34,12 +34,12 @@
 <meta property="og:description" content="需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip 實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9 import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.10oz.tw/20181128-custom-flask-console-log/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2018-11-28T03:19:15&#43;08:00" />
-<meta property="article:modified_time" content="2018-11-28T03:19:15&#43;08:00" />
+<meta property="article:published_time" content="2018-11-28T03:19:15+08:00" />
+<meta property="article:modified_time" content="2018-11-28T03:19:15+08:00" />
 
 <meta itemprop="name" content="筆記 自定義 flask 的 console log 之路">
-<meta itemprop="description" content="需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip 實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9 import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string"><meta itemprop="datePublished" content="2018-11-28T03:19:15&#43;08:00" />
-<meta itemprop="dateModified" content="2018-11-28T03:19:15&#43;08:00" />
+<meta itemprop="description" content="需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip 實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9 import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string"><meta itemprop="datePublished" content="2018-11-28T03:19:15+08:00" />
+<meta itemprop="dateModified" content="2018-11-28T03:19:15+08:00" />
 <meta itemprop="wordCount" content="95">
 <meta itemprop="keywords" content="python,flask," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="筆記 自定義 flask 的 console log 之路"/>
@@ -670,17 +670,18 @@ WSGIRequestHandler.log = lambda self, type, message, *args: \
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        clientID: '8734c77d5c1155dc493c',
-        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
-        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        clientID: 'b280655e41309872e620',
+        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
+        repo: 'XiaoXiaoBlog',
         owner: 'XiaoXiaoSN',
         admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
+        id: md5(location.pathname), 
+        distractionFreeMode: true   
     });
     gitalk.render('comments');
 </script>

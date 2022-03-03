@@ -21,7 +21,7 @@
     
     
     <meta name="description" content="問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本 Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他" />
-    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
     <title>helm3 說 has no deployed releases - XiaoXiao Notes</title>
     
     
@@ -34,12 +34,12 @@
 <meta property="og:description" content="問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本 Error: UPGRADE FAILED: &quot;code-server&quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-26T01:24:28&#43;08:00" />
-<meta property="article:modified_time" content="2021-03-26T01:24:28&#43;08:00" />
+<meta property="article:published_time" content="2021-03-26T01:24:28+08:00" />
+<meta property="article:modified_time" content="2021-03-26T01:24:28+08:00" />
 
 <meta itemprop="name" content="helm3 說 has no deployed releases">
-<meta itemprop="description" content="問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本 Error: UPGRADE FAILED: &quot;code-server&quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他"><meta itemprop="datePublished" content="2021-03-26T01:24:28&#43;08:00" />
-<meta itemprop="dateModified" content="2021-03-26T01:24:28&#43;08:00" />
+<meta itemprop="description" content="問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本 Error: UPGRADE FAILED: &quot;code-server&quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他"><meta itemprop="datePublished" content="2021-03-26T01:24:28+08:00" />
+<meta itemprop="dateModified" content="2021-03-26T01:24:28+08:00" />
 <meta itemprop="wordCount" content="141">
 <meta itemprop="keywords" content="kubernetes,helm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="helm3 說 has no deployed releases"/>
@@ -673,17 +673,18 @@ labels status，改成 <code>deployed</code></p>
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        clientID: '8734c77d5c1155dc493c',
-        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
-        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        clientID: 'b280655e41309872e620',
+        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
+        repo: 'XiaoXiaoBlog',
         owner: 'XiaoXiaoSN',
         admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
+        id: md5(location.pathname), 
+        distractionFreeMode: true   
     });
     gitalk.render('comments');
 </script>

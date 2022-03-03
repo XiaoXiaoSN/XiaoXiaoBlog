@@ -21,7 +21,7 @@
     
     
     <meta name="description" content="簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控" />
-    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
     <title>筆記 我是個 go module 的菜鳥 - XiaoXiao Notes</title>
     
     
@@ -34,12 +34,12 @@
 <meta property="og:description" content="簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.10oz.tw/20190501-a-new-in-go-module/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-05-01T01:28:22&#43;08:00" />
-<meta property="article:modified_time" content="2019-05-01T01:28:22&#43;08:00" />
+<meta property="article:published_time" content="2019-05-01T01:28:22+08:00" />
+<meta property="article:modified_time" content="2019-05-01T01:28:22+08:00" />
 
 <meta itemprop="name" content="筆記 我是個 go module 的菜鳥">
-<meta itemprop="description" content="簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控"><meta itemprop="datePublished" content="2019-05-01T01:28:22&#43;08:00" />
-<meta itemprop="dateModified" content="2019-05-01T01:28:22&#43;08:00" />
+<meta itemprop="description" content="簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控"><meta itemprop="datePublished" content="2019-05-01T01:28:22+08:00" />
+<meta itemprop="dateModified" content="2019-05-01T01:28:22+08:00" />
 <meta itemprop="wordCount" content="553">
 <meta itemprop="keywords" content="golang,gomod," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="筆記 我是個 go module 的菜鳥"/>
@@ -733,17 +733,18 @@ import dataapi &quot;goModTest/pkg/myapi&quot;
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        clientID: '8734c77d5c1155dc493c',
-        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
-        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        clientID: 'b280655e41309872e620',
+        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
+        repo: 'XiaoXiaoBlog',
         owner: 'XiaoXiaoSN',
         admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
+        id: md5(location.pathname), 
+        distractionFreeMode: true   
     });
     gitalk.render('comments');
 </script>

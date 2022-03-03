@@ -21,7 +21,7 @@
     
     
     <meta name="description" content="發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs" />
-    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
     <title>啥? k8s node 硬碟空間滿了 - XiaoXiao Notes</title>
     
     
@@ -34,12 +34,12 @@
 <meta property="og:description" content="發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.10oz.tw/20210402-what-k8s-node-disk-full/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-04-02T01:19:30&#43;08:00" />
-<meta property="article:modified_time" content="2021-04-02T01:19:30&#43;08:00" />
+<meta property="article:published_time" content="2021-04-02T01:19:30+08:00" />
+<meta property="article:modified_time" content="2021-04-02T01:19:30+08:00" />
 
 <meta itemprop="name" content="啥? k8s node 硬碟空間滿了">
-<meta itemprop="description" content="發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs"><meta itemprop="datePublished" content="2021-04-02T01:19:30&#43;08:00" />
-<meta itemprop="dateModified" content="2021-04-02T01:19:30&#43;08:00" />
+<meta itemprop="description" content="發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs"><meta itemprop="datePublished" content="2021-04-02T01:19:30+08:00" />
+<meta itemprop="dateModified" content="2021-04-02T01:19:30+08:00" />
 <meta itemprop="wordCount" content="424">
 <meta itemprop="keywords" content="docker,linux,log," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="啥? k8s node 硬碟空間滿了"/>
@@ -712,17 +712,18 @@ failed to run Kubelet: misconfiguration: kubelet cgroup driver: &quot;cgroupfs&q
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        clientID: '8734c77d5c1155dc493c',
-        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
-        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        clientID: 'b280655e41309872e620',
+        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
+        repo: 'XiaoXiaoBlog',
         owner: 'XiaoXiaoSN',
         admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
+        id: md5(location.pathname), 
+        distractionFreeMode: true   
     });
     gitalk.render('comments');
 </script>

@@ -155,11 +155,11 @@ params:
   comment:
     type: gitalk # support gitalk/disqus/valine
     gitalk: # gitalk. https://gitalk.github.io/
-      owner: XiaoXiaoSN # GitHub repository 所有者，可以是个人或者组织。
-      admin: XiaoXiaoSN # GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。
-      repo: https://github.com/XiaoXiaoSN/XiaoXiaoBlog # GitHub repository.
-      ClientID: 8734c77d5c1155dc493c # GitHub Application Client ID.
-      ClientSecret: 0a2e5561106925c8d63cf511cc8a946c4976a26e # GitHub Application Client Secret.
+      owner: XiaoXiaoSN
+      admin: XiaoXiaoSN
+      repo: XiaoXiaoBlog  # GitHub repository.
+      ClientID: b280655e41309872e620 # GitHub Application Client ID.
+      ClientSecret: cd91e6c2bb688cdd206efc88fbe5128c81971d31 # GitHub Application Client Secret.
     # disqus: your_disqus_name # enter disqus shortname here
     # valine: # Valine. https://valine.js.org
     #   appid: # your leancloud application appid
@@ -186,7 +186,6 @@ params:
     wordcount: true # 文章字數
     min2read: false # 預計閱讀時間
 
-
   # # Donate
   # donate:
   #   enable: false
@@ -202,8 +201,9 @@ params:
   # # PV
   # pv:
   #   busuanzi:
-  #     enable: false # 不蒜子统计
+  #     enable: false # 不算子统计
   #   leancloud:
   #     enable: false # leancloud统计
   #     app_id: # leancloud <AppID>
   #     app_key: # leancloud <AppKey>
+

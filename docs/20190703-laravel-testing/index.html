@@ -21,7 +21,7 @@
     
     
     <meta name="description" content="laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM] 開始之前 test 的設定檔在 ./phpunit.xml ， &amp;lt;!-- phpunit.xml --&amp;gt; &amp;lt;phpunit&amp;gt; &amp;lt;php&amp;gt; &amp;lt;!-- laravel 環境設定檔案使用 .emv.testing --&amp;gt; &amp;lt;server name=&amp;quot;APP_ENV&amp;quot; value=&amp;quot;testing&amp;quot;/&amp;gt; &amp;lt;!-- 測試環境的資料庫連線設定，我們將使用 sqlite --&amp;gt; &amp;lt;server name=&amp;quot;DB_CONNECTION&amp;quot; value=&amp;quot;sqlite_for_testing&amp;quot;/&amp;gt; &amp;lt;env name=&amp;quot;DB_DATABASE&amp;quot; value=&amp;quot;:memory:&amp;quot;/&amp;gt; &amp;lt;/php&amp;gt; &amp;lt;/phpunit&amp;gt;" />
-    <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
     <title>筆記 laravel test - 我們也來寫測試 - XiaoXiao Notes</title>
     
     
@@ -34,12 +34,12 @@
 <meta property="og:description" content="laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM] 開始之前 test 的設定檔在 ./phpunit.xml ， &lt;!-- phpunit.xml --&gt; &lt;phpunit&gt; &lt;php&gt; &lt;!-- laravel 環境設定檔案使用 .emv.testing --&gt; &lt;server name=&quot;APP_ENV&quot; value=&quot;testing&quot;/&gt; &lt;!-- 測試環境的資料庫連線設定，我們將使用 sqlite --&gt; &lt;server name=&quot;DB_CONNECTION&quot; value=&quot;sqlite_for_testing&quot;/&gt; &lt;env name=&quot;DB_DATABASE&quot; value=&quot;:memory:&quot;/&gt; &lt;/php&gt; &lt;/phpunit&gt;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.10oz.tw/20190703-laravel-testing/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-07-03T13:18:13&#43;08:00" />
-<meta property="article:modified_time" content="2019-07-03T13:18:13&#43;08:00" />
+<meta property="article:published_time" content="2019-07-03T13:18:13+08:00" />
+<meta property="article:modified_time" content="2019-07-03T13:18:13+08:00" />
 
 <meta itemprop="name" content="筆記 laravel test - 我們也來寫測試">
-<meta itemprop="description" content="laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM] 開始之前 test 的設定檔在 ./phpunit.xml ， &lt;!-- phpunit.xml --&gt; &lt;phpunit&gt; &lt;php&gt; &lt;!-- laravel 環境設定檔案使用 .emv.testing --&gt; &lt;server name=&quot;APP_ENV&quot; value=&quot;testing&quot;/&gt; &lt;!-- 測試環境的資料庫連線設定，我們將使用 sqlite --&gt; &lt;server name=&quot;DB_CONNECTION&quot; value=&quot;sqlite_for_testing&quot;/&gt; &lt;env name=&quot;DB_DATABASE&quot; value=&quot;:memory:&quot;/&gt; &lt;/php&gt; &lt;/phpunit&gt;"><meta itemprop="datePublished" content="2019-07-03T13:18:13&#43;08:00" />
-<meta itemprop="dateModified" content="2019-07-03T13:18:13&#43;08:00" />
+<meta itemprop="description" content="laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM] 開始之前 test 的設定檔在 ./phpunit.xml ， &lt;!-- phpunit.xml --&gt; &lt;phpunit&gt; &lt;php&gt; &lt;!-- laravel 環境設定檔案使用 .emv.testing --&gt; &lt;server name=&quot;APP_ENV&quot; value=&quot;testing&quot;/&gt; &lt;!-- 測試環境的資料庫連線設定，我們將使用 sqlite --&gt; &lt;server name=&quot;DB_CONNECTION&quot; value=&quot;sqlite_for_testing&quot;/&gt; &lt;env name=&quot;DB_DATABASE&quot; value=&quot;:memory:&quot;/&gt; &lt;/php&gt; &lt;/phpunit&gt;"><meta itemprop="datePublished" content="2019-07-03T13:18:13+08:00" />
+<meta itemprop="dateModified" content="2019-07-03T13:18:13+08:00" />
 <meta itemprop="wordCount" content="430">
 <meta itemprop="keywords" content="php,laravel,test," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="筆記 laravel test - 我們也來寫測試"/>
@@ -743,17 +743,18 @@ class availableTest extends TestCase
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        clientID: '8734c77d5c1155dc493c',
-        clientSecret: '0a2e5561106925c8d63cf511cc8a946c4976a26e',
-        repo: 'https:\/\/github.com\/XiaoXiaoSN\/XiaoXiaoBlog',
+        clientID: 'b280655e41309872e620',
+        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
+        repo: 'XiaoXiaoBlog',
         owner: 'XiaoXiaoSN',
         admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
+        id: md5(location.pathname), 
+        distractionFreeMode: true   
     });
     gitalk.render('comments');
 </script>
