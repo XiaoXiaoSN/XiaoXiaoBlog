@@ -153,14 +153,14 @@ params:
 
   # Comment
   comment:
-    type: gitalk # support gitalk/disqus/valine
-    gitalk: # gitalk. https://gitalk.github.io/
-      owner: XiaoXiaoSN
-      admin: XiaoXiaoSN
-      repo: XiaoXiaoBlog  # GitHub repository.
-      ClientID: b280655e41309872e620 # GitHub Application Client ID.
-      ClientSecret: cd91e6c2bb688cdd206efc88fbe5128c81971d31 # GitHub Application Client Secret.
-    # disqus: your_disqus_name # enter disqus shortname here
+    type: disqus # support gitalk/disqus/valine
+    # gitalk: # gitalk. https://gitalk.github.io/
+    #   owner: XiaoXiaoSN
+    #   admin: XiaoXiaoSN
+    #   repo: XiaoXiaoBlog  # GitHub repository.
+    #   ClientID: b280655e41309872e620 # GitHub Application Client ID.
+    #   ClientSecret: "gitalk bad bad" # GitHub Application Client Secret.
+    disqus: xiaoxiaoblog-1 # enter disqus shortname here
     # valine: # Valine. https://valine.js.org
     #   appid: # your leancloud application appid
     #   appkey: # your leancloud application appkey

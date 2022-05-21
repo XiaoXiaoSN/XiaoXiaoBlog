@@ -21,14 +21,13 @@
     
     
     <meta name="description" content="這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢" />
-    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
     <title>小紀錄更新 Rinkeby Ethereum 節點 - XiaoXiao Notes</title>
     
     
     <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.120f45fbb4a252b9224903be5cb8f6c86c301ab60b855bec62e26cab8f48e24c.css">
     
-    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" async>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="小紀錄更新 Rinkeby Ethereum 節點" />
 <meta property="og:description" content="這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢" />
@@ -569,6 +568,9 @@ geth --rinkeby --http --http.addr 0.0.0.0 --ws --ws.addr 0.0.0.0 --ws.origins * 
     </div>
   </article>
 <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 </section>
 
 </div><nav class="bar bar-footer clearfix" data-stick-bottom>
@@ -642,8 +644,8 @@ geth --rinkeby --http --http.addr 0.0.0.0 --ws --ws.addr 0.0.0.0 --ws.origins * 
     })
     hljs.initHighlightingOnLoad();
 </script>
-<script src="https://blog.10oz.tw/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
-<script src="https://blog.10oz.tw/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
+<script src="https://blog.10oz.tw/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://blog.10oz.tw/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
 
 <script>
     (function (window) {
@@ -661,7 +663,7 @@ geth --rinkeby --http --http.addr 0.0.0.0 --ws --ws.addr 0.0.0.0 --ws.origins * 
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.878f01f8586b031f85f2d621939f661e7ba6bda87252de0d978b81c3be823184016c36f17ff2d84bc174cbe9fdd002e2585aeb7927bf8c4302795ee6b42a0322.js" defer></script>
+<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.34b2d55fe0c06f8f746f4a1e0cfeca47500517447078ea4ba55722fef682f8def3febc2508afbc509d247dc1e1d595ebcd162f859fabfd1c4d55a43c74f0cd4a.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.3/tocbot.min.js"></script>
 <script>
     tocbot.init({
@@ -676,21 +678,17 @@ geth --rinkeby --http --http.addr 0.0.0.0 --ws --ws.addr 0.0.0.0 --ws.origins * 
     });
 </script>
 
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: 'b280655e41309872e620',
-        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
-        repo: 'XiaoXiaoBlog',
-        owner: 'XiaoXiaoSN',
-        admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname), 
-        distractionFreeMode: true   
-    });
-    gitalk.render('comments');
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https:\/\/blog.10oz.tw\/20210326-little-bit-update-rinkeby-ethereum\/';
+        this.page.identifier = 'xiaoxiaoblog-1';
+    };
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'xiaoxiaoblog-1' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
 
   </body>

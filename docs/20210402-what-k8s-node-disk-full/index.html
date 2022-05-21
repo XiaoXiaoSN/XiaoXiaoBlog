@@ -21,14 +21,13 @@
     
     
     <meta name="description" content="發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs" />
-    <meta name="generator" content="Hugo 0.92.0 with theme pure" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
     <title>啥? k8s node 硬碟空間滿了 - XiaoXiao Notes</title>
     
     
     <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.120f45fbb4a252b9224903be5cb8f6c86c301ab60b855bec62e26cab8f48e24c.css">
     
-    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" async>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="啥? k8s node 硬碟空間滿了" />
 <meta property="og:description" content="發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs" />
@@ -604,6 +603,9 @@ failed to run Kubelet: misconfiguration: kubelet cgroup driver: &quot;cgroupfs&q
     </div>
   </article>
 <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 </section>
 
 </div><nav class="bar bar-footer clearfix" data-stick-bottom>
@@ -677,8 +679,8 @@ failed to run Kubelet: misconfiguration: kubelet cgroup driver: &quot;cgroupfs&q
     })
     hljs.initHighlightingOnLoad();
 </script>
-<script src="https://blog.10oz.tw/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
-<script src="https://blog.10oz.tw/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
+<script src="https://blog.10oz.tw/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://blog.10oz.tw/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
 
 <script>
     (function (window) {
@@ -696,7 +698,7 @@ failed to run Kubelet: misconfiguration: kubelet cgroup driver: &quot;cgroupfs&q
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.878f01f8586b031f85f2d621939f661e7ba6bda87252de0d978b81c3be823184016c36f17ff2d84bc174cbe9fdd002e2585aeb7927bf8c4302795ee6b42a0322.js" defer></script>
+<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.34b2d55fe0c06f8f746f4a1e0cfeca47500517447078ea4ba55722fef682f8def3febc2508afbc509d247dc1e1d595ebcd162f859fabfd1c4d55a43c74f0cd4a.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.3/tocbot.min.js"></script>
 <script>
     tocbot.init({
@@ -711,21 +713,17 @@ failed to run Kubelet: misconfiguration: kubelet cgroup driver: &quot;cgroupfs&q
     });
 </script>
 
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: 'b280655e41309872e620',
-        clientSecret: 'cd91e6c2bb688cdd206efc88fbe5128c81971d31',
-        repo: 'XiaoXiaoBlog',
-        owner: 'XiaoXiaoSN',
-        admin: ['XiaoXiaoSN'],
-        id: md5(location.pathname), 
-        distractionFreeMode: true   
-    });
-    gitalk.render('comments');
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https:\/\/blog.10oz.tw\/20210402-what-k8s-node-disk-full\/';
+        this.page.identifier = 'xiaoxiaoblog-1';
+    };
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'xiaoxiaoblog-1' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
 
   </body>
