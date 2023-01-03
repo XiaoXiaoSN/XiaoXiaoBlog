@@ -1,6 +1,6 @@
 ---
 title: "JavaScript 取得座標位址"
-date: 2022-06-24T19:37:41+08:00
+date: 2021-06-24T19:37:41+08:00
 draft: false
 tags: ["javascript", "location", "geographic"]
 ---
@@ -53,6 +53,7 @@ const wid = navigator.geolocation.watchPosition(successCallback, errorCallback, 
 // 這樣子關～
 navigator.geolocation.clearWatch(wid)
 ```
+
 ### 確認權限
 有時候會想要檢查權限現在的狀態
 ```javascript
@@ -63,6 +64,28 @@ navigator.permissions.query({ name: 'geolocation' })
     // prompt 要詢問
     // denied 封鎖
   })
+```
+
+### 計算兩點之間的距離
+感覺會放在一起用～ 筆記起來
+```javascript
+const getDistance = (lat1, lng1, lat2, lng2, unit) => {
+  const radLat1 = (Math.PI * lat1) / 180
+  const radLat2 = (Math.PI * lat2) / 180
+  const theta = lng1 - lng2
+  const radTheta = (Math.PI * theta) / 180
+  let dist = Math.sin(radLat1) * Math.sin(radLat2)
+    + Math.cos(radLat1) * Math.cos(radLat2) * Math.cos(radTheta)
+  if (dist > 1) {
+    dist = 1
+  }
+  dist = Math.acos(dist)
+  dist = (dist * 180) / Math.PI
+  dist = dist * 60 * 1.1515
+  if (unit === 'K') { dist *= 1.609344 }
+  if (unit === 'N') { dist *= 0.8684 }
+  return dist // 'M' is statute miles (default)
+}
 ```
 
 ## Ref
