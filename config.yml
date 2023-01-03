@@ -92,10 +92,26 @@ params:
   # refer to http://staticfile.org/,
   # search highlight.js, already have highlight.min.js
   highlightjs:
-    langs: ["python", "javascript", "go"]
+    langs: # ["python", "javascript", "go", "rust"]
+      - bash
+      - diff
+      - dockerfile
+      - go
+      - lua
+      - html
+      - javascript
+      - nix
+      - php
+      - protobuf
+      - python
+      - rust
+      - sql
+      - typescript
+      - vim
+      - yaml
 
   tag_cloud:
-    min: 6
+    min: 10
     max: 20
   # Allows you to specify an override stylesheet
   # put custom.css in $hugo_root_dir/static/
@@ -104,7 +120,7 @@ params:
   profile:
     enabled: true # Whether to show profile bar
     avatar: avatar.jpg
-    gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+    gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be override
     author: "XiaoXiao Notes"
     author_title:
     # author_description: Good Good Study, Day Day Up~
@@ -118,7 +134,7 @@ params:
         # twitter: https://twitter.com/
         # facebook: /
         rss: /index.xml
-      link_tooltip: true # enable the social link  , options: true, false
+      link_tooltip: true # enable the social link, options: true, false
 
   site:
     board: |
@@ -177,8 +193,8 @@ params:
   # facebook,twitter,google,linkedIn
   share:
     enable: true
-    sites: facebook,twitter # PC 端显示的分享图标
-    mobile_sites: facebook,twitter # 移动端显示的分享图标
+    sites: facebook,twitter # PC 端顯示的分享圖標
+    mobile_sites: facebook,twitter # 移動端顯示的分享圖標
 
   # 是否在文章內顯示預計閱讀時間和文章字數
   postCount:
