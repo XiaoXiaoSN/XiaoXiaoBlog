@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>apt on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/apt/</link>
+    <description>Recent content in apt on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Wed, 01 Sep 2021 07:53:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://blog.10oz.tw/tags/apt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>helm3 說 has no deployed releases</title>
+      <link>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</link>
+      <pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</guid>
+      <description>問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本 Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他</description>
+    </item>
+    
+    <item>
+      <title>go get 與私有 Gitlab</title>
+      <link>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</link>
+      <pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</guid>
+      <description>GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援 Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo</description>
+    </item>
+    
+    <item>
+      <title>Chromedp 殭屍進程</title>
+      <link>https://blog.10oz.tw/20210306-chromedp-zombi-process/</link>
+      <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210306-chromedp-zombi-process/</guid>
+      <description>問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積 因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗</description>
+    </item>
+    
+    <item>
+      <title>VPN &amp; GFW - 科學上網</title>
+      <link>https://blog.10oz.tw/20210124-vpn-and-gfw/</link>
+      <pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210124-vpn-and-gfw/</guid>
+      <description>GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由</description>
+    </item>
+    
+    <item>
+      <title>gRPC - protobuf v3 產生 nullable 欄位</title>
+      <link>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</link>
+      <pubDate>Mon, 23 Nov 2020 00:56:51 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</guid>
+      <description>關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！ option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option</description>
+    </item>
+    
+    <item>
+      <title>新米 Istio - 安裝篇</title>
+      <link>https://blog.10oz.tw/20201115-a-istio-beginner/</link>
+      <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid>
+      <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧 curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 default demo minimal remote empty preview Core components istio-egressgateway X istio-ingressgateway</description>
+    </item>
+    
+    <item>
+      <title>GraphQL 打招呼</title>
+      <link>https://blog.10oz.tw/20201009-hello-graphql/</link>
+      <pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201009-hello-graphql/</guid>
+      <description>介紹一下 在遇見 GraphQL 的時候最常被比較的就是 Restful API，畢竟 Rustful API 是目前的主流設計，此時我們就必須了解到什麼情況下使用 GraphQL 能帶來效益 Over Fetch Restful API 的回傳會是一</description>
+    </item>
+    
+    <item>
+      <title>我要裝 vim</title>
+      <link>https://blog.10oz.tw/20200926-wanna-install-vim/</link>
+      <pubDate>Sat, 26 Sep 2020 02:03:48 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
+      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924 設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣 &amp;quot;============================================================================== &amp;quot; vim 内置配置 &amp;quot;============================================================================== &amp;quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &amp;quot; 建议配置完成后将这</description>
+    </item>
+    
+    <item>
+      <title>新米 blockchain 混亂中</title>
+      <link>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</link>
+      <pubDate>Sat, 19 Sep 2020 00:56:51 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</guid>
+      <description>這次筆記內容會圍繞在比特幣這個區塊鍊加密貨幣系統 然後比特幣是一種讓北極熊沒有家住的技術 (? 區塊鏈的安全 區塊鏈鏈的模式，保證新的區塊接續前一個區</description>
+    </item>
+    
+    <item>
+      <title>golang 注入工具 wire</title>
+      <link>https://blog.10oz.tw/20200908-golang-di-tool-wire/</link>
+      <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200908-golang-di-tool-wire/</guid>
+      <description>wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產</description>
+    </item>
+    
+    <item>
+      <title>已知用火 - git.io 短網址</title>
+      <link>https://blog.10oz.tw/20200831-known-fire-gitio/</link>
+      <pubDate>Mon, 31 Aug 2020 01:34:04 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200831-known-fire-gitio/</guid>
+      <description>介紹 GitHub 在 2018 年推出的短網址服務: git.io 他可以把 GitHub 的網址縮短~ with fish 其實會發現他的原因，是因為在尋找 fish 的 plugin https://github.com/jorgebucaran/gitio.fish fisher 是一個 fish 的套件管理工具，我們用它來安裝 fish</description>
+    </item>
+    
+    <item>
+      <title>我們想在虛擬機上跑個 K8s</title>
+      <link>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</link>
+      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</guid>
+      <description>環境 我們先用 macOS Catalina 10.15.2 來做筆記喔 1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～ 1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10 支援的 virtual box 版本沒有到最</description>
+    </item>
+    
+    <item>
+      <title>Docker 建立不同架構的 Image</title>
+      <link>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</link>
+      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</guid>
+      <description>問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境 » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental:</description>
+    </item>
+    
+    <item>
+      <title>Casbin 權限管理模組</title>
+      <link>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</link>
+      <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</guid>
+      <description>Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可</description>
+    </item>
+    
+    <item>
+      <title>Homebrew 自己寫配方一起來釀酒</title>
+      <link>https://blog.10oz.tw/20200811-homebrew-create-app/</link>
+      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200811-homebrew-create-app/</guid>
+      <description>不囉唆直接上圖 馬上試試 pokesay brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要</description>
+    </item>
+    
+    <item>
+      <title>出發尋找 WSL2 的旅程</title>
+      <link>https://blog.10oz.tw/20200728-journey-in-wsl2/</link>
+      <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200728-journey-in-wsl2/</guid>
+      <description>步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &amp;raquo; https://www.microsoft.com/en-us/software-download/windows10 開啟環境設定 用系統管理員</description>
+    </item>
+    
+    <item>
+      <title>Golang 漂亮的輸出 JSON</title>
+      <link>https://blog.10oz.tw/20200229-golang-pretty-print/</link>
+      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200229-golang-pretty-print/</guid>
+      <description>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！ 我需要排版！！趕快筆記一下 一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &amp;quot;&amp;quot;, &amp;quot; &amp;quot;) if err != nil { fmt.Println(&amp;quot;&amp;quot;) }</description>
+    </item>
+    
+    <item>
+      <title>Golang 怎麼處理 JSON</title>
+      <link>https://blog.10oz.tw/20200228-golang-json-marshal/</link>
+      <pubDate>Fri, 28 Feb 2020 23:22:36 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200228-golang-json-marshal/</guid>
+      <description>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成</description>
+    </item>
+    
+    <item>
+      <title>製造一個 hugo 部落格</title>
+      <link>https://blog.10oz.tw/20200124-make-a-hugo-blog/</link>
+      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20200124-make-a-hugo-blog/</guid>
+      <description>步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！ 所以我們需要: 一人份的 github 帳號 安裝 hugo 點我看教學</description>
+    </item>
+    
+    <item>
+      <title>筆記 Install php MongoDB driver on MacOS</title>
+      <link>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</link>
+      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</guid>
+      <description>** 2019.08 更新** https://www.php.net/manual/en/mongodb.installation.homebrew.php mac php72 請使用 pecl install mongodb 安裝 mongodb driver 因為 mongodb, xdebug 從 homebrew 被移除了 [time=Thu, Aug 15, 2019 7:59 PM] 問題描述 想在 Laravel 用 MongoDB composer require jenssegers/mongodb 錯誤： the requested PHP extension mongodb is missing from your system. =&amp;gt; 沒有裝 php 的擴展 解決</description>
+    </item>
+    
+  </channel>
+</rss>

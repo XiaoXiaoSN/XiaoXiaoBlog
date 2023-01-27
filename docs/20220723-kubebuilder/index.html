@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        kubebuilder 旅程 - XiaoXiao Notes
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="一步一步的開始 安裝 kuberbuilder https://github.com/kubernetes-sigs/kubebuilder/issues/2642 kuberbuilder 在支援 1.18 前的準備 首先下載 kuberbuilder curl -L -o kubebuilder https://go.kubebuilder.io/dl/latest/$(go env GOOS)/$(go env GOARCH) chmod &#43;x kubebuilder &amp;amp;&amp;amp; mv kubebuilder /usr/local/bin/ 或是你發現 Release 版還沒支援 Go version 1.18，從 GitHub 自己編譯最新版的來" />
+    <meta name="generator" content="Hugo 0.110.0 with theme pure" />
+    <title>kubebuilder 旅程 - XiaoXiao Notes</title>
+    
+    
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.2d5a1b78bec97b6e10e84cea7ee47c8ed866dbdb1a0fe330cb2294b35082cb9a.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="kubebuilder 旅程" />
+<meta property="og:description" content="一步一步的開始 安裝 kuberbuilder https://github.com/kubernetes-sigs/kubebuilder/issues/2642 kuberbuilder 在支援 1.18 前的準備 首先下載 kuberbuilder curl -L -o kubebuilder https://go.kubebuilder.io/dl/latest/$(go env GOOS)/$(go env GOARCH) chmod &#43;x kubebuilder &amp;&amp; mv kubebuilder /usr/local/bin/ 或是你發現 Release 版還沒支援 Go version 1.18，從 GitHub 自己編譯最新版的來" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20220723-kubebuilder/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-23T23:55:00+08:00" />
+<meta property="article:modified_time" content="2022-07-23T23:55:00+08:00" />
+<meta itemprop="name" content="kubebuilder 旅程">
+<meta itemprop="description" content="一步一步的開始 安裝 kuberbuilder https://github.com/kubernetes-sigs/kubebuilder/issues/2642 kuberbuilder 在支援 1.18 前的準備 首先下載 kuberbuilder curl -L -o kubebuilder https://go.kubebuilder.io/dl/latest/$(go env GOOS)/$(go env GOARCH) chmod &#43;x kubebuilder &amp;&amp; mv kubebuilder /usr/local/bin/ 或是你發現 Release 版還沒支援 Go version 1.18，從 GitHub 自己編譯最新版的來"><meta itemprop="datePublished" content="2022-07-23T23:55:00+08:00" />
+<meta itemprop="dateModified" content="2022-07-23T23:55:00+08:00" />
+<meta itemprop="wordCount" content="3300">
+<meta itemprop="keywords" content="kubernetes,crd,operator," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="kubebuilder 旅程"/>
+<meta name="twitter:description" content="一步一步的開始 安裝 kuberbuilder https://github.com/kubernetes-sigs/kubebuilder/issues/2642 kuberbuilder 在支援 1.18 前的準備 首先下載 kuberbuilder curl -L -o kubebuilder https://go.kubebuilder.io/dl/latest/$(go env GOOS)/$(go env GOARCH) chmod &#43;x kubebuilder &amp;&amp; mv kubebuilder /usr/local/bin/ 或是你發現 Release 版還沒支援 Go version 1.18，從 GitHub 自己編譯最新版的來"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="/" target="">
+            <img class="img-circle" src="https://blog.10oz.tw/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">XiaoXiao Notes</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
+有助於回憶過去曾經做過的事情
+
+            </div>
+        </div>
+    </div>
+</div>
+      <div class="widget">
+  <h3 class="widget-title">Tag Cloud</h3>
+  <div id="tag-cloud-list" class="widget-body">
+    
+      
+      <a href="https://blog.10oz.tw/tags/apt/" class="tag-list-link" rel="1">
+        apt<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/argo/" class="tag-list-link" rel="1">
+        argo<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/artisan/" class="tag-list-link" rel="1">
+        artisan<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/aws/" class="tag-list-link" rel="1">
+        aws<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/blockchain/" class="tag-list-link" rel="1">
+        blockchain<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/buildx/" class="tag-list-link" rel="1">
+        buildx<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/casbin/" class="tag-list-link" rel="1">
+        casbin<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/cd/" class="tag-list-link" rel="1">
+        cd<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/chromedp/" class="tag-list-link" rel="1">
+        chromedp<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/chromium/" class="tag-list-link" rel="1">
+        chromium<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/crd/" class="tag-list-link" rel="3">
+        crd<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/de/" class="tag-list-link" rel="1">
+        de<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/di/" class="tag-list-link" rel="1">
+        di<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/docker/" class="tag-list-link" rel="3">
+        docker<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ecr/" class="tag-list-link" rel="1">
+        ecr<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/elasticsearch/" class="tag-list-link" rel="1">
+        elasticsearch<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/eloquent/" class="tag-list-link" rel="1">
+        eloquent<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/es/" class="tag-list-link" rel="1">
+        es<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ethereum/" class="tag-list-link" rel="1">
+        ethereum<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/flask/" class="tag-list-link" rel="1">
+        flask<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/future/" class="tag-list-link" rel="1">
+        future<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/geographic/" class="tag-list-link" rel="1">
+        geographic<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/geth/" class="tag-list-link" rel="1">
+        geth<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/gfw/" class="tag-list-link" rel="1">
+        gfw<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/git/" class="tag-list-link" rel="1">
+        git<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/gitlab/" class="tag-list-link" rel="2">
+        gitlab<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/golang/" class="tag-list-link" rel="8">
+        golang<span class="tag-list-count">8</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/golnag/" class="tag-list-link" rel="1">
+        golnag<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/gomod/" class="tag-list-link" rel="1">
+        gomod<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/gql/" class="tag-list-link" rel="1">
+        gql<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/graphql/" class="tag-list-link" rel="1">
+        graphql<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/helm/" class="tag-list-link" rel="1">
+        helm<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/homebrew/" class="tag-list-link" rel="1">
+        homebrew<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="2">
+        hugo<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ilm/" class="tag-list-link" rel="1">
+        ilm<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/index/" class="tag-list-link" rel="1">
+        index<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/istio/" class="tag-list-link" rel="1">
+        istio<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/javascript/" class="tag-list-link" rel="1">
+        javascript<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/json/" class="tag-list-link" rel="2">
+        json<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/jwt/" class="tag-list-link" rel="1">
+        jwt<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/keycloak/" class="tag-list-link" rel="1">
+        keycloak<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/kind/" class="tag-list-link" rel="1">
+        kind<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/kops/" class="tag-list-link" rel="1">
+        kops<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/kubernetes/" class="tag-list-link" rel="9">
+        kubernetes<span class="tag-list-count">9</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/laravel/" class="tag-list-link" rel="8">
+        laravel<span class="tag-list-count">8</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="3">
+        linux<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/location/" class="tag-list-link" rel="1">
+        location<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/log/" class="tag-list-link" rel="1">
+        log<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/mongodb/" class="tag-list-link" rel="1">
+        mongodb<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/multi-arch/" class="tag-list-link" rel="1">
+        multi-arch<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/mysql/" class="tag-list-link" rel="1">
+        mysql<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/mysqlclient/" class="tag-list-link" rel="1">
+        mysqlclient<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/neovim/" class="tag-list-link" rel="1">
+        neovim<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/nix/" class="tag-list-link" rel="1">
+        nix<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/nixos/" class="tag-list-link" rel="1">
+        nixos<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/oauth/" class="tag-list-link" rel="1">
+        oauth<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/operator/" class="tag-list-link" rel="1">
+        operator<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/orm/" class="tag-list-link" rel="1">
+        orm<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/passport/" class="tag-list-link" rel="1">
+        passport<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/php/" class="tag-list-link" rel="8">
+        php<span class="tag-list-count">8</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/pokemon/" class="tag-list-link" rel="1">
+        pokemon<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/pokesay/" class="tag-list-link" rel="1">
+        pokesay<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/postgres/" class="tag-list-link" rel="1">
+        postgres<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/pretty/" class="tag-list-link" rel="1">
+        pretty<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/python/" class="tag-list-link" rel="4">
+        python<span class="tag-list-count">4</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ruby/" class="tag-list-link" rel="1">
+        ruby<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/rust/" class="tag-list-link" rel="1">
+        rust<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/service-mesh/" class="tag-list-link" rel="1">
+        service-mesh<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/subgroup/" class="tag-list-link" rel="1">
+        subgroup<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/terraform/" class="tag-list-link" rel="1">
+        terraform<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/test/" class="tag-list-link" rel="1">
+        test<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/typescript/" class="tag-list-link" rel="1">
+        typescript<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ubuntu/" class="tag-list-link" rel="1">
+        ubuntu<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vagrant/" class="tag-list-link" rel="1">
+        vagrant<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vim/" class="tag-list-link" rel="3">
+        vim<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vm/" class="tag-list-link" rel="1">
+        vm<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vpn/" class="tag-list-link" rel="1">
+        vpn<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vscode/" class="tag-list-link" rel="2">
+        vscode<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/windows/" class="tag-list-link" rel="1">
+        windows<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/wire/" class="tag-list-link" rel="1">
+        wire<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/wsl2/" class="tag-list-link" rel="1">
+        wsl2<span class="tag-list-count">1</span>
+      </a>
+      
+  </div>
+
+  <script>
+    document.onreadystatechange = () => {
+      if (document.readyState === 'complete') {
+        tagCloud('#tag-cloud-list a',  10 ,  20 );
+      }
+    };
+
+    function tagCloud(where, min, max) {
+      let iMax = 0;
+      let iMin = 0;
+      $(where).each(function() {
+        let weight = Number($(this).attr("rel"));
+        if(iMax < weight) iMax = weight;
+        if(iMin > weight || iMin == 0) iMin = weight;
+      });
+      let step = (max - min)/(iMax - iMin);
+      $(where).each(function() {
+        let weight = $(this).attr("rel") - iMin;
+        $(this).css({"font-size": min + (weight * step) + 'px'});
+      });
+    };
+  </script>
+</div>
+
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20230103-use-vim/" class="title">入坑 Vim 學習使用筆記</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-01-03 22:11:00 &#43;0800 CST" itemprop="datePublished">2023-01-03</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20221028-logic-public-ecr/" class="title">Hey! 我想登入 AWS ECR</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-10-28 10:28:00 &#43;0800 CST" itemprop="datePublished">2022-10-28</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20220713-k8s-postgresql-wal-full/" class="title">筆記 Debug PostgreSQL WAL 滿ㄌ</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-07-26 12:59:00 &#43;0800 CST" itemprop="datePublished">2022-07-26</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20220723-kubebuilder/" class="title">kubebuilder 旅程</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-07-23 23:55:00 &#43;0800 CST" itemprop="datePublished">2022-07-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20220713-crd-version-priority/" class="title">CRD Version Priority</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-07-13 07:47:00 &#43;0800 CST" itemprop="datePublished">2022-07-13</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/20220723-kubebuilder/"
+    >kubebuilder 旅程</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://blog.10oz.tw/20220723-kubebuilder/" class="article-date">
+  <time datetime="2022-07-23 23:55:00 &#43;0800 CST" itemprop="datePublished">2022-07-23</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link label label-default" href="/tags/kubernetes/"> kubernetes </a>
+    <a class="article-tag-link label label-default" href="/tags/crd/"> crd </a>
+    <a class="article-tag-link label label-default" href="/tags/operator/"> operator </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/20220723-kubebuilder/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3300 words</span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="一步一步的開始">一步一步的開始</h2>
+<h3 id="安裝-kuberbuilder">安裝 kuberbuilder</h3>
+<p><a href="https://github.com/kubernetes-sigs/kubebuilder/issues/2642">https://github.com/kubernetes-sigs/kubebuilder/issues/2642</a>
+<code>kuberbuilder</code> 在支援 1.18 前的準備</p>
+<p>首先下載 <code>kuberbuilder</code></p>
+<pre><code class="language-bash">curl -L -o kubebuilder https://go.kubebuilder.io/dl/latest/$(go env GOOS)/$(go env GOARCH)
+chmod +x kubebuilder &amp;&amp; mv kubebuilder /usr/local/bin/
+</code></pre>
+<p>或是你發現 Release 版還沒支援 Go version 1.18，從 GitHub 自己編譯最新版的來用</p>
+<pre><code class="language-bash">git clone https://github.com/kubernetes-sigs/kubebuilder.git
+cd kubebuilder
+make install
+</code></pre>
+<p>Note: 後來不用跑 <code>make install</code> 可以用 <code>make deploy</code> 就好，他會做更多的事情。並且我注意到這個版本的 <code>make install</code> 不會幫你取代 Cert manager 的變數，他可以搞砸你的 CRD xDDD</p>
+<h3 id="開新專案囉">開新專案囉</h3>
+<pre><code class="language-bash">mkdir unagi
+cd unagi
+kubebuilder init --domain xiao.xiao --repo github.com/xiaoxiaosn/unagi
+</code></pre>
+<pre><code class="language-bash">Get controller runtime:
+$ go get sigs.k8s.io/controller-runtime@v0.12.1
+Update dependencies:
+$ go mod tidy
+</code></pre>
+<p>新增你要的 CRD go code，會問你要不要建 Resource 跟 Controller，我們當然選個 <code>y</code></p>
+<pre><code class="language-bash">kubebuilder create api --group unagi --version v1 --kind UnagiLive
+Create Resource [y/n]
+y
+Create Controller [y/n]
+y
+</code></pre>
+<p>把 CRD YAML 建立出來，有修改 CRD 定義的話記得重新跑個</p>
+<pre><code class="language-bash">make manifests
+</code></pre>
+<p>到 <code>config/crd/bases/unagi.xiao.xiao_unagilives.yaml</code> 可以看到你的 CRD，在 <code>patches</code> 裡面甚至有 conversion webhook 和 Cert Manager CA injection 的範例，這部分晚點玩</p>
+<p>到 <code>config/samples/unagi_v1_unagilive.yaml</code> 可以看到範例 CR</p>
+<pre><code class="language-yaml">apiVersion: unagi.xiao.xiao/v1
+kind: UnagiLive
+metadata:
+  name: unagilive-sample
+spec:
+  # TODO(user): Add fields here
+</code></pre>
+<p>準備好後開始安裝 CRD 到 K8s 中，如果發現 Kustomize 太舊了下載不到那可以參考<a href="https://github.com/kubernetes-sigs/kustomize/releases">這邊</a>改個數字</p>
+<pre><code class="language-bash">export KUSTOMIZE_VERSION=4.5.5 # or other version you want
+make install
+</code></pre>
+<p>你可以在 K8s 中看到剛剛加上去的 CRD</p>
+<pre><code class="language-bash">$ kubectl get crd unagilives.unagi.xiao.xiao
+NAME                         CREATED AT
+unagilives.unagi.xiao.xiao   2022-06-26T15:42:17Z
+</code></pre>
+<p>你還可以部署 CR 上去玩，然後用 <code>kubectl get unagilive</code> 看他</p>
+<pre><code class="language-bash">kubectl apply -f config/samples/unagi_v1_unagilive.yaml
+</code></pre>
+<p>為了將 Controller 放到 K8s 中，我們需要做 docker image</p>
+<pre><code class="language-bash"># make docker-build docker-push IMG=&lt;some-registry&gt;/&lt;project-name&gt;:tag
+make docker-build docker-push IMG=xiaoxiaosn/unagi:latest
+</code></pre>
+<p>然後部署上去</p>
+<pre><code class="language-bash"># make deploy IMG=&lt;some-registry&gt;/&lt;project-name&gt;:tag
+make deploy IMG=xiaoxiaosn/unagi:latest
+</code></pre>
+<p>如果你用 kind 也可以提供一個不用 push 的方法直接 load</p>
+<pre><code class="language-bash"># kind load docker-image &lt;your-image-name&gt;:tag --name &lt;your-kind-cluster-name&gt;
+kind load docker-image xiaoxiaosn/unagi:latest
+</code></pre>
+<p>就長出來啦</p>
+<pre><code class="language-bash">$ kubectl get all -n unagi-system
+NAME                                            READY   STATUS    RESTARTS   AGE
+pod/unagi-controller-manager-7c99bd7fb7-9t6gr   2/2     Running   0          114s
+
+NAME                                               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/unagi-controller-manager-metrics-service   ClusterIP   10.96.251.167   &lt;none&gt;        8443/TCP   114s
+
+NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/unagi-controller-manager   1/1     1            1           114s
+
+NAME                                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/unagi-controller-manager-7c99bd7fb7   1         1         1       114s
+</code></pre>
+<h3 id="認識專案開始跑">認識專案開始跑</h3>
+<p>我們確實有了一個架構，再來我們要開始加一些自定義的行為！</p>
+<h4 id="修改-crd">修改 CRD</h4>
+<p>首先到 <code>api/v1/unagilive_type.go</code> 這邊會定義 <code>UnagiLive</code>
+這個 CRD 的 Spec，我們在這邊加個喜歡的欄位</p>
+<p>我們希望我們養的 <code>Unagi</code> 有顏色跟尺寸大小，修改一下</p>
+<pre><code class="language-go">// UnagiLiveSpec defines the desired state of UnagiLive
+type UnagiLiveSpec struct {
+    Color string `json:&quot;color,omitempty&quot;`
+    
+    Size string `json:&quot;size,omitempty&quot;`
+
+    HasHorn bool `json:&quot;hasHorn,omitempty&quot;`
+}
+</code></pre>
+<p>還希望知道這個 CRD 被 Controller 處理的狀況如何</p>
+<pre><code class="language-go">type UnagiLiveStatus struct {
+	Status string `json:&quot;status,omitempty&quot;`
+
+	// +optional
+	ReconciledTime *metav1.Time `json:&quot;reconciledTime,omitempty&quot;`
+}
+</code></pre>
+<p>再加個 <code>additionalPrinterColumns</code> 因為想用 kubectl 看到更多資訊～
+Status 多了個 <code>priority</code> 大於 1 的，就要用 <code>-o wide</code> 才給看</p>
+<pre><code class="language-go">// UnagiLive is the Schema for the unagilives API
+// +kubebuilder:printcolumn:name=&quot;Status&quot;,type=string,JSONPath=`.status.status`,description=&quot;Unagi Status&quot;
+// +kubebuilder:printcolumn:name=&quot;Color&quot;,type=string,JSONPath=`.spec.color`,description=&quot;Unagi Color&quot;,priority=1
+type UnagiLive struct {
+	metav1.TypeMeta   `json:&quot;,inline&quot;`
+	metav1.ObjectMeta `json:&quot;metadata,omitempty&quot;`
+
+	Spec   UnagiLiveSpec   `json:&quot;spec,omitempty&quot;`
+	Status UnagiLiveStatus `json:&quot;status,omitempty&quot;`
+}
+</code></pre>
+<h4 id="修改-controller">修改 Controller</h4>
+<p>來到 <code>controllers/unagilive_controller.go</code></p>
+<p>我們要把收到的 Unagi 給設定 Status，另外也增加一些 <code>log</code> 方便觀察</p>
+<pre><code class="language-go">func (r *UnagiLiveReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+	log := log.FromContext(ctx)
+
+	log.Info(fmt.Sprintf(&quot;Request: %+v\n-----\n&quot;, req))
+
+	// Load the named UnagiLive object
+	var unagiLive unagiv1.UnagiLive
+	if err := r.Get(ctx, req.NamespacedName, &amp;unagiLive); err != nil {
+		log.Error(err, &quot;unable to fetch unagiLive&quot;)
+		// we'll ignore not-found errors, since they can't be fixed by an immediate
+		// requeue (we'll need to wait for a new notification), and we can get them
+		// on deleted requests.
+		return ctrl.Result{}, client.IgnoreNotFound(err)
+	}
+
+	log.Info(fmt.Sprintf(&quot;Request unagiLive: %#v\n-----\n&quot;, unagiLive))
+
+	unagiLive.Status.Status = &quot;Reconciled&quot;
+	unagiLive.Status.ReconciledTime = &amp;metav1.Time{Time: time.Now()}
+
+	if err := r.Status().Update(ctx, &amp;unagiLive); err != nil {
+		log.Error(err, &quot;unable to update unagiLive status&quot;)
+		return ctrl.Result{}, err
+	}
+
+	log.Info(&quot;----- END -----\n\n&quot;)
+
+	return ctrl.Result{}, nil
+}
+</code></pre>
+<p>重新部署 CRD 和 Controller</p>
+<pre><code class="language-bash">make manifest
+
+make docker-build docker-push IMG=xiaoxiaosn/unagi:latest
+kubectl rollout restart deploy -n unagi-system
+</code></pre>
+<p>等他跑完後可以看到我們新的 Controller 設定好 Status 了～</p>
+<pre><code class="language-bash">kubectl get unagilive -oyaml
+</code></pre>
+<pre><code class="language-yaml">apiVersion: v1
+items:
+- apiVersion: unagi.xiao.xiao/v1
+  kind: UnagiLive
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {&quot;apiVersion&quot;:&quot;unagi.xiao.xiao/v1&quot;,&quot;kind&quot;:&quot;UnagiLive&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;unagilive-sample&quot;,&quot;namespace&quot;:&quot;unagi-system&quot;},&quot;spec&quot;:null}
+    creationTimestamp: &quot;2022-06-26T16:20:15Z&quot;
+    generation: 3
+    name: unagilive-sample
+    namespace: unagi-system
+    resourceVersion: &quot;3228189&quot;
+    uid: 0dfaee8d-4396-42e5-9df2-112c1c330f86
+  spec:
+    color: meow
+  status:
+    reconciledTime: &quot;2022-06-26T19:34:27Z&quot;
+    status: Reconciled
+kind: List
+metadata:
+  resourceVersion: &quot;&quot;
+  selfLink: &quot;&quot;
+</code></pre>
+<h3 id="召喚-admission-webhook">召喚 Admission webhook</h3>
+<p>可以從 <code>kuberbuilder create webhook --help</code> 看到用法（defaulting webhook
+他就是 mutating webhook）</p>
+<pre><code>--defaulting                if set, scaffold the defaulting webhook
+--programmatic-validation   if set, scaffold the validating webhook
+</code></pre>
+<pre><code class="language-bash">kubebuilder create webhook --group unagi --version v1 --kind UnagiLive --defaulting --programmatic-validation
+</code></pre>
+<p>我們建立好了兩之 Admission webhooks (mutating and validation)，可以到 <code>api/v1/unagilive_webhook.go</code> 去看一下主要的邏輯</p>
+<p>我們修改 Mutating webhook 的 <code>Default</code> function，讓我們的 resource 進來時，會先照我們的邏輯做一次改變</p>
+<pre><code class="language-go">// Default implements webhook.Defaulter so a webhook will be registered for the type
+func (r *UnagiLive) Default() {
+	unagilivelog.Info(&quot;default&quot;, &quot;name&quot;, r.Name)
+
+    // 沒有填寫的話預設是 `m` 尺寸
+	if r.Spec.Size == &quot;&quot; {
+		r.Spec.Size = &quot;m&quot;
+	}
+
+    // 沒有填寫的話預設是黃色
+	if r.Spec.Color == &quot;&quot; {
+		r.Spec.Color = &quot;yellow&quot;
+	}
+}
+</code></pre>
+<p>validating 的 Admission webhook 則有 <code>Create</code>, <code>Update</code> and <code>Delete</code> 三種，分別對應到資源的新增、修改、刪除，檢查新的 resource 以及變化是否符合預期～</p>
+<p>例如我們可以限制尺寸是不可修改的！</p>
+<pre><code class="language-go">// ValidateUpdate implements webhook.Validator so a webhook will be registered for the type
+func (r *UnagiLive) ValidateUpdate(old runtime.Object) error {
+	unagilivelog.Info(&quot;validate update&quot;, &quot;name&quot;, r.Name)
+
+	oldSize := old.(*UnagiLive).Spec.Size
+	newSize := r.Spec.Size
+	if newSize != oldSize {
+		return fmt.Errorf(&quot;cannot change size after creation. try from `%s` update to `%s`&quot;, oldSize, newSize)
+	}
+
+	return nil
+}
+</code></pre>
+<p>再來來到 <code>config/webhook/manifests.yaml</code> 看一下 resource 的定義，包含了說要監聽哪一些 resource 的哪一些行為，然後要掛哪裡的 webhook</p>
+<pre><code class="language-yaml">---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  creationTimestamp: null
+  name: mutating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: system
+      path: /mutate-unagi-xiao-xiao-v1-unagilive
+  failurePolicy: Fail
+  name: munagilive.kb.io
+  rules:
+  - apiGroups:
+    - unagi.xiao.xiao
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - unagilives
+  sideEffects: None
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  creationTimestamp: null
+  name: validating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: system
+      path: /validate-unagi-xiao-xiao-v1-unagilive
+  failurePolicy: Fail
+  name: vunagilive.kb.io
+  rules:
+  - apiGroups:
+    - unagi.xiao.xiao
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - unagilives
+  sideEffects: None
+</code></pre>
+<h4 id="準備部署上去玩玩">準備部署上去玩玩</h4>
+<p>記得確保你有 Cert Manager 喔，我們會用到它的 webhook 來幫忙你注入 CA Bundle</p>
+<p>到 <code>config/default/kustomization.yaml</code> 確認一下，這些選項要開 (主要都是 Cert Manager &amp;&amp; Webhook 的部分)</p>
+<pre><code class="language-yaml">bases:
+# [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix including the one in
+# crd/kustomization.yaml
+- ../webhook
+# [CERTMANAGER] To enable cert-manager, uncomment all sections with 'CERTMANAGER'. 'WEBHOOK' components are required.
+- ../certmanager
+
+patchesStrategicMerge:
+# [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix including the one in
+# crd/kustomization.yaml
+- manager_webhook_patch.yaml
+
+# [CERTMANAGER] To enable cert-manager, uncomment all sections with 'CERTMANAGER'.
+# Uncomment 'CERTMANAGER' sections in crd/kustomization.yaml to enable the CA injection in the admission webhooks.
+# 'CERTMANAGER' needs to be enabled to use ca injection
+- webhookcainjection_patch.yaml
+
+# the following config is for teaching kustomize how to do var substitution
+vars:
+# [CERTMANAGER] To enable cert-manager, uncomment all sections with 'CERTMANAGER' prefix.
+ - name: CERTIFICATE_NAMESPACE # namespace of the certificate CR
+   objref:
+     kind: Certificate
+     group: cert-manager.io
+     version: v1
+     name: serving-cert # this name should match the one in certificate.yaml
+   fieldref:
+     fieldpath: metadata.namespace
+ - name: CERTIFICATE_NAME
+   objref:
+     kind: Certificate
+     group: cert-manager.io
+     version: v1
+     name: serving-cert # this name should match the one in certificate.yaml
+ - name: SERVICE_NAMESPACE # namespace of the service
+   objref:
+     kind: Service
+     version: v1
+     name: webhook-service
+   fieldref:
+     fieldpath: metadata.namespace
+ - name: SERVICE_NAME
+   objref:
+     kind: Service
+     version: v1
+     name: webhook-service
+</code></pre>
+<p>還有 <code>config/crd/kustomization.yaml</code> 的這些</p>
+<pre><code class="language-yaml">patchesStrategicMerge:
+# [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix.
+# patches here are for enabling the conversion webhook for each CRD
+- patches/webhook_in_unagilives.yaml
+#+kubebuilder:scaffold:crdkustomizewebhookpatch
+
+# [CERTMANAGER] To enable cert-manager, uncomment all the sections with [CERTMANAGER] prefix.
+# patches here are for enabling the CA injection for each CRD
+- patches/cainjection_in_unagilives.yaml
+#+kubebuilder:scaffold:crdkustomizecainjectionpatch
+</code></pre>
+<p>改好 kustomizate 後，來部署基本跟剛剛一樣</p>
+<pre><code class="language-bash"># make docker-build docker-push IMG=&lt;some-registry&gt;/&lt;project-name&gt;:tag
+make docker-build docker-push IMG=xiaoxiaosn/unagi:latest
+
+# make deploy IMG=&lt;some-registry&gt;/&lt;project-name&gt;:tag
+make deploy IMG=xiaoxiaosn/unagi:latest
+</code></pre>
+<p>看一下成果，多了一個 service 從同一個 <code>controller-manager</code> 導出到 admission webhook 預設的 443 port</p>
+<pre><code class="language-bash">$ kubectl get po,svc
+NAME                                            READY   STATUS    RESTARTS   AGE
+pod/unagi-controller-manager-6c779679c6-w266v   2/2     Running   0          98s
+
+NAME                                               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/unagi-controller-manager-metrics-service   ClusterIP   10.96.251.167   &lt;none&gt;        8443/TCP   3d23h
+service/unagi-webhook-service                      ClusterIP   10.96.96.235    &lt;none&gt;        443/TCP    98s
+</code></pre>
+<h4 id="成果驗收">成果驗收</h4>
+<p>來部署這個，預期可以看到 mutating webhook 給我們上 default 數值</p>
+<pre><code class="language-yaml">apiVersion: unagi.xiao.xiao/v1
+kind: UnagiLive
+metadata:
+  name: try-admission-webhook
+  namespace: unagi-system
+spec: {}
+</code></pre>
+<p>使用 <code>kubectl get unagilive try-admission-webhook -oyaml</code> 拿回來看，會發現 spec 被貼上預設值啦～
+且原本在被修改前的數值也被更新到 <code>annotations.kubectl.kubernetes.io/last-applied-configuration</code> 裡面</p>
+<pre><code class="language-yaml">apiVersion: unagi.xiao.xiao/v1
+kind: UnagiLive
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {&quot;apiVersion&quot;:&quot;unagi.xiao.xiao/v1&quot;,&quot;kind&quot;:&quot;UnagiLive&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;try-admission-webhook&quot;,&quot;namespace&quot;:&quot;unagi-system&quot;},&quot;spec&quot;:{}}
+  creationTimestamp: &quot;2022-06-30T15:46:03Z&quot;
+  generation: 1
+  name: try-admission-webhook
+  namespace: unagi-system
+  resourceVersion: &quot;3718189&quot;
+  uid: 77c4d9c1-ef32-49d9-b106-ebdf8889baee
+spec:
+  color: red
+  size: m
+  hasHorn: true
+status:
+  reconciledTime: &quot;2022-06-30T15:46:03Z&quot;
+  status: Reconciled
+</code></pre>
+<p>再來看舊的 resource，由於他早就在 Kubernetes 內了，因此沒有經過 webhook，還是保持原本的模樣</p>
+<p>先把它拿出來看 <code>kubectl get unagilive unagilive-sample -oyaml</code>，這是一個沒有填寫 <code>size</code> 的 CR，後面</p>
+<pre><code class="language-yaml">apiVersion: unagi.xiao.xiao/v1
+kind: UnagiLive
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {&quot;apiVersion&quot;:&quot;unagi.xiao.xiao/v1&quot;,&quot;kind&quot;:&quot;UnagiLive&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;unagilive-sample&quot;,&quot;namespace&quot;:&quot;unagi-system&quot;},&quot;spec&quot;:null}
+  creationTimestamp: &quot;2022-06-26T16:20:15Z&quot;
+  generation: 3
+  name: unagilive-sample
+  namespace: unagi-system
+  resourceVersion: &quot;3717289&quot;
+  uid: &quot;0dfaee8d-4396-42e5-9df2-112c1c330f86&quot;
+spec:
+  color: meow
+status:
+  reconciledTime: &quot;2022-06-30T15:39:37Z&quot;
+  status: Reconciled
+</code></pre>
+<p>然後改他 <code>kubectl edit unagilive unagilive-sample</code>，結果發現無法修改！！</p>
+<pre><code>error: unagilives.unagi.xiao.xiao &quot;unagilive-sample&quot; could not be patched: admission webhook &quot;vunagilive.kb.io&quot; denied the request: 
+cannot change size after creation. try from `` update to `m`
+</code></pre>
+<p>原來是我們剛剛的 mutating webhook 的預設值跟 validation webhook 的不可變更檢查衝突了呀</p>
+<ol>
+<li>暫時把 validating webhook 給刪了 (?</li>
+<li>webhook 邏輯應該修改一下，特例允許從空值更改成預設值 <code>m</code></li>
+<li>我們可能需要迭代新版本的 CRD</li>
+</ol>
+<h3 id="mutilple-versions-crd">Mutilple versions CRD</h3>
+<p>使用和產生第一個 <code>v1</code> 時相同的方式來產生 <code>v2</code>，這次 <code>Resource</code> 選 <code>y</code> 而第二個選項的 <code>Controller</code> 因為已經有了所以要選 <code>n</code>，不然會失敗！</p>
+<pre><code>kubebuilder create api --group unagi --version v2 --kind UnagiLive
+Create Resource [y/n]
+y
+Create Controller [y/n]
+n
+</code></pre>
+<p>接下來比較麻煩，有不少地方要留意</p>
+<p>首先我們要為我們新版本的 <code>UnagiLive</code> 定義結構形狀，移動到<code>api/v2/unagilive_type.go</code>，參考 v1 更改預設產生的 Spec, Status，這次我增加了一個 <code>Speed</code> 欄位，我希望 Unagi 有移動速度可以設定～</p>
+<pre><code class="language-go">// UnagiLiveSpec defines the desired state of UnagiLive
+type UnagiLiveSpec struct {
+	Color string `json:&quot;color,omitempty&quot;`
+
+	Size string `json:&quot;size,omitempty&quot;`
+
+	HasHorn bool `json:&quot;hasHorn,omitempty&quot;`
+
+	Speed int `json:&quot;speed&quot;`
+}
+
+// UnagiLiveStatus defines the observed state of UnagiLive
+type UnagiLiveStatus struct {
+	Status string `json:&quot;status,omitempty&quot;`
+
+	// +optional
+	ReconciledTime *metav1.Time `json:&quot;reconciledTime,omitempty&quot;`
+}
+</code></pre>
+<p>因為我們的 CRD 有了多版本，我們要指定在 etcd 中的實際儲存版本，我們在<code>api/v2/unagilive_types.go</code> 加上這行（或是你想加在 <code>v1</code> 也可以的）</p>
+<pre><code class="language-go">//+kubebuilder:storageversion
+</code></pre>
+<p><a href="https://book.kubebuilder.io/reference/markers/crd.html">更多 kubebuilder 的選項可以參考文件</a></p>
+<p>這樣子基本的定義就完成了，不過版本發生改變時要怎麼同時兼容新版和舊版？ 所以需要有人來負責做這個不同版本之間的轉換器，這個角色就是 <code>conversion webhook</code></p>
+<p>然而我們馬上就會遇到一個問題：如果我們有 $n$ 個 versions，兼容所有轉換是不是表示我們就要有 $n* (n-1)$ 這麼多個呢？</p>
+<p>在 <code>kubebuilder</code> 的概念中多準備了一個 Hub 的角色，所有的轉換都先經過 Hub 在轉換成其他的版本
+<img src="https://i.imgur.com/Wl2yK5S.png" alt=""></p>
+<p>例如說想要從 v2 轉成 v3，而目前的儲存版本是 v1 的時候會像是 <code>v2</code> -&gt; <code>hub(v1)</code> -&gt; <code>v3</code>
+<img src="https://i.imgur.com/UYq3ov2.png" alt=""></p>
+<p>理解完後我們來實作，使用 <code>kubebuilder</code> 建立 storaged version 是 <code>v1</code> 的 webhook 服務 Code</p>
+<pre><code class="language-bash">kubebuilder create webhook --group unagi --version v1 --kind UnagiLive --conversion
+</code></pre>
+<p>來開一個 <code>api/v1/unagilive_convetion.go</code> 我們要在這邊宣告他是 <code>Hub</code> 或是一個 <code>Convertible</code>，在這裡因為 <code>v1</code> 是 storaged version 所以給他個 Hub</p>
+<pre><code class="language-go">package v1
+
+/*
+Implementing the hub method is pretty easy -- we just have to add an empty
+method called `Hub()` to serve as a
+[marker](https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/conversion?tab=doc#Hub).
+We could also just put this inline in our `cronjob_types.go` file.
+*/
+
+// Hub marks this type as a conversion hub.
+func (*UnagiLive) Hub() {}
+</code></pre>
+<p>再來到 <code>api/v2/unagilive_convetion.go</code> 幫她實作從 <code>Hub</code> 過來的邏輯，他是一個 <code>Convertible</code></p>
+<pre><code class="language-go">package v2
+
+/*
+For imports, we'll need the controller-runtime
+[`conversion`](https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/conversion?tab=doc)
+package, plus the API version for our hub type (v1), and finally some of the
+standard packages.
+*/
+import (
+	&quot;sigs.k8s.io/controller-runtime/pkg/conversion&quot;
+
+	v1 &quot;github.com/xiaoxiaosn/unagi/api/v1&quot;
+)
+
+// +kubebuilder:docs-gen:collapse=Imports
+
+/*
+Our &quot;spoke&quot; versions need to implement the
+[`Convertible`](https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/conversion?tab=doc#Convertible)
+interface.  Namely, they'll need `ConvertTo` and `ConvertFrom` methods to convert to/from
+the hub version.
+*/
+
+/*
+ConvertTo is expected to modify its argument to contain the converted object.
+Most of the conversion is straightforward copying, except for converting our changed field.
+*/
+// ConvertTo converts this UnagiLive to the Hub version (v1).
+func (src *UnagiLive) ConvertTo(dstRaw conversion.Hub) error {
+	dst := dstRaw.(*v1.UnagiLive)
+
+	// Spec
+	dst.Spec.Color = src.Spec.Color
+	dst.Spec.Size = src.Spec.Size
+	dst.Spec.HasHorn = src.Spec.HasHorn
+
+	// Status
+	dst.Status.Status = src.Status.Status
+	dst.Status.ReconciledTime = src.Status.ReconciledTime
+
+	// +kubebuilder:docs-gen:collapse=rote conversion
+	return nil
+}
+
+/*
+ConvertFrom is expected to modify its receiver to contain the converted object.
+Most of the conversion is straightforward copying, except for converting our changed field.
+*/
+
+// ConvertFrom converts from the Hub version (v1) to this version.
+func (dst *UnagiLive) ConvertFrom(srcRaw conversion.Hub) error {
+	src := srcRaw.(*v1.UnagiLive)
+
+	// Spec
+	dst.Spec.Color = src.Spec.Color
+	dst.Spec.Size = src.Spec.Size
+	dst.Spec.HasHorn = src.Spec.HasHorn
+
+	if src.Spec.Color == &quot;red&quot; &amp;&amp; src.Spec.HasHorn {
+		dst.Spec.Speed = 3
+	} else {
+		dst.Spec.Speed = 1
+	}
+
+	// Status
+	dst.Status.Status = src.Status.Status
+	dst.Status.ReconciledTime = src.Status.ReconciledTime
+
+	// +kubebuilder:docs-gen:collapse=rote conversion
+	return nil
+}
+</code></pre>
+<p>在上述的轉換邏輯中，因為 <code>v2</code> 多了一個 <code>Speed</code> 欄位，而 <code>v1</code> 到 <code>v2</code> 又沒有這個欄位，因此給他一個邏輯，當你是紅色有角時，你的速度就是 3 倍。</p>
+<h4 id="準備部署">準備部署</h4>
+<p>來到 config 這邊把註解掉的部分打開</p>
+<ul>
+<li>到 <code>config/crd/kustomization.yaml</code> 打開 <code>patches/webhook_in_&lt;kind&gt;.yaml</code> 和 <code>patches/cainjection_in_&lt;kind&gt;.yaml</code>，你也可能已經在 Admission webhook 中開過了</li>
+<li>到 <code>config/default/kustomization.yaml</code>
+<ul>
+<li>打開 <code>bases</code> 底下的 <code>../certmanager</code> 和 <code>../webhook</code></li>
+<li>打開 <code>patchesStrategicMerge</code> 底下的 <code>manager_webhook_patch.yaml</code> 和 <code>webhookcainjection_patch.yaml</code></li>
+<li>打開 <code>CERTMANAGER</code> 下的所有參數</li>
+</ul>
+</li>
+</ul>
+<p>安裝下去</p>
+<pre><code class="language-bash">make docker-build docker-push IMG=xiaoxiaosn/unagi:latest
+make deploy IMG=xiaoxiaosn/unagi:latest
+
+# kubectl rollout restart deployment.apps/unagi-controller-manager
+</code></pre>
+<h4 id="見證更改">見證更改</h4>
+<p>首先直接 get 會發現他給的 v2 的版本，kubectl 會自動去抓優先級最高的版本，</p>
+<pre><code class="language-bash">kubectl get unagilive
+</code></pre>
+<pre><code class="language-bash">kubectl get UnagiLive.v1.unagi.xiao.xiao 
+</code></pre>
+<p>如預期般拿到轉換過後的版本 ：）</p>
+<h2 id="ref">Ref</h2>
+<p><a href="https://book.kubebuilder.io/quick-start.html">https://book.kubebuilder.io/quick-start.html</a>
+<a href="https://mp.weixin.qq.com/s/Y0GwLgz9o2HONkl4FJdlVQ">https://mp.weixin.qq.com/s/Y0GwLgz9o2HONkl4FJdlVQ</a>
+<a href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1851829124558848001">https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1851829124558848001</a></p>
+<p>Tutorial <a href="https://github.com/kubernetes-sigs/kubebuilder/tree/master/docs/book/src">https://github.com/kubernetes-sigs/kubebuilder/tree/master/docs/book/src</a></p>
+<p><a href="https://www.cnblogs.com/charlieroro/p/15960829.html">https://www.cnblogs.com/charlieroro/p/15960829.html</a></p>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://blog.10oz.tw/20220713-crd-version-priority/" title="CRD Version Priority"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://blog.10oz.tw/20220713-k8s-postgresql-wal-full/"
+                    title="筆記 Debug PostgreSQL WAL 滿ㄌ"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="facebook,twitter"
+                data-mobile-sites="facebook,twitter"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/XiaoXiaoSN" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://blog.10oz.tw/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2018  -
+    2023
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/bash.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/diff.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/dockerfile.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/lua.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/html.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/nix.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/php.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/protobuf.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/rust.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/sql.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/typescript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/vim.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/yaml.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://blog.10oz.tw/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://blog.10oz.tw/js/plugin.min.738a460bf4317fac61717f1bca393e53d00973db9754d9f0a81c7312d5874840.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/blog.10oz.tw',
+            CONTENT_URL: 'https:\/\/blog.10oz.tw\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.3937a769417e61457e22ff009a067bcaef4aed360808f96f836ee9c602ea2f01ee99c3d94bd91659119aa8c55f40c3a8fa2c70815a9238cef35d40eb6a2b15d1.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.3/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https:\/\/blog.10oz.tw\/20220723-kubebuilder\/';
+        this.page.identifier = 'xiaoxiaoblog-1';
+    };
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'xiaoxiaoblog-1' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  </body>
+</html>

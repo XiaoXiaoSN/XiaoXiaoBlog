@@ -3,6 +3,160 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.10oz.tw/tags/neovim/</loc>
+    <lastmod>2023-01-03T22:11:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/posts/</loc>
+    <lastmod>2023-01-03T22:11:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/</loc>
+    <lastmod>2023-01-03T22:11:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/vim/</loc>
+    <lastmod>2023-01-03T22:11:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/</loc>
+    <lastmod>2023-01-03T22:11:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20230103-use-vim/</loc>
+    <lastmod>2023-01-03T22:11:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/aws/</loc>
+    <lastmod>2022-10-28T10:28:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/docker/</loc>
+    <lastmod>2022-10-28T10:28:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/ecr/</loc>
+    <lastmod>2022-10-28T10:28:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20221028-logic-public-ecr/</loc>
+    <lastmod>2022-10-28T10:28:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/kubernetes/</loc>
+    <lastmod>2022-07-26T12:59:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/postgres/</loc>
+    <lastmod>2022-07-26T12:59:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20220713-k8s-postgresql-wal-full/</loc>
+    <lastmod>2022-07-26T12:59:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/crd/</loc>
+    <lastmod>2022-07-23T23:55:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20220723-kubebuilder/</loc>
+    <lastmod>2022-07-23T23:55:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/operator/</loc>
+    <lastmod>2022-07-23T23:55:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20220713-crd-version-priority/</loc>
+    <lastmod>2022-07-13T07:47:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/typescript/</loc>
+    <lastmod>2022-06-28T11:44:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20220628-typescript-2307/</loc>
+    <lastmod>2022-06-28T11:44:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/vscode/</loc>
+    <lastmod>2022-06-28T11:44:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20220427-kubernetes-crd-and-conversion-webhook/</loc>
+    <lastmod>2022-04-27T23:18:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20220205-vim-color-schemes/</loc>
+    <lastmod>2022-02-05T10:42:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.10oz.tw/tags/git/</loc>
     <lastmod>2022-01-24T01:06:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -17,29 +171,71 @@
   </url>
   
   <url>
-    <loc>https://blog.10oz.tw/posts/</loc>
-    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/</loc>
-    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/</loc>
-    <lastmod>2022-01-24T01:06:08+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.10oz.tw/20220124-use-git-submodule/</loc>
     <lastmod>2022-01-24T01:06:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210903-k8s-rejoin-drain-node/</loc>
+    <lastmod>2021-09-03T17:11:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/apt/</loc>
+    <lastmod>2021-09-01T07:53:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/ubuntu/</loc>
+    <lastmod>2021-09-01T07:53:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210901-build-apt-repository/</loc>
+    <lastmod>2021-09-01T07:53:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/kind/</loc>
+    <lastmod>2021-08-12T12:10:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210821-kind-notes/</loc>
+    <lastmod>2021-08-12T12:10:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/nix/</loc>
+    <lastmod>2021-07-08T03:13:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/nixos/</loc>
+    <lastmod>2021-07-08T03:13:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210708-first-take-nix-package-manager/</loc>
+    <lastmod>2021-07-08T03:13:00+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -61,6 +257,55 @@
   <url>
     <loc>https://blog.10oz.tw/20210706-known-popular-linux-de/</loc>
     <lastmod>2021-07-06T13:11:08+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/future/</loc>
+    <lastmod>2021-07-03T10:44:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/rust/</loc>
+    <lastmod>2021-07-03T10:44:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210703-rust-future-cannot-be-sent-between-threads-safely/</loc>
+    <lastmod>2021-07-03T10:44:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/geographic/</loc>
+    <lastmod>2021-06-24T19:37:41+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/javascript/</loc>
+    <lastmod>2021-06-24T19:37:41+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/20210623-get-geo-in-javascript/</loc>
+    <lastmod>2021-06-24T19:37:41+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.10oz.tw/tags/location/</loc>
+    <lastmod>2021-06-24T19:37:41+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -89,13 +334,6 @@
   <url>
     <loc>https://blog.10oz.tw/20210409-what-can-argocd-do/</loc>
     <lastmod>2021-04-09T01:29:53+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/docker/</loc>
-    <lastmod>2021-04-02T01:19:30+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -172,13 +410,6 @@
   
   <url>
     <loc>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</loc>
-    <lastmod>2021-03-26T01:24:28+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/kubernetes/</loc>
     <lastmod>2021-03-26T01:24:28+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -299,13 +530,6 @@
   <url>
     <loc>https://blog.10oz.tw/20201009-hello-graphql/</loc>
     <lastmod>2020-10-09T01:17:39+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/vim/</loc>
-    <lastmod>2020-09-26T02:03:48+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -726,13 +950,6 @@
   <url>
     <loc>https://blog.10oz.tw/20181117-install-mysqlclient/</loc>
     <lastmod>2018-11-17T14:11:06+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.10oz.tw/tags/vscode/</loc>
-    <lastmod>2018-11-08T12:04:17+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

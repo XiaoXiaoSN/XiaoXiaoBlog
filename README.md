@@ -1,5 +1,5 @@
 # XiaoXiao Notes
-This site is published at http://blog.10oz.tw/
+This site is published at https://blog.10oz.tw
 
 ## Getting Started
 ```

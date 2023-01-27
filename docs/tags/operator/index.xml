@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>operator on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/operator/</link>
+    <description>Recent content in operator on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Sat, 23 Jul 2022 23:55:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://blog.10oz.tw/tags/operator/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>入坑 Vim 學習使用筆記</title>
+      <link>https://blog.10oz.tw/20230103-use-vim/</link>
+      <pubDate>Tue, 03 Jan 2023 22:11:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20230103-use-vim/</guid>
+      <description>我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (? 還有一個以前用的 Vim 設定檔，不過沒怎麼更新了 基本操作 移動你的游標 w,</description>
+    </item>
+    
+    <item>
+      <title>Hey! 我想登入 AWS ECR</title>
+      <link>https://blog.10oz.tw/20221028-logic-public-ecr/</link>
+      <pubDate>Fri, 28 Oct 2022 10:28:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20221028-logic-public-ecr/</guid>
+      <description>描述 私有 AWS ECR 登入指令很好找，文件上到處有 $ aws ecr get-login-password \ --region us-west-2 | docker login \ --username AWS \ --password-stdin \ 000000000000.dkr.ecr.us-west-2.amazonaws.com 但是你知道嗎？ AWS 的 Public Registry 沒有分區域，所以你必須要指定 --region us-east-1 才可以唷 $ aws</description>
+    </item>
+    
+    <item>
+      <title>筆記 Debug PostgreSQL WAL 滿ㄌ</title>
+      <link>https://blog.10oz.tw/20220713-k8s-postgresql-wal-full/</link>
+      <pubDate>Tue, 26 Jul 2022 12:59:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220713-k8s-postgresql-wal-full/</guid>
+      <description>前情提要 這是一台架設在 Kubernetes 上，使用 Postgres Operator 部署的單節點資料庫，SRE 大大發現他的硬碟空間滿了，趕快來看一下 由於硬碟滿了 SQL Query 也下不了，於是先幫他加了</description>
+    </item>
+    
+    <item>
+      <title>kubebuilder 旅程</title>
+      <link>https://blog.10oz.tw/20220723-kubebuilder/</link>
+      <pubDate>Sat, 23 Jul 2022 23:55:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220723-kubebuilder/</guid>
+      <description>一步一步的開始 安裝 kuberbuilder https://github.com/kubernetes-sigs/kubebuilder/issues/2642 kuberbuilder 在支援 1.18 前的準備 首先下載 kuberbuilder curl -L -o kubebuilder https://go.kubebuilder.io/dl/latest/$(go env GOOS)/$(go env GOARCH) chmod +x kubebuilder &amp;amp;&amp;amp; mv kubebuilder /usr/local/bin/ 或是你發現 Release 版還沒支援 Go version 1.18，從 GitHub 自己編譯最新版的來</description>
+    </item>
+    
+    <item>
+      <title>CRD Version Priority</title>
+      <link>https://blog.10oz.tw/20220713-crd-version-priority/</link>
+      <pubDate>Wed, 13 Jul 2022 07:47:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220713-crd-version-priority/</guid>
+      <description>版本優先級 在 K8s 裡面有 preferred version，會選優先值最高的來做為預設值 規則 &amp;quot;^v([\\d]+)(?:(alpha|beta)([\\d]+))?$&amp;quot; v{主版本}alpha|beta{副版本} 只有 v 開頭的穩定版(GA)</description>
+    </item>
+    
+    <item>
+      <title>TypeScript workspace Cannot find module or its corresponding type declarations.ts(2307)</title>
+      <link>https://blog.10oz.tw/20220628-typescript-2307/</link>
+      <pubDate>Tue, 28 Jun 2022 11:44:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220628-typescript-2307/</guid>
+      <description>介紹 困擾許久終於在這裡找到解法 Install yarn’s IDE SDK for VSCode (the dlx command runs yarn in a separate environment, distinct from the workspace) yarn dlx @yarnpkg/sdks vscode Ref https://community.grafana.com/t/cannot-find-modules-or-corresponding-type-declarations-after-fresh-install/56498</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes CRD and Conversion Webhook</title>
+      <link>https://blog.10oz.tw/20220427-kubernetes-crd-and-conversion-webhook/</link>
+      <pubDate>Wed, 27 Apr 2022 23:18:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220427-kubernetes-crd-and-conversion-webhook/</guid>
+      <description>Introduction (Agenda) Hi 大家好我是 XiaoXiao，現職於 FST Network 擔任軟體工程師 這次主要是要分享 Kubernetes 如何在的自定義擴展定義的 CRD 中做到同時支援多個版本， 這場不會講得太</description>
+    </item>
+    
+    <item>
+      <title>Vim Color Schemes</title>
+      <link>https://blog.10oz.tw/20220205-vim-color-schemes/</link>
+      <pubDate>Sat, 05 Feb 2022 10:42:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220205-vim-color-schemes/</guid>
+      <description>首先 這個網站上找找喜歡的配色 (ﾉ&amp;gt;ω&amp;lt;)ﾉ https://vimcolorschemes.com/ 例如說 vim-sublime-monokai 問題 這次問題是行數左邊那條灰色太討厭了吧!! 這是因為 airblade/vim-gitgutter 這個套件會標示出 git 變更</description>
+    </item>
+    
+    <item>
+      <title>用一下 Git Submodule 啦</title>
+      <link>https://blog.10oz.tw/20220124-use-git-submodule/</link>
+      <pubDate>Mon, 24 Jan 2022 01:06:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220124-use-git-submodule/</guid>
+      <description>開始使用 上次更換了一下 Blog 的 hugo theme，但是後來發現直接用 git clone 下載下來的 theme 沒有更新到 GitHub 上面 (╯•̀ὤ•́)╯。 歐給歐給，我們改用一下 Submodule 處理一</description>
+    </item>
+    
+    <item>
+      <title>K8s master 退出不乾淨之新結點進不來</title>
+      <link>https://blog.10oz.tw/20210903-k8s-rejoin-drain-node/</link>
+      <pubDate>Fri, 03 Sep 2021 17:11:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210903-k8s-rejoin-drain-node/</guid>
+      <description>Ubuntu 18.04 Kubernetes 1.21.4 問題描述 其中一台 Master 機器突然掛掉開不起來，因此決定把他刪掉再加一台新的 # 找出有問題的節點 $ kubectl get node NAME STATUS ROLES AGE VERSION ip-172-16-16-101 NotReady,SchedulingDisabled control-plane,master 2d9h v1.22.1 ip-172-16-16-102 Ready control-plane,master 2d9h v1.21.4 ip-172-16-16-103 Ready control-plane,master 23h</description>
+    </item>
+    
+    <item>
+      <title>來架一台私有 APT Repository</title>
+      <link>https://blog.10oz.tw/20210901-build-apt-repository/</link>
+      <pubDate>Wed, 01 Sep 2021 07:53:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210901-build-apt-repository/</guid>
+      <description>準備 deb 檔 準備兩台實驗機器一台當 Server 一台當做 Client 我們先到 Server 這邊隨便弄個 .deb 檔案出來，這次就拿 helm 來當實驗品吧 curl https://baltocdn.com/helm/signing.asc | sudo apt-key add - sudo apt-get install apt-transport-https --yes echo &amp;quot;deb https://baltocdn.com/helm/stable/debian/ all main&amp;quot; | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list</description>
+    </item>
+    
+    <item>
+      <title>kind 筆記</title>
+      <link>https://blog.10oz.tw/20210821-kind-notes/</link>
+      <pubDate>Thu, 12 Aug 2021 12:10:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210821-kind-notes/</guid>
+      <description>安裝 在 docker 裡面啟動 kubernetes 的工具，在 local 端測試相當實用方便! 官方有提供多個平台的安裝方式，看這點我 這邊用一個 macOS 的 HomeBrew 來裝 brew install kind kind version # kind v0.11.0 go1.16.3 darwin/amd64 常用指令寫下</description>
+    </item>
+    
+    <item>
+      <title>認識一次 Nix 套件管理系統</title>
+      <link>https://blog.10oz.tw/20210708-first-take-nix-package-manager/</link>
+      <pubDate>Thu, 08 Jul 2021 03:13:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210708-first-take-nix-package-manager/</guid>
+      <description>介紹 Nix (Nixpkgs) Nix 一般來說是指 Nixpkgs 是一套套件管理系統，利用獨特的函數式語 言來定義安裝的套件。在安裝套件為每一個獨立套件的依賴項做版本控制，避免了傳統套</description>
+    </item>
+    
+    <item>
+      <title>認識一次常見 Linux GUI (Desktop Environments)</title>
+      <link>https://blog.10oz.tw/20210706-known-popular-linux-de/</link>
+      <pubDate>Tue, 06 Jul 2021 13:11:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210706-known-popular-linux-de/</guid>
+      <description>Linux DE Linux 的 Desktop Environments 真的多到不可思議啦，怎麼選怎麼玩咧 KDE Plasma 5 大家熟知的一個輕量 DE，有現代且優雅的介面和高度可自訂的優點。 不過也由於高度自訂的關係導</description>
+    </item>
+    
+    <item>
+      <title>Rust - Future cannot be sent between threads safely</title>
+      <link>https://blog.10oz.tw/20210703-rust-future-cannot-be-sent-between-threads-safely/</link>
+      <pubDate>Sat, 03 Jul 2021 10:44:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210703-rust-future-cannot-be-sent-between-threads-safely/</guid>
+      <description>描述問題 錯誤訊息類似這樣： 認識問題 原來呢，在 Rust 裡面的 Async 分享變數時會參考 Send Sync 這兩個 Trait Send 表示他能在不同的 Thread 中傳遞 A type is Send if it is safe to send it to another thread. Sync 表</description>
+    </item>
+    
+    <item>
+      <title>JavaScript 取得座標位址</title>
+      <link>https://blog.10oz.tw/20210623-get-geo-in-javascript/</link>
+      <pubDate>Thu, 24 Jun 2021 19:37:41 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210623-get-geo-in-javascript/</guid>
+      <description>內容開始 已經是很公開的標準了，資料多到不行～～ 還是筆記一下 取得座標 - getCurrentPosition MDN Doc const successCallback = (position) =&amp;gt; { // position.coords.latitude 緯度 // position.coords.longitude 精度 // position.timestamp 取得的時間戳 ex:1624703519728 } const errorCallback = (err) =&amp;gt; { // err.code 列</description>
+    </item>
+    
+    <item>
+      <title>究竟阿狗能做什麼呢</title>
+      <link>https://blog.10oz.tw/20210409-what-can-argocd-do/</link>
+      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210409-what-can-argocd-do/</guid>
+      <description>你問阿狗是什麼 GitOps + Kubernetes 的產物，相當不錯的運維工具 先來裝 Argo CD 我們要用 helm 安裝裝起來喔 helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml installCRDs: false global: image: tag: v1.8.6 dex: enabled: false server: extraArgs: - --insecure # 如果說你</description>
+    </item>
+    
+    <item>
+      <title>啥? k8s node 硬碟空間滿了</title>
+      <link>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</link>
+      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</guid>
+      <description>發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs</description>
+    </item>
+    
+    <item>
+      <title>想用 Terraform 與 kOps 也得寫個筆記</title>
+      <link>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</link>
+      <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</guid>
+      <description>流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key 直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器</description>
+    </item>
+    
+    <item>
+      <title>小紀錄更新 Rinkeby Ethereum 節點</title>
+      <link>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</link>
+      <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</guid>
+      <description>這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢</description>
+    </item>
+    
+  </channel>
+</rss>
