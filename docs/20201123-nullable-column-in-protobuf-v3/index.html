@@ -27,7 +27,7 @@
     
     <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.2d5a1b78bec97b6e10e84cea7ee47c8ed866dbdb1a0fe330cb2294b35082cb9a.css">
     
-    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.7.3/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="gRPC - protobuf v3 產生 nullable 欄位" />
 <meta property="og:description" content="關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！ option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option" />
@@ -837,29 +837,29 @@ type Foo struct {
 <script>
     window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/bash.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/diff.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/dockerfile.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/lua.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/html.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/nix.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/php.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/protobuf.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/rust.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/sql.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/typescript.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/vim.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/yaml.min.js" defer></script><script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/bash.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/diff.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/dockerfile.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/lua.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/vbscript-html.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/nix.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/php.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/protobuf.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/rust.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/sql.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/typescript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/vim.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/yaml.min.js" defer></script><script>
     hljs.configure({
         tabReplace: '    ', 
         classPrefix: ''     
         
     })
-    hljs.initHighlightingOnLoad();
+    hljs.highlightAll();
 </script>
 <script src="https://blog.10oz.tw/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
 <script src="https://blog.10oz.tw/js/plugin.min.738a460bf4317fac61717f1bca393e53d00973db9754d9f0a81c7312d5874840.js"></script>
@@ -880,7 +880,7 @@ type Foo struct {
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.cd66814e3362af383ee9c9c5a408c5bf2ab5069bed04b5cbfd843300c0ec60960d6f173b512117720fdfcbd9058613a120bf97306e92f08f53116c0e173e125a.js" defer></script>
+<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.6425a57e353334f164605c424b1d8c0781cd2325bb08722ab34cb974570d55300a5a62aa3fa37a28004c2dcc5131be364451672fd19a5b9ab1729cd1a9d7addf.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.3/tocbot.min.js"></script>
 <script>
     tocbot.init({

@@ -92,13 +92,13 @@ params:
   # refer to http://staticfile.org/,
   # search highlight.js, already have highlight.min.js
   highlightjs:
-    langs: # ["python", "javascript", "go", "rust"]
+    langs:
       - bash
       - diff
       - dockerfile
       - go
       - lua
-      - html
+      - vbscript-html
       - javascript
       - nix
       - php
