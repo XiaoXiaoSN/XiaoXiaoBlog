@@ -12,7 +12,7 @@ publishDir: docs
 staticDir: ["static"]
 
 # Default number of elements per page in pagination.
-paginate: 7
+paginate: 12
 paginatePath: pages
 
 permalinks:
