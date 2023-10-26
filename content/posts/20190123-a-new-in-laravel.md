@@ -66,7 +66,7 @@ tags: ["php", "laravel"]
 測試單元、整合測試  
 大家都說用TDD比較快ㄛ
 
-#### vender
+#### vendor
 放別人code的地方  
 拿別人的code來用
 

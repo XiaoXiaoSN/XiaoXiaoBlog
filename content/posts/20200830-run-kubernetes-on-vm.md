@@ -66,7 +66,7 @@ vagrant up
 vagrant ssh
 ```
 
-## 2. 安裝 kubernates server
+## 2. 安裝 kubernetes server
 
 ### 2.1 安裝 container 服務
 最重要的，我們要先裝 docker >> [我是指南](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker)
@@ -118,7 +118,7 @@ systemctl restart docker
 sudo systemctl enable docker
 ```
 
-### 2.2 安裝 kubernates 
+### 2.2 安裝 kubernetes 
 我們需要 kubelet、 kubeadm 和 kubectl >> [指南](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl)
 
 ```sh
@@ -144,7 +144,7 @@ EOF
 sysctl --system
 ```
 
-### 2.3 kubernates master 之 kubeadm
+### 2.3 kubernetes master 之 kubeadm
 
 連線回來後記得切換回 super user
 ```sh
@@ -194,7 +194,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-### 2.4 安裝 kubenetes 網路介面 
+### 2.4 安裝 kubernetes 網路介面 
 接下來要為我們的 k8s cluster 建立 pod network，他的工作是負責跟 Container 連線，他們各自有實作 CNI( Container Network Interface)，詳細可以來參考[Kubernetes網絡模型列表](https://kubernetes.io/docs/concepts/cluster-administration/networking/#how-to-implement-the-kubernetes-networking-model)  
 
 這裡我們選擇官方偷偷推薦的 `Calico` (CentOS 的 `Flannel` 也很多人用)
@@ -217,7 +217,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
 
-## 3. 安裝 kubernates worker
+## 3. 安裝 kubernetes worker
 ### 3.1 Vagrant 啟動檔案
 ```ruby
 # -*- mode: ruby -*-
@@ -254,7 +254,7 @@ end
 > vagrant 開多台vm時，連線回去要加上名字:  
 > vagrant ssh k8s-w1
 
-### 3.3 加入 kubernates cluster
+### 3.3 加入 kubernetes cluster
 到 master 機器上拿到加入 cluster 的指令
 ```sh
 kubeadm token create --print-join-command

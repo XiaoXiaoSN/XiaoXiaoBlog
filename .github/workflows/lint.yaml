@@ -1,0 +1,20 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  codespell:
+    name: Codespell
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: codespell-project/codespell-problem-matcher@v1
+
+      - name: Codespell
+        uses: codespell-project/actions-codespell@master

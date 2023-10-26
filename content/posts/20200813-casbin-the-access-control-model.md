@@ -191,7 +191,7 @@ import (
 )
 
 func main() {
-	// 初始化 xorm adpater，在這裡與 DB 連線
+	// 初始化 xorm adapter，在這裡與 DB 連線
 	// 沒有指定 db 的話會幫你建立一個 casbin (加入 dbname=abc 可以指定使用 DB abc)
 	// 進去會幫你檢查有沒有 casbin_rule 的資料表，沒有的話也會幫你加進去
 	driverName := "postgres"

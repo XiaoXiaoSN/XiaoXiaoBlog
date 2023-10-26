@@ -39,7 +39,7 @@ CREATE TABLE `websites` (
 ) 
 ```
 
-`accounts` table 底下有個 cloumn `website_id` 用來關聯 `websites` 這張表。 
+`accounts` table 底下有個 column `website_id` 用來關聯 `websites` 這張表。 
 
 
 ## 正片開始 - Model 

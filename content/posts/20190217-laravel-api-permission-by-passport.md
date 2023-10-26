@@ -287,7 +287,7 @@ protected function unauthenticated($request, AuthenticationException $exception)
 
 | - | - |
 | -------- | -------- |
-| Resourse Owner | 使用者 |
+| Resource Owner | 使用者 |
 | Client | 你的服務 |
 | Authorization Server | 授權者，服務跟這邊拿token 如: google |
 | Resource Server | 服務會跟這裡拿資料 |

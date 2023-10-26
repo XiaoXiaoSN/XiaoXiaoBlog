@@ -26,8 +26,8 @@ tags: ["kubernetes", "crd"]
 - v11beta2   // GA 11 + beta 2
 - v10beta3   // GA 10 + beta 3
 - v3beta1    // GA 3 + beta 1
-- v12alpha1  // GA 12 + alpah 1
-- v11alpha2  // GA 11 + alpah 2
+- v12alpha1  // GA 12 + alpha 1
+- v11alpha2  // GA 11 + alpha 2
 - foo1       // 用字典順序排
 - foo10      // 用字典順序排
 ```

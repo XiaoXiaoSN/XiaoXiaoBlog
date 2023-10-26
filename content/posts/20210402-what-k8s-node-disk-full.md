@@ -24,7 +24,7 @@ tmpfs                              5.9G     0  5.9G   0% /sys/fs/cgroup
 tmpfs                              1.2G     0  1.2G   0% /run/user/1000
 ```
 
-閉眼先清空一波 Docker image, volumn...
+閉眼先清空一波 Docker image, volume...
 ```
 docker system prune -a
 ```

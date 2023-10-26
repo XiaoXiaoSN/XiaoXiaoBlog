@@ -57,7 +57,7 @@ https://github.com/XiaoXiaoSN/conversion-webhook-example
 ## About Kubernetes CRD
 CRD 的全名是 Custom Resource Definition，他本身也是一個 Kubernetes 的 Resource
 
-在 K8s 中有許多 Build-in 的資源、API 定義，CRD 提供使用者編寫自己的定義來擴展 Kubernetes 的 Declarative API (宣告式 API)。 CRD 在整個 Kubernetes 生態中被非常廣泛的使用！
+在 K8s 中有許多 built-in 的資源、API 定義，CRD 提供使用者編寫自己的定義來擴展 Kubernetes 的 Declarative API (宣告式 API)。 CRD 在整個 Kubernetes 生態中被非常廣泛的使用！
 
 Declarative API (宣告式 API)：
 - API 宣告他想要的狀態，而不是直接要求實時狀態
@@ -146,7 +146,7 @@ curl 127.0.0.1:8001/apis/example.group/v1
 
 ### Custom Controller
 
-我們首先可以先了解一下 Kuberntes Controller！
+我們首先可以先了解一下 Kubernetes Controller！
 
 Controller 的工作是負責將指定的資源製造成和宣告的一樣，這個動作稱為 Reconcile (協調、調和？)
 
@@ -175,7 +175,7 @@ From https://lihaoquan.me/posts/k8s-crd-develop/ 介紹 CRD Controller
 
 Controller 在 Kubernetes 中的核心元件，在 Kubernetes 中內建的 Resources 也是經過 Controller 來達到 Desired state 的。
 
-因此可以說 Operator 是 CRD + Controller 以區別 Kubernetes build-in 的 Controller。
+因此可以說 Operator 是 CRD + Controller 以區別 Kubernetes built-in 的 Controller。
 
 ## Conversion Webhook
 
