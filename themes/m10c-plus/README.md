@@ -57,6 +57,6 @@ If you want the above theme colors, you can see the [exampleSite/config.toml](/e
 
 This theme is released under the [**MIT**](/LICENSE.md) License.
 
-## Aknowledgements
+## Acknowledgements
 
 - [feather](https://feathericons.com/) - [MIT](https://github.com/feathericons/feather/blob/master/LICENSE)
