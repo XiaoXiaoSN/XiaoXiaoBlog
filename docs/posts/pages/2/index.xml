@@ -6,10 +6,55 @@
     <description>Recent content in Posts on XiaoXiao Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>MIT</copyright>
-    <lastBuildDate>Tue, 03 Jan 2023 22:11:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Aug 2023 13:09:00 +0800</lastBuildDate>
     
         <atom:link href="https://blog.10oz.tw/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScript 取得座標位址</title>
+      <link>https://blog.10oz.tw/20210623-get-geo-in-javascript/</link>
+      <pubDate>Thu, 24 Jun 2021 19:37:41 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210623-get-geo-in-javascript/</guid>
+      <description>內容開始 已經是很公開的標準了，資料多到不行～～ 還是筆記一下 取得座標 - getCurrentPosition MDN Doc const successCallback = (position) =&amp;gt; { // position.coords.latitude 緯度 // position.coords.longitude 精度 // position.timestamp 取得的時間戳 ex:1624703519728 } const errorCallback = (err) =&amp;gt; { // err.code 列</description>
+    </item>
+    
+    <item>
+      <title>究竟阿狗能做什麼呢</title>
+      <link>https://blog.10oz.tw/20210409-what-can-argocd-do/</link>
+      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210409-what-can-argocd-do/</guid>
+      <description>你問阿狗是什麼 GitOps + Kubernetes 的產物，相當不錯的運維工具 先來裝 Argo CD 我們要用 helm 安裝裝起來喔 helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml installCRDs: false global: image: tag: v1.8.6 dex: enabled: false server: extraArgs: - --insecure # 如果說你</description>
+    </item>
+    
+    <item>
+      <title>啥? k8s node 硬碟空間滿了</title>
+      <link>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</link>
+      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</guid>
+      <description>發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs</description>
+    </item>
+    
+    <item>
+      <title>想用 Terraform 與 kOps 也得寫個筆記</title>
+      <link>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</link>
+      <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</guid>
+      <description>流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key 直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器</description>
+    </item>
+    
+    <item>
+      <title>小紀錄更新 Rinkeby Ethereum 節點</title>
+      <link>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</link>
+      <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</guid>
+      <description>這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢</description>
+    </item>
     
     <item>
       <title>helm3 說 has no deployed releases</title>
@@ -63,6 +108,15 @@
       
       <guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid>
       <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧 curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 default demo minimal remote empty preview Core components istio-egressgateway X istio-ingressgateway</description>
+    </item>
+    
+    <item>
+      <title>有一天路過 AWS ECS</title>
+      <link>https://blog.10oz.tw/20201009-aws-ecs-beginner/</link>
+      <pubDate>Fri, 09 Oct 2020 14:04:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20201009-aws-ecs-beginner/</guid>
+      <description>架構 ECS(Elastic Container Service) 是 AWS 上的容器管理服務，架構上可以簡單分成幾層: Cluster 一個群集 :) Service 可以把它當作 &amp;ldquo;執行企劃&amp;rdquo;，就像是一個 docker-compose 將多個 docker</description>
     </item>
     
     <item>
@@ -135,60 +189,6 @@
       
       <guid>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</guid>
       <description>Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可</description>
-    </item>
-    
-    <item>
-      <title>Homebrew 自己寫配方一起來釀酒</title>
-      <link>https://blog.10oz.tw/20200811-homebrew-create-app/</link>
-      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200811-homebrew-create-app/</guid>
-      <description>不囉唆直接上圖 馬上試試 pokesay brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要</description>
-    </item>
-    
-    <item>
-      <title>出發尋找 WSL2 的旅程</title>
-      <link>https://blog.10oz.tw/20200728-journey-in-wsl2/</link>
-      <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200728-journey-in-wsl2/</guid>
-      <description>步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &amp;raquo; https://www.microsoft.com/en-us/software-download/windows10 開啟環境設定 用系統管理員</description>
-    </item>
-    
-    <item>
-      <title>Golang 漂亮的輸出 JSON</title>
-      <link>https://blog.10oz.tw/20200229-golang-pretty-print/</link>
-      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200229-golang-pretty-print/</guid>
-      <description>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！ 我需要排版！！趕快筆記一下 一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &amp;quot;&amp;quot;, &amp;quot; &amp;quot;) if err != nil { fmt.Println(&amp;quot;&amp;quot;) }</description>
-    </item>
-    
-    <item>
-      <title>Golang 怎麼處理 JSON</title>
-      <link>https://blog.10oz.tw/20200228-golang-json-marshal/</link>
-      <pubDate>Fri, 28 Feb 2020 23:22:36 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200228-golang-json-marshal/</guid>
-      <description>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成</description>
-    </item>
-    
-    <item>
-      <title>製造一個 hugo 部落格</title>
-      <link>https://blog.10oz.tw/20200124-make-a-hugo-blog/</link>
-      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200124-make-a-hugo-blog/</guid>
-      <description>步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！ 所以我們需要: 一人份的 github 帳號 安裝 hugo 點我看教學</description>
-    </item>
-    
-    <item>
-      <title>筆記 Install php MongoDB driver on MacOS</title>
-      <link>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</link>
-      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</guid>
-      <description>** 2019.08 更新** https://www.php.net/manual/en/mongodb.installation.homebrew.php mac php72 請使用 pecl install mongodb 安裝 mongodb driver 因為 mongodb, xdebug 從 homebrew 被移除了 [time=Thu, Aug 15, 2019 7:59 PM] 問題描述 想在 Laravel 用 MongoDB composer require jenssegers/mongodb 錯誤： the requested PHP extension mongodb is missing from your system. =&amp;gt; 沒有裝 php 的擴展 解決</description>
     </item>
     
   </channel>

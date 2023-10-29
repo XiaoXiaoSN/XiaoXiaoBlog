@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ha on XiaoXiao Notes</title>
+    <link>https://blog.10oz.tw/tags/ha/</link>
+    <description>Recent content in ha on XiaoXiao Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>MIT</copyright>
+    <lastBuildDate>Fri, 09 Jun 2023 20:01:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://blog.10oz.tw/tags/ha/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>macOS 生產力工具 - Raycast 真的很讚</title>
+      <link>https://blog.10oz.tw/20230830-raycast/</link>
+      <pubDate>Wed, 30 Aug 2023 13:09:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20230830-raycast/</guid>
+      <description>Raycast Raycast 是一個混合形的工具，可以簡單的認識他是一個強化版的 Soptlight search 這些進階功能有效的提高工作效率，值得認識認識 安裝和設定 安裝相當容易，在官方網頁的右</description>
+    </item>
+    
+    <item>
+      <title>How to create an Elasticsearch Data Stream</title>
+      <link>https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/</link>
+      <pubDate>Thu, 17 Aug 2023 18:43:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/</guid>
+      <description>Elasticsearch version: 8.x 認識 Data Stream Data Stream 是 Elasticsearch 官方幫常用模式建立的一個模板。 就如他的名字 Stream，他被用來管理跨多個 indexes 的 time series 資料。因此類似 logs, events, metrics 這類的時序資料就</description>
+    </item>
+    
+    <item>
+      <title>GitHub Permission 免費方案權限實驗</title>
+      <link>https://blog.10oz.tw/20230612-github-permission-for-free-user/</link>
+      <pubDate>Mon, 12 Jun 2023 18:20:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20230612-github-permission-for-free-user/</guid>
+      <description>討論不付錢給 GitHub 的使用者，在 Organization 下的權限控制 權限 Organization Teams GitHub 採 RBAC 權限控管，在 Organization 底下有 teams，teams 底下也可以再有一層 teams。 另外要注意的是</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes HA - Keepalived(VRRP) &#43; HAProxy</title>
+      <link>https://blog.10oz.tw/20230609-kubernetes-ha-keepalived-haproxy/</link>
+      <pubDate>Fri, 09 Jun 2023 20:01:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20230609-kubernetes-ha-keepalived-haproxy/</guid>
+      <description>跟這個專案架構相同 kubelived，他的更詳細，可以參考他的介紹 簡單來說就是 Keepalived(VRRP) + HAProxy VRRP (Virtual Router Redundancy Protocol) 設計上用來避免單點故障，當主要服務機器失去連線</description>
+    </item>
+    
+    <item>
+      <title>Backup Elasticsearch index in File System</title>
+      <link>https://blog.10oz.tw/20230215-backup-elasticsearch-index-in-file-system/</link>
+      <pubDate>Thu, 16 Feb 2023 20:28:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20230215-backup-elasticsearch-index-in-file-system/</guid>
+      <description>Step by Step 部署 Elasticsearch 因為接下來會讓備份檔案儲存在 File System 內，所以先準備一個 PVC 給 Elasticsearch kind: PersistentVolumeClaim apiVersion: v1 metadata: name: elasticsearch-snapshot spec: accessModes: - ReadWriteMany resources: requests: storage: 20Gi storageClassName: &amp;quot;fs-sc&amp;quot; 這邊用 ECK (Elastic Cloud on Kubernetes) 來召喚一組新的 Elas</description>
+    </item>
+    
+    <item>
+      <title>入坑 Vim 學習使用筆記</title>
+      <link>https://blog.10oz.tw/20230103-use-vim/</link>
+      <pubDate>Tue, 03 Jan 2023 22:11:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20230103-use-vim/</guid>
+      <description>我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (? 還有一個以前用的 Vim 設定檔，不過沒怎麼更新了 基本操作 移動你的游標 w,</description>
+    </item>
+    
+    <item>
+      <title>Hey! 我想登入 AWS ECR</title>
+      <link>https://blog.10oz.tw/20221028-logic-public-ecr/</link>
+      <pubDate>Fri, 28 Oct 2022 10:28:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20221028-logic-public-ecr/</guid>
+      <description>描述 私有 AWS ECR 登入指令很好找，文件上到處有 $ aws ecr get-login-password \ --region us-west-2 | docker login \ --username AWS \ --password-stdin \ 000000000000.dkr.ecr.us-west-2.amazonaws.com 但是你知道嗎？ AWS 的 Public Registry 沒有分區域，所以你必須要指定 --region us-east-1 才可以唷 $ aws</description>
+    </item>
+    
+    <item>
+      <title>筆記 Debug PostgreSQL WAL 滿ㄌ</title>
+      <link>https://blog.10oz.tw/20220713-k8s-postgresql-wal-full/</link>
+      <pubDate>Tue, 26 Jul 2022 12:59:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220713-k8s-postgresql-wal-full/</guid>
+      <description>前情提要 這是一台架設在 Kubernetes 上，使用 Postgres Operator 部署的單節點資料庫，SRE 大大發現他的硬碟空間滿了，趕快來看一下 由於硬碟滿了 SQL Query 也下不了，於是先幫他加了</description>
+    </item>
+    
+    <item>
+      <title>kubebuilder 旅程</title>
+      <link>https://blog.10oz.tw/20220723-kubebuilder/</link>
+      <pubDate>Sat, 23 Jul 2022 23:55:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220723-kubebuilder/</guid>
+      <description>一步一步的開始 安裝 kuberbuilder https://github.com/kubernetes-sigs/kubebuilder/issues/2642 kuberbuilder 在支援 1.18 前的準備 首先下載 kuberbuilder curl -L -o kubebuilder https://go.kubebuilder.io/dl/latest/$(go env GOOS)/$(go env GOARCH) chmod +x kubebuilder &amp;amp;&amp;amp; mv kubebuilder /usr/local/bin/ 或是你發現 Release 版還沒支援 Go version 1.18，從 GitHub 自己編譯最新版的來</description>
+    </item>
+    
+    <item>
+      <title>CRD Version Priority</title>
+      <link>https://blog.10oz.tw/20220713-crd-version-priority/</link>
+      <pubDate>Wed, 13 Jul 2022 07:47:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220713-crd-version-priority/</guid>
+      <description>版本優先級 在 K8s 裡面有 preferred version，會選優先值最高的來做為預設值 規則 &amp;quot;^v([\\d]+)(?:(alpha|beta)([\\d]+))?$&amp;quot; v{主版本}alpha|beta{副版本} 只有 v 開頭的穩定版(GA)</description>
+    </item>
+    
+    <item>
+      <title>TypeScript workspace Cannot find module or its corresponding type declarations.ts(2307)</title>
+      <link>https://blog.10oz.tw/20220628-typescript-2307/</link>
+      <pubDate>Tue, 28 Jun 2022 11:44:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220628-typescript-2307/</guid>
+      <description>介紹 困擾許久終於在這裡找到解法 Install yarn’s IDE SDK for VSCode (the dlx command runs yarn in a separate environment, distinct from the workspace) yarn dlx @yarnpkg/sdks vscode Ref https://community.grafana.com/t/cannot-find-modules-or-corresponding-type-declarations-after-fresh-install/56498</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes CRD and Conversion Webhook</title>
+      <link>https://blog.10oz.tw/20220427-kubernetes-crd-and-conversion-webhook/</link>
+      <pubDate>Wed, 27 Apr 2022 23:18:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220427-kubernetes-crd-and-conversion-webhook/</guid>
+      <description>Introduction (Agenda) Hi 大家好我是 XiaoXiao，現職於 FST Network 擔任軟體工程師 這次主要是要分享 Kubernetes 如何在的自定義擴展定義的 CRD 中做到同時支援多個版本， 這場不會講得太</description>
+    </item>
+    
+    <item>
+      <title>Vim Color Schemes</title>
+      <link>https://blog.10oz.tw/20220205-vim-color-schemes/</link>
+      <pubDate>Sat, 05 Feb 2022 10:42:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220205-vim-color-schemes/</guid>
+      <description>首先 這個網站上找找喜歡的配色 (ﾉ&amp;gt;ω&amp;lt;)ﾉ https://vimcolorschemes.com/ 例如說 vim-sublime-monokai 問題 這次問題是行數左邊那條灰色太討厭了吧!! 這是因為 airblade/vim-gitgutter 這個套件會標示出 git 變更</description>
+    </item>
+    
+    <item>
+      <title>用一下 Git Submodule 啦</title>
+      <link>https://blog.10oz.tw/20220124-use-git-submodule/</link>
+      <pubDate>Mon, 24 Jan 2022 01:06:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20220124-use-git-submodule/</guid>
+      <description>開始使用 上次更換了一下 Blog 的 hugo theme，但是後來發現直接用 git clone 下載下來的 theme 沒有更新到 GitHub 上面 (╯•̀ὤ•́)╯。 歐給歐給，我們改用一下 Submodule 處理一</description>
+    </item>
+    
+    <item>
+      <title>K8s master 退出不乾淨之新結點進不來</title>
+      <link>https://blog.10oz.tw/20210903-k8s-rejoin-drain-node/</link>
+      <pubDate>Fri, 03 Sep 2021 17:11:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210903-k8s-rejoin-drain-node/</guid>
+      <description>Ubuntu 18.04 Kubernetes 1.21.4 問題描述 其中一台 Master 機器突然掛掉開不起來，因此決定把他刪掉再加一台新的 # 找出有問題的節點 $ kubectl get node NAME STATUS ROLES AGE VERSION ip-172-16-16-101 NotReady,SchedulingDisabled control-plane,master 2d9h v1.22.1 ip-172-16-16-102 Ready control-plane,master 2d9h v1.21.4 ip-172-16-16-103 Ready control-plane,master 23h</description>
+    </item>
+    
+    <item>
+      <title>來架一台私有 APT Repository</title>
+      <link>https://blog.10oz.tw/20210901-build-apt-repository/</link>
+      <pubDate>Wed, 01 Sep 2021 07:53:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210901-build-apt-repository/</guid>
+      <description>準備 deb 檔 準備兩台實驗機器一台當 Server 一台當做 Client 我們先到 Server 這邊隨便弄個 .deb 檔案出來，這次就拿 helm 來當實驗品吧 curl https://baltocdn.com/helm/signing.asc | sudo apt-key add - sudo apt-get install apt-transport-https --yes echo &amp;quot;deb https://baltocdn.com/helm/stable/debian/ all main&amp;quot; | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list</description>
+    </item>
+    
+    <item>
+      <title>kind 筆記</title>
+      <link>https://blog.10oz.tw/20210821-kind-notes/</link>
+      <pubDate>Thu, 12 Aug 2021 12:10:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210821-kind-notes/</guid>
+      <description>安裝 在 docker 裡面啟動 kubernetes 的工具，在 local 端測試相當實用方便! 官方有提供多個平台的安裝方式，看這點我 這邊用一個 macOS 的 HomeBrew 來裝 brew install kind kind version # kind v0.11.0 go1.16.3 darwin/amd64 常用指令寫下</description>
+    </item>
+    
+    <item>
+      <title>認識一次 Nix 套件管理系統</title>
+      <link>https://blog.10oz.tw/20210708-first-take-nix-package-manager/</link>
+      <pubDate>Thu, 08 Jul 2021 03:13:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210708-first-take-nix-package-manager/</guid>
+      <description>介紹 Nix (Nixpkgs) Nix 一般來說是指 Nixpkgs 是一套套件管理系統，利用獨特的函數式語 言來定義安裝的套件。在安裝套件為每一個獨立套件的依賴項做版本控制，避免了傳統套</description>
+    </item>
+    
+    <item>
+      <title>認識一次常見 Linux GUI (Desktop Environments)</title>
+      <link>https://blog.10oz.tw/20210706-known-popular-linux-de/</link>
+      <pubDate>Tue, 06 Jul 2021 13:11:08 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210706-known-popular-linux-de/</guid>
+      <description>Linux DE Linux 的 Desktop Environments 真的多到不可思議啦，怎麼選怎麼玩咧 KDE Plasma 5 大家熟知的一個輕量 DE，有現代且優雅的介面和高度可自訂的優點。 不過也由於高度自訂的關係導</description>
+    </item>
+    
+    <item>
+      <title>Rust - Future cannot be sent between threads safely</title>
+      <link>https://blog.10oz.tw/20210703-rust-future-cannot-be-sent-between-threads-safely/</link>
+      <pubDate>Sat, 03 Jul 2021 10:44:00 +0800</pubDate>
+      
+      <guid>https://blog.10oz.tw/20210703-rust-future-cannot-be-sent-between-threads-safely/</guid>
+      <description>描述問題 錯誤訊息類似這樣： 認識問題 原來呢，在 Rust 裡面的 Async 分享變數時會參考 Send Sync 這兩個 Trait Send 表示他能在不同的 Thread 中傳遞 A type is Send if it is safe to send it to another thread. Sync 表</description>
+    </item>
+    
+  </channel>
+</rss>

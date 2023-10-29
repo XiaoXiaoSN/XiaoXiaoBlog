@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        How to create an Elasticsearch Data Stream - XiaoXiao Notes
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Elasticsearch version: 8.x 認識 Data Stream Data Stream 是 Elasticsearch 官方幫常用模式建立的一個模板。 就如他的名字 Stream，他被用來管理跨多個 indexes 的 time series 資料。因此類似 logs, events, metrics 這類的時序資料就" />
+    <meta name="generator" content="Hugo 0.111.2 with theme pure" />
+    <title>How to create an Elasticsearch Data Stream - XiaoXiao Notes</title>
+    
+    
+    <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.2d5a1b78bec97b6e10e84cea7ee47c8ed866dbdb1a0fe330cb2294b35082cb9a.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.7.3/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="How to create an Elasticsearch Data Stream" />
+<meta property="og:description" content="Elasticsearch version: 8.x 認識 Data Stream Data Stream 是 Elasticsearch 官方幫常用模式建立的一個模板。 就如他的名字 Stream，他被用來管理跨多個 indexes 的 time series 資料。因此類似 logs, events, metrics 這類的時序資料就" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-17T18:43:00+08:00" />
+<meta property="article:modified_time" content="2023-08-17T18:43:00+08:00" />
+<meta itemprop="name" content="How to create an Elasticsearch Data Stream">
+<meta itemprop="description" content="Elasticsearch version: 8.x 認識 Data Stream Data Stream 是 Elasticsearch 官方幫常用模式建立的一個模板。 就如他的名字 Stream，他被用來管理跨多個 indexes 的 time series 資料。因此類似 logs, events, metrics 這類的時序資料就"><meta itemprop="datePublished" content="2023-08-17T18:43:00+08:00" />
+<meta itemprop="dateModified" content="2023-08-17T18:43:00+08:00" />
+<meta itemprop="wordCount" content="869">
+<meta itemprop="keywords" content="elasticsearch," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to create an Elasticsearch Data Stream"/>
+<meta name="twitter:description" content="Elasticsearch version: 8.x 認識 Data Stream Data Stream 是 Elasticsearch 官方幫常用模式建立的一個模板。 就如他的名字 Stream，他被用來管理跨多個 indexes 的 time series 資料。因此類似 logs, events, metrics 這類的時序資料就"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="/" target="">
+            <img class="img-circle" src="https://blog.10oz.tw/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">XiaoXiao Notes</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;">
+                    <i class="icon icon-search"></i>
+                </button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
+有助於回憶過去曾經做過的事情
+
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+  <h3 class="widget-title">Tag Cloud</h3>
+  <div id="tag-cloud-list" class="widget-body">
+    
+      
+      <a href="https://blog.10oz.tw/tags/apt/" class="tag-list-link" rel="1">
+        apt<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/argo/" class="tag-list-link" rel="1">
+        argo<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/artisan/" class="tag-list-link" rel="1">
+        artisan<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/aws/" class="tag-list-link" rel="2">
+        aws<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/blockchain/" class="tag-list-link" rel="1">
+        blockchain<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/buildx/" class="tag-list-link" rel="1">
+        buildx<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/casbin/" class="tag-list-link" rel="1">
+        casbin<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/cd/" class="tag-list-link" rel="1">
+        cd<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/chromedp/" class="tag-list-link" rel="1">
+        chromedp<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/chromium/" class="tag-list-link" rel="1">
+        chromium<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/crd/" class="tag-list-link" rel="3">
+        crd<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/de/" class="tag-list-link" rel="1">
+        de<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/di/" class="tag-list-link" rel="1">
+        di<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/docker/" class="tag-list-link" rel="3">
+        docker<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ecr/" class="tag-list-link" rel="1">
+        ecr<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/elasticsearch/" class="tag-list-link" rel="3">
+        elasticsearch<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/eloquent/" class="tag-list-link" rel="1">
+        eloquent<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/es/" class="tag-list-link" rel="1">
+        es<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ethereum/" class="tag-list-link" rel="1">
+        ethereum<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/flask/" class="tag-list-link" rel="1">
+        flask<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/future/" class="tag-list-link" rel="1">
+        future<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/geographic/" class="tag-list-link" rel="1">
+        geographic<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/geth/" class="tag-list-link" rel="1">
+        geth<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/gfw/" class="tag-list-link" rel="1">
+        gfw<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/git/" class="tag-list-link" rel="1">
+        git<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/github/" class="tag-list-link" rel="1">
+        github<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/gitlab/" class="tag-list-link" rel="2">
+        gitlab<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/golang/" class="tag-list-link" rel="8">
+        golang<span class="tag-list-count">8</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/golnag/" class="tag-list-link" rel="1">
+        golnag<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/gomod/" class="tag-list-link" rel="1">
+        gomod<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/gql/" class="tag-list-link" rel="1">
+        gql<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/graphql/" class="tag-list-link" rel="1">
+        graphql<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ha/" class="tag-list-link" rel="1">
+        ha<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/helm/" class="tag-list-link" rel="1">
+        helm<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/homebrew/" class="tag-list-link" rel="1">
+        homebrew<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="2">
+        hugo<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ilm/" class="tag-list-link" rel="1">
+        ilm<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/index/" class="tag-list-link" rel="1">
+        index<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/istio/" class="tag-list-link" rel="1">
+        istio<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/javascript/" class="tag-list-link" rel="1">
+        javascript<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/json/" class="tag-list-link" rel="2">
+        json<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/jwt/" class="tag-list-link" rel="1">
+        jwt<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/keycloak/" class="tag-list-link" rel="1">
+        keycloak<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/kind/" class="tag-list-link" rel="1">
+        kind<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/kops/" class="tag-list-link" rel="1">
+        kops<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/kubernetes/" class="tag-list-link" rel="10">
+        kubernetes<span class="tag-list-count">10</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/laravel/" class="tag-list-link" rel="8">
+        laravel<span class="tag-list-count">8</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="3">
+        linux<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/location/" class="tag-list-link" rel="1">
+        location<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/log/" class="tag-list-link" rel="1">
+        log<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/macos/" class="tag-list-link" rel="1">
+        macos<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/mongodb/" class="tag-list-link" rel="1">
+        mongodb<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/multi-arch/" class="tag-list-link" rel="1">
+        multi-arch<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/mysql/" class="tag-list-link" rel="1">
+        mysql<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/mysqlclient/" class="tag-list-link" rel="1">
+        mysqlclient<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/neovim/" class="tag-list-link" rel="1">
+        neovim<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/nix/" class="tag-list-link" rel="1">
+        nix<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/nixos/" class="tag-list-link" rel="1">
+        nixos<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/oauth/" class="tag-list-link" rel="1">
+        oauth<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/operator/" class="tag-list-link" rel="1">
+        operator<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/orm/" class="tag-list-link" rel="1">
+        orm<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/passport/" class="tag-list-link" rel="1">
+        passport<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/php/" class="tag-list-link" rel="8">
+        php<span class="tag-list-count">8</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/pokemon/" class="tag-list-link" rel="1">
+        pokemon<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/pokesay/" class="tag-list-link" rel="1">
+        pokesay<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/postgres/" class="tag-list-link" rel="1">
+        postgres<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/pretty/" class="tag-list-link" rel="1">
+        pretty<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/python/" class="tag-list-link" rel="4">
+        python<span class="tag-list-count">4</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/raycast/" class="tag-list-link" rel="1">
+        raycast<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ruby/" class="tag-list-link" rel="1">
+        ruby<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/rust/" class="tag-list-link" rel="1">
+        rust<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/service-mesh/" class="tag-list-link" rel="1">
+        service-mesh<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/subgroup/" class="tag-list-link" rel="1">
+        subgroup<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/terraform/" class="tag-list-link" rel="1">
+        terraform<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/test/" class="tag-list-link" rel="1">
+        test<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/typescript/" class="tag-list-link" rel="1">
+        typescript<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/ubuntu/" class="tag-list-link" rel="1">
+        ubuntu<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vagrant/" class="tag-list-link" rel="1">
+        vagrant<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vim/" class="tag-list-link" rel="3">
+        vim<span class="tag-list-count">3</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vm/" class="tag-list-link" rel="1">
+        vm<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vpn/" class="tag-list-link" rel="1">
+        vpn<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vrrp/" class="tag-list-link" rel="1">
+        vrrp<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/vscode/" class="tag-list-link" rel="2">
+        vscode<span class="tag-list-count">2</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/windows/" class="tag-list-link" rel="1">
+        windows<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/wire/" class="tag-list-link" rel="1">
+        wire<span class="tag-list-count">1</span>
+      </a>
+      
+      
+      <a href="https://blog.10oz.tw/tags/wsl2/" class="tag-list-link" rel="1">
+        wsl2<span class="tag-list-count">1</span>
+      </a>
+      
+  </div>
+
+  <script>
+    document.onreadystatechange = () => {
+      if (document.readyState === 'complete') {
+        tagCloud('#tag-cloud-list a',  10 ,  20 );
+      }
+    };
+
+    function tagCloud(where, min, max, count) {
+      let iMax = 0;
+      let iMin = 0;
+
+      const elements = document.querySelectorAll(where);
+
+      elements.forEach((element) => {
+        const weight = Number(element.getAttribute("rel"));
+        if (iMax < weight) iMax = weight;
+        if (iMin > weight || iMin == 0) iMin = weight;
+      });
+
+      const step = (max - min) / (iMax - iMin);
+      elements.forEach((element) => {
+        const weight = element.getAttribute("rel") - iMin;
+        element.style.fontSize = `${min + (weight * step)}px`;
+      });
+    };
+  </script>
+</div>
+
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20230830-raycast/" class="title">macOS 生產力工具 - Raycast 真的很讚</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-08-30 13:09:00 &#43;0800 CST" itemprop="datePublished">2023-08-30</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/" class="title">How to create an Elasticsearch Data Stream</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-08-17 18:43:00 &#43;0800 CST" itemprop="datePublished">2023-08-17</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20230612-github-permission-for-free-user/" class="title">GitHub Permission 免費方案權限實驗</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-06-12 18:20:00 &#43;0800 CST" itemprop="datePublished">2023-06-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20230609-kubernetes-ha-keepalived-haproxy/" class="title">Kubernetes HA - Keepalived(VRRP) &#43; HAProxy</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-06-09 20:01:00 &#43;0800 CST" itemprop="datePublished">2023-06-09</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://blog.10oz.tw/20230215-backup-elasticsearch-index-in-file-system/" class="title">Backup Elasticsearch index in File System</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2023-02-16 20:28:00 &#43;0800 CST" itemprop="datePublished">2023-02-16</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/20230817-how-to-create-elasticsearch-data-stream/"
+    >How to create an Elasticsearch Data Stream</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/" class="article-date">
+  <time datetime="2023-08-17 18:43:00 &#43;0800 CST" itemprop="datePublished">2023-08-17</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link label label-default" href="/tags/elasticsearch/"> elasticsearch </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/20230817-how-to-create-elasticsearch-data-stream/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 869 words</span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <blockquote>
+<p>Elasticsearch version: 8.x</p>
+</blockquote>
+<h2 id="認識-data-stream">認識 Data Stream</h2>
+<p>Data Stream 是 Elasticsearch 官方幫常用模式建立的一個模板。
+就如他的名字 Stream，他被用來管理跨多個 indexes 的 time series 資料。因此類似 logs, events, metrics 這類的時序資料就可以使用 Data Stream 來管理，</p>
+<p>Data Stream 本身其實是多個的 indexes 所組成，包含了 index alias, index lifecycle manager 還有一些預設的 constraints。</p>
+<p>要建立一個 Data Stream 有三個主要欄位需要設定，這個 Data Stream 的命名將會被組合成 <code>{type}-{dataset}-{namespace}</code></p>
+<ol>
+<li><code>type</code>
+可以選 <code>logs</code>, <code>metrics</code>，未來可能會支援 <code>traces</code>, <code>synthetics</code></li>
+<li><code>dataset</code>
+主要的名字，用來描述這個 Data Stream 放的是什麼資料。例如說 <code>nginx.access</code>、<code>prometheus</code>，預設值是 <code>generic</code>
+以我的使用場景來看的話，系統要存 application logs 和 events，所以我就有兩個 dataset 分別叫做 <code>application</code> 和 <code>event</code></li>
+<li><code>namespace</code>
+單純用來做資料分組，預設值是 <code>default</code></li>
+</ol>
+<p>例如說 <code>logs-apm.app-default</code> 就是一個 <code>dataset=logs</code>, <code>namespace=apm.app</code>, <code>type=logs</code> 的 Data Stream，而這個 Data Stream 會建立以 <code>.ds-&lt;data-stream&gt;-&lt;yyyy.MM.dd&gt;-&lt;generation&gt;</code> 命名的 indexes。</p>
+<p>在 Kibana 的 Web UI 中，這些索引預設是隱藏的。如果打開顯示就會看到類似 <code>.ds-logs-apm.app-default-2023.07.10-000006</code> 的索引名稱。</p>
+<p>和之前的 Index Alias 功能一樣，讀取時會讀取底下的所有 Indexes
+<img src="https://i.imgur.com/Zo4947Q.png" alt=""></p>
+<p>但只會有一個 Index 是 write only 的！
+<img src="https://i.imgur.com/wYpAe4H.png" alt=""></p>
+<h2 id="step-by-step-建立-data-stream">Step by Step 建立 Data Stream</h2>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/set-up-a-data-stream.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/set-up-a-data-stream.html</a></p>
+<h3 id="建立一個-ilm">建立一個 ILM</h3>
+<p>官方建議使用 Index Lifecycle Manager(ILM) 來幫助管理 Data Stream 下的 indexes</p>
+<p>所以我們首先新增一個 ILM Policy <code>loc-logs-policy</code></p>
+<ul>
+<li>每 30 GB 滾動到下一個 index</li>
+<li>當資料到 14 days 時轉到 warn phase，並且合併成 1 個 primary shard</li>
+<li>當資料到 60 days 時刪除舊資料</li>
+</ul>
+<pre><code>PUT _ilm/policy/loc-logs-policy
+{
+  &quot;policy&quot;: {
+    &quot;phases&quot;: {
+      &quot;hot&quot;: {
+        &quot;actions&quot;: {
+          // rollover when the size exceeds 10GB
+          &quot;rollover&quot;: {
+            &quot;max_size&quot;: &quot;10gb&quot;,
+            &quot;max_age&quot;: &quot;1d&quot;
+          }
+        }
+      },
+      // After 14 days, move to the 'warm' phase
+      &quot;warm&quot;: {
+        &quot;min_age&quot;: &quot;14d&quot;,
+        &quot;actions&quot;: {
+          // shrink the index to 1 primary shard
+          &quot;shrink&quot;: {
+            &quot;number_of_shards&quot;: 1
+          },
+          // force merge index segments to reduce fragment count to 1
+          // This action makes the index read-only.
+          &quot;forcemerge&quot;: {
+            &quot;max_num_segments&quot;: 1
+          }
+        }
+      },
+      // After 60 days, delete index
+      &quot;delete&quot;: {
+        &quot;min_age&quot;: &quot;60d&quot;,
+        &quot;actions&quot;: {
+          &quot;delete&quot;: {}
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="建立-index-template">建立 Index Template</h3>
+<p>Data Stream 實際上是由多個 Indexes 組成的，為了管理這些 Indexes 我們建立一個 Index Template，當 ILM 達到時間或是 Size 的條件 Rollover 時，新產生的 Index 會自動 Match 到 Index Template 上</p>
+<pre><code>PUT _index_template/loc-logs-template
+{
+  &quot;index_patterns&quot;: [&quot;logs-application-dev*&quot;],
+
+  // 指定這個 Index Template 是 Data Stream type
+  &quot;data_stream&quot;: { },
+
+  // 為了避免衝突，官方建議設置 200 以上的 priority
+  &quot;priority&quot;: 500,
+
+  // 綁定剛剛的 ILM
+  &quot;template&quot;: {
+    &quot;settings&quot;: {
+      &quot;index.lifecycle.name&quot;: &quot;loc-logs-policy&quot;
+    }
+  },
+
+  // 寫一些有幫助的訊息
+  &quot;_meta&quot;: {
+    &quot;description&quot;: &quot;Manage application logs in our Dev environment&quot;,
+    &quot;last_update&quot;: &quot;2023-08-24T17:25:24.254+08:00&quot;
+  }
+}
+</code></pre>
+<h3 id="建立一個-data-stream">建立一個 Data Stream</h3>
+<p>必須要符合 Data Stream 規範來命名 <code>{type}-{dataset}-{namespace}</code></p>
+<pre><code>PUT _data_stream/logs-application-dev
+</code></pre>
+<p>由於我們剛剛有指定了 <code>logs-application-dev</code> 的 Index Template，在 Create 他會依照這個 Template 的定義產生 Data Stream</p>
+<p>回傳看起來會像是這個樣子～～</p>
+<pre><code>{
+  &quot;data_streams&quot;: [
+    {
+      &quot;name&quot;: &quot;logs-application-dev&quot;,
+      &quot;timestamp_field&quot;: {
+        &quot;name&quot;: &quot;@timestamp&quot;
+      },
+      &quot;indices&quot;: [
+        {
+          &quot;index_name&quot;: &quot;.ds-logs-application-dev-2023.08.24-000001&quot;,
+          &quot;index_uuid&quot;: &quot;bDB2EfrJTnCg-lXtVXk31A&quot;
+        }
+      ],
+      &quot;generation&quot;: 1,
+      &quot;_meta&quot;: {
+        &quot;description&quot;: &quot;Manage application logs in our Dev environment&quot;,
+        &quot;last_update&quot;: &quot;2023-08-24T17:25:24.254+08:00&quot;
+      },
+      &quot;status&quot;: &quot;GREEN&quot;,
+      &quot;template&quot;: &quot;loc-logs-template&quot;,
+      &quot;ilm_policy&quot;: &quot;loc-logs-policy&quot;,
+      &quot;hidden&quot;: false,
+      &quot;system&quot;: false,
+      &quot;allow_custom_routing&quot;: false,
+      &quot;replicated&quot;: false
+    }
+  ]
+}
+</code></pre>
+<h2 id="ref">Ref</h2>
+<p><a href="https://www.elastic.co/guide/en/ecs/master/ecs-data_stream.html">https://www.elastic.co/guide/en/ecs/master/ecs-data_stream.html</a></p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/set-up-a-data-stream.html#create-index-lifecycle-policy">https://www.elastic.co/guide/en/elasticsearch/reference/current/set-up-a-data-stream.html#create-index-lifecycle-policy</a></p>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://blog.10oz.tw/20230612-github-permission-for-free-user/" title="GitHub Permission 免費方案權限實驗"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://blog.10oz.tw/20230830-raycast/"
+                    title="macOS 生產力工具 - Raycast 真的很讚"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="facebook,twitter"
+                data-mobile-sites="facebook,twitter"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/XiaoXiaoSN" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://blog.10oz.tw/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2018  -
+    2023
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/bash.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/diff.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/dockerfile.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/lua.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/vbscript-html.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/nix.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/php.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/protobuf.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/rust.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/sql.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/typescript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/vim.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/yaml.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.highlightAll();
+</script>
+<script src="https://blog.10oz.tw/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://blog.10oz.tw/js/plugin.min.738a460bf4317fac61717f1bca393e53d00973db9754d9f0a81c7312d5874840.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/blog.10oz.tw',
+            CONTENT_URL: 'https:\/\/blog.10oz.tw\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.6425a57e353334f164605c424b1d8c0781cd2325bb08722ab34cb974570d55300a5a62aa3fa37a28004c2dcc5131be364451672fd19a5b9ab1729cd1a9d7addf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.3/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https:\/\/blog.10oz.tw\/20230817-how-to-create-elasticsearch-data-stream\/';
+        this.page.identifier = 'xiaoxiaoblog-1';
+    };
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'xiaoxiaoblog-1' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  </body>
+</html>
