@@ -1,5 +1,5 @@
 [codespell]
 skip = .git,.vscode,./docs,./themes/pure
-ignore-words-list = keypair
+ignore-words-list = chekcout,keypair,re-use,tabe
 check-filenames =
 check-hidden =

@@ -509,7 +509,7 @@ cannot change size after creation. try from `` update to `m`
 2. webhook 邏輯應該修改一下，特例允許從空值更改成預設值 `m`
 3. 我們可能需要迭代新版本的 CRD
 
-### Mutilple versions CRD
+### Multiple versions CRD
 
 使用和產生第一個 `v1` 時相同的方式來產生 `v2`，這次 `Resource` 選 `y` 而第二個選項的 `Controller` 因為已經有了所以要選 `n`，不然會失敗！
 ```
