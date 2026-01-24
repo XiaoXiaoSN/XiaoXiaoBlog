@@ -8,7 +8,7 @@ tags: ["golang"]
 > 在這之前的版本使用環境變數 GOMODULE111=true 來做管理
 
 ## 安裝 golang (on Mac)
-### 1. 第一步當然是拿到 golnag 囉
+### 1. 第一步當然是拿到 golang 囉
 ```sh
 brew install go
 ```

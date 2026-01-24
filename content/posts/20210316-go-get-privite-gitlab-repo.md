@@ -2,7 +2,7 @@
 title: "go get 與私有 Gitlab"
 date: 2021-03-16T01:49:55+08:00
 draft: false
-tags: ["golnag", "gitlab", "subgroup"]
+tags: ["golang", "gitlab", "subgroup"]
 ---
 
 > GitLab Community Edition 12.7.0 

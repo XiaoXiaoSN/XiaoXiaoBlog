@@ -1,4 +1,10 @@
-.PHONY: local
+.PHONY: local build release
 
 local:
-	hugo server -D
+	hugo server --buildDrafts
+
+build:
+	hugo build
+
+release:
+	hugo build --gc --minify

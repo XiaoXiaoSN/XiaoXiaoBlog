@@ -2,36 +2,55 @@ baseURL: https://blog.10oz.tw
 theme: pure
 title: "XiaoXiao Notes"
 copyright: "MIT"
-defaultContentLanguage: en # en/zh/...
+defaultContentLanguage: en
 footnoteReturnLinkContents: ↩
-hasCJKLanguage: true # auto-detect Chinese/Japanese/Korean Languages
+hasCJKLanguage: true
 enableEmoji: true
 PygmentsCodeFences: false
-googleAnalytics: "" # UA-XXXXXXXX-X
+googleAnalytics: "G-09FFP1WQY3"
 publishDir: docs
+enableRSS: true
+enableRobotsTXT: true
 staticDir: ["static"]
 
 # Default number of elements per page in pagination.
-paginate: 12
-paginatePath: pages
+pagination:
+  pagerSize: 12
+  path: pages
 
 permalinks:
-  posts: /:filename
+  posts: /:contentbasename
 
 taxonomies:
   category: categories
   tag: tags
   series: series
 
-outputFormats: # use for search. recommend not to modify
+mediaTypes:
+  "application/atom+xml":
+    suffixes: ["xml"]
+  "application/feed+json":
+    suffixes: ["json"]
+
+outputFormats:
+  # use for search. recommend not to modify
   SearchIndex:
     mediaType: "application/json"
     baseName: "searchindex"
     isPlainText: true
     notAlternative: true
+  Atom:
+    mediaType: "application/atom+xml"
+    baseName: "atom"
+    isPlainText: false
+  JsonFeed:
+    mediaType: "application/feed+json"
+    baseName: "feed"
+    isPlainText: true
 
 outputs:
-  home: ["HTML", "RSS", "SearchIndex"] # recommend not to modify
+  # recommend not to modify
+  home: ["HTML", "RSS", "Atom", "JsonFeed", "SearchIndex"]
 # sitemap
 sitemap:
   changefreq: monthly
@@ -70,15 +89,12 @@ menu:
       url: /about/
       weight: 5
 
-params:
-  config:
-    # theme color default is white.
-    # other type [ theme-black, theme-blue, theme-green, theme-purple ]
-    skin: theme-black
-    layout: main-center # main-left main-center main-right
-    excerpt_link: Read More
-    toc: true
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 
+params:
   since: 2018
   dateFormatToUse: "2006-01-02"
   enablePostCopyright: false
@@ -91,24 +107,24 @@ params:
 
   # refer to http://staticfile.org/,
   # search highlight.js, already have highlight.min.js
-  highlightjs:
-    langs:
-      - bash
-      - diff
-      - dockerfile
-      - go
-      - lua
-      - vbscript-html
-      - javascript
-      - nix
-      - php
-      - protobuf
-      - python
-      - rust
-      - sql
-      - typescript
-      - vim
-      - yaml
+  # highlightjs:
+  #   langs:
+  #     - bash
+  #     - diff
+  #     - dockerfile
+  #     - go
+  #     - lua
+  #     - vbscript-html
+  #     - javascript
+  #     - nix
+  #     - php
+  #     - protobuf
+  #     - python
+  #     - rust
+  #     - sql
+  #     - typescript
+  #     - vim
+  #     - yaml
 
   tag_cloud:
     min: 10
@@ -170,23 +186,13 @@ params:
   # Comment
   comment:
     type: disqus # support gitalk/disqus/valine
+    disqus: xiaoxiaoblog-1 # enter disqus shortname here
     # gitalk: # gitalk. https://gitalk.github.io/
     #   owner: XiaoXiaoSN
     #   admin: XiaoXiaoSN
     #   repo: XiaoXiaoBlog  # GitHub repository.
     #   ClientID: b280655e41309872e620 # GitHub Application Client ID.
     #   ClientSecret: "gitalk bad bad" # GitHub Application Client Secret.
-    disqus: xiaoxiaoblog-1 # enter disqus shortname here
-    # valine: # Valine. https://valine.js.org
-    #   appid: # your leancloud application appid
-    #   appkey: # your leancloud application appkey
-    #   notify: # mail notifier , https://github.com/xCss/Valine/wiki
-    #   verify: # Verification code
-    #   placeholder: enjoy~ # comment box placeholder
-    #   avatar: mm # gravatar style
-    #   meta: nick,mail # custom comment header
-    #   pageSize: 10 # pagination size
-    #   visitor: false # Article reading statistic https://valine.js.org/visitor.html
 
   # Share
   # weibo,qq,qzone,wechat,tencent,douban,diandian,
@@ -202,24 +208,10 @@ params:
     wordcount: true # 文章字數
     min2read: false # 預計閱讀時間
 
-  # # Donate
-  # donate:
-  #   enable: false
-  #   # 微信打赏
-  #   wechatpay:
-  #     qrcode: donate/wechatpayimg.png
-  #     title: 微信支付
-  #   # 支付宝打赏
-  #   alipay:
-  #     qrcode: donate/alipayimg.png
-  #     title: 支付宝
-
-  # # PV
-  # pv:
-  #   busuanzi:
-  #     enable: false # 不算子统计
-  #   leancloud:
-  #     enable: false # leancloud统计
-  #     app_id: # leancloud <AppID>
-  #     app_key: # leancloud <AppKey>
-
+  config:
+    # theme color default is white.
+    # other type [ theme-black, theme-blue, theme-green, theme-purple ]
+    skin: theme-black
+    layout: main-center # main-left main-center main-right
+    excerpt_link: Read More
+    toc: true
