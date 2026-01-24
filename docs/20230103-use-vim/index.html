@@ -1,811 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>
-        入坑 Vim 學習使用筆記 - XiaoXiao Notes
-      </title>
-        <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no,email=no,adress=no">
-    
-    <meta name="theme-color" content="#000000" />
-    
-    <meta http-equiv="window-target" content="_top" />
-    
-    
-    <meta name="description" content="我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (? 還有一個以前用的 Vim 設定檔，不過沒怎麼更新了 基本操作 移動你的游標 w," />
-    <meta name="generator" content="Hugo 0.111.2 with theme pure" />
-    <title>入坑 Vim 學習使用筆記 - XiaoXiao Notes</title>
-    
-    
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.2d5a1b78bec97b6e10e84cea7ee47c8ed866dbdb1a0fe330cb2294b35082cb9a.css">
-    
-    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.7.3/styles/github.min.css" async>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="入坑 Vim 學習使用筆記" />
-<meta property="og:description" content="我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (? 還有一個以前用的 Vim 設定檔，不過沒怎麼更新了 基本操作 移動你的游標 w," />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.10oz.tw/20230103-use-vim/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-01-03T22:11:00+08:00" />
-<meta property="article:modified_time" content="2023-01-03T22:11:00+08:00" />
-<meta itemprop="name" content="入坑 Vim 學習使用筆記">
-<meta itemprop="description" content="我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (? 還有一個以前用的 Vim 設定檔，不過沒怎麼更新了 基本操作 移動你的游標 w,"><meta itemprop="datePublished" content="2023-01-03T22:11:00+08:00" />
-<meta itemprop="dateModified" content="2023-01-03T22:11:00+08:00" />
-<meta itemprop="wordCount" content="1512">
-<meta itemprop="keywords" content="vim,neovim," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="入坑 Vim 學習使用筆記"/>
-<meta name="twitter:description" content="我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (? 還有一個以前用的 Vim 設定檔，不過沒怎麼更新了 基本操作 移動你的游標 w,"/>
-
-    <!--[if lte IE 9]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-      <![endif]-->
-
-    <!--[if lt IE 9]>
-        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-      <![endif]-->
-  </head>
-
-  
-  
-
-  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
-    <div class="slimContent">
-      <div class="navbar-header">
-        <div class="profile-block text-center">
-          <a id="avatar" href="/" target="">
-            <img class="img-circle" src="https://blog.10oz.tw/avatar.jpg" width="200" height="200">
-          </a>
-          <h2 id="name" class="hidden-xs hidden-sm">XiaoXiao Notes</h2>
-          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
-          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small>
-        </div><div class="search" id="search-form-wrap">
-    <form class="search-form sidebar-form">
-        <div class="input-group">
-            <input type="text" class="search-form-input form-control" placeholder="Search" />
-            <span class="input-group-btn">
-                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;">
-                    <i class="icon icon-search"></i>
-                </button>
-            </span>
-        </div>
-        <div class="ins-search">
-            <div class="ins-search-mask"></div>
-            <div class="ins-search-container">
-                <div class="ins-input-wrapper">
-                    <input type="text" class="ins-search-input" placeholder="Type something..."
-                        x-webkit-speech />
-                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
-                        aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="ins-section-wrapper">
-                    <div class="ins-section-container"></div>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-        <ul class="nav navbar-nav main-nav">
-            <li class="menu-item menu-item-home">
-                <a href="/">
-                    <i class="icon icon-home-fill"></i>
-                  <span class="menu-title">Home</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-archives">
-                <a href="/posts/">
-                    <i class="icon icon-archives-fill"></i>
-                  <span class="menu-title">Archives</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-tags">
-                <a href="/tags/">
-                    <i class="icon icon-tags"></i>
-                  <span class="menu-title">Tags</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-about">
-                <a href="/about/">
-                    <i class="icon icon-cup-fill"></i>
-                  <span class="menu-title">About</span>
-                </a>
-            </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    
-      <div class="widget">
-    <h3 class="widget-title">Board</h3>
-    <div class="widget-body">
-        <div id="board">
-            <div class="content">這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
-有助於回憶過去曾經做過的事情
-
-            </div>
-        </div>
-    </div>
-</div>
-
-      <div class="widget">
-  <h3 class="widget-title">Tag Cloud</h3>
-  <div id="tag-cloud-list" class="widget-body">
-    
-      
-      <a href="https://blog.10oz.tw/tags/apt/" class="tag-list-link" rel="1">
-        apt<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/argo/" class="tag-list-link" rel="1">
-        argo<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/artisan/" class="tag-list-link" rel="1">
-        artisan<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/aws/" class="tag-list-link" rel="2">
-        aws<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/blockchain/" class="tag-list-link" rel="1">
-        blockchain<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/buildx/" class="tag-list-link" rel="1">
-        buildx<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/casbin/" class="tag-list-link" rel="1">
-        casbin<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/cd/" class="tag-list-link" rel="1">
-        cd<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/chromedp/" class="tag-list-link" rel="1">
-        chromedp<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/chromium/" class="tag-list-link" rel="1">
-        chromium<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/crd/" class="tag-list-link" rel="3">
-        crd<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/de/" class="tag-list-link" rel="1">
-        de<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/di/" class="tag-list-link" rel="1">
-        di<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/docker/" class="tag-list-link" rel="3">
-        docker<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ecr/" class="tag-list-link" rel="1">
-        ecr<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/elasticsearch/" class="tag-list-link" rel="3">
-        elasticsearch<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/eloquent/" class="tag-list-link" rel="1">
-        eloquent<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/es/" class="tag-list-link" rel="1">
-        es<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ethereum/" class="tag-list-link" rel="1">
-        ethereum<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/flask/" class="tag-list-link" rel="1">
-        flask<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/future/" class="tag-list-link" rel="1">
-        future<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/geographic/" class="tag-list-link" rel="1">
-        geographic<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/geth/" class="tag-list-link" rel="1">
-        geth<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/gfw/" class="tag-list-link" rel="1">
-        gfw<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/git/" class="tag-list-link" rel="1">
-        git<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/github/" class="tag-list-link" rel="1">
-        github<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/gitlab/" class="tag-list-link" rel="2">
-        gitlab<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/golang/" class="tag-list-link" rel="8">
-        golang<span class="tag-list-count">8</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/golnag/" class="tag-list-link" rel="1">
-        golnag<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/gomod/" class="tag-list-link" rel="1">
-        gomod<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/gql/" class="tag-list-link" rel="1">
-        gql<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/graphql/" class="tag-list-link" rel="1">
-        graphql<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ha/" class="tag-list-link" rel="1">
-        ha<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/helm/" class="tag-list-link" rel="1">
-        helm<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/homebrew/" class="tag-list-link" rel="1">
-        homebrew<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="2">
-        hugo<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ilm/" class="tag-list-link" rel="1">
-        ilm<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/index/" class="tag-list-link" rel="1">
-        index<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/istio/" class="tag-list-link" rel="1">
-        istio<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/javascript/" class="tag-list-link" rel="1">
-        javascript<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/json/" class="tag-list-link" rel="2">
-        json<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/jwt/" class="tag-list-link" rel="1">
-        jwt<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/keycloak/" class="tag-list-link" rel="1">
-        keycloak<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/kind/" class="tag-list-link" rel="1">
-        kind<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/kops/" class="tag-list-link" rel="1">
-        kops<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/kubernetes/" class="tag-list-link" rel="10">
-        kubernetes<span class="tag-list-count">10</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/laravel/" class="tag-list-link" rel="8">
-        laravel<span class="tag-list-count">8</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="3">
-        linux<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/location/" class="tag-list-link" rel="1">
-        location<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/log/" class="tag-list-link" rel="1">
-        log<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/macos/" class="tag-list-link" rel="1">
-        macos<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/mongodb/" class="tag-list-link" rel="1">
-        mongodb<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/multi-arch/" class="tag-list-link" rel="1">
-        multi-arch<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/mysql/" class="tag-list-link" rel="1">
-        mysql<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/mysqlclient/" class="tag-list-link" rel="1">
-        mysqlclient<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/neovim/" class="tag-list-link" rel="1">
-        neovim<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/nix/" class="tag-list-link" rel="1">
-        nix<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/nixos/" class="tag-list-link" rel="1">
-        nixos<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/oauth/" class="tag-list-link" rel="1">
-        oauth<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/operator/" class="tag-list-link" rel="1">
-        operator<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/orm/" class="tag-list-link" rel="1">
-        orm<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/passport/" class="tag-list-link" rel="1">
-        passport<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/php/" class="tag-list-link" rel="8">
-        php<span class="tag-list-count">8</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/pokemon/" class="tag-list-link" rel="1">
-        pokemon<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/pokesay/" class="tag-list-link" rel="1">
-        pokesay<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/postgres/" class="tag-list-link" rel="1">
-        postgres<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/pretty/" class="tag-list-link" rel="1">
-        pretty<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/python/" class="tag-list-link" rel="4">
-        python<span class="tag-list-count">4</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/raycast/" class="tag-list-link" rel="1">
-        raycast<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ruby/" class="tag-list-link" rel="1">
-        ruby<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/rust/" class="tag-list-link" rel="1">
-        rust<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/service-mesh/" class="tag-list-link" rel="1">
-        service-mesh<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/subgroup/" class="tag-list-link" rel="1">
-        subgroup<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/terraform/" class="tag-list-link" rel="1">
-        terraform<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/test/" class="tag-list-link" rel="1">
-        test<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/typescript/" class="tag-list-link" rel="1">
-        typescript<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ubuntu/" class="tag-list-link" rel="1">
-        ubuntu<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vagrant/" class="tag-list-link" rel="1">
-        vagrant<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vim/" class="tag-list-link" rel="3">
-        vim<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vm/" class="tag-list-link" rel="1">
-        vm<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vpn/" class="tag-list-link" rel="1">
-        vpn<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vrrp/" class="tag-list-link" rel="1">
-        vrrp<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vscode/" class="tag-list-link" rel="2">
-        vscode<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/windows/" class="tag-list-link" rel="1">
-        windows<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/wire/" class="tag-list-link" rel="1">
-        wire<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/wsl2/" class="tag-list-link" rel="1">
-        wsl2<span class="tag-list-count">1</span>
-      </a>
-      
-  </div>
-
-  <script>
-    document.onreadystatechange = () => {
-      if (document.readyState === 'complete') {
-        tagCloud('#tag-cloud-list a',  10 ,  20 );
-      }
-    };
-
-    function tagCloud(where, min, max, count) {
-      let iMax = 0;
-      let iMin = 0;
-
-      const elements = document.querySelectorAll(where);
-
-      elements.forEach((element) => {
-        const weight = Number(element.getAttribute("rel"));
-        if (iMax < weight) iMax = weight;
-        if (iMin > weight || iMin == 0) iMin = weight;
-      });
-
-      const step = (max - min) / (iMax - iMin);
-      elements.forEach((element) => {
-        const weight = element.getAttribute("rel") - iMin;
-        element.style.fontSize = `${min + (weight * step)}px`;
-      });
-    };
-  </script>
-</div>
-
-      
-<div class="widget">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget-body">
-        <ul class="recent-post-list list-unstyled no-thumbnail">
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230830-raycast/" class="title">macOS 生產力工具 - Raycast 真的很讚</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-08-30 13:09:00 &#43;0800 CST" itemprop="datePublished">2023-08-30</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/" class="title">How to create an Elasticsearch Data Stream</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-08-17 18:43:00 &#43;0800 CST" itemprop="datePublished">2023-08-17</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230612-github-permission-for-free-user/" class="title">GitHub Permission 免費方案權限實驗</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-06-12 18:20:00 &#43;0800 CST" itemprop="datePublished">2023-06-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230609-kubernetes-ha-keepalived-haproxy/" class="title">Kubernetes HA - Keepalived(VRRP) &#43; HAProxy</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-06-09 20:01:00 &#43;0800 CST" itemprop="datePublished">2023-06-09</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230215-backup-elasticsearch-index-in-file-system/" class="title">Backup Elasticsearch index in File System</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-02-16 20:28:00 &#43;0800 CST" itemprop="datePublished">2023-02-16</time>
-                    </p>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-  </div>
-</aside>
-
-    
-    
-<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <h4 class="toc-title">Catalogue</h4>
-    <nav id="toc" class="js-toc toc">
-
-    </nav>
-  </div>
-</aside>
-<main class="main" role="main"><div class="content">
-  <article id="-" class="article article-type-" itemscope
-    itemtype="http://schema.org/BlogPosting">
-    
-    <div class="article-header">
-      <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/20230103-use-vim/"
-    >入坑 Vim 學習使用筆記</a
-  >
-</h1>
-
-      <div class="article-meta">
-        
-<span class="article-date">
-  <i class="icon icon-calendar-check"></i>&nbsp;
-<a href="https://blog.10oz.tw/20230103-use-vim/" class="article-date">
-  <time datetime="2023-01-03 22:11:00 &#43;0800 CST" itemprop="datePublished">2023-01-03</time>
-</a>
-</span>
-  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>&nbsp;
-    <a class="article-tag-link label label-default" href="/tags/vim/"> vim </a>
-    <a class="article-tag-link label label-default" href="/tags/neovim/"> neovim </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/20230103-use-vim/#comments"
-            class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1512 words</span>
-      </div>
-    </div>
-    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h2 id="我的設定檔在這">我的設定檔在這</h2>
-<p>新的<a href="https://github.com/xiaoxiaosn/dotfiles/blob/main/nvim/current/REAEME.md">Neovim 的設定檔</a>，有附上使用說明歡迎給建議或是幫忙 Debug (?</p>
-<p>還有一個<a href="https://github.com/xiaoxiaosn/dotfiles/blob/main/vim/vimrc">以前用的 Vim 設定檔</a>，不過沒怎麼更新了</p>
-<h2 id="基本操作">基本操作</h2>
-<h3 id="移動你的游標">移動你的游標</h3>
-<ul>
-<li><code>w</code>, <code>W</code> 往前到下一個字的字首，<code>e</code>, <code>E</code> 下一個字的字尾</li>
-<li><code>b</code>, <code>B</code> 往回到前一個字的字首</li>
-<li><code>$</code> 跳到行尾</li>
-<li><code>0</code> 跳到行首，<code>^</code> 跳到該行第一個文字（不算 TAB 或是空白）</li>
-<li><strong><code>{</code>, <code>}</code> 往前/後跳一個段落</strong></li>
-<li><strong><code>f</code> 之後按任意字元，跳到該行下一個的那個字元</strong></li>
-<li><code>f</code> 之後按任意字元，按 <code>;</code> 再下一個，按 <code>,</code> 回上一個</li>
-<li><strong><code>C_o</code> 跳回上一個遊標的位置， <code>C_i</code> 跳到下一個</strong></li>
-<li><code>C_d</code> 向下滾動，<code>C_u</code> 向上滾動</li>
-<li><strong><code>*</code> 搜尋並前往下一個目前遊標上的字，<code>:noh</code> 取消</strong></li>
-<li><code>#</code> 搜尋並前往上一個目前遊標上的字，<code>:noh</code> 取消</li>
-</ul>
-<h3 id="複製貼上">複製貼上</h3>
-<ul>
-<li><code>p</code> 往後貼上，<code>P</code> 往游標前貼上</li>
-<li><strong><code>u</code> 是 undo, <code>C_r</code> 再 Redo 回去</strong></li>
-<li>也可以用 <code>&quot;</code> 然後 <code>a</code>~<code>z</code> 來指定暫存器，例如 <code>&quot;ay</code> 複製 <code>&quot;ap</code> 貼上</li>
-<li><code>d</code> 是剪下，<code>x</code> 可以剪下遊標上的那一個字</li>
-<li><code>c</code> 可以刪除選取並原地進入插入模式，<code>C</code> 刪除該行以後並進入插入模式</li>
-<li><code>&gt;&gt;</code> <code>&lt;&lt;</code> 可以縮排該行</li>
-</ul>
-<h2 id="寫字囉">寫字囉</h2>
-<ul>
-<li><code>i</code> 插入模式 <code>I</code> 在該行第一個字進入插入模式</li>
-<li><code>a</code> 在遊標後面進入插入模式 <strong><code>A</code> 在行末進入插入模式</strong></li>
-<li><code>o</code> 向下產生新一行進入插入模式 <code>O</code> 向上</li>
-<li><strong><code>s</code> substitute 代替，剪下遊標上的字並進入插入模式</strong></li>
-<li><code>r</code> 取代一個字元</li>
-<li>插入模式下的操作
-<ul>
-<li><code>C-w</code> 刪除遊標往回的一個字</li>
-<li><code>C-u</code> 刪除遊標往回的所有字</li>
-<li>Note: 在 Bash 下很多操作也通用喔 <a href="https://github.com/tpope/vim-rsi">https://github.com/tpope/vim-rsi</a></li>
-</ul>
-</li>
-<li>在檔案取代 <code>%s</code> <code>%s/foo/bar/gc</code> <code>g</code> 是全部、<code>c</code> 是確認</li>
-</ul>
-<h2 id="比剛剛更會移動">比剛剛更會移動</h2>
-<h3 id="標記模式">標記模式</h3>
-<ul>
-<li><code>m{a-zA-Z}</code> 按一下 <code>m</code> 加上英文字就可以在那個字上標籤</li>
-<li><code>'{a-zA-Z}</code> 單引號加上標籤就飛過去那一行囉</li>
-<li><code>`{a-zA-Z}</code> 單引號加上標籤就飛過去標記的字囉</li>
-<li>上面兩個也可以組合刪除，<code>d'a</code> 就是刪除刪到 <code>'a</code> 的地方</li>
-<li>刪掉他 <code>delm aA</code> delete mark a and A</li>
-</ul>
-<h2 id="選取大師">選取大師</h2>
-<ul>
-<li>選取技能之排列組合
-<ul>
-<li>動作類型：
-<ul>
-<li><code>v</code> visual 選取</li>
-<li><code>d</code> delete 剪下</li>
-<li><code>c</code> change 剪下後插入</li>
-<li><code>y</code> yank 複製</li>
-</ul>
-</li>
-<li>範圍： <code>i</code> inner 選取物件條件 <code>a</code> around 包含選取條件</li>
-<li>名詞條件：
-<ul>
-<li><code>w</code> word</li>
-<li><code>s</code> sentence</li>
-<li><code>p</code> paragraph</li>
-<li><code>t</code> tag (HTML, XML tags)</li>
-<li><code>'&quot;</code> 引號</li>
-<li><code>)]}&gt;</code> 括號</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>viw</code> 選取遊標上的字 i=inner w=word</li>
-<li><strong><code>ciw</code> 同上剪下遊標上的字並進入插入模式</strong></li>
-<li><code>vi&quot;</code> 選取 <code>&quot;</code> 中間的字，<code>'</code> 也可以</li>
-<li><code>va&quot;</code> 差別是會包含雙引號 a=around</li>
-</ul>
-<h3 id="切分頁tab-囉">切分頁(Tab) 囉</h3>
-<ul>
-<li><code>vim -p</code> 檔案們，把他們開到新分頁</li>
-<li><code>:e file.txt</code> 在同一個分頁開啟新檔案</li>
-<li><code>:tabe</code> 開新分頁 (可以 <code>:w</code> 存起來)</li>
-<li><code>gt</code> 下一個分頁， <code>gT</code> 上一個分頁</li>
-<li><code>:new</code> 在上方產生水平分割 Windows， <code>:vnew</code> 垂直分割</li>
-</ul>
-<h3 id="你的-buffer">你的 Buffer</h3>
-<pre><code>:ls
+<!doctype html><html lang=en><head><title>入坑 Vim 學習使用筆記 - XiaoXiao Notes</title><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=5"><meta name=renderer content="webkit"><meta name=mobile-web-app-capable content="yes"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content='我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (?
+還有一個以前用的 Vim 設定檔，不過沒怎麼更新了
+基本操作 移動你的游標 w, W 往前到下一個字的字首，e, E 下一個字的字尾 b, B 往回到前一個字的字首 $ 跳到行尾 0 跳到行首，^ 跳到該行第一個文字（不算 TAB 或是空白） {, } 往前/後跳一個段落 f 之後按任意字元，跳到該行下一個的那個字元 f 之後按任意字元，按 ; 再下一個，按 , 回上一個 C_o 跳回上一個遊標的位置， C_i 跳到下一個 C_d 向下滾動，C_u 向上滾動 * 搜尋並前往下一個目前遊標上的字，:noh 取消 # 搜尋並前往上一個目前遊標上的字，:noh 取消 複製貼上 p 往後貼上，P 往游標前貼上 u 是 undo, C_r 再 Redo 回去 也可以用 " 然後 a~z 來指定暫存器，例如 "ay 複製 "ap 貼上 d 是剪下，x 可以剪下遊標上的那一個字 c 可以刪除選取並原地進入插入模式，C 刪除該行以後並進入插入模式 >> << 可以縮排該行 寫字囉 i 插入模式 I 在該行第一個字進入插入模式 a 在遊標後面進入插入模式 A 在行末進入插入模式 o 向下產生新一行進入插入模式 O 向上 s substitute 代替，剪下遊標上的字並進入插入模式 r 取代一個字元 插入模式下的操作 C-w 刪除遊標往回的一個字 C-u 刪除遊標往回的所有字 Note: 在 Bash 下很多操作也通用喔 https://github.com/tpope/vim-rsi 在檔案取代 %s %s/foo/bar/gc g 是全部、c 是確認 比剛剛更會移動 標記模式 m{a-zA-Z} 按一下 m 加上英文字就可以在那個字上標籤 &#39;{a-zA-Z} 單引號加上標籤就飛過去那一行囉 `{a-zA-Z} 單引號加上標籤就飛過去標記的字囉 上面兩個也可以組合刪除，d&#39;a 就是刪除刪到 &#39;a 的地方 刪掉他 delm aA delete mark a and A 選取大師 選取技能之排列組合 動作類型： v visual 選取 d delete 剪下 c change 剪下後插入 y yank 複製 範圍： i inner 選取物件條件 a around 包含選取條件 名詞條件： w word s sentence p paragraph t tag (HTML, XML tags) &#39;" 引號 )]}> 括號 viw 選取遊標上的字 i=inner w=word ciw 同上剪下遊標上的字並進入插入模式 vi" 選取 " 中間的字，&#39; 也可以 va" 差別是會包含雙引號 a=around 切分頁(Tab) 囉 vim -p 檔案們，把他們開到新分頁 :e file.txt 在同一個分頁開啟新檔案 :tabe 開新分頁 (可以 :w 存起來) gt 下一個分頁， gT 上一個分頁 :new 在上方產生水平分割 Windows， :vnew 垂直分割 你的 Buffer :ls 4 h "plugin-config.vim" line 3 5 %a "prelude.vim" line 50 6 h "[No Name]" line 1 7 #h "init.vim" line 5 14 h "filetypes.vim" line 0 15 h "clipboard.vim" line 1 16 h "[No Name]" line 0 Press ENTER or type command to continue :ls 查看分頁內的 buffer 們 切換分頁 :b + 數字 可以切換到指定 Buffer，例如 :b4 :b + 部分檔案名 也可以切換，例如 :b init :bn go next buffer :bp go previous buffer :bl go last :bf go first :bd delete buffer 常用指令 想看 key mapping 你是不是設定了很多 key mapping 但忘記了呀？
+'><meta name=generator content="Hugo 0.154.5 with theme pure"><link href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH crossorigin=anonymous><link rel=stylesheet href=https://blog.10oz.tw/css/bootstrap5-compat.min.3ff920964662aab47751a81d8a1bd1739d80d342df135d996e761836b36fc82476cb5d694bde93050a1453ad0c4c9999.css integrity=sha384-P/kglkZiqrR3UagdihvRc52A00LfE12ZbnYYNrNvyCR2y11pS96TBQoUU60MTJmZ><link rel=stylesheet href=https://blog.10oz.tw/css/style.min.a850f9f609abb9608ee4bf498b9a6f3cd23ca4dce89f0d44cdec3df9fcf896e7878f149bb5c63b939341465898592ec1.css integrity=sha384-qFD59gmruWCO5L9Ji5pvPNI8pNzonw1Ezew9+fz4lueHjxSbtcY7k5NBRliYWS7B><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github.min.css media=print onload='this.media="all",this.onload=null'><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.css media=print onload='this.media="all",this.onload=null'><meta property="og:url" content="https://blog.10oz.tw/20230103-use-vim/"><meta property="og:site_name" content="XiaoXiao Notes"><meta property="og:title" content="入坑 Vim 學習使用筆記"><meta property="og:description" content='我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (?
+還有一個以前用的 Vim 設定檔，不過沒怎麼更新了
+基本操作 移動你的游標 w, W 往前到下一個字的字首，e, E 下一個字的字尾 b, B 往回到前一個字的字首 $ 跳到行尾 0 跳到行首，^ 跳到該行第一個文字（不算 TAB 或是空白） {, } 往前/後跳一個段落 f 之後按任意字元，跳到該行下一個的那個字元 f 之後按任意字元，按 ; 再下一個，按 , 回上一個 C_o 跳回上一個遊標的位置， C_i 跳到下一個 C_d 向下滾動，C_u 向上滾動 * 搜尋並前往下一個目前遊標上的字，:noh 取消 # 搜尋並前往上一個目前遊標上的字，:noh 取消 複製貼上 p 往後貼上，P 往游標前貼上 u 是 undo, C_r 再 Redo 回去 也可以用 " 然後 a~z 來指定暫存器，例如 "ay 複製 "ap 貼上 d 是剪下，x 可以剪下遊標上的那一個字 c 可以刪除選取並原地進入插入模式，C 刪除該行以後並進入插入模式 >> << 可以縮排該行 寫字囉 i 插入模式 I 在該行第一個字進入插入模式 a 在遊標後面進入插入模式 A 在行末進入插入模式 o 向下產生新一行進入插入模式 O 向上 s substitute 代替，剪下遊標上的字並進入插入模式 r 取代一個字元 插入模式下的操作 C-w 刪除遊標往回的一個字 C-u 刪除遊標往回的所有字 Note: 在 Bash 下很多操作也通用喔 https://github.com/tpope/vim-rsi 在檔案取代 %s %s/foo/bar/gc g 是全部、c 是確認 比剛剛更會移動 標記模式 m{a-zA-Z} 按一下 m 加上英文字就可以在那個字上標籤 &#39;{a-zA-Z} 單引號加上標籤就飛過去那一行囉 `{a-zA-Z} 單引號加上標籤就飛過去標記的字囉 上面兩個也可以組合刪除，d&#39;a 就是刪除刪到 &#39;a 的地方 刪掉他 delm aA delete mark a and A 選取大師 選取技能之排列組合 動作類型： v visual 選取 d delete 剪下 c change 剪下後插入 y yank 複製 範圍： i inner 選取物件條件 a around 包含選取條件 名詞條件： w word s sentence p paragraph t tag (HTML, XML tags) &#39;" 引號 )]}> 括號 viw 選取遊標上的字 i=inner w=word ciw 同上剪下遊標上的字並進入插入模式 vi" 選取 " 中間的字，&#39; 也可以 va" 差別是會包含雙引號 a=around 切分頁(Tab) 囉 vim -p 檔案們，把他們開到新分頁 :e file.txt 在同一個分頁開啟新檔案 :tabe 開新分頁 (可以 :w 存起來) gt 下一個分頁， gT 上一個分頁 :new 在上方產生水平分割 Windows， :vnew 垂直分割 你的 Buffer :ls 4 h "plugin-config.vim" line 3 5 %a "prelude.vim" line 50 6 h "[No Name]" line 1 7 #h "init.vim" line 5 14 h "filetypes.vim" line 0 15 h "clipboard.vim" line 1 16 h "[No Name]" line 0 Press ENTER or type command to continue :ls 查看分頁內的 buffer 們 切換分頁 :b + 數字 可以切換到指定 Buffer，例如 :b4 :b + 部分檔案名 也可以切換，例如 :b init :bn go next buffer :bp go previous buffer :bl go last :bf go first :bd delete buffer 常用指令 想看 key mapping 你是不是設定了很多 key mapping 但忘記了呀？'><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-01-03T22:11:00+08:00"><meta property="article:modified_time" content="2023-01-03T22:11:00+08:00"><meta property="article:tag" content="Vim"><meta property="article:tag" content="Neovim"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","url":"https:\/\/blog.10oz.tw\/20230103-use-vim\/","name":"入坑 Vim 學習使用筆記","headline":"入坑 Vim 學習使用筆記","description":"我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (?\n還有一個以前用的 Vim 設定檔，不過沒怎麼更新了\n基本操作 移動你的游標 w, W 往前到下一個字的字首，e, E 下一個字的字尾 b, B 往回到前一個字的字首 $ 跳到行尾 0 跳到行首，^ 跳到該行第一個文字（不算 TAB 或是空白） {, } 往前\/後跳一個段落 f 之後按任意字元，跳到該行下一個的那個字元 f 之後按任意字元，按 ; 再下一個，按 , 回上一個 C_o 跳回上一個遊標的位置， C_i 跳到下一個 C_d 向下滾動，C_u 向上滾動 * 搜尋並前往下一個目前遊標上的字，:noh 取消 # 搜尋並前往上一個目前遊標上的字，:noh 取消 複製貼上 p 往後貼上，P 往游標前貼上 u 是 undo, C_r 再 Redo 回去 也可以用 \u0026quot; 然後 a~z 來指定暫存器，例如 \u0026quot;ay 複製 \u0026quot;ap 貼上 d 是剪下，x 可以剪下遊標上的那一個字 c 可以刪除選取並原地進入插入模式，C 刪除該行以後並進入插入模式 \u0026gt;\u0026gt; \u0026lt;\u0026lt; 可以縮排該行 寫字囉 i 插入模式 I 在該行第一個字進入插入模式 a 在遊標後面進入插入模式 A 在行末進入插入模式 o 向下產生新一行進入插入模式 O 向上 s substitute 代替，剪下遊標上的字並進入插入模式 r 取代一個字元 插入模式下的操作 C-w 刪除遊標往回的一個字 C-u 刪除遊標往回的所有字 Note: 在 Bash 下很多操作也通用喔 https:\/\/github.com\/tpope\/vim-rsi 在檔案取代 %s %s\/foo\/bar\/gc g 是全部、c 是確認 比剛剛更會移動 標記模式 m{a-zA-Z} 按一下 m 加上英文字就可以在那個字上標籤 \u0027{a-zA-Z} 單引號加上標籤就飛過去那一行囉 \u0060{a-zA-Z} 單引號加上標籤就飛過去標記的字囉 上面兩個也可以組合刪除，d\u0027a 就是刪除刪到 \u0027a 的地方 刪掉他 delm aA delete mark a and A 選取大師 選取技能之排列組合 動作類型： v visual 選取 d delete 剪下 c change 剪下後插入 y yank 複製 範圍： i inner 選取物件條件 a around 包含選取條件 名詞條件： w word s sentence p paragraph t tag (HTML, XML tags) \u0027\u0026quot; 引號 )]}\u0026gt; 括號 viw 選取遊標上的字 i=inner w=word ciw 同上剪下遊標上的字並進入插入模式 vi\u0026quot; 選取 \u0026quot; 中間的字，\u0027 也可以 va\u0026quot; 差別是會包含雙引號 a=around 切分頁(Tab) 囉 vim -p 檔案們，把他們開到新分頁 :e file.txt 在同一個分頁開啟新檔案 :tabe 開新分頁 (可以 :w 存起來) gt 下一個分頁， gT 上一個分頁 :new 在上方產生水平分割 Windows， :vnew 垂直分割 你的 Buffer :ls 4 h \u0026quot;plugin-config.vim\u0026quot; line 3 5 %a \u0026quot;prelude.vim\u0026quot; line 50 6 h \u0026quot;[No Name]\u0026quot; line 1 7 #h \u0026quot;init.vim\u0026quot; line 5 14 h \u0026quot;filetypes.vim\u0026quot; line 0 15 h \u0026quot;clipboard.vim\u0026quot; line 1 16 h \u0026quot;[No Name]\u0026quot; line 0 Press ENTER or type command to continue :ls 查看分頁內的 buffer 們 切換分頁 :b \u002b 數字 可以切換到指定 Buffer，例如 :b4 :b \u002b 部分檔案名 也可以切換，例如 :b init :bn go next buffer :bp go previous buffer :bl go last :bf go first :bd delete buffer 常用指令 想看 key mapping 你是不是設定了很多 key mapping 但忘記了呀？\n","author":{"@type":"Person","name":"XiaoXiao Notes","image":"https:\/\/blog.10oz.tw\/avatar.jpg"},"publisher":{"@type":"Organization","name":"XiaoXiao Notes","logo":{"@type":"ImageObject","url":"https:\/\/blog.10oz.tw\/"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.10oz.tw\/20230103-use-vim\/"},"datePublished":"2023-01-03T22:11:00\u002b08:00","dateModified":"2023-01-03T22:11:00\u002b08:00","wordCount":1512,"keywords":["vim","neovim"]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/blog.10oz.tw\/"},{"@type":"ListItem","position":2,"name":"入坑 Vim 學習使用筆記","item":"https:\/\/blog.10oz.tw\/20230103-use-vim\/"}]}</script><meta name=twitter:card content="summary"><meta name=twitter:title content="入坑 Vim 學習使用筆記"><meta name=twitter:description content='我的設定檔在這 新的Neovim 的設定檔，有附上使用說明歡迎給建議或是幫忙 Debug (?
+還有一個以前用的 Vim 設定檔，不過沒怎麼更新了
+基本操作 移動你的游標 w, W 往前到下一個字的字首，e, E 下一個字的字尾 b, B 往回到前一個字的字首 $ 跳到行尾 0 跳到行首，^ 跳到該行第一個文字（不算 TAB 或是空白） {, } 往前/後跳一個段落 f 之後按任意字元，跳到該行下一個的那個字元 f 之後按任意字元，按 ; 再下一個，按 , 回上一個 C_o 跳回上一個遊標的位置， C_i 跳到下一個 C_d 向下滾動，C_u 向上滾動 * 搜尋並前往下一個目前遊標上的字，:noh 取消 # 搜尋並前往上一個目前遊標上的字，:noh 取消 複製貼上 p 往後貼上，P 往游標前貼上 u 是 undo, C_r 再 Redo 回去 也可以用 " 然後 a~z 來指定暫存器，例如 "ay 複製 "ap 貼上 d 是剪下，x 可以剪下遊標上的那一個字 c 可以刪除選取並原地進入插入模式，C 刪除該行以後並進入插入模式 >> << 可以縮排該行 寫字囉 i 插入模式 I 在該行第一個字進入插入模式 a 在遊標後面進入插入模式 A 在行末進入插入模式 o 向下產生新一行進入插入模式 O 向上 s substitute 代替，剪下遊標上的字並進入插入模式 r 取代一個字元 插入模式下的操作 C-w 刪除遊標往回的一個字 C-u 刪除遊標往回的所有字 Note: 在 Bash 下很多操作也通用喔 https://github.com/tpope/vim-rsi 在檔案取代 %s %s/foo/bar/gc g 是全部、c 是確認 比剛剛更會移動 標記模式 m{a-zA-Z} 按一下 m 加上英文字就可以在那個字上標籤 &#39;{a-zA-Z} 單引號加上標籤就飛過去那一行囉 `{a-zA-Z} 單引號加上標籤就飛過去標記的字囉 上面兩個也可以組合刪除，d&#39;a 就是刪除刪到 &#39;a 的地方 刪掉他 delm aA delete mark a and A 選取大師 選取技能之排列組合 動作類型： v visual 選取 d delete 剪下 c change 剪下後插入 y yank 複製 範圍： i inner 選取物件條件 a around 包含選取條件 名詞條件： w word s sentence p paragraph t tag (HTML, XML tags) &#39;" 引號 )]}> 括號 viw 選取遊標上的字 i=inner w=word ciw 同上剪下遊標上的字並進入插入模式 vi" 選取 " 中間的字，&#39; 也可以 va" 差別是會包含雙引號 a=around 切分頁(Tab) 囉 vim -p 檔案們，把他們開到新分頁 :e file.txt 在同一個分頁開啟新檔案 :tabe 開新分頁 (可以 :w 存起來) gt 下一個分頁， gT 上一個分頁 :new 在上方產生水平分割 Windows， :vnew 垂直分割 你的 Buffer :ls 4 h "plugin-config.vim" line 3 5 %a "prelude.vim" line 50 6 h "[No Name]" line 1 7 #h "init.vim" line 5 14 h "filetypes.vim" line 0 15 h "clipboard.vim" line 1 16 h "[No Name]" line 0 Press ENTER or type command to continue :ls 查看分頁內的 buffer 們 切換分頁 :b + 數字 可以切換到指定 Buffer，例如 :b4 :b + 部分檔案名 也可以切換，例如 :b init :bn go next buffer :bp go previous buffer :bl go last :bf go first :bd delete buffer 常用指令 想看 key mapping 你是不是設定了很多 key mapping 但忘記了呀？'></head><body class="main-center theme-black" data-pages=62><header class=header><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=/ target><img class=rounded-circle src=https://blog.10oz.tw/avatar.jpg width=200 height=200></a><h2 id=name class="d-none d-md-block">XiaoXiao Notes</h2><h3 id=title class="d-none d-lg-block"></h3><small id=location class="text-muted d-none d-md-block"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=Search>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1>
+<i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder="Type something..." x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#main-navbar aria-controls=main-navbar aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button></div><nav id=main-navbar class="collapse navbar-collapse" role=navigation><ul class="navbar-nav main-nav"><li class="nav-item menu-item-home"><a class=nav-link href=/><i class="icon icon-home-fill"></i>
+<span class=menu-title>Home</span></a></li><li class="nav-item menu-item-archives"><a class=nav-link href=/posts/><i class="icon icon-archives-fill"></i>
+<span class=menu-title>Archives</span></a></li><li class="nav-item menu-item-tags"><a class=nav-link href=/tags/><i class="icon icon-tags"></i>
+<span class=menu-title>Tags</span></a></li><li class="nav-item menu-item-about"><a class=nav-link href=/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>About</span></a></li></ul></nav></div></header><aside class=sidebar><div class=slimContent><div class=widget><h3 class=widget-title>Board</h3><div class=widget-body><div id=board><div class=content>這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
+有助於回憶過去曾經做過的事情</div></div></div></div><div class=widget><h3 class=widget-title>Tag Cloud</h3><div id=tag-cloud-list class=widget-body><a href=https://blog.10oz.tw/tags/apt/ class=tag-list-link rel=1>apt<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/argo/ class=tag-list-link rel=1>argo<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/artisan/ class=tag-list-link rel=1>artisan<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/aws/ class=tag-list-link rel=2>aws<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/blockchain/ class=tag-list-link rel=1>blockchain<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/buildx/ class=tag-list-link rel=1>buildx<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/casbin/ class=tag-list-link rel=1>casbin<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/cd/ class=tag-list-link rel=1>cd<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/chromedp/ class=tag-list-link rel=1>chromedp<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/chromium/ class=tag-list-link rel=1>chromium<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/crd/ class=tag-list-link rel=3>crd<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/de/ class=tag-list-link rel=1>de<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/di/ class=tag-list-link rel=1>di<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/docker/ class=tag-list-link rel=3>docker<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/ecr/ class=tag-list-link rel=1>ecr<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/elasticsearch/ class=tag-list-link rel=3>elasticsearch<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/eloquent/ class=tag-list-link rel=1>eloquent<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/es/ class=tag-list-link rel=1>es<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/ethereum/ class=tag-list-link rel=1>ethereum<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/flask/ class=tag-list-link rel=1>flask<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/future/ class=tag-list-link rel=1>future<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/geographic/ class=tag-list-link rel=1>geographic<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/geth/ class=tag-list-link rel=1>geth<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/gfw/ class=tag-list-link rel=1>gfw<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/git/ class=tag-list-link rel=1>git<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/github/ class=tag-list-link rel=1>github<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/gitlab/ class=tag-list-link rel=2>gitlab<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/golang/ class=tag-list-link rel=9>golang<span class=tag-list-count>9</span>
+</a><a href=https://blog.10oz.tw/tags/gomod/ class=tag-list-link rel=1>gomod<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/gql/ class=tag-list-link rel=1>gql<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/graphql/ class=tag-list-link rel=1>graphql<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/ha/ class=tag-list-link rel=1>ha<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/helm/ class=tag-list-link rel=1>helm<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/homebrew/ class=tag-list-link rel=1>homebrew<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/hugo/ class=tag-list-link rel=2>hugo<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/ilm/ class=tag-list-link rel=1>ilm<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/index/ class=tag-list-link rel=1>index<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/istio/ class=tag-list-link rel=1>istio<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/javascript/ class=tag-list-link rel=1>javascript<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/json/ class=tag-list-link rel=2>json<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/jwt/ class=tag-list-link rel=1>jwt<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/keycloak/ class=tag-list-link rel=1>keycloak<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/kind/ class=tag-list-link rel=1>kind<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/kops/ class=tag-list-link rel=1>kops<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/kubernetes/ class=tag-list-link rel=11>kubernetes<span class=tag-list-count>11</span>
+</a><a href=https://blog.10oz.tw/tags/laravel/ class=tag-list-link rel=8>laravel<span class=tag-list-count>8</span>
+</a><a href=https://blog.10oz.tw/tags/linux/ class=tag-list-link rel=3>linux<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/location/ class=tag-list-link rel=1>location<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/log/ class=tag-list-link rel=1>log<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/macos/ class=tag-list-link rel=1>macos<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/mongodb/ class=tag-list-link rel=1>mongodb<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/multi-arch/ class=tag-list-link rel=1>multi-arch<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/mysql/ class=tag-list-link rel=1>mysql<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/mysqlclient/ class=tag-list-link rel=1>mysqlclient<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/neovim/ class=tag-list-link rel=1>neovim<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/nix/ class=tag-list-link rel=1>nix<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/nixos/ class=tag-list-link rel=1>nixos<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/oauth/ class=tag-list-link rel=1>oauth<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/operator/ class=tag-list-link rel=1>operator<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/orm/ class=tag-list-link rel=1>orm<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/passport/ class=tag-list-link rel=1>passport<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/php/ class=tag-list-link rel=8>php<span class=tag-list-count>8</span>
+</a><a href=https://blog.10oz.tw/tags/pokemon/ class=tag-list-link rel=1>pokemon<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/pokesay/ class=tag-list-link rel=1>pokesay<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/postgres/ class=tag-list-link rel=1>postgres<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/pretty/ class=tag-list-link rel=1>pretty<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/python/ class=tag-list-link rel=4>python<span class=tag-list-count>4</span>
+</a><a href=https://blog.10oz.tw/tags/raycast/ class=tag-list-link rel=1>raycast<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/ruby/ class=tag-list-link rel=1>ruby<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/rust/ class=tag-list-link rel=2>rust<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/service-mesh/ class=tag-list-link rel=1>service-mesh<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/subgroup/ class=tag-list-link rel=1>subgroup<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/terraform/ class=tag-list-link rel=1>terraform<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/test/ class=tag-list-link rel=1>test<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/typescript/ class=tag-list-link rel=1>typescript<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/ubuntu/ class=tag-list-link rel=1>ubuntu<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vagrant/ class=tag-list-link rel=1>vagrant<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vim/ class=tag-list-link rel=3>vim<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/vm/ class=tag-list-link rel=1>vm<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vpn/ class=tag-list-link rel=1>vpn<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vrrp/ class=tag-list-link rel=1>vrrp<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vscode/ class=tag-list-link rel=2>vscode<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/webassembly/ class=tag-list-link rel=1>webassembly<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/windows/ class=tag-list-link rel=1>windows<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/wire/ class=tag-list-link rel=1>wire<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/wsl2/ class=tag-list-link rel=1>wsl2<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{document.readyState==="complete"&&tagCloud("#tag-cloud-list a",10,20)};function tagCloud(e,t,n){let i=0,o=0;const a=document.querySelectorAll(e);a.forEach(e=>{const t=Number(e.getAttribute("rel"));i<t&&(i=t),(o>t||o==0)&&(o=t)});const r=(n-t)/(i-o);a.forEach(e=>{const n=e.getAttribute("rel")-o;e.style.fontSize=`${t+n*r}px`})}</script></div><div class=widget><h3 class=widget-title>Recent Posts</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20240202-kubernetes-replicaset-selector/ class=title>ReplicaSet 的 selector 可以選到沒主人的 Pod</a></p><p class=item-date><time datetime="2024-02-02 02:27:00 +0800 CST" itemprop=datePublished>2024-02-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20230830-raycast/ class=title>macOS 生產力工具 - Raycast 真的很讚</a></p><p class=item-date><time datetime="2023-08-30 13:09:00 +0800 CST" itemprop=datePublished>2023-08-30</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/ class=title>How to create an Elasticsearch Data Stream</a></p><p class=item-date><time datetime="2023-08-17 18:43:00 +0800 CST" itemprop=datePublished>2023-08-17</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20230612-github-permission-for-free-user/ class=title>GitHub Permission 免費方案權限實驗</a></p><p class=item-date><time datetime="2023-06-12 18:20:00 +0800 CST" itemprop=datePublished>2023-06-12</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20230609-kubernetes-ha-keepalived-haproxy/ class=title>Kubernetes HA - Keepalived(VRRP) + HAProxy</a></p><p class=item-date><time datetime="2023-06-09 20:01:00 +0800 CST" itemprop=datePublished>2023-06-09</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>Catalogue</h4><nav id=toc class="js-toc toc"><nav id=TableOfContents><ul><li><a href=#我的設定檔在這>我的設定檔在這</a></li><li><a href=#基本操作>基本操作</a><ul><li><a href=#移動你的游標>移動你的游標</a></li><li><a href=#複製貼上>複製貼上</a></li></ul></li><li><a href=#寫字囉>寫字囉</a></li><li><a href=#比剛剛更會移動>比剛剛更會移動</a><ul><li><a href=#標記模式>標記模式</a></li></ul></li><li><a href=#選取大師>選取大師</a><ul><li><a href=#切分頁tab-囉>切分頁(Tab) 囉</a></li><li><a href=#你的-buffer>你的 Buffer</a></li></ul></li><li><a href=#常用指令>常用指令</a><ul><li><a href=#想看-key-mapping>想看 key mapping</a></li></ul></li><li><a href=#nerdtree>NerdTree</a><ul><li><a href=#視窗切換>視窗切換</a></li><li><a href=#nerdtree-視窗>NerdTree 視窗</a></li></ul></li><li><a href=#easy-motion>Easy Motion</a></li><li><a href=#fzfvim>fzf.vim</a></li><li><a href=#vim-visual-multi>vim-visual-multi</a></li><li><a href=#vim-fugitive>vim-fugitive</a></li><li><a href=#tpopevim-surround>tpope/vim-surround</a></li><li><a href=#tomtomtcomment_vim>tomtom/tcomment_vim</a></li><li><a href=#telescopenvim>telescope.nvim</a></li><li><a href=#ref>Ref</a></li></ul></nav></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-"><div class=article-header><h1 itemprop=name><a class=article-title href=/20230103-use-vim/>入坑 Vim 學習使用筆記</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://blog.10oz.tw/20230103-use-vim/ class=article-date><time datetime="2023-01-03 22:11:00 +0800 CST" itemprop=datePublished>2023-01-03</time>
+</a></span><span class=article-tag><i class="icon icon-tags"></i>&nbsp;
+<a class="article-tag-link label label-default" href=/tags/vim/>vim </a><a class="article-tag-link label label-default" href=/tags/neovim/>neovim </a></span><span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/20230103-use-vim/#comments class=article-comment-link>Comments</a></span>
+<span class="post-wordcount d-none d-sm-block" itemprop=wordCount>Word Count: 1512 words</span></div></div><div class="article-entry marked-body js-toc-content"><h2 id=我的設定檔在這>我的設定檔在這</h2><p>新的<a href=https://github.com/xiaoxiaosn/dotfiles/blob/main/nvim/current/REAEME.md>Neovim 的設定檔</a>，有附上使用說明歡迎給建議或是幫忙 Debug (?</p><p>還有一個<a href=https://github.com/xiaoxiaosn/dotfiles/blob/main/vim/vimrc>以前用的 Vim 設定檔</a>，不過沒怎麼更新了</p><h2 id=基本操作>基本操作</h2><h3 id=移動你的游標>移動你的游標</h3><ul><li><code>w</code>, <code>W</code> 往前到下一個字的字首，<code>e</code>, <code>E</code> 下一個字的字尾</li><li><code>b</code>, <code>B</code> 往回到前一個字的字首</li><li><code>$</code> 跳到行尾</li><li><code>0</code> 跳到行首，<code>^</code> 跳到該行第一個文字（不算 TAB 或是空白）</li><li><strong><code>{</code>, <code>}</code> 往前/後跳一個段落</strong></li><li><strong><code>f</code> 之後按任意字元，跳到該行下一個的那個字元</strong></li><li><code>f</code> 之後按任意字元，按 <code>;</code> 再下一個，按 <code>,</code> 回上一個</li><li><strong><code>C_o</code> 跳回上一個遊標的位置， <code>C_i</code> 跳到下一個</strong></li><li><code>C_d</code> 向下滾動，<code>C_u</code> 向上滾動</li><li><strong><code>*</code> 搜尋並前往下一個目前遊標上的字，<code>:noh</code> 取消</strong></li><li><code>#</code> 搜尋並前往上一個目前遊標上的字，<code>:noh</code> 取消</li></ul><h3 id=複製貼上>複製貼上</h3><ul><li><code>p</code> 往後貼上，<code>P</code> 往游標前貼上</li><li><strong><code>u</code> 是 undo, <code>C_r</code> 再 Redo 回去</strong></li><li>也可以用 <code>"</code> 然後 <code>a</code>~<code>z</code> 來指定暫存器，例如 <code>"ay</code> 複製 <code>"ap</code> 貼上</li><li><code>d</code> 是剪下，<code>x</code> 可以剪下遊標上的那一個字</li><li><code>c</code> 可以刪除選取並原地進入插入模式，<code>C</code> 刪除該行以後並進入插入模式</li><li><code>>></code> <code>&lt;&lt;</code> 可以縮排該行</li></ul><h2 id=寫字囉>寫字囉</h2><ul><li><code>i</code> 插入模式 <code>I</code> 在該行第一個字進入插入模式</li><li><code>a</code> 在遊標後面進入插入模式 <strong><code>A</code> 在行末進入插入模式</strong></li><li><code>o</code> 向下產生新一行進入插入模式 <code>O</code> 向上</li><li><strong><code>s</code> substitute 代替，剪下遊標上的字並進入插入模式</strong></li><li><code>r</code> 取代一個字元</li><li>插入模式下的操作<ul><li><code>C-w</code> 刪除遊標往回的一個字</li><li><code>C-u</code> 刪除遊標往回的所有字</li><li>Note: 在 Bash 下很多操作也通用喔 <a href=https://github.com/tpope/vim-rsi>https://github.com/tpope/vim-rsi</a></li></ul></li><li>在檔案取代 <code>%s</code> <code>%s/foo/bar/gc</code> <code>g</code> 是全部、<code>c</code> 是確認</li></ul><h2 id=比剛剛更會移動>比剛剛更會移動</h2><h3 id=標記模式>標記模式</h3><ul><li><code>m{a-zA-Z}</code> 按一下 <code>m</code> 加上英文字就可以在那個字上標籤</li><li><code>'{a-zA-Z}</code> 單引號加上標籤就飛過去那一行囉</li><li><code>`{a-zA-Z}</code> 單引號加上標籤就飛過去標記的字囉</li><li>上面兩個也可以組合刪除，<code>d'a</code> 就是刪除刪到 <code>'a</code> 的地方</li><li>刪掉他 <code>delm aA</code> delete mark a and A</li></ul><h2 id=選取大師>選取大師</h2><ul><li>選取技能之排列組合<ul><li>動作類型：<ul><li><code>v</code> visual 選取</li><li><code>d</code> delete 剪下</li><li><code>c</code> change 剪下後插入</li><li><code>y</code> yank 複製</li></ul></li><li>範圍： <code>i</code> inner 選取物件條件 <code>a</code> around 包含選取條件</li><li>名詞條件：<ul><li><code>w</code> word</li><li><code>s</code> sentence</li><li><code>p</code> paragraph</li><li><code>t</code> tag (HTML, XML tags)</li><li><code>'"</code> 引號</li><li><code>)]}></code> 括號</li></ul></li></ul></li><li><code>viw</code> 選取遊標上的字 i=inner w=word</li><li><strong><code>ciw</code> 同上剪下遊標上的字並進入插入模式</strong></li><li><code>vi"</code> 選取 <code>"</code> 中間的字，<code>'</code> 也可以</li><li><code>va"</code> 差別是會包含雙引號 a=around</li></ul><h3 id=切分頁tab-囉>切分頁(Tab) 囉</h3><ul><li><code>vim -p</code> 檔案們，把他們開到新分頁</li><li><code>:e file.txt</code> 在同一個分頁開啟新檔案</li><li><code>:tabe</code> 開新分頁 (可以 <code>:w</code> 存起來)</li><li><code>gt</code> 下一個分頁， <code>gT</code> 上一個分頁</li><li><code>:new</code> 在上方產生水平分割 Windows， <code>:vnew</code> 垂直分割</li></ul><h3 id=你的-buffer>你的 Buffer</h3><pre><code>:ls
   4  h   &quot;plugin-config.vim&quot;            line 3
   5 %a   &quot;prelude.vim&quot;                  line 50
   6  h   &quot;[No Name]&quot;                    line 1
@@ -814,262 +112,21 @@
  15  h   &quot;clipboard.vim&quot;                line 1
  16  h   &quot;[No Name]&quot;                    line 0
 Press ENTER or type command to continue
-</code></pre>
-<ul>
-<li><code>:ls</code> 查看分頁內的 buffer 們</li>
-<li>切換分頁
-<ul>
-<li><code>:b</code> + <code>數字</code> 可以切換到指定 Buffer，例如 <code>:b4</code></li>
-<li><code>:b</code> + <code>部分檔案名</code> 也可以切換，例如 <code>:b init</code></li>
-<li><code>:bn</code> go next buffer</li>
-<li><code>:bp</code> go previous buffer</li>
-<li><code>:bl</code> go last</li>
-<li><code>:bf</code> go first</li>
-</ul>
-</li>
-<li><code>:bd</code> delete buffer</li>
-</ul>
-<h2 id="常用指令">常用指令</h2>
-<h3 id="想看-key-mapping">想看 key mapping</h3>
-<p>你是不是設定了很多 key mapping 但忘記了呀？</p>
-<pre><code>:map
-</code></pre>
-<p>或是想指定模式也可以</p>
-<pre><code>:nmap for normal mode mappings
+</code></pre><ul><li><code>:ls</code> 查看分頁內的 buffer 們</li><li>切換分頁<ul><li><code>:b</code> + <code>數字</code> 可以切換到指定 Buffer，例如 <code>:b4</code></li><li><code>:b</code> + <code>部分檔案名</code> 也可以切換，例如 <code>:b init</code></li><li><code>:bn</code> go next buffer</li><li><code>:bp</code> go previous buffer</li><li><code>:bl</code> go last</li><li><code>:bf</code> go first</li></ul></li><li><code>:bd</code> delete buffer</li></ul><h2 id=常用指令>常用指令</h2><h3 id=想看-key-mapping>想看 key mapping</h3><p>你是不是設定了很多 key mapping 但忘記了呀？</p><pre><code>:map
+</code></pre><p>或是想指定模式也可以</p><pre><code>:nmap for normal mode mappings
 :vmap for visual mode mappings
 :imap for insert mode mappings
-</code></pre>
-<p>輸出出來看的方法</p>
-<pre><code>:redir! &gt; vim_keys.txt
+</code></pre><p>輸出出來看的方法</p><pre><code>:redir! &gt; vim_keys.txt
 :silent verbose map
 :redir END
-</code></pre>
-<p>ref: <a href="https://stackoverflow.com/a/15756785">https://stackoverflow.com/a/15756785</a></p>
-<h2 id="nerdtree">NerdTree</h2>
-<h3 id="視窗切換">視窗切換</h3>
-<ul>
-<li><code>C_w</code> + [上下左右] 切換到 [上下左右] 的分割視窗</li>
-<li><code>C_w</code> + <code>w</code> 切換到下一個分割視窗</li>
-</ul>
-<h3 id="nerdtree-視窗">NerdTree 視窗</h3>
-<ul>
-<li>對檔案 <code>t</code> 開啟新分頁</li>
-<li>對檔案 <code>o</code> 開啟新分頁，並跳過去</li>
-<li>對資料夾 <code>o</code> 展開 / 縮合資料夾</li>
-<li>按下 <code>m</code> 會進入檔案管理模式
-<ul>
-<li>再來按 <code>a</code> 可以新增檔案（資料夾的話就在後面加一個 <code>/</code>）</li>
-</ul>
-</li>
-</ul>
-<h2 id="easy-motion">Easy Motion</h2>
-<p>這裡的 <code>&lt;leader&gt;&lt;Plug&gt;</code> 都用 <code>,</code> 來示範，因此指令都是 <code>,,</code> 開頭</p>
-<ul>
-<li>跳到字元
-<ul>
-<li><code>,,s</code> search 跳到搜尋此字元的位置</li>
-<li><code>,,f</code> 從游標往下 search，跳到搜尋此字元的位置</li>
-<li><code>,,F</code> 從游標往上 search，跳到搜尋此字元的位置</li>
-</ul>
-</li>
-<li>跳到字首
-<ul>
-<li><code>,,b</code> 從游標往下 search，跳到搜尋此字首的位置</li>
-<li><code>,,w</code> 從游標往上 search，跳到搜尋此字首的位置</li>
-</ul>
-</li>
-</ul>
-<h2 id="fzfvim">fzf.vim</h2>
-<ul>
-<li><code>:Files</code> 搜尋檔案名稱 (綁定到 <code>&lt;leader&gt;ff</code>)</li>
-<li><code>:Commands</code> 搜尋指令名可能沒什麼用XDD (綁定到 <code>&lt;c-P&gt;</code>)</li>
-</ul>
-<h2 id="vim-visual-multi">vim-visual-multi</h2>
-<ul>
-<li><code>c-n</code> 選取遊標上的字
-<ul>
-<li>按 <code>n</code> <code>N</code> 選取下/上一個相同的字</li>
-<li><code>q</code> 跳過下一個選擇</li>
-<li><code>Q</code> 刪除目前選擇</li>
-</ul>
-</li>
-<li><code>3c-n</code> 選取接下來的 3 個</li>
-<li><code>\\A</code> 選取文件上全部遊標上的那個字</li>
-<li>C-mouseleft 選取點擊字元</li>
-<li>C-mouseright 選取點擊字</li>
-</ul>
-<h2 id="vim-fugitive">vim-fugitive</h2>
-<p>更方便使用 Git 的插件，<a href="https://github.com/tpope/vim-fugitive">Github 連結</a></p>
-<ul>
-<li>用 <code>:G</code> 來呼叫 git 指令，例如說 <code>:G commit -m init commit</code></li>
-<li><code>:Git blame</code> blame 一下都是誰寫了些什麼</li>
-<li><code>:Gvdiff</code> 呼叫出檔案更新差異 (好像也可以解 Confilet)</li>
-</ul>
-<h2 id="tpopevim-surround">tpope/vim-surround</h2>
-<ul>
-<li>快速添加引號
-<ul>
-<li>選取後 <code>S&quot;</code></li>
-<li><code>ysiw&quot;</code> (yank surround inner word &ldquo;)</li>
-</ul>
-</li>
-<li>移除引號 <code>ds&quot;</code> (delete surround &ldquo;)</li>
-<li>更改引號 <code>cs'&quot;</code> (change surround &rsquo; to &ldquo;)</li>
-<li>安裝 <code>tpop/vim-repeat</code> 達成用 <code>.</code> 重複操作</li>
-<li>Note: 搭配 visual multi 真香 XDD
-<a href="https://youtu.be/wjoSbLGZTao?list=PLBd8JGCAcUAH56L2CYF7SmWJYKwHQYUDI&amp;t=782">https://youtu.be/wjoSbLGZTao?list=PLBd8JGCAcUAH56L2CYF7SmWJYKwHQYUDI&amp;t=782</a></li>
-</ul>
-<h2 id="tomtomtcomment_vim">tomtom/tcomment_vim</h2>
-<ul>
-<li><code>&lt;C-/&gt;</code> <code>&lt;C-/&gt;</code> 註解掉或是解開</li>
-</ul>
-<h2 id="telescopenvim">telescope.nvim</h2>
-<p><a href="https://github.com/nvim-telescope/telescope.nvim">Github Link</a></p>
-<h2 id="ref">Ref</h2>
-<p><a href="https://github.com/wsdjeg/vim-galore-zh_cn">https://github.com/wsdjeg/vim-galore-zh_cn</a>
-Cheat Sheet <a href="https://vim.rtorr.com/lang/zh_tw">https://vim.rtorr.com/lang/zh_tw</a></p>
-
-    </div>
-    <div class="article-footer">
-
-    </div>
-  </article>
-<section id="comments">
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-</section>
-
-</div><nav class="bar bar-footer clearfix" data-stick-bottom>
-    <div class="bar-inner">
-        <ul class="pager pull-left">
-            <li class="prev">
-                <a href="https://blog.10oz.tw/20221028-logic-public-ecr/" title="Hey! 我想登入 AWS ECR"><i
-                        class="icon icon-angle-left"
-                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
-            </li>
-            <li class="next">
-                <a href="https://blog.10oz.tw/20230215-backup-elasticsearch-index-in-file-system/"
-                    title="Backup Elasticsearch index in File System"><span>Newer&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
-            </li>
-            
-            <li class="toggle-toc">
-                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
-                    title="Catalogue" role="button">
-                    <span>[&nbsp;</span><span>Catalogue</span>
-                    <i class="text-collapsed icon icon-anchor"></i>
-                    <i class="text-in icon icon-close"></i>
-                    <span>]</span>
-                </a>
-            </li>
-        </ul>
-        <div class="bar-right">
-            <div class="share-component" data-sites="facebook,twitter"
-                data-mobile-sites="facebook,twitter"></div>
-        </div>
-    </div>
-</nav>
-
-
-</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-<ul class="social-links">
-    <li><a href="https://github.com/XiaoXiaoSN" target="_blank" title="github" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-github"></i></a></li>
-    <li><a href="https://blog.10oz.tw/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-rss"></i></a></li>
-</ul>
-  <div class="copyright">
-    &copy;2018  -
-    2023
-  </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-            showMathMenu: false, //disables context menu
-            tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-           }
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
-</script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/bash.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/diff.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/dockerfile.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/go.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/lua.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/vbscript-html.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/javascript.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/nix.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/php.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/protobuf.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/python.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/rust.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/sql.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/typescript.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/vim.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/yaml.min.js" defer></script><script>
-    hljs.configure({
-        tabReplace: '    ', 
-        classPrefix: ''     
-        
-    })
-    hljs.highlightAll();
-</script>
-<script src="https://blog.10oz.tw/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
-<script src="https://blog.10oz.tw/js/plugin.min.738a460bf4317fac61717f1bca393e53d00973db9754d9f0a81c7312d5874840.js"></script>
-
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
-            },
-            ROOT_URL: 'https:\/\/blog.10oz.tw',
-            CONTENT_URL: 'https:\/\/blog.10oz.tw\/searchindex.json ',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.6425a57e353334f164605c424b1d8c0781cd2325bb08722ab34cb974570d55300a5a62aa3fa37a28004c2dcc5131be364451672fd19a5b9ab1729cd1a9d7addf.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.3/tocbot.min.js"></script>
-<script>
-    tocbot.init({
-        
-        tocSelector: '.js-toc',
-        
-        contentSelector: '.js-toc-content',
-        
-        headingSelector: 'h1, h2, h3',
-        
-        hasInnerContainers: true,
-    });
-</script>
-
-<script>
-    var disqus_config = function () {
-        this.page.url = 'https:\/\/blog.10oz.tw\/20230103-use-vim\/';
-        this.page.identifier = 'xiaoxiaoblog-1';
-    };
-    (function () {
-        var d = document, s = d.createElement('script');
-        s.src = '//' + 'xiaoxiaoblog-1' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-
-  </body>
-</html>
+</code></pre><p>ref: <a href=https://stackoverflow.com/a/15756785>https://stackoverflow.com/a/15756785</a></p><h2 id=nerdtree>NerdTree</h2><h3 id=視窗切換>視窗切換</h3><ul><li><code>C_w</code> + [上下左右] 切換到 [上下左右] 的分割視窗</li><li><code>C_w</code> + <code>w</code> 切換到下一個分割視窗</li></ul><h3 id=nerdtree-視窗>NerdTree 視窗</h3><ul><li>對檔案 <code>t</code> 開啟新分頁</li><li>對檔案 <code>o</code> 開啟新分頁，並跳過去</li><li>對資料夾 <code>o</code> 展開 / 縮合資料夾</li><li>按下 <code>m</code> 會進入檔案管理模式<ul><li>再來按 <code>a</code> 可以新增檔案（資料夾的話就在後面加一個 <code>/</code>）</li></ul></li></ul><h2 id=easy-motion>Easy Motion</h2><p>這裡的 <code>&lt;leader>&lt;Plug></code> 都用 <code>,</code> 來示範，因此指令都是 <code>,,</code> 開頭</p><ul><li>跳到字元<ul><li><code>,,s</code> search 跳到搜尋此字元的位置</li><li><code>,,f</code> 從游標往下 search，跳到搜尋此字元的位置</li><li><code>,,F</code> 從游標往上 search，跳到搜尋此字元的位置</li></ul></li><li>跳到字首<ul><li><code>,,b</code> 從游標往下 search，跳到搜尋此字首的位置</li><li><code>,,w</code> 從游標往上 search，跳到搜尋此字首的位置</li></ul></li></ul><h2 id=fzfvim>fzf.vim</h2><ul><li><code>:Files</code> 搜尋檔案名稱 (綁定到 <code>&lt;leader>ff</code>)</li><li><code>:Commands</code> 搜尋指令名可能沒什麼用XDD (綁定到 <code>&lt;c-P></code>)</li></ul><h2 id=vim-visual-multi>vim-visual-multi</h2><ul><li><code>c-n</code> 選取遊標上的字<ul><li>按 <code>n</code> <code>N</code> 選取下/上一個相同的字</li><li><code>q</code> 跳過下一個選擇</li><li><code>Q</code> 刪除目前選擇</li></ul></li><li><code>3c-n</code> 選取接下來的 3 個</li><li><code>\\A</code> 選取文件上全部遊標上的那個字</li><li>C-mouseleft 選取點擊字元</li><li>C-mouseright 選取點擊字</li></ul><h2 id=vim-fugitive>vim-fugitive</h2><p>更方便使用 Git 的插件，<a href=https://github.com/tpope/vim-fugitive>Github 連結</a></p><ul><li>用 <code>:G</code> 來呼叫 git 指令，例如說 <code>:G commit -m init commit</code></li><li><code>:Git blame</code> blame 一下都是誰寫了些什麼</li><li><code>:Gvdiff</code> 呼叫出檔案更新差異 (好像也可以解 Confilet)</li></ul><h2 id=tpopevim-surround>tpope/vim-surround</h2><ul><li>快速添加引號<ul><li>選取後 <code>S"</code></li><li><code>ysiw"</code> (yank surround inner word &ldquo;)</li></ul></li><li>移除引號 <code>ds"</code> (delete surround &ldquo;)</li><li>更改引號 <code>cs'"</code> (change surround &rsquo; to &ldquo;)</li><li>安裝 <code>tpop/vim-repeat</code> 達成用 <code>.</code> 重複操作</li><li>Note: 搭配 visual multi 真香 XDD
+<a href="https://youtu.be/wjoSbLGZTao?list=PLBd8JGCAcUAH56L2CYF7SmWJYKwHQYUDI&amp;t=782">https://youtu.be/wjoSbLGZTao?list=PLBd8JGCAcUAH56L2CYF7SmWJYKwHQYUDI&amp;t=782</a></li></ul><h2 id=tomtomtcomment_vim>tomtom/tcomment_vim</h2><ul><li><code>&lt;C-/></code> <code>&lt;C-/></code> 註解掉或是解開</li></ul><h2 id=telescopenvim>telescope.nvim</h2><p><a href=https://github.com/nvim-telescope/telescope.nvim>Github Link</a></p><h2 id=ref>Ref</h2><p><a href=https://github.com/wsdjeg/vim-galore-zh_cn>https://github.com/wsdjeg/vim-galore-zh_cn</a>
+Cheat Sheet <a href=https://vim.rtorr.com/lang/zh_tw>https://vim.rtorr.com/lang/zh_tw</a></p></div><div class=article-footer></div></article><section id=comments><div id=disqus_thread><noscript>Please enable JavaScript to view the <a href=//disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class="bar-inner d-flex justify-content-between align-items-center"><ul class="pager m-0 d-flex align-items-center"><li class="prev me-2"><a href=https://blog.10oz.tw/20221028-logic-public-ecr/ title="Hey! 我想登入 AWS ECR" class="btn btn-outline-secondary btn-sm rounded-pill"><i class="icon icon-angle-left" aria-hidden=true></i>
+<span>&nbsp;Older</span></a></li><li class="next me-2"><a href=https://blog.10oz.tw/20230215-backup-elasticsearch-index-in-file-system/ title="Backup Elasticsearch index in File System" class="btn btn-outline-secondary btn-sm rounded-pill"><span>Newer&nbsp;</span>
+<i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class="toggle-toc ms-2"><a class="toggle-btn collapsed btn btn-sm" data-toggle=collapse href=#collapseToc aria-expanded=false title=Catalogue role=button><span>[&nbsp;</span><span>Catalogue</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class="d-flex align-items-center"><div class=share-component data-sites=facebook,twitter data-mobile-sites=facebook,twitter></div></div></div></nav></main><footer class=footer><ul class=social-links><li><a href=https://github.com/XiaoXiaoSN target=_blank title=github data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li><li><a href=https://blog.10oz.tw/index.xml target=_blank title=rss data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li></ul><div class=copyright>&copy;2018 -
+2026
+・
+<a href=https://blog.10oz.tw/privacy>Privacy Policy</a></div></footer><script>window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"],ignoreHtmlClass:"tex2jax_ignore",processHtmlClass:"tex2jax_process"},svg:{fontCache:"global"}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js integrity=sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/geopattern@1.2.3/geopattern.min.js defer></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/highlight.js@11.11.1></script><script>hljs.configure({tabReplace:"    ",classPrefix:""}),hljs.highlightAll()</script><script src=https://blog.10oz.tw/js/application.min.753afee4e6068144ff9138a9074d36e34c2ebf30cb3f0755289476c71d7339aca1d0a488941f015994e5cdeb27cc44e5.js integrity=sha384-dTr+5OYGgUT/kTipB00240wuvzDLPwdVKJR2xx1zOayh0KSIlB8BWZTlzesnzETl defer></script><script>(function(e){var t={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)"},ROOT_URL:"https://blog.10oz.tw/",CONTENT_URL:"https://blog.10oz.tw/searchindex.json"};e.INSIGHT_CONFIG=t})(window)</script><script type=text/javascript src=https://blog.10oz.tw/js/insight.min.fb5b734703efc9520777dc5f072db912f486074f205304a2dee7ac2a250d860f226795f3b849c1fb7ab13347d818e0a1.js integrity=sha384-+1tzRwPvyVIHd9xfBy25EvSGB08gUwSi3uesKiUNhg8iZ5XzuEnB+3qxM0fYGOCh defer></script><script src=https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.js></script><script>tocbot.init({tocSelector:".js-toc",contentSelector:".js-toc-content",headingSelector:"h1, h2, h3",hasInnerContainers:!0})</script><script>var disqus_config=function(){this.page.url="https://blog.10oz.tw/20230103-use-vim/",this.page.identifier="xiaoxiaoblog-1"};(function(){var e=document,t=e.createElement("script");t.src="//xiaoxiaoblog-1.disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-09FFP1WQY3"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-09FFP1WQY3")}</script></body></html>

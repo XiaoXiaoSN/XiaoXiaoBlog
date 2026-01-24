@@ -1,195 +1,558 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>chromedp on XiaoXiao Notes</title>
-    <link>https://blog.10oz.tw/tags/chromedp/</link>
-    <description>Recent content in chromedp on XiaoXiao Notes</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <copyright>MIT</copyright>
-    <lastBuildDate>Sat, 06 Mar 2021 01:26:39 +0800</lastBuildDate>
-    
-        <atom:link href="https://blog.10oz.tw/tags/chromedp/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>JavaScript 取得座標位址</title>
-      <link>https://blog.10oz.tw/20210623-get-geo-in-javascript/</link>
-      <pubDate>Thu, 24 Jun 2021 19:37:41 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210623-get-geo-in-javascript/</guid>
-      <description>內容開始 已經是很公開的標準了，資料多到不行～～ 還是筆記一下 取得座標 - getCurrentPosition MDN Doc const successCallback = (position) =&amp;gt; { // position.coords.latitude 緯度 // position.coords.longitude 精度 // position.timestamp 取得的時間戳 ex:1624703519728 } const errorCallback = (err) =&amp;gt; { // err.code 列</description>
-    </item>
-    
-    <item>
-      <title>究竟阿狗能做什麼呢</title>
-      <link>https://blog.10oz.tw/20210409-what-can-argocd-do/</link>
-      <pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210409-what-can-argocd-do/</guid>
-      <description>你問阿狗是什麼 GitOps + Kubernetes 的產物，相當不錯的運維工具 先來裝 Argo CD 我們要用 helm 安裝裝起來喔 helm repo add argo-cd https://argoproj.github.io/argo-helm helm repo update 來準備個 values.yaml installCRDs: false global: image: tag: v1.8.6 dex: enabled: false server: extraArgs: - --insecure # 如果說你</description>
-    </item>
-    
-    <item>
-      <title>啥? k8s node 硬碟空間滿了</title>
-      <link>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</link>
-      <pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</guid>
-      <description>發現 k8s 機器的硬碟空間滿了 滿了耶！！怎麼會這樣 趁還有空間趕快 ssh 進去看一眼 dev@k8s07:~$ df -h Filesystem Size Used Avail Use% Mounted on udev 5.9G 0 5.9G 0% /dev tmpfs 1.2G 4.5M 1.2G 1% /run /dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% / tmpfs 5.9G 0 5.9G 0% /dev/shm tmpfs</description>
-    </item>
-    
-    <item>
-      <title>想用 Terraform 與 kOps 也得寫個筆記</title>
-      <link>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</link>
-      <pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</guid>
-      <description>流水帳開始 😂 Terraform 先裝點東西吧 來安裝 terraform brew tap hashicorp/tap brew install hashicorp/tap/terraform 首先登入你的 aws iam 建立一組 Access key, Secret key 直接產一個 main.tf 檔案~ 下面有指令直接來跑跑看，你應該要多一個 ec2 機器</description>
-    </item>
-    
-    <item>
-      <title>小紀錄更新 Rinkeby Ethereum 節點</title>
-      <link>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</link>
-      <pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</guid>
-      <description>這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事 也是沒有好好更新節點版本又不認真追時事的故事 事件發生 大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢</description>
-    </item>
-    
-    <item>
-      <title>helm3 說 has no deployed releases</title>
-      <link>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</link>
-      <pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</guid>
-      <description>問題描述 helm release 明明就存在，但是他就是跟你說沒有部署的版本 Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases 處理一下 原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 --force 再給他</description>
-    </item>
-    
-    <item>
-      <title>go get 與私有 Gitlab</title>
-      <link>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</link>
-      <pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</guid>
-      <description>GitLab Community Edition 12.7.0 go version go1.15 darwin/amd64 問題描述 事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援 Privite Gitlab 存取私有的 Gitlab 可以修改你的 go env export GOPRIVATE=gitlab.company.com.tw Subgroup 你的 go.mod module example.com/test require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0 replace gitlab.com/org/subgroup/repo/pkg/foo</description>
-    </item>
-    
-    <item>
-      <title>Chromedp 殭屍進程</title>
-      <link>https://blog.10oz.tw/20210306-chromedp-zombi-process/</link>
-      <pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210306-chromedp-zombi-process/</guid>
-      <description>問題描述 這幾天工作遇到 chromedp 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積 因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗</description>
-    </item>
-    
-    <item>
-      <title>VPN &amp; GFW - 科學上網</title>
-      <link>https://blog.10oz.tw/20210124-vpn-and-gfw/</link>
-      <pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20210124-vpn-and-gfw/</guid>
-      <description>GFW (great fire wall) 中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由</description>
-    </item>
-    
-    <item>
-      <title>gRPC - protobuf v3 產生 nullable 欄位</title>
-      <link>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</link>
-      <pubDate>Mon, 23 Nov 2020 00:56:51 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</guid>
-      <description>關於 protobuf null value golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！ option protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option</description>
-    </item>
-    
-    <item>
-      <title>新米 Istio - 安裝篇</title>
-      <link>https://blog.10oz.tw/20201115-a-istio-beginner/</link>
-      <pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid>
-      <description>開始安裝 下載後會得到一個資料夾 istio-1.7.4 把他加入你的執行檔中吧 curl -L https://istio.io/downloadIstio | sh - export PATH=$PWD/istio-1.7.4/bin:$PATH istioctl version # 成功就是有囉 預設的 Profile 們有六個，我就先用 default 吧 default demo minimal remote empty preview Core components istio-egressgateway X istio-ingressgateway</description>
-    </item>
-    
-    <item>
-      <title>有一天路過 AWS ECS</title>
-      <link>https://blog.10oz.tw/20201009-aws-ecs-beginner/</link>
-      <pubDate>Fri, 09 Oct 2020 14:04:00 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20201009-aws-ecs-beginner/</guid>
-      <description>架構 ECS(Elastic Container Service) 是 AWS 上的容器管理服務，架構上可以簡單分成幾層: Cluster 一個群集 :) Service 可以把它當作 &amp;ldquo;執行企劃&amp;rdquo;，就像是一個 docker-compose 將多個 docker</description>
-    </item>
-    
-    <item>
-      <title>GraphQL 打招呼</title>
-      <link>https://blog.10oz.tw/20201009-hello-graphql/</link>
-      <pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20201009-hello-graphql/</guid>
-      <description>介紹一下 在遇見 GraphQL 的時候最常被比較的就是 Restful API，畢竟 Rustful API 是目前的主流設計，此時我們就必須了解到什麼情況下使用 GraphQL 能帶來效益 Over Fetch Restful API 的回傳會是一</description>
-    </item>
-    
-    <item>
-      <title>我要裝 vim</title>
-      <link>https://blog.10oz.tw/20200926-wanna-install-vim/</link>
-      <pubDate>Sat, 26 Sep 2020 02:03:48 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid>
-      <description>好文章推推，直接抄爆 https://learnku.com/articles/24924 設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣 &amp;quot;============================================================================== &amp;quot; vim 内置配置 &amp;quot;============================================================================== &amp;quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &amp;quot; 建议配置完成后将这</description>
-    </item>
-    
-    <item>
-      <title>新米 blockchain 混亂中</title>
-      <link>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</link>
-      <pubDate>Sat, 19 Sep 2020 00:56:51 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</guid>
-      <description>這次筆記內容會圍繞在比特幣這個區塊鍊加密貨幣系統 然後比特幣是一種讓北極熊沒有家住的技術 (? 區塊鏈的安全 區塊鏈鏈的模式，保證新的區塊接續前一個區</description>
-    </item>
-    
-    <item>
-      <title>golang 注入工具 wire</title>
-      <link>https://blog.10oz.tw/20200908-golang-di-tool-wire/</link>
-      <pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200908-golang-di-tool-wire/</guid>
-      <description>wire 是個啥米 wire 是一個靜態的注入工具，不像是其他的注入工具(uber/fx, facebook/inject)使用 reflect 來達成，他選擇使用 gen code 的方式產</description>
-    </item>
-    
-    <item>
-      <title>已知用火 - git.io 短網址</title>
-      <link>https://blog.10oz.tw/20200831-known-fire-gitio/</link>
-      <pubDate>Mon, 31 Aug 2020 01:34:04 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200831-known-fire-gitio/</guid>
-      <description>介紹 GitHub 在 2018 年推出的短網址服務: git.io 他可以把 GitHub 的網址縮短~ with fish 其實會發現他的原因，是因為在尋找 fish 的 plugin https://github.com/jorgebucaran/gitio.fish fisher 是一個 fish 的套件管理工具，我們用它來安裝 fish</description>
-    </item>
-    
-    <item>
-      <title>我們想在虛擬機上跑個 K8s</title>
-      <link>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</link>
-      <pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</guid>
-      <description>環境 我們先用 macOS Catalina 10.15.2 來做筆記喔 1. 虛擬機 一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～ 1.1 安裝 vagrant 跟 virtual box brew cask install vagrant vagrant version vagrant 使用版本 2.2.10 支援的 virtual box 版本沒有到最</description>
-    </item>
-    
-    <item>
-      <title>Docker 建立不同架構的 Image</title>
-      <link>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</link>
-      <pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</guid>
-      <description>問題起源 看看人家，一個 latest 有這麼多種架構的版本 羨慕耶 我也想要編一個給我的樹莓派 執行環境 » docker version Client: Docker Engine - Community Version: 19.03.12 API version: 1.40 Go version: go1.13.10 Git commit: 48a66213fe Built: Mon Jun 22 15:41:33 2020 OS/Arch: darwin/amd64 Experimental:</description>
-    </item>
-    
-    <item>
-      <title>Casbin 權限管理模組</title>
-      <link>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</link>
-      <pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</guid>
-      <description>Casbin 是什麼 casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 RBAC ABAC 他雖然規則複雜但他卻支持許多語言，可</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Chromedp on XiaoXiao Notes</title><link>https://blog.10oz.tw/tags/chromedp/</link><description>Recent content in Chromedp on XiaoXiao Notes</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>MIT</copyright><lastBuildDate>Sat, 06 Mar 2021 01:26:39 +0800</lastBuildDate><atom:link href="https://blog.10oz.tw/tags/chromedp/index.xml" rel="self" type="application/rss+xml"/><item><title>kind 筆記</title><link>https://blog.10oz.tw/20210821-kind-notes/</link><pubDate>Thu, 12 Aug 2021 12:10:00 +0800</pubDate><guid>https://blog.10oz.tw/20210821-kind-notes/</guid><description>&lt;h2 id="安裝"&gt;安裝&lt;/h2&gt;
+&lt;p&gt;在 docker 裡面啟動 kubernetes 的工具，在 local 端測試相當實用方便!&lt;/p&gt;
+&lt;p&gt;官方有提供多個平台的安裝方式，看這&lt;a href="https://kind.sigs.k8s.io/docs/user/quick-start/#installation"&gt;點我&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;這邊用一個 macOS 的 HomeBrew 來裝&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;brew install kind
+kind version
+# kind v0.11.0 go1.16.3 darwin/amd64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="常用指令寫下來"&gt;常用指令寫下來&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;建立新群集
+注意要指定 kube config 的位置，不然他會幫你放到 &lt;code&gt;~/.kube/config&lt;/code&gt; 裡面喔，亂亂的不好整理吧!!
+&lt;pre&gt;&lt;code&gt;kind create cluster --kubeconfig $HOME/.kube/kind.conf
+&lt;/code&gt;&lt;/pre&gt;
+還可以用 &lt;code&gt;--name&lt;/code&gt; 來架設多個群集 (預設 name 會給你 &lt;code&gt;kind&lt;/code&gt;)
+&lt;pre&gt;&lt;code&gt;kind create cluster --name kind-2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;取得目前建立的
+&lt;pre&gt;&lt;code&gt;kind get clusters
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;刪掉群集
+&lt;pre&gt;&lt;code&gt;kind delete cluster
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ref"&gt;Ref&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://kind.sigs.k8s.io/"&gt;https://kind.sigs.k8s.io/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>認識一次 Nix 套件管理系統</title><link>https://blog.10oz.tw/20210708-first-take-nix-package-manager/</link><pubDate>Thu, 08 Jul 2021 03:13:00 +0800</pubDate><guid>https://blog.10oz.tw/20210708-first-take-nix-package-manager/</guid><description>&lt;h2 id="介紹"&gt;介紹&lt;/h2&gt;
+&lt;h3 id="nix-nixpkgs"&gt;Nix (Nixpkgs)&lt;/h3&gt;
+&lt;p&gt;Nix 一般來說是指 &lt;code&gt;Nixpkgs&lt;/code&gt; 是一套套件管理系統，利用獨特的函數式語
+言來定義安裝的套件。在安裝套件為每一個獨立套件的依賴項做版本控制，避免了傳統套件管理系統安裝不同套件用到相同依賴時的版本更新問題！或是移除、安裝某些需要許多依賴的軟體時，能節省你許多時間！！又或者你同時需要 MySQL 5.5, MySQL 5.7 的 Instance 時也適用～&lt;/p&gt;</description></item><item><title>認識一次常見 Linux GUI (Desktop Environments)</title><link>https://blog.10oz.tw/20210706-known-popular-linux-de/</link><pubDate>Tue, 06 Jul 2021 13:11:08 +0800</pubDate><guid>https://blog.10oz.tw/20210706-known-popular-linux-de/</guid><description>&lt;h2 id="linux-de"&gt;Linux DE&lt;/h2&gt;
+&lt;p&gt;Linux 的 &lt;a href="https://zh.wikipedia.org/wiki/%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83"&gt;Desktop Environments&lt;/a&gt; 真的多到不可思議啦，怎麼選怎麼玩咧&lt;/p&gt;
+&lt;h3 id="kde-plasma-5"&gt;KDE Plasma 5&lt;/h3&gt;
+&lt;p&gt;大家熟知的一個輕量 DE，有現代且優雅的介面和高度可自訂的優點。
+不過也由於高度自訂的關係導致上手難度會相對提高！&lt;/p&gt;</description></item><item><title>Rust - Future cannot be sent between threads safely</title><link>https://blog.10oz.tw/20210703-rust-future-cannot-be-sent-between-threads-safely/</link><pubDate>Sat, 03 Jul 2021 10:44:00 +0800</pubDate><guid>https://blog.10oz.tw/20210703-rust-future-cannot-be-sent-between-threads-safely/</guid><description>&lt;h2 id="描述問題"&gt;描述問題&lt;/h2&gt;
+&lt;p&gt;錯誤訊息類似這樣：
+&lt;img src="https://i.imgur.com/bfNCQ1r.png" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="認識問題"&gt;認識問題&lt;/h2&gt;
+&lt;p&gt;原來呢，在 Rust 裡面的 Async 分享變數時會參考 &lt;code&gt;Send&lt;/code&gt; &lt;code&gt;Sync&lt;/code&gt; 這兩個 Trait&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Send&lt;/code&gt; 表示他能在不同的 Thread 中傳遞
+&lt;blockquote&gt;
+&lt;p&gt;A type is Send if it is safe to send it to another thread.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Sync&lt;/code&gt; 表示他能同時被多個線程分享使用 (&lt;code&gt;T is Sync&lt;/code&gt; if and only if &lt;code&gt;&amp;amp;T is Send&lt;/code&gt;)
+&lt;blockquote&gt;
+&lt;p&gt;A type is Sync if it is safe to share between threads (T is Sync if and only if &amp;amp;T is Send).&lt;/p&gt;</description></item><item><title>JavaScript 取得座標位址</title><link>https://blog.10oz.tw/20210623-get-geo-in-javascript/</link><pubDate>Thu, 24 Jun 2021 19:37:41 +0800</pubDate><guid>https://blog.10oz.tw/20210623-get-geo-in-javascript/</guid><description>&lt;h2 id="內容開始"&gt;內容開始&lt;/h2&gt;
+&lt;p&gt;已經是很公開的標準了，資料多到不行～～ 還是筆記一下&lt;/p&gt;
+&lt;h3 id="取得座標---getcurrentposition"&gt;取得座標 - getCurrentPosition&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition"&gt;MDN Doc&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;const successCallback = (position) =&amp;gt; {
+// position.coords.latitude 緯度
+// position.coords.longitude 精度
+// position.timestamp 取得的時間戳 ex:1624703519728
+}
+const errorCallback = (err) =&amp;gt; {
+// err.code 列表
+// err.PERMISSION_DENIED: 1
+// err.POSITION_UNAVAILABLE: 2
+// err.TIMEOUT: 3
+if (err.code === err.PERMISSION_DENIED) {
+console.log('你就是沒開嘛')
+}
+}
+const options = {
+// false | true
+enableHighAccuracy: true,
+// integer (milliseconds)
+// amount of time before the error callback is invoked,
+// if 0 it will never invoke.
+timeout: 5000,
+// integer (milliseconds)
+// infinity - maximum cached position age.
+maximumAge: 0
+}
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="定期查看座標---watchposition"&gt;定期查看座標 - watchPosition&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition"&gt;MDN Doc&lt;/a&gt;&lt;/p&gt;</description></item><item><title>究竟阿狗能做什麼呢</title><link>https://blog.10oz.tw/20210409-what-can-argocd-do/</link><pubDate>Fri, 09 Apr 2021 01:29:53 +0800</pubDate><guid>https://blog.10oz.tw/20210409-what-can-argocd-do/</guid><description>&lt;h2 id="你問阿狗是什麼"&gt;你問阿狗是什麼&lt;/h2&gt;
+&lt;p&gt;GitOps + Kubernetes 的產物，相當不錯的運維工具&lt;/p&gt;
+&lt;h2 id="先來裝-argo-cd"&gt;先來裝 Argo CD&lt;/h2&gt;
+&lt;p&gt;我們要用 helm 安裝裝起來喔&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;helm repo add argo-cd https://argoproj.github.io/argo-helm
+helm repo update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;來準備個 values.yaml&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;installCRDs: false
+global:
+image:
+tag: v1.8.6
+dex:
+enabled: false
+server:
+extraArgs:
+- --insecure
+# 如果說你有需要用反向代理抓 subpath，可以在這裡設定
+# - --basehref=https://blog.10oz.tw/argo
+# - --rootpath=/argo
+config:
+# 這裡要把你要監看的 git repo 放上來，
+# 範例是私有 Gitlab 的設定方式
+repositories: |
+- name: dev-argo
+insecure: true
+insecureIgnoreHostKey: true
+sshPrivateKeySecret:
+name: argocd-secret
+key: webhook.gitlab.secret
+type: git
+url: git@gitlab.10oz.tw:self_group/dev-argo.git
+metrics:
+enabled: true
+configs:
+secret:
+# 這裡產生一個 ssh key 來設定 gitlab repo 裡面的 deploy key
+# 然後把相應的 private 提供給 Argo 使用
+gitlabSecret: |-
+first set ssh-public-key in gitlab repo, Settings &amp;gt; Repository &amp;gt; Deploy Keys
+and replace the field with ssh-private-key
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS: 後面有說這裏的 Repository 跟 Secret 在哪裡弄 :)
+反正先裝等等還能改 XDD&lt;/p&gt;</description></item><item><title>啥? k8s node 硬碟空間滿了</title><link>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</link><pubDate>Fri, 02 Apr 2021 01:19:30 +0800</pubDate><guid>https://blog.10oz.tw/20210402-what-k8s-node-disk-full/</guid><description>&lt;h2 id="發現-k8s-機器的硬碟空間滿了"&gt;發現 k8s 機器的硬碟空間滿了&lt;/h2&gt;
+&lt;p&gt;滿了耶！！怎麼會這樣
+&lt;img src="https://i.imgur.com/09T0qb3.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;趁還有空間趕快 ssh 進去看一眼&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dev@k8s07:~$ df -h
+Filesystem Size Used Avail Use% Mounted on
+udev 5.9G 0 5.9G 0% /dev
+tmpfs 1.2G 4.5M 1.2G 1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv 98G 70G 23G 76% /
+tmpfs 5.9G 0 5.9G 0% /dev/shm
+tmpfs 5.0M 0 5.0M 0% /run/lock
+tmpfs 5.9G 0 5.9G 0% /sys/fs/cgroup
+/dev/sda2 976M 213M 696M 24% /boot
+tmpfs 1.2G 0 1.2G 0% /run/user/1000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;閉眼先清空一波 Docker image, volume&amp;hellip;&lt;/p&gt;</description></item><item><title>想用 Terraform 與 kOps 也得寫個筆記</title><link>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</link><pubDate>Wed, 31 Mar 2021 01:32:54 +0800</pubDate><guid>https://blog.10oz.tw/20210331-terraform-and-kops-need-a-note/</guid><description>&lt;h2 id="流水帳開始-"&gt;流水帳開始 😂&lt;/h2&gt;
+&lt;h3 id="terraform-先裝點東西吧"&gt;Terraform 先裝點東西吧&lt;/h3&gt;
+&lt;p&gt;來安裝 terraform&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;首先登入你的 aws iam 建立一組 Access key, Secret key&lt;/p&gt;
+&lt;p&gt;直接產一個 &lt;code&gt;main.tf&lt;/code&gt; 檔案~
+下面有指令直接來跑跑看，你應該要多一個 ec2 機器👍&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;provider &amp;quot;aws&amp;quot; {
+# access_key = &amp;quot;$AWS_ACCESS_KEY_ID&amp;quot;
+# secret_key = &amp;quot;$AWS_SECRET_ACCESS_KEY&amp;quot;
+region = &amp;quot;ap-northeast-1&amp;quot;
+}
+data &amp;quot;aws_ami&amp;quot; &amp;quot;ubuntu&amp;quot; {
+most_recent = true
+filter {
+name = &amp;quot;name&amp;quot;
+values = [&amp;quot;ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*&amp;quot;]
+}
+filter {
+name = &amp;quot;root-device-type&amp;quot;
+values = [&amp;quot;ebs&amp;quot;]
+}
+filter {
+name = &amp;quot;virtualization-type&amp;quot;
+values = [&amp;quot;hvm&amp;quot;]
+}
+owners = [&amp;quot;099720109477&amp;quot;] # Canonical
+}
+# resource &amp;lt;resource_type&amp;gt; &amp;lt;resource_name&amp;gt;
+resource &amp;quot;aws_instance&amp;quot; &amp;quot;example&amp;quot; {
+ami = data.aws_ami.ubuntu.id
+instance_type = &amp;quot;t2.micro&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面這一段開一個基本 ec2 instance 的範例，其實官方有教 &lt;a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance"&gt;點我&lt;/a&gt;&lt;/p&gt;</description></item><item><title>小紀錄更新 Rinkeby Ethereum 節點</title><link>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</link><pubDate>Fri, 26 Mar 2021 01:41:50 +0800</pubDate><guid>https://blog.10oz.tw/20210326-little-bit-update-rinkeby-ethereum/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;這是發生在測試鏈 Rinkeby 與 EIP-1559 的故事
+也是沒有好好更新節點版本又不認真追時事的故事&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="事件發生"&gt;事件發生&lt;/h2&gt;
+&lt;p&gt;大約在晚上 11 點，在家裡測試 SIT 環境的 feature 時，剛好需要幫我的以太錢包充值
+發現！ 不妙！ 充不進去耶，怎麼沒反應咧？&lt;/p&gt;</description></item><item><title>helm3 說 has no deployed releases</title><link>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</link><pubDate>Fri, 26 Mar 2021 01:24:28 +0800</pubDate><guid>https://blog.10oz.tw/20210326-helm3-has-no-deployed-releases/</guid><description>&lt;h2 id="問題描述"&gt;問題描述&lt;/h2&gt;
+&lt;p&gt;helm release 明明就存在，但是他就是跟你說沒有部署的版本&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Error: UPGRADE FAILED: &amp;quot;code-server&amp;quot; has no deployed releases
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="處理一下"&gt;處理一下&lt;/h2&gt;
+&lt;p&gt;原來是狀態不對，可能上一次部署的時候失敗了，只要你加上 &lt;code&gt;--force&lt;/code&gt; 再給他跑下去就好&lt;/p&gt;
+&lt;p&gt;或者說去找到 secrets sh.helm.release.v1.{server_name}.v{version} 修改一下裡面的
+labels status，改成 &lt;code&gt;deployed&lt;/code&gt;&lt;/p&gt;</description></item><item><title>go get 與私有 Gitlab</title><link>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</link><pubDate>Tue, 16 Mar 2021 01:49:55 +0800</pubDate><guid>https://blog.10oz.tw/20210316-go-get-privite-gitlab-repo/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;GitLab Community Edition 12.7.0
+go version go1.15 darwin/amd64&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="問題描述"&gt;問題描述&lt;/h2&gt;
+&lt;p&gt;事實上這次包含兩個問題，一個是 Privite Gitlab 的認證另一個是 Gitlab Subgroup 的支援&lt;/p&gt;
+&lt;h2 id="privite-gitlab"&gt;Privite Gitlab&lt;/h2&gt;
+&lt;p&gt;存取私有的 Gitlab 可以修改你的 go env&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export GOPRIVATE=gitlab.company.com.tw
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="subgroup"&gt;Subgroup&lt;/h2&gt;
+&lt;p&gt;你的 go.mod&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;module example.com/test
+require gitlab.com/org/subgroup/repo/pkg/foo v0.0.0
+replace gitlab.com/org/subgroup/repo/pkg/foo =&amp;gt; gitlab.com/org/subgroup/repo.git/pkg/foo v1.0.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="ref"&gt;Ref&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785"&gt;https://gitlab.com/gitlab-org/gitlab-foss/-/issues/30785&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Chromedp 殭屍進程</title><link>https://blog.10oz.tw/20210306-chromedp-zombi-process/</link><pubDate>Sat, 06 Mar 2021 01:26:39 +0800</pubDate><guid>https://blog.10oz.tw/20210306-chromedp-zombi-process/</guid><description>&lt;h2 id="問題描述"&gt;問題描述&lt;/h2&gt;
+&lt;p&gt;這幾天工作遇到 &lt;a href="https://github.com/chromedp/chromedp"&gt;chromedp&lt;/a&gt; 爬蟲執行完後沒有被關閉！ 導致 memory 不斷堆積&lt;/p&gt;
+&lt;p&gt;因為監測 metrics 的最小單位是 container，一開始調查以為是程式記憶體過高所以嘗試用 pprof 錄了一段後發現沒有直接的上升，於是直接進入容器裡面觀察 process 佔用的資源&lt;/p&gt;</description></item><item><title>VPN &amp; GFW - 科學上網</title><link>https://blog.10oz.tw/20210124-vpn-and-gfw/</link><pubDate>Sun, 24 Jan 2021 01:52:48 +0800</pubDate><guid>https://blog.10oz.tw/20210124-vpn-and-gfw/</guid><description>&lt;h2 id="gfw-great-fire-wall"&gt;GFW (great fire wall)&lt;/h2&gt;
+&lt;p&gt;中國大陸在 2008 年啟動的計畫，監管所有的網路流量並且阻擋許多境外的網站和不受允許的 IP，例如說 youtube, google search, facebook 都是被禁止的。也因此有了翻牆找自由的需求，幫 QQ&lt;/p&gt;</description></item><item><title>gRPC - protobuf v3 產生 nullable 欄位</title><link>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</link><pubDate>Mon, 23 Nov 2020 00:56:51 +0800</pubDate><guid>https://blog.10oz.tw/20201123-nullable-column-in-protobuf-v3/</guid><description>&lt;h2 id="關於-protobuf-null-value"&gt;關於 protobuf null value&lt;/h2&gt;
+&lt;p&gt;golang 預設建出來的是沒有指標的，但是有時候就是需要指標來判斷啊！&lt;/p&gt;
+&lt;h3 id="option"&gt;option&lt;/h3&gt;
+&lt;p&gt;protobuf v3 從 1.12 開始支援實驗性功能 option，讓用戶可以像是 v2 時一樣使用 option 去產生一個 nullable 的欄位&lt;/p&gt;</description></item><item><title>新米 Istio - 安裝篇</title><link>https://blog.10oz.tw/20201115-a-istio-beginner/</link><pubDate>Sun, 15 Nov 2020 01:36:30 +0800</pubDate><guid>https://blog.10oz.tw/20201115-a-istio-beginner/</guid><description>&lt;h2 id="開始安裝"&gt;開始安裝&lt;/h2&gt;
+&lt;p&gt;下載後會得到一個資料夾 &lt;code&gt;istio-1.7.4&lt;/code&gt; 把他加入你的執行檔中吧&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -L https://istio.io/downloadIstio | sh -
+export PATH=$PWD/istio-1.7.4/bin:$PATH
+istioctl version # 成功就是有囉
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;預設的 Profile 們有六個，我就先用 default 吧&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;default&lt;/th&gt;
+&lt;th&gt;demo&lt;/th&gt;
+&lt;th&gt;minimal&lt;/th&gt;
+&lt;th&gt;remote&lt;/th&gt;
+&lt;th&gt;empty&lt;/th&gt;
+&lt;th&gt;preview&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Core components&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;istio-egressgateway&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;istio-ingressgateway&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;istiod&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;istioctl profile list
+istioctl install --set profile=default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;裝好之後來實驗一下喔，開一個新的 namespce 並安裝官方範例 book info，裡面包含 4 個微服務&lt;/p&gt;</description></item><item><title>有一天路過 AWS ECS</title><link>https://blog.10oz.tw/20201009-aws-ecs-beginner/</link><pubDate>Fri, 09 Oct 2020 14:04:00 +0800</pubDate><guid>https://blog.10oz.tw/20201009-aws-ecs-beginner/</guid><description>&lt;h2 id="架構"&gt;架構&lt;/h2&gt;
+&lt;p&gt;ECS(Elastic Container Service) 是 AWS 上的容器管理服務，架構上可以簡單分成幾層:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cluster
+一個群集 :)&lt;/li&gt;
+&lt;li&gt;Service
+可以把它當作 &amp;ldquo;執行企劃&amp;rdquo;，就像是一個 docker-compose 將多個 docker 服務包裝起來&lt;/li&gt;
+&lt;li&gt;Task
+由 Service 產生的工作任務，負責維護 Container 的部署，在 EC2 模式就是他負責部署服務到機器上的&lt;/li&gt;
+&lt;li&gt;Container
+你的 AP 在這裡，他就是最底層的容器服務啦
+&lt;img src="https://i.imgur.com/8HQwtxS.png" alt=""&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;分成兩種模式，差別在底層的機器是否需要自己管理，
+無論是哪種都可以做 Auto Scaling 來確保服務的可用性&lt;/p&gt;</description></item><item><title>GraphQL 打招呼</title><link>https://blog.10oz.tw/20201009-hello-graphql/</link><pubDate>Fri, 09 Oct 2020 01:17:39 +0800</pubDate><guid>https://blog.10oz.tw/20201009-hello-graphql/</guid><description>&lt;h2 id="介紹一下"&gt;介紹一下&lt;/h2&gt;
+&lt;p&gt;在遇見 GraphQL 的時候最常被比較的就是 Restful API，畢竟 Rustful API 是目前的主流設計，此時我們就必須了解到什麼情況下使用 GraphQL 能帶來效益&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Over Fetch&lt;/strong&gt;
+Restful API 的回傳會是一整個 resource， &lt;code&gt;/user/1&lt;/code&gt; 會回傳 id=1 的 User 的全部資料，然而在很多情況下我們不需要這麼多的資料，可能 我們僅僅只需要 user 的名字而已
+在 GraphQL 你可以指定你所需要的欄位，大大的減少了傳輸無用資料的消耗&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Under Fetch&lt;/strong&gt;
+也就是 n+1 問題，情景是 user 有很多的 friends，每個朋友都是一名 User，在 Restful 的設計中，每個 User resource 都是一支 API，想想就頭痛 QQ。因此會在後端客製化 API 做 eager loading，一次回傳這些資料
+但到了 GraphQL 這完全不是問題，你可以向下定義你所需要的資料，並嵌入 User 中
+&lt;pre&gt;&lt;code class="language-graphql"&gt;query {
+User(id: 1) {
+Name
+AvatarURL
+friends {
+ID
+Name
+}
+}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在設計上，GraphQL 關注 &lt;strong&gt;明確的解釋查詢語言與型態系統&lt;/strong&gt; 而不去描述伺服器端實作，前後端之間以 Schema 定義溝通介面，雙方有共通的資料型態以及明確定義的詞彙來討論&lt;br&gt;
+讓一切清楚且簡單～&lt;/p&gt;</description></item><item><title>我要裝 vim</title><link>https://blog.10oz.tw/20200926-wanna-install-vim/</link><pubDate>Sat, 26 Sep 2020 02:03:48 +0800</pubDate><guid>https://blog.10oz.tw/20200926-wanna-install-vim/</guid><description>&lt;p&gt;好文章推推，直接抄爆
+&lt;a href="https://learnku.com/articles/24924"&gt;https://learnku.com/articles/24924&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="設定開始"&gt;設定開始&lt;/h2&gt;
+&lt;h3 id="撰寫設定檔"&gt;撰寫設定檔&lt;/h3&gt;
+&lt;p&gt;首先 &lt;code&gt;vim ~/.vimrc&lt;/code&gt; 改成下面這模樣&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-vim"&gt;&amp;quot;==============================================================================
+&amp;quot; vim 内置配置
+&amp;quot;==============================================================================
+&amp;quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开
+&amp;quot; 建议配置完成后将这个关闭，否则配置多了之后会很卡
+&amp;quot; autocmd BufWritePost $MYVIMRC source $MYVIMRC
+&amp;quot; 关闭兼容模式
+set nocompatible
+set nu &amp;quot; 设置行号
+set cursorline &amp;quot;突出显示当前行
+set showmatch &amp;quot; 显示括号匹配
+&amp;quot; tab 缩进
+set tabstop=4 &amp;quot; 设置Tab长度为4空格
+set shiftwidth=4 &amp;quot; 设置自动缩进长度为4空格
+set autoindent &amp;quot; 继承前一行的缩进方式，适用于多行注释
+&amp;quot; 定义快捷键的前缀，即&amp;lt;Leader&amp;gt;
+let mapleader=&amp;quot;,&amp;quot;
+&amp;quot; ==== 系统剪切板复制粘贴 ====
+&amp;quot; v 模式下复制内容到系统剪切板
+vmap &amp;lt;Leader&amp;gt;c &amp;quot;+yy
+&amp;quot; n 模式下复制一行到系统剪切板
+nmap &amp;lt;Leader&amp;gt;c &amp;quot;+yy
+&amp;quot; n 模式下粘贴系统剪切板的内容
+nmap &amp;lt;Leader&amp;gt;v &amp;quot;+p
+&amp;quot; 开启实时搜索
+set incsearch
+&amp;quot; 搜索时大小写不敏感
+set ignorecase
+syntax enable
+syntax on &amp;quot; 开启文件类型侦测
+filetype plugin indent on &amp;quot; 启用自动补全
+&amp;quot; 退出插入模式指定类型的文件自动保存
+au InsertLeave *.go,*.sh,*.php write
+&amp;quot;==============================================================================
+&amp;quot; 插件配置
+&amp;quot;==============================================================================
+&amp;quot; 插件开始的位置
+call plug#begin('~/.vim/plugged')
+&amp;quot; Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+&amp;quot; 可以快速对齐的插件
+Plug 'junegunn/vim-easy-align'
+&amp;quot; 用来提供一个导航目录的侧边栏
+Plug 'scrooloose/nerdtree'
+&amp;quot; 可以使 nerdtree Tab 标签的名称更友好些
+Plug 'jistr/vim-nerdtree-tabs'
+&amp;quot; 可以在导航目录中看到 git 版本信息
+Plug 'Xuyuanp/nerdtree-git-plugin'
+&amp;quot; 支援更多 git 的功能
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
+&amp;quot; 可以在文档中显示 git 信息
+Plug 'airblade/vim-gitgutter'
+&amp;quot; 查看当前代码文件中的变量和函数列表的插件，
+&amp;quot; 可以切换和跳转到代码中对应的变量和函数的位置
+&amp;quot; 大纲式导航, Go 需要 https://github.com/jstemmer/gotags 支持
+Plug 'majutsushi/tagbar'
+&amp;quot; 自动补全括号的插件，包括小括号，中括号，以及花括号
+Plug 'jiangmiao/auto-pairs'
+&amp;quot; Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态
+Plug 'vim-airline/vim-airline'
+&amp;quot; 代码自动完成，安装完插件还需要额外配置才可以使用
+Plug 'Valloric/YouCompleteMe'
+&amp;quot; 下面两个插件要配合使用，可以自动生成代码块
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+&amp;quot; 配色方案
+Plug 'fatih/molokai'
+&amp;quot; go 主要插件
+Plug 'fatih/vim-go', { 'tag': '*' }
+&amp;quot; go 中的代码追踪，输入 gd 就可以自动跳转
+Plug 'dgryski/vim-godef'
+&amp;quot; markdown 插件
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+&amp;quot; 模糊搜尋
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+&amp;quot; 多行編輯
+Plug 'mg979/vim-visual-multi'
+&amp;quot; 搜尋
+Plug 'mileszs/ack.vim'
+let g:ackprg = 'ag --nogroup --nocolor --column'
+&amp;quot; 插件结束的位置，插件全部放在此行上面
+call plug#end()
+&amp;quot;==============================================================================
+&amp;quot; 主题配色
+&amp;quot;==============================================================================
+let g:rehash256 = 1
+let g:molokai_original = 1
+colorscheme molokai
+&amp;quot; colorscheme sublimemonokai
+&amp;quot;==============================================================================
+&amp;quot; vim-go 插件
+&amp;quot;==============================================================================
+let g:go_fmt_command = &amp;quot;goimports&amp;quot; &amp;quot; 格式化将默认的 gofmt 替换
+let g:go_autodetect_gopath = 1
+let g:go_list_type = &amp;quot;quickfix&amp;quot;
+let g:go_version_warning = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_function_arguments = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_variable_declarations = 1
+let g:godef_split=2
+&amp;quot;==============================================================================
+&amp;quot; NERDTree 插件
+&amp;quot;==============================================================================
+&amp;quot; 打开和关闭NERDTree快捷键
+map &amp;lt;F10&amp;gt; :NERDTreeToggle&amp;lt;CR&amp;gt;
+&amp;quot; 显示行号
+let NERDTreeShowLineNumbers=1
+&amp;quot; 打开文件时是否显示目录
+let NERDTreeAutoCenter=1
+&amp;quot; 是否显示隐藏文件
+let NERDTreeShowHidden=1
+&amp;quot; 设置宽度
+&amp;quot; let NERDTreeWinSize=31
+&amp;quot; 忽略一下文件的显示
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swp', '.git']
+&amp;quot; 打开 vim 文件及显示书签列表
+let NERDTreeShowBookmarks=2
+&amp;quot; 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+&amp;quot;==============================================================================
+&amp;quot; majutsushi/tagbar 插件
+&amp;quot;==============================================================================
+&amp;quot; majutsushi/tagbar 插件打开关闭快捷键
+nmap &amp;lt;F9&amp;gt; :TagbarToggle&amp;lt;CR&amp;gt;
+let g:tagbar_type_go = {
+\ 'ctagstype' : 'go',
+\ 'kinds' : [
+\ 'p:package',
+\ 'i:imports:1',
+\ 'c:constants',
+\ 'v:variables',
+\ 't:types',
+\ 'n:interfaces',
+\ 'w:fields',
+\ 'e:embedded',
+\ 'm:methods',
+\ 'r:constructor',
+\ 'f:functions'
+\ ],
+\ 'sro' : '.',
+\ 'kind2scope' : {
+\ 't' : 'ctype',
+\ 'n' : 'ntype'
+\ },
+\ 'scope2kind' : {
+\ 'ctype' : 't',
+\ 'ntype' : 'n'
+\ },
+\ 'ctagsbin' : 'gotags',
+\ 'ctagsargs' : '-sort -silent'
+\ }
+&amp;quot;==============================================================================
+&amp;quot; nerdtree-git-plugin 插件
+&amp;quot;==============================================================================
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+\ &amp;quot;Modified&amp;quot; : &amp;quot;✹&amp;quot;,
+\ &amp;quot;Staged&amp;quot; : &amp;quot;✚&amp;quot;,
+\ &amp;quot;Untracked&amp;quot; : &amp;quot;✭&amp;quot;,
+\ &amp;quot;Renamed&amp;quot; : &amp;quot;➜&amp;quot;,
+\ &amp;quot;Unmerged&amp;quot; : &amp;quot;═&amp;quot;,
+\ &amp;quot;Deleted&amp;quot; : &amp;quot;✖&amp;quot;,
+\ &amp;quot;Dirty&amp;quot; : &amp;quot;✗&amp;quot;,
+\ &amp;quot;Clean&amp;quot; : &amp;quot;✔︎&amp;quot;,
+\ 'Ignored' : '☒',
+\ &amp;quot;Unknown&amp;quot; : &amp;quot;?&amp;quot;
+\ }
+let g:NERDTreeGitStatusShowIgnored = 1
+&amp;quot;==============================================================================
+&amp;quot; nerdtree-git-plugin 插件
+&amp;quot;==============================================================================
+&amp;quot; [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+nnoremap &amp;lt;leader&amp;gt;fl :Lines
+nnoremap &amp;lt;leader&amp;gt;fbl :BLines
+nnoremap &amp;lt;leader&amp;gt;ff :Files
+&amp;quot;==============================================================================
+&amp;quot; Valloric/YouCompleteMe 插件
+&amp;quot;==============================================================================
+&amp;quot; make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['&amp;lt;C-n&amp;gt;', '&amp;lt;space&amp;gt;']
+let g:ycm_key_list_previous_completion = ['&amp;lt;C-p&amp;gt;', '&amp;lt;Up&amp;gt;']
+let g:SuperTabDefaultCompletionType = '&amp;lt;C-n&amp;gt;'
+&amp;quot; better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = &amp;quot;&amp;lt;tab&amp;gt;&amp;quot;
+let g:UltiSnipsJumpForwardTrigger = &amp;quot;&amp;lt;tab&amp;gt;&amp;quot;
+let g:UltiSnipsJumpBackwardTrigger = &amp;quot;&amp;lt;s-tab&amp;gt;&amp;quot;
+&amp;quot;==============================================================================
+&amp;quot; 支援更多 git
+&amp;quot;==============================================================================
+&amp;quot; GBrower gitlab
+let g:fugitive_gitlab_domains = ['https://gitlab.silkrode.com.tw']
+let g:gitlab_api_keys = {'gitlab.silkrode.com.tw': '這個可能不能公開'}
+&amp;quot;==============================================================================
+&amp;quot; 其他插件配置
+&amp;quot;==============================================================================
+&amp;quot; markdwon 的快捷键
+map &amp;lt;silent&amp;gt; &amp;lt;F5&amp;gt; &amp;lt;Plug&amp;gt;MarkdownPreview
+map &amp;lt;silent&amp;gt; &amp;lt;F6&amp;gt; &amp;lt;Plug&amp;gt;StopMarkdownPreview
+&amp;quot; tab 标签页切换快捷键
+:nn &amp;lt;Leader&amp;gt;1 1gt
+:nn &amp;lt;Leader&amp;gt;2 2gt
+:nn &amp;lt;Leader&amp;gt;3 3gt
+:nn &amp;lt;Leader&amp;gt;4 4gt
+:nn &amp;lt;Leader&amp;gt;5 5gt
+:nn &amp;lt;Leader&amp;gt;6 6gt
+:nn &amp;lt;Leader&amp;gt;7 7gt
+:nn &amp;lt;Leader&amp;gt;8 8gt
+:nn &amp;lt;Leader&amp;gt;9 8gt
+:nn &amp;lt;Leader&amp;gt;0 :tablast&amp;lt;CR&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="安裝相關插件"&gt;安裝相關插件&lt;/h3&gt;
+&lt;h4 id="plug---vim-套件管理工具"&gt;Plug - vim 套件管理工具&lt;/h4&gt;
+&lt;p&gt;我們要用 &lt;code&gt;Plug&lt;/code&gt; 來裝插件 &lt;a href="https://github.com/junegunn/vim-plug"&gt;https://github.com/junegunn/vim-plug&lt;/a&gt;&lt;/p&gt;</description></item><item><title>新米 blockchain 混亂中</title><link>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</link><pubDate>Sat, 19 Sep 2020 00:56:51 +0800</pubDate><guid>https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;這次筆記內容會圍繞在&lt;strong&gt;比特幣&lt;/strong&gt;這個區塊鍊加密貨幣系統
+然後比特幣是一種讓北極熊沒有家住的技術 (?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="區塊鏈的安全"&gt;區塊鏈的安全&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;區塊鏈&lt;/strong&gt;鏈的模式，保證新的區塊接續前一個區塊，當區塊越多越難被修改&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;共識機制&lt;/strong&gt;需要多數節點認同保護資料不易被竄改，也就是&lt;strong&gt;去中心化&lt;/strong&gt;的部分啦&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;密碼學&lt;/strong&gt;上的困難問題保護使用資產不會被任意取用，也在建立新的區塊時增加難度，就是挖礦的部分啦&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="共識機制"&gt;共識機制&lt;/h3&gt;
+&lt;p&gt;這是在分散式系統中相當常見的問題，當節點多了，在同步上出現分歧時應該要聽誰的?
+究竟誰手中的資料才是正確的呢?&lt;/p&gt;</description></item><item><title>golang 注入工具 wire</title><link>https://blog.10oz.tw/20200908-golang-di-tool-wire/</link><pubDate>Tue, 08 Sep 2020 02:00:42 +0800</pubDate><guid>https://blog.10oz.tw/20200908-golang-di-tool-wire/</guid><description>&lt;h2 id="wire-是個啥米"&gt;wire 是個啥米&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;wire&lt;/code&gt; 是一個靜態的注入工具，不像是其他的注入工具(&lt;code&gt;uber/fx&lt;/code&gt;, &lt;code&gt;facebook/inject&lt;/code&gt;)使用 reflect 來達成，他選擇使用 gen code 的方式產生可以使用的注入程式碼。&lt;br&gt;
+能夠在編譯階段將注入的動作完成，而不是在執行程式的當下才知道發生了什麼錯誤&lt;/p&gt;</description></item></channel></rss>

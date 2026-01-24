@@ -1,725 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>
-        我要裝 vim - XiaoXiao Notes
-      </title>
-        <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no,email=no,adress=no">
-    
-    <meta name="theme-color" content="#000000" />
-    
-    <meta http-equiv="window-target" content="_top" />
-    
-    
-    <meta name="description" content="好文章推推，直接抄爆 https://learnku.com/articles/24924 設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣 &amp;quot;============================================================================== &amp;quot; vim 内置配置 &amp;quot;============================================================================== &amp;quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &amp;quot; 建议配置完成后将这" />
-    <meta name="generator" content="Hugo 0.111.2 with theme pure" />
-    <title>我要裝 vim - XiaoXiao Notes</title>
-    
-    
-    <link rel="stylesheet" href="https://blog.10oz.tw/css/style.min.2d5a1b78bec97b6e10e84cea7ee47c8ed866dbdb1a0fe330cb2294b35082cb9a.css">
-    
-    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.7.3/styles/github.min.css" async>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="我要裝 vim" />
-<meta property="og:description" content="好文章推推，直接抄爆 https://learnku.com/articles/24924 設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣 &quot;============================================================================== &quot; vim 内置配置 &quot;============================================================================== &quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &quot; 建议配置完成后将这" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.10oz.tw/20200926-wanna-install-vim/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-09-26T02:03:48+08:00" />
-<meta property="article:modified_time" content="2020-09-26T02:03:48+08:00" />
-<meta itemprop="name" content="我要裝 vim">
-<meta itemprop="description" content="好文章推推，直接抄爆 https://learnku.com/articles/24924 設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣 &quot;============================================================================== &quot; vim 内置配置 &quot;============================================================================== &quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &quot; 建议配置完成后将这"><meta itemprop="datePublished" content="2020-09-26T02:03:48+08:00" />
-<meta itemprop="dateModified" content="2020-09-26T02:03:48+08:00" />
-<meta itemprop="wordCount" content="1813">
-<meta itemprop="keywords" content="vim,golang," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="我要裝 vim"/>
-<meta name="twitter:description" content="好文章推推，直接抄爆 https://learnku.com/articles/24924 設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣 &quot;============================================================================== &quot; vim 内置配置 &quot;============================================================================== &quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &quot; 建议配置完成后将这"/>
-
-    <!--[if lte IE 9]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-      <![endif]-->
-
-    <!--[if lt IE 9]>
-        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-      <![endif]-->
-  </head>
-
-  
-  
-
-  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
-    <div class="slimContent">
-      <div class="navbar-header">
-        <div class="profile-block text-center">
-          <a id="avatar" href="/" target="">
-            <img class="img-circle" src="https://blog.10oz.tw/avatar.jpg" width="200" height="200">
-          </a>
-          <h2 id="name" class="hidden-xs hidden-sm">XiaoXiao Notes</h2>
-          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
-          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small>
-        </div><div class="search" id="search-form-wrap">
-    <form class="search-form sidebar-form">
-        <div class="input-group">
-            <input type="text" class="search-form-input form-control" placeholder="Search" />
-            <span class="input-group-btn">
-                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;">
-                    <i class="icon icon-search"></i>
-                </button>
-            </span>
-        </div>
-        <div class="ins-search">
-            <div class="ins-search-mask"></div>
-            <div class="ins-search-container">
-                <div class="ins-input-wrapper">
-                    <input type="text" class="ins-search-input" placeholder="Type something..."
-                        x-webkit-speech />
-                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
-                        aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="ins-section-wrapper">
-                    <div class="ins-section-container"></div>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-        <ul class="nav navbar-nav main-nav">
-            <li class="menu-item menu-item-home">
-                <a href="/">
-                    <i class="icon icon-home-fill"></i>
-                  <span class="menu-title">Home</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-archives">
-                <a href="/posts/">
-                    <i class="icon icon-archives-fill"></i>
-                  <span class="menu-title">Archives</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-tags">
-                <a href="/tags/">
-                    <i class="icon icon-tags"></i>
-                  <span class="menu-title">Tags</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-about">
-                <a href="/about/">
-                    <i class="icon icon-cup-fill"></i>
-                  <span class="menu-title">About</span>
-                </a>
-            </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    
-      <div class="widget">
-    <h3 class="widget-title">Board</h3>
-    <div class="widget-body">
-        <div id="board">
-            <div class="content">這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
-有助於回憶過去曾經做過的事情
-
-            </div>
-        </div>
-    </div>
-</div>
-
-      <div class="widget">
-  <h3 class="widget-title">Tag Cloud</h3>
-  <div id="tag-cloud-list" class="widget-body">
-    
-      
-      <a href="https://blog.10oz.tw/tags/apt/" class="tag-list-link" rel="1">
-        apt<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/argo/" class="tag-list-link" rel="1">
-        argo<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/artisan/" class="tag-list-link" rel="1">
-        artisan<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/aws/" class="tag-list-link" rel="2">
-        aws<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/blockchain/" class="tag-list-link" rel="1">
-        blockchain<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/buildx/" class="tag-list-link" rel="1">
-        buildx<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/casbin/" class="tag-list-link" rel="1">
-        casbin<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/cd/" class="tag-list-link" rel="1">
-        cd<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/chromedp/" class="tag-list-link" rel="1">
-        chromedp<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/chromium/" class="tag-list-link" rel="1">
-        chromium<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/crd/" class="tag-list-link" rel="3">
-        crd<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/de/" class="tag-list-link" rel="1">
-        de<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/di/" class="tag-list-link" rel="1">
-        di<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/docker/" class="tag-list-link" rel="3">
-        docker<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ecr/" class="tag-list-link" rel="1">
-        ecr<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/elasticsearch/" class="tag-list-link" rel="3">
-        elasticsearch<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/eloquent/" class="tag-list-link" rel="1">
-        eloquent<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/es/" class="tag-list-link" rel="1">
-        es<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ethereum/" class="tag-list-link" rel="1">
-        ethereum<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/flask/" class="tag-list-link" rel="1">
-        flask<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/future/" class="tag-list-link" rel="1">
-        future<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/geographic/" class="tag-list-link" rel="1">
-        geographic<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/geth/" class="tag-list-link" rel="1">
-        geth<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/gfw/" class="tag-list-link" rel="1">
-        gfw<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/git/" class="tag-list-link" rel="1">
-        git<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/github/" class="tag-list-link" rel="1">
-        github<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/gitlab/" class="tag-list-link" rel="2">
-        gitlab<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/golang/" class="tag-list-link" rel="8">
-        golang<span class="tag-list-count">8</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/golnag/" class="tag-list-link" rel="1">
-        golnag<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/gomod/" class="tag-list-link" rel="1">
-        gomod<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/gql/" class="tag-list-link" rel="1">
-        gql<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/graphql/" class="tag-list-link" rel="1">
-        graphql<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ha/" class="tag-list-link" rel="1">
-        ha<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/helm/" class="tag-list-link" rel="1">
-        helm<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/homebrew/" class="tag-list-link" rel="1">
-        homebrew<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/hugo/" class="tag-list-link" rel="2">
-        hugo<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ilm/" class="tag-list-link" rel="1">
-        ilm<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/index/" class="tag-list-link" rel="1">
-        index<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/istio/" class="tag-list-link" rel="1">
-        istio<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/javascript/" class="tag-list-link" rel="1">
-        javascript<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/json/" class="tag-list-link" rel="2">
-        json<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/jwt/" class="tag-list-link" rel="1">
-        jwt<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/keycloak/" class="tag-list-link" rel="1">
-        keycloak<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/kind/" class="tag-list-link" rel="1">
-        kind<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/kops/" class="tag-list-link" rel="1">
-        kops<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/kubernetes/" class="tag-list-link" rel="10">
-        kubernetes<span class="tag-list-count">10</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/laravel/" class="tag-list-link" rel="8">
-        laravel<span class="tag-list-count">8</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/linux/" class="tag-list-link" rel="3">
-        linux<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/location/" class="tag-list-link" rel="1">
-        location<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/log/" class="tag-list-link" rel="1">
-        log<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/macos/" class="tag-list-link" rel="1">
-        macos<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/mongodb/" class="tag-list-link" rel="1">
-        mongodb<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/multi-arch/" class="tag-list-link" rel="1">
-        multi-arch<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/mysql/" class="tag-list-link" rel="1">
-        mysql<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/mysqlclient/" class="tag-list-link" rel="1">
-        mysqlclient<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/neovim/" class="tag-list-link" rel="1">
-        neovim<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/nix/" class="tag-list-link" rel="1">
-        nix<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/nixos/" class="tag-list-link" rel="1">
-        nixos<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/oauth/" class="tag-list-link" rel="1">
-        oauth<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/operator/" class="tag-list-link" rel="1">
-        operator<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/orm/" class="tag-list-link" rel="1">
-        orm<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/passport/" class="tag-list-link" rel="1">
-        passport<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/php/" class="tag-list-link" rel="8">
-        php<span class="tag-list-count">8</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/pokemon/" class="tag-list-link" rel="1">
-        pokemon<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/pokesay/" class="tag-list-link" rel="1">
-        pokesay<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/postgres/" class="tag-list-link" rel="1">
-        postgres<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/pretty/" class="tag-list-link" rel="1">
-        pretty<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/python/" class="tag-list-link" rel="4">
-        python<span class="tag-list-count">4</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/raycast/" class="tag-list-link" rel="1">
-        raycast<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ruby/" class="tag-list-link" rel="1">
-        ruby<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/rust/" class="tag-list-link" rel="1">
-        rust<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/service-mesh/" class="tag-list-link" rel="1">
-        service-mesh<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/subgroup/" class="tag-list-link" rel="1">
-        subgroup<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/terraform/" class="tag-list-link" rel="1">
-        terraform<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/test/" class="tag-list-link" rel="1">
-        test<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/typescript/" class="tag-list-link" rel="1">
-        typescript<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/ubuntu/" class="tag-list-link" rel="1">
-        ubuntu<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vagrant/" class="tag-list-link" rel="1">
-        vagrant<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vim/" class="tag-list-link" rel="3">
-        vim<span class="tag-list-count">3</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vm/" class="tag-list-link" rel="1">
-        vm<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vpn/" class="tag-list-link" rel="1">
-        vpn<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vrrp/" class="tag-list-link" rel="1">
-        vrrp<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/vscode/" class="tag-list-link" rel="2">
-        vscode<span class="tag-list-count">2</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/windows/" class="tag-list-link" rel="1">
-        windows<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/wire/" class="tag-list-link" rel="1">
-        wire<span class="tag-list-count">1</span>
-      </a>
-      
-      
-      <a href="https://blog.10oz.tw/tags/wsl2/" class="tag-list-link" rel="1">
-        wsl2<span class="tag-list-count">1</span>
-      </a>
-      
-  </div>
-
-  <script>
-    document.onreadystatechange = () => {
-      if (document.readyState === 'complete') {
-        tagCloud('#tag-cloud-list a',  10 ,  20 );
-      }
-    };
-
-    function tagCloud(where, min, max, count) {
-      let iMax = 0;
-      let iMin = 0;
-
-      const elements = document.querySelectorAll(where);
-
-      elements.forEach((element) => {
-        const weight = Number(element.getAttribute("rel"));
-        if (iMax < weight) iMax = weight;
-        if (iMin > weight || iMin == 0) iMin = weight;
-      });
-
-      const step = (max - min) / (iMax - iMin);
-      elements.forEach((element) => {
-        const weight = element.getAttribute("rel") - iMin;
-        element.style.fontSize = `${min + (weight * step)}px`;
-      });
-    };
-  </script>
-</div>
-
-      
-<div class="widget">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget-body">
-        <ul class="recent-post-list list-unstyled no-thumbnail">
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230830-raycast/" class="title">macOS 生產力工具 - Raycast 真的很讚</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-08-30 13:09:00 &#43;0800 CST" itemprop="datePublished">2023-08-30</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/" class="title">How to create an Elasticsearch Data Stream</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-08-17 18:43:00 &#43;0800 CST" itemprop="datePublished">2023-08-17</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230612-github-permission-for-free-user/" class="title">GitHub Permission 免費方案權限實驗</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-06-12 18:20:00 &#43;0800 CST" itemprop="datePublished">2023-06-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230609-kubernetes-ha-keepalived-haproxy/" class="title">Kubernetes HA - Keepalived(VRRP) &#43; HAProxy</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-06-09 20:01:00 &#43;0800 CST" itemprop="datePublished">2023-06-09</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://blog.10oz.tw/20230215-backup-elasticsearch-index-in-file-system/" class="title">Backup Elasticsearch index in File System</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2023-02-16 20:28:00 &#43;0800 CST" itemprop="datePublished">2023-02-16</time>
-                    </p>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-  </div>
-</aside>
-
-    
-    
-<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <h4 class="toc-title">Catalogue</h4>
-    <nav id="toc" class="js-toc toc">
-
-    </nav>
-  </div>
-</aside>
-<main class="main" role="main"><div class="content">
-  <article id="-" class="article article-type-" itemscope
-    itemtype="http://schema.org/BlogPosting">
-    
-    <div class="article-header">
-      <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/20200926-wanna-install-vim/"
-    >我要裝 vim</a
-  >
-</h1>
-
-      <div class="article-meta">
-        
-<span class="article-date">
-  <i class="icon icon-calendar-check"></i>&nbsp;
-<a href="https://blog.10oz.tw/20200926-wanna-install-vim/" class="article-date">
-  <time datetime="2020-09-26 02:03:48 &#43;0800 CST" itemprop="datePublished">2020-09-26</time>
-</a>
-</span>
-  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>&nbsp;
-    <a class="article-tag-link label label-default" href="/tags/vim/"> vim </a>
-    <a class="article-tag-link label label-default" href="/tags/golang/"> golang </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/20200926-wanna-install-vim/#comments"
-            class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1813 words</span>
-      </div>
-    </div>
-    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <p>好文章推推，直接抄爆
-<a href="https://learnku.com/articles/24924">https://learnku.com/articles/24924</a></p>
-<h2 id="設定開始">設定開始</h2>
-<h3 id="撰寫設定檔">撰寫設定檔</h3>
-<p>首先 <code>vim ~/.vimrc</code> 改成下面這模樣</p>
-<pre><code class="language-vim">&quot;==============================================================================
+<!doctype html><html lang=en><head><title>我要裝 vim - XiaoXiao Notes</title><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=5"><meta name=renderer content="webkit"><meta name=mobile-web-app-capable content="yes"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&#34;============================================================================== &#34; vim 内置配置 &#34;============================================================================== &#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡 &#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC &#34; 关闭兼容模式 set nocompatible set nu &#34; 设置行号 set cursorline &#34;突出显示当前行 set showmatch &#34; 显示括号匹配 &#34; tab 缩进 set tabstop=4 &#34; 设置Tab长度为4空格 set shiftwidth=4 &#34; 设置自动缩进长度为4空格 set autoindent &#34; 继承前一行的缩进方式，适用于多行注释 &#34; 定义快捷键的前缀，即<Leader> let mapleader=&#34;,&#34; &#34; ==== 系统剪切板复制粘贴 ==== &#34; v 模式下复制内容到系统剪切板 vmap <Leader>c &#34;+yy &#34; n 模式下复制一行到系统剪切板 nmap <Leader>c &#34;+yy &#34; n 模式下粘贴系统剪切板的内容 nmap <Leader>v &#34;+p &#34; 开启实时搜索 set incsearch &#34; 搜索时大小写不敏感 set ignorecase syntax enable syntax on &#34; 开启文件类型侦测 filetype plugin indent on &#34; 启用自动补全 &#34; 退出插入模式指定类型的文件自动保存 au InsertLeave *.go,*.sh,*.php write &#34;============================================================================== &#34; 插件配置 &#34;============================================================================== &#34; 插件开始的位置 call plug#begin('~/.vim/plugged') &#34; Shorthand notation; fetches https://github.com/junegunn/vim-easy-align &#34; 可以快速对齐的插件 Plug 'junegunn/vim-easy-align' &#34; 用来提供一个导航目录的侧边栏 Plug 'scrooloose/nerdtree' &#34; 可以使 nerdtree Tab 标签的名称更友好些 Plug 'jistr/vim-nerdtree-tabs' &#34; 可以在导航目录中看到 git 版本信息 Plug 'Xuyuanp/nerdtree-git-plugin' &#34; 支援更多 git 的功能 Plug 'tpope/vim-fugitive' Plug 'tpope/vim-rhubarb' Plug 'shumphrey/fugitive-gitlab.vim' &#34; 可以在文档中显示 git 信息 Plug 'airblade/vim-gitgutter' &#34; 查看当前代码文件中的变量和函数列表的插件， &#34; 可以切换和跳转到代码中对应的变量和函数的位置 &#34; 大纲式导航, Go 需要 https://github.com/jstemmer/gotags 支持 Plug 'majutsushi/tagbar' &#34; 自动补全括号的插件，包括小括号，中括号，以及花括号 Plug 'jiangmiao/auto-pairs' &#34; Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态 Plug 'vim-airline/vim-airline' &#34; 代码自动完成，安装完插件还需要额外配置才可以使用 Plug 'Valloric/YouCompleteMe' &#34; 下面两个插件要配合使用，可以自动生成代码块 Plug 'SirVer/ultisnips' Plug 'honza/vim-snippets' &#34; 配色方案 Plug 'fatih/molokai' &#34; go 主要插件 Plug 'fatih/vim-go', { 'tag': '*' } &#34; go 中的代码追踪，输入 gd 就可以自动跳转 Plug 'dgryski/vim-godef' &#34; markdown 插件 Plug 'iamcco/mathjax-support-for-mkdp' Plug 'iamcco/markdown-preview.vim' &#34; 模糊搜尋 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } Plug 'junegunn/fzf.vim' &#34; 多行編輯 Plug 'mg979/vim-visual-multi' &#34; 搜尋 Plug 'mileszs/ack.vim' let g:ackprg = 'ag --nogroup --nocolor --column' &#34; 插件结束的位置，插件全部放在此行上面 call plug#end() &#34;============================================================================== &#34; 主题配色 &#34;============================================================================== let g:rehash256 = 1 let g:molokai_original = 1 colorscheme molokai &#34; colorscheme sublimemonokai &#34;============================================================================== &#34; vim-go 插件 &#34;============================================================================== let g:go_fmt_command = &#34;goimports&#34; &#34; 格式化将默认的 gofmt 替换 let g:go_autodetect_gopath = 1 let g:go_list_type = &#34;quickfix&#34; let g:go_version_warning = 1 let g:go_highlight_types = 1 let g:go_highlight_fields = 1 let g:go_highlight_functions = 1 let g:go_highlight_function_calls = 1 let g:go_highlight_operators = 1 let g:go_highlight_extra_types = 1 let g:go_highlight_methods = 1 let g:go_highlight_generate_tags = 1 let g:go_highlight_format_strings = 1 let g:go_highlight_function_arguments = 1 let g:go_highlight_generate_tags = 1 let g:go_highlight_variable_declarations = 1 let g:godef_split=2 &#34;============================================================================== &#34; NERDTree 插件 &#34;============================================================================== &#34; 打开和关闭NERDTree快捷键 map <F10> :NERDTreeToggle<CR> &#34; 显示行号 let NERDTreeShowLineNumbers=1 &#34; 打开文件时是否显示目录 let NERDTreeAutoCenter=1 &#34; 是否显示隐藏文件 let NERDTreeShowHidden=1 &#34; 设置宽度 &#34; let NERDTreeWinSize=31 &#34; 忽略一下文件的显示 let NERDTreeIgnore=['\.pyc', '\~$', '\.swp', '.git'] &#34; 打开 vim 文件及显示书签列表 let NERDTreeShowBookmarks=2 &#34; 在终端启动vim时，共享NERDTree let g:nerdtree_tabs_open_on_console_startup=1 &#34;============================================================================== &#34; majutsushi/tagbar 插件 &#34;============================================================================== &#34; majutsushi/tagbar 插件打开关闭快捷键 nmap <F9> :TagbarToggle<CR> let g:tagbar_type_go = { \ 'ctagstype' : 'go', \ 'kinds' : [ \ 'p:package', \ 'i:imports:1', \ 'c:constants', \ 'v:variables', \ 't:types', \ 'n:interfaces', \ 'w:fields', \ 'e:embedded', \ 'm:methods', \ 'r:constructor', \ 'f:functions' \ ], \ 'sro' : '.', \ 'kind2scope' : { \ 't' : 'ctype', \ 'n' : 'ntype' \ }, \ 'scope2kind' : { \ 'ctype' : 't', \ 'ntype' : 'n' \ }, \ 'ctagsbin' : 'gotags', \ 'ctagsargs' : '-sort -silent' \ } &#34;============================================================================== &#34; nerdtree-git-plugin 插件 &#34;============================================================================== let g:NERDTreeGitStatusIndicatorMapCustom = { \ &#34;Modified&#34; : &#34;✹&#34;, \ &#34;Staged&#34; : &#34;✚&#34;, \ &#34;Untracked&#34; : &#34;✭&#34;, \ &#34;Renamed&#34; : &#34;➜&#34;, \ &#34;Unmerged&#34; : &#34;═&#34;, \ &#34;Deleted&#34; : &#34;✖&#34;, \ &#34;Dirty&#34; : &#34;✗&#34;, \ &#34;Clean&#34; : &#34;✔︎&#34;, \ 'Ignored' : '☒', \ &#34;Unknown&#34; : &#34;?&#34; \ } let g:NERDTreeGitStatusShowIgnored = 1 &#34;============================================================================== &#34; nerdtree-git-plugin 插件 &#34;============================================================================== &#34; [Buffers] Jump to the existing window if possible let g:fzf_buffers_jump = 1 nnoremap <leader>fl :Lines nnoremap <leader>fbl :BLines nnoremap <leader>ff :Files &#34;============================================================================== &#34; Valloric/YouCompleteMe 插件 &#34;============================================================================== &#34; make YCM compatible with UltiSnips (using supertab) let g:ycm_key_list_select_completion = ['<C-n>', '<space>'] let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>'] let g:SuperTabDefaultCompletionType = '<C-n>' &#34; better key bindings for UltiSnipsExpandTrigger let g:UltiSnipsExpandTrigger = &#34;<tab>&#34; let g:UltiSnipsJumpForwardTrigger = &#34;<tab>&#34; let g:UltiSnipsJumpBackwardTrigger = &#34;<s-tab>&#34; &#34;============================================================================== &#34; 支援更多 git &#34;============================================================================== &#34; GBrower gitlab let g:fugitive_gitlab_domains = ['https://gitlab.silkrode.com.tw'] let g:gitlab_api_keys = {'gitlab.silkrode.com.tw': '這個可能不能公開'} &#34;============================================================================== &#34; 其他插件配置 &#34;============================================================================== &#34; markdwon 的快捷键 map <silent> <F5> <Plug>MarkdownPreview map <silent> <F6> <Plug>StopMarkdownPreview &#34; tab 标签页切换快捷键 :nn <Leader>1 1gt :nn <Leader>2 2gt :nn <Leader>3 3gt :nn <Leader>4 4gt :nn <Leader>5 5gt :nn <Leader>6 6gt :nn <Leader>7 7gt :nn <Leader>8 8gt :nn <Leader>9 8gt :nn <Leader>0 :tablast<CR> 安裝相關插件 Plug - vim 套件管理工具 我們要用 Plug 來裝插件 https://github.com/junegunn/vim-plug
+"><meta name=generator content="Hugo 0.154.5 with theme pure"><link href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH crossorigin=anonymous><link rel=stylesheet href=https://blog.10oz.tw/css/bootstrap5-compat.min.3ff920964662aab47751a81d8a1bd1739d80d342df135d996e761836b36fc82476cb5d694bde93050a1453ad0c4c9999.css integrity=sha384-P/kglkZiqrR3UagdihvRc52A00LfE12ZbnYYNrNvyCR2y11pS96TBQoUU60MTJmZ><link rel=stylesheet href=https://blog.10oz.tw/css/style.min.a850f9f609abb9608ee4bf498b9a6f3cd23ca4dce89f0d44cdec3df9fcf896e7878f149bb5c63b939341465898592ec1.css integrity=sha384-qFD59gmruWCO5L9Ji5pvPNI8pNzonw1Ezew9+fz4lueHjxSbtcY7k5NBRliYWS7B><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github.min.css media=print onload='this.media="all",this.onload=null'><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.css media=print onload='this.media="all",this.onload=null'><meta property="og:url" content="https://blog.10oz.tw/20200926-wanna-install-vim/"><meta property="og:site_name" content="XiaoXiao Notes"><meta property="og:title" content="我要裝 vim"><meta property="og:description" content="好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&#34;============================================================================== &#34; vim 内置配置 &#34;============================================================================== &#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡 &#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC &#34; 关闭兼容模式 set nocompatible set nu &#34; 设置行号 set cursorline &#34;突出显示当前行 set showmatch &#34; 显示括号匹配 &#34; tab 缩进 set tabstop=4 &#34; 设置Tab长度为4空格 set shiftwidth=4 &#34; 设置自动缩进长度为4空格 set autoindent &#34; 继承前一行的缩进方式，适用于多行注释 &#34; 定义快捷键的前缀，即<Leader> let mapleader=&#34;,&#34; &#34; ==== 系统剪切板复制粘贴 ==== &#34; v 模式下复制内容到系统剪切板 vmap <Leader>c &#34;+yy &#34; n 模式下复制一行到系统剪切板 nmap <Leader>c &#34;+yy &#34; n 模式下粘贴系统剪切板的内容 nmap <Leader>v &#34;+p &#34; 开启实时搜索 set incsearch &#34; 搜索时大小写不敏感 set ignorecase syntax enable syntax on &#34; 开启文件类型侦测 filetype plugin indent on &#34; 启用自动补全 &#34; 退出插入模式指定类型的文件自动保存 au InsertLeave *.go,*.sh,*.php write &#34;============================================================================== &#34; 插件配置 &#34;============================================================================== &#34; 插件开始的位置 call plug#begin('~/.vim/plugged') &#34; Shorthand notation; fetches https://github.com/junegunn/vim-easy-align &#34; 可以快速对齐的插件 Plug 'junegunn/vim-easy-align' &#34; 用来提供一个导航目录的侧边栏 Plug 'scrooloose/nerdtree' &#34; 可以使 nerdtree Tab 标签的名称更友好些 Plug 'jistr/vim-nerdtree-tabs' &#34; 可以在导航目录中看到 git 版本信息 Plug 'Xuyuanp/nerdtree-git-plugin' &#34; 支援更多 git 的功能 Plug 'tpope/vim-fugitive' Plug 'tpope/vim-rhubarb' Plug 'shumphrey/fugitive-gitlab.vim' &#34; 可以在文档中显示 git 信息 Plug 'airblade/vim-gitgutter' &#34; 查看当前代码文件中的变量和函数列表的插件， &#34; 可以切换和跳转到代码中对应的变量和函数的位置 &#34; 大纲式导航, Go 需要 https://github.com/jstemmer/gotags 支持 Plug 'majutsushi/tagbar' &#34; 自动补全括号的插件，包括小括号，中括号，以及花括号 Plug 'jiangmiao/auto-pairs' &#34; Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态 Plug 'vim-airline/vim-airline' &#34; 代码自动完成，安装完插件还需要额外配置才可以使用 Plug 'Valloric/YouCompleteMe' &#34; 下面两个插件要配合使用，可以自动生成代码块 Plug 'SirVer/ultisnips' Plug 'honza/vim-snippets' &#34; 配色方案 Plug 'fatih/molokai' &#34; go 主要插件 Plug 'fatih/vim-go', { 'tag': '*' } &#34; go 中的代码追踪，输入 gd 就可以自动跳转 Plug 'dgryski/vim-godef' &#34; markdown 插件 Plug 'iamcco/mathjax-support-for-mkdp' Plug 'iamcco/markdown-preview.vim' &#34; 模糊搜尋 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } Plug 'junegunn/fzf.vim' &#34; 多行編輯 Plug 'mg979/vim-visual-multi' &#34; 搜尋 Plug 'mileszs/ack.vim' let g:ackprg = 'ag --nogroup --nocolor --column' &#34; 插件结束的位置，插件全部放在此行上面 call plug#end() &#34;============================================================================== &#34; 主题配色 &#34;============================================================================== let g:rehash256 = 1 let g:molokai_original = 1 colorscheme molokai &#34; colorscheme sublimemonokai &#34;============================================================================== &#34; vim-go 插件 &#34;============================================================================== let g:go_fmt_command = &#34;goimports&#34; &#34; 格式化将默认的 gofmt 替换 let g:go_autodetect_gopath = 1 let g:go_list_type = &#34;quickfix&#34; let g:go_version_warning = 1 let g:go_highlight_types = 1 let g:go_highlight_fields = 1 let g:go_highlight_functions = 1 let g:go_highlight_function_calls = 1 let g:go_highlight_operators = 1 let g:go_highlight_extra_types = 1 let g:go_highlight_methods = 1 let g:go_highlight_generate_tags = 1 let g:go_highlight_format_strings = 1 let g:go_highlight_function_arguments = 1 let g:go_highlight_generate_tags = 1 let g:go_highlight_variable_declarations = 1 let g:godef_split=2 &#34;============================================================================== &#34; NERDTree 插件 &#34;============================================================================== &#34; 打开和关闭NERDTree快捷键 map <F10> :NERDTreeToggle<CR> &#34; 显示行号 let NERDTreeShowLineNumbers=1 &#34; 打开文件时是否显示目录 let NERDTreeAutoCenter=1 &#34; 是否显示隐藏文件 let NERDTreeShowHidden=1 &#34; 设置宽度 &#34; let NERDTreeWinSize=31 &#34; 忽略一下文件的显示 let NERDTreeIgnore=['\.pyc', '\~$', '\.swp', '.git'] &#34; 打开 vim 文件及显示书签列表 let NERDTreeShowBookmarks=2 &#34; 在终端启动vim时，共享NERDTree let g:nerdtree_tabs_open_on_console_startup=1 &#34;============================================================================== &#34; majutsushi/tagbar 插件 &#34;============================================================================== &#34; majutsushi/tagbar 插件打开关闭快捷键 nmap <F9> :TagbarToggle<CR> let g:tagbar_type_go = { \ 'ctagstype' : 'go', \ 'kinds' : [ \ 'p:package', \ 'i:imports:1', \ 'c:constants', \ 'v:variables', \ 't:types', \ 'n:interfaces', \ 'w:fields', \ 'e:embedded', \ 'm:methods', \ 'r:constructor', \ 'f:functions' \ ], \ 'sro' : '.', \ 'kind2scope' : { \ 't' : 'ctype', \ 'n' : 'ntype' \ }, \ 'scope2kind' : { \ 'ctype' : 't', \ 'ntype' : 'n' \ }, \ 'ctagsbin' : 'gotags', \ 'ctagsargs' : '-sort -silent' \ } &#34;============================================================================== &#34; nerdtree-git-plugin 插件 &#34;============================================================================== let g:NERDTreeGitStatusIndicatorMapCustom = { \ &#34;Modified&#34; : &#34;✹&#34;, \ &#34;Staged&#34; : &#34;✚&#34;, \ &#34;Untracked&#34; : &#34;✭&#34;, \ &#34;Renamed&#34; : &#34;➜&#34;, \ &#34;Unmerged&#34; : &#34;═&#34;, \ &#34;Deleted&#34; : &#34;✖&#34;, \ &#34;Dirty&#34; : &#34;✗&#34;, \ &#34;Clean&#34; : &#34;✔︎&#34;, \ 'Ignored' : '☒', \ &#34;Unknown&#34; : &#34;?&#34; \ } let g:NERDTreeGitStatusShowIgnored = 1 &#34;============================================================================== &#34; nerdtree-git-plugin 插件 &#34;============================================================================== &#34; [Buffers] Jump to the existing window if possible let g:fzf_buffers_jump = 1 nnoremap <leader>fl :Lines nnoremap <leader>fbl :BLines nnoremap <leader>ff :Files &#34;============================================================================== &#34; Valloric/YouCompleteMe 插件 &#34;============================================================================== &#34; make YCM compatible with UltiSnips (using supertab) let g:ycm_key_list_select_completion = ['<C-n>', '<space>'] let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>'] let g:SuperTabDefaultCompletionType = '<C-n>' &#34; better key bindings for UltiSnipsExpandTrigger let g:UltiSnipsExpandTrigger = &#34;<tab>&#34; let g:UltiSnipsJumpForwardTrigger = &#34;<tab>&#34; let g:UltiSnipsJumpBackwardTrigger = &#34;<s-tab>&#34; &#34;============================================================================== &#34; 支援更多 git &#34;============================================================================== &#34; GBrower gitlab let g:fugitive_gitlab_domains = ['https://gitlab.silkrode.com.tw'] let g:gitlab_api_keys = {'gitlab.silkrode.com.tw': '這個可能不能公開'} &#34;============================================================================== &#34; 其他插件配置 &#34;============================================================================== &#34; markdwon 的快捷键 map <silent> <F5> <Plug>MarkdownPreview map <silent> <F6> <Plug>StopMarkdownPreview &#34; tab 标签页切换快捷键 :nn <Leader>1 1gt :nn <Leader>2 2gt :nn <Leader>3 3gt :nn <Leader>4 4gt :nn <Leader>5 5gt :nn <Leader>6 6gt :nn <Leader>7 7gt :nn <Leader>8 8gt :nn <Leader>9 8gt :nn <Leader>0 :tablast<CR> 安裝相關插件 Plug - vim 套件管理工具 我們要用 Plug 來裝插件 https://github.com/junegunn/vim-plug"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-09-26T02:03:48+08:00"><meta property="article:modified_time" content="2020-09-26T02:03:48+08:00"><meta property="article:tag" content="Vim"><meta property="article:tag" content="Golang"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","url":"https:\/\/blog.10oz.tw\/20200926-wanna-install-vim\/","name":"我要裝 vim","headline":"我要裝 vim","description":"好文章推推，直接抄爆 https:\/\/learnku.com\/articles\/24924\n設定開始 撰寫設定檔 首先 vim ~\/.vimrc 改成下面這模樣\n\u0026quot;============================================================================== \u0026quot; vim 内置配置 \u0026quot;============================================================================== \u0026quot; 设置 vimrc 修改保存后立刻生效，不用在重新打开 \u0026quot; 建议配置完成后将这个关闭，否则配置多了之后会很卡 \u0026quot; autocmd BufWritePost $MYVIMRC source $MYVIMRC \u0026quot; 关闭兼容模式 set nocompatible set nu \u0026quot; 设置行号 set cursorline \u0026quot;突出显示当前行 set showmatch \u0026quot; 显示括号匹配 \u0026quot; tab 缩进 set tabstop=4 \u0026quot; 设置Tab长度为4空格 set shiftwidth=4 \u0026quot; 设置自动缩进长度为4空格 set autoindent \u0026quot; 继承前一行的缩进方式，适用于多行注释 \u0026quot; 定义快捷键的前缀，即\u0026lt;Leader\u0026gt; let mapleader=\u0026quot;,\u0026quot; \u0026quot; ==== 系统剪切板复制粘贴 ==== \u0026quot; v 模式下复制内容到系统剪切板 vmap \u0026lt;Leader\u0026gt;c \u0026quot;\u002byy \u0026quot; n 模式下复制一行到系统剪切板 nmap \u0026lt;Leader\u0026gt;c \u0026quot;\u002byy \u0026quot; n 模式下粘贴系统剪切板的内容 nmap \u0026lt;Leader\u0026gt;v \u0026quot;\u002bp \u0026quot; 开启实时搜索 set incsearch \u0026quot; 搜索时大小写不敏感 set ignorecase syntax enable syntax on \u0026quot; 开启文件类型侦测 filetype plugin indent on \u0026quot; 启用自动补全 \u0026quot; 退出插入模式指定类型的文件自动保存 au InsertLeave *.go,*.sh,*.php write \u0026quot;============================================================================== \u0026quot; 插件配置 \u0026quot;============================================================================== \u0026quot; 插件开始的位置 call plug#begin(\u0027~\/.vim\/plugged\u0027) \u0026quot; Shorthand notation; fetches https:\/\/github.com\/junegunn\/vim-easy-align \u0026quot; 可以快速对齐的插件 Plug \u0027junegunn\/vim-easy-align\u0027 \u0026quot; 用来提供一个导航目录的侧边栏 Plug \u0027scrooloose\/nerdtree\u0027 \u0026quot; 可以使 nerdtree Tab 标签的名称更友好些 Plug \u0027jistr\/vim-nerdtree-tabs\u0027 \u0026quot; 可以在导航目录中看到 git 版本信息 Plug \u0027Xuyuanp\/nerdtree-git-plugin\u0027 \u0026quot; 支援更多 git 的功能 Plug \u0027tpope\/vim-fugitive\u0027 Plug \u0027tpope\/vim-rhubarb\u0027 Plug \u0027shumphrey\/fugitive-gitlab.vim\u0027 \u0026quot; 可以在文档中显示 git 信息 Plug \u0027airblade\/vim-gitgutter\u0027 \u0026quot; 查看当前代码文件中的变量和函数列表的插件， \u0026quot; 可以切换和跳转到代码中对应的变量和函数的位置 \u0026quot; 大纲式导航, Go 需要 https:\/\/github.com\/jstemmer\/gotags 支持 Plug \u0027majutsushi\/tagbar\u0027 \u0026quot; 自动补全括号的插件，包括小括号，中括号，以及花括号 Plug \u0027jiangmiao\/auto-pairs\u0027 \u0026quot; Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态 Plug \u0027vim-airline\/vim-airline\u0027 \u0026quot; 代码自动完成，安装完插件还需要额外配置才可以使用 Plug \u0027Valloric\/YouCompleteMe\u0027 \u0026quot; 下面两个插件要配合使用，可以自动生成代码块 Plug \u0027SirVer\/ultisnips\u0027 Plug \u0027honza\/vim-snippets\u0027 \u0026quot; 配色方案 Plug \u0027fatih\/molokai\u0027 \u0026quot; go 主要插件 Plug \u0027fatih\/vim-go\u0027, { \u0027tag\u0027: \u0027*\u0027 } \u0026quot; go 中的代码追踪，输入 gd 就可以自动跳转 Plug \u0027dgryski\/vim-godef\u0027 \u0026quot; markdown 插件 Plug \u0027iamcco\/mathjax-support-for-mkdp\u0027 Plug \u0027iamcco\/markdown-preview.vim\u0027 \u0026quot; 模糊搜尋 Plug \u0027junegunn\/fzf\u0027, { \u0027dir\u0027: \u0027~\/.fzf\u0027, \u0027do\u0027: \u0027.\/install --all\u0027 } Plug \u0027junegunn\/fzf.vim\u0027 \u0026quot; 多行編輯 Plug \u0027mg979\/vim-visual-multi\u0027 \u0026quot; 搜尋 Plug \u0027mileszs\/ack.vim\u0027 let g:ackprg = \u0027ag --nogroup --nocolor --column\u0027 \u0026quot; 插件结束的位置，插件全部放在此行上面 call plug#end() \u0026quot;============================================================================== \u0026quot; 主题配色 \u0026quot;============================================================================== let g:rehash256 = 1 let g:molokai_original = 1 colorscheme molokai \u0026quot; colorscheme sublimemonokai \u0026quot;============================================================================== \u0026quot; vim-go 插件 \u0026quot;============================================================================== let g:go_fmt_command = \u0026quot;goimports\u0026quot; \u0026quot; 格式化将默认的 gofmt 替换 let g:go_autodetect_gopath = 1 let g:go_list_type = \u0026quot;quickfix\u0026quot; let g:go_version_warning = 1 let g:go_highlight_types = 1 let g:go_highlight_fields = 1 let g:go_highlight_functions = 1 let g:go_highlight_function_calls = 1 let g:go_highlight_operators = 1 let g:go_highlight_extra_types = 1 let g:go_highlight_methods = 1 let g:go_highlight_generate_tags = 1 let g:go_highlight_format_strings = 1 let g:go_highlight_function_arguments = 1 let g:go_highlight_generate_tags = 1 let g:go_highlight_variable_declarations = 1 let g:godef_split=2 \u0026quot;============================================================================== \u0026quot; NERDTree 插件 \u0026quot;============================================================================== \u0026quot; 打开和关闭NERDTree快捷键 map \u0026lt;F10\u0026gt; :NERDTreeToggle\u0026lt;CR\u0026gt; \u0026quot; 显示行号 let NERDTreeShowLineNumbers=1 \u0026quot; 打开文件时是否显示目录 let NERDTreeAutoCenter=1 \u0026quot; 是否显示隐藏文件 let NERDTreeShowHidden=1 \u0026quot; 设置宽度 \u0026quot; let NERDTreeWinSize=31 \u0026quot; 忽略一下文件的显示 let NERDTreeIgnore=[\u0027\\.pyc\u0027, \u0027\\~$\u0027, \u0027\\.swp\u0027, \u0027.git\u0027] \u0026quot; 打开 vim 文件及显示书签列表 let NERDTreeShowBookmarks=2 \u0026quot; 在终端启动vim时，共享NERDTree let g:nerdtree_tabs_open_on_console_startup=1 \u0026quot;============================================================================== \u0026quot; majutsushi\/tagbar 插件 \u0026quot;============================================================================== \u0026quot; majutsushi\/tagbar 插件打开关闭快捷键 nmap \u0026lt;F9\u0026gt; :TagbarToggle\u0026lt;CR\u0026gt; let g:tagbar_type_go = { \\ \u0027ctagstype\u0027 : \u0027go\u0027, \\ \u0027kinds\u0027 : [ \\ \u0027p:package\u0027, \\ \u0027i:imports:1\u0027, \\ \u0027c:constants\u0027, \\ \u0027v:variables\u0027, \\ \u0027t:types\u0027, \\ \u0027n:interfaces\u0027, \\ \u0027w:fields\u0027, \\ \u0027e:embedded\u0027, \\ \u0027m:methods\u0027, \\ \u0027r:constructor\u0027, \\ \u0027f:functions\u0027 \\ ], \\ \u0027sro\u0027 : \u0027.\u0027, \\ \u0027kind2scope\u0027 : { \\ \u0027t\u0027 : \u0027ctype\u0027, \\ \u0027n\u0027 : \u0027ntype\u0027 \\ }, \\ \u0027scope2kind\u0027 : { \\ \u0027ctype\u0027 : \u0027t\u0027, \\ \u0027ntype\u0027 : \u0027n\u0027 \\ }, \\ \u0027ctagsbin\u0027 : \u0027gotags\u0027, \\ \u0027ctagsargs\u0027 : \u0027-sort -silent\u0027 \\ } \u0026quot;============================================================================== \u0026quot; nerdtree-git-plugin 插件 \u0026quot;============================================================================== let g:NERDTreeGitStatusIndicatorMapCustom = { \\ \u0026quot;Modified\u0026quot; : \u0026quot;✹\u0026quot;, \\ \u0026quot;Staged\u0026quot; : \u0026quot;✚\u0026quot;, \\ \u0026quot;Untracked\u0026quot; : \u0026quot;✭\u0026quot;, \\ \u0026quot;Renamed\u0026quot; : \u0026quot;➜\u0026quot;, \\ \u0026quot;Unmerged\u0026quot; : \u0026quot;═\u0026quot;, \\ \u0026quot;Deleted\u0026quot; : \u0026quot;✖\u0026quot;, \\ \u0026quot;Dirty\u0026quot; : \u0026quot;✗\u0026quot;, \\ \u0026quot;Clean\u0026quot; : \u0026quot;✔︎\u0026quot;, \\ \u0027Ignored\u0027 : \u0027☒\u0027, \\ \u0026quot;Unknown\u0026quot; : \u0026quot;?\u0026quot; \\ } let g:NERDTreeGitStatusShowIgnored = 1 \u0026quot;============================================================================== \u0026quot; nerdtree-git-plugin 插件 \u0026quot;============================================================================== \u0026quot; [Buffers] Jump to the existing window if possible let g:fzf_buffers_jump = 1 nnoremap \u0026lt;leader\u0026gt;fl :Lines nnoremap \u0026lt;leader\u0026gt;fbl :BLines nnoremap \u0026lt;leader\u0026gt;ff :Files \u0026quot;============================================================================== \u0026quot; Valloric\/YouCompleteMe 插件 \u0026quot;============================================================================== \u0026quot; make YCM compatible with UltiSnips (using supertab) let g:ycm_key_list_select_completion = [\u0027\u0026lt;C-n\u0026gt;\u0027, \u0027\u0026lt;space\u0026gt;\u0027] let g:ycm_key_list_previous_completion = [\u0027\u0026lt;C-p\u0026gt;\u0027, \u0027\u0026lt;Up\u0026gt;\u0027] let g:SuperTabDefaultCompletionType = \u0027\u0026lt;C-n\u0026gt;\u0027 \u0026quot; better key bindings for UltiSnipsExpandTrigger let g:UltiSnipsExpandTrigger = \u0026quot;\u0026lt;tab\u0026gt;\u0026quot; let g:UltiSnipsJumpForwardTrigger = \u0026quot;\u0026lt;tab\u0026gt;\u0026quot; let g:UltiSnipsJumpBackwardTrigger = \u0026quot;\u0026lt;s-tab\u0026gt;\u0026quot; \u0026quot;============================================================================== \u0026quot; 支援更多 git \u0026quot;============================================================================== \u0026quot; GBrower gitlab let g:fugitive_gitlab_domains = [\u0027https:\/\/gitlab.silkrode.com.tw\u0027] let g:gitlab_api_keys = {\u0027gitlab.silkrode.com.tw\u0027: \u0027這個可能不能公開\u0027} \u0026quot;============================================================================== \u0026quot; 其他插件配置 \u0026quot;============================================================================== \u0026quot; markdwon 的快捷键 map \u0026lt;silent\u0026gt; \u0026lt;F5\u0026gt; \u0026lt;Plug\u0026gt;MarkdownPreview map \u0026lt;silent\u0026gt; \u0026lt;F6\u0026gt; \u0026lt;Plug\u0026gt;StopMarkdownPreview \u0026quot; tab 标签页切换快捷键 :nn \u0026lt;Leader\u0026gt;1 1gt :nn \u0026lt;Leader\u0026gt;2 2gt :nn \u0026lt;Leader\u0026gt;3 3gt :nn \u0026lt;Leader\u0026gt;4 4gt :nn \u0026lt;Leader\u0026gt;5 5gt :nn \u0026lt;Leader\u0026gt;6 6gt :nn \u0026lt;Leader\u0026gt;7 7gt :nn \u0026lt;Leader\u0026gt;8 8gt :nn \u0026lt;Leader\u0026gt;9 8gt :nn \u0026lt;Leader\u0026gt;0 :tablast\u0026lt;CR\u0026gt; 安裝相關插件 Plug - vim 套件管理工具 我們要用 Plug 來裝插件 https:\/\/github.com\/junegunn\/vim-plug\n","author":{"@type":"Person","name":"XiaoXiao Notes","image":"https:\/\/blog.10oz.tw\/avatar.jpg"},"publisher":{"@type":"Organization","name":"XiaoXiao Notes","logo":{"@type":"ImageObject","url":"https:\/\/blog.10oz.tw\/"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.10oz.tw\/20200926-wanna-install-vim\/"},"datePublished":"2020-09-26T02:03:48\u002b08:00","dateModified":"2020-09-26T02:03:48\u002b08:00","wordCount":1813,"keywords":["vim","golang"]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/blog.10oz.tw\/"},{"@type":"ListItem","position":2,"name":"我要裝 vim","item":"https:\/\/blog.10oz.tw\/20200926-wanna-install-vim\/"}]}</script><meta name=twitter:card content="summary"><meta name=twitter:title content="我要裝 vim"><meta name=twitter:description content="好文章推推，直接抄爆 https://learnku.com/articles/24924
+設定開始 撰寫設定檔 首先 vim ~/.vimrc 改成下面這模樣
+&#34;============================================================================== &#34; vim 内置配置 &#34;============================================================================== &#34; 设置 vimrc 修改保存后立刻生效，不用在重新打开 &#34; 建议配置完成后将这个关闭，否则配置多了之后会很卡 &#34; autocmd BufWritePost $MYVIMRC source $MYVIMRC &#34; 关闭兼容模式 set nocompatible set nu &#34; 设置行号 set cursorline &#34;突出显示当前行 set showmatch &#34; 显示括号匹配 &#34; tab 缩进 set tabstop=4 &#34; 设置Tab长度为4空格 set shiftwidth=4 &#34; 设置自动缩进长度为4空格 set autoindent &#34; 继承前一行的缩进方式，适用于多行注释 &#34; 定义快捷键的前缀，即<Leader> let mapleader=&#34;,&#34; &#34; ==== 系统剪切板复制粘贴 ==== &#34; v 模式下复制内容到系统剪切板 vmap <Leader>c &#34;+yy &#34; n 模式下复制一行到系统剪切板 nmap <Leader>c &#34;+yy &#34; n 模式下粘贴系统剪切板的内容 nmap <Leader>v &#34;+p &#34; 开启实时搜索 set incsearch &#34; 搜索时大小写不敏感 set ignorecase syntax enable syntax on &#34; 开启文件类型侦测 filetype plugin indent on &#34; 启用自动补全 &#34; 退出插入模式指定类型的文件自动保存 au InsertLeave *.go,*.sh,*.php write &#34;============================================================================== &#34; 插件配置 &#34;============================================================================== &#34; 插件开始的位置 call plug#begin('~/.vim/plugged') &#34; Shorthand notation; fetches https://github.com/junegunn/vim-easy-align &#34; 可以快速对齐的插件 Plug 'junegunn/vim-easy-align' &#34; 用来提供一个导航目录的侧边栏 Plug 'scrooloose/nerdtree' &#34; 可以使 nerdtree Tab 标签的名称更友好些 Plug 'jistr/vim-nerdtree-tabs' &#34; 可以在导航目录中看到 git 版本信息 Plug 'Xuyuanp/nerdtree-git-plugin' &#34; 支援更多 git 的功能 Plug 'tpope/vim-fugitive' Plug 'tpope/vim-rhubarb' Plug 'shumphrey/fugitive-gitlab.vim' &#34; 可以在文档中显示 git 信息 Plug 'airblade/vim-gitgutter' &#34; 查看当前代码文件中的变量和函数列表的插件， &#34; 可以切换和跳转到代码中对应的变量和函数的位置 &#34; 大纲式导航, Go 需要 https://github.com/jstemmer/gotags 支持 Plug 'majutsushi/tagbar' &#34; 自动补全括号的插件，包括小括号，中括号，以及花括号 Plug 'jiangmiao/auto-pairs' &#34; Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态 Plug 'vim-airline/vim-airline' &#34; 代码自动完成，安装完插件还需要额外配置才可以使用 Plug 'Valloric/YouCompleteMe' &#34; 下面两个插件要配合使用，可以自动生成代码块 Plug 'SirVer/ultisnips' Plug 'honza/vim-snippets' &#34; 配色方案 Plug 'fatih/molokai' &#34; go 主要插件 Plug 'fatih/vim-go', { 'tag': '*' } &#34; go 中的代码追踪，输入 gd 就可以自动跳转 Plug 'dgryski/vim-godef' &#34; markdown 插件 Plug 'iamcco/mathjax-support-for-mkdp' Plug 'iamcco/markdown-preview.vim' &#34; 模糊搜尋 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } Plug 'junegunn/fzf.vim' &#34; 多行編輯 Plug 'mg979/vim-visual-multi' &#34; 搜尋 Plug 'mileszs/ack.vim' let g:ackprg = 'ag --nogroup --nocolor --column' &#34; 插件结束的位置，插件全部放在此行上面 call plug#end() &#34;============================================================================== &#34; 主题配色 &#34;============================================================================== let g:rehash256 = 1 let g:molokai_original = 1 colorscheme molokai &#34; colorscheme sublimemonokai &#34;============================================================================== &#34; vim-go 插件 &#34;============================================================================== let g:go_fmt_command = &#34;goimports&#34; &#34; 格式化将默认的 gofmt 替换 let g:go_autodetect_gopath = 1 let g:go_list_type = &#34;quickfix&#34; let g:go_version_warning = 1 let g:go_highlight_types = 1 let g:go_highlight_fields = 1 let g:go_highlight_functions = 1 let g:go_highlight_function_calls = 1 let g:go_highlight_operators = 1 let g:go_highlight_extra_types = 1 let g:go_highlight_methods = 1 let g:go_highlight_generate_tags = 1 let g:go_highlight_format_strings = 1 let g:go_highlight_function_arguments = 1 let g:go_highlight_generate_tags = 1 let g:go_highlight_variable_declarations = 1 let g:godef_split=2 &#34;============================================================================== &#34; NERDTree 插件 &#34;============================================================================== &#34; 打开和关闭NERDTree快捷键 map <F10> :NERDTreeToggle<CR> &#34; 显示行号 let NERDTreeShowLineNumbers=1 &#34; 打开文件时是否显示目录 let NERDTreeAutoCenter=1 &#34; 是否显示隐藏文件 let NERDTreeShowHidden=1 &#34; 设置宽度 &#34; let NERDTreeWinSize=31 &#34; 忽略一下文件的显示 let NERDTreeIgnore=['\.pyc', '\~$', '\.swp', '.git'] &#34; 打开 vim 文件及显示书签列表 let NERDTreeShowBookmarks=2 &#34; 在终端启动vim时，共享NERDTree let g:nerdtree_tabs_open_on_console_startup=1 &#34;============================================================================== &#34; majutsushi/tagbar 插件 &#34;============================================================================== &#34; majutsushi/tagbar 插件打开关闭快捷键 nmap <F9> :TagbarToggle<CR> let g:tagbar_type_go = { \ 'ctagstype' : 'go', \ 'kinds' : [ \ 'p:package', \ 'i:imports:1', \ 'c:constants', \ 'v:variables', \ 't:types', \ 'n:interfaces', \ 'w:fields', \ 'e:embedded', \ 'm:methods', \ 'r:constructor', \ 'f:functions' \ ], \ 'sro' : '.', \ 'kind2scope' : { \ 't' : 'ctype', \ 'n' : 'ntype' \ }, \ 'scope2kind' : { \ 'ctype' : 't', \ 'ntype' : 'n' \ }, \ 'ctagsbin' : 'gotags', \ 'ctagsargs' : '-sort -silent' \ } &#34;============================================================================== &#34; nerdtree-git-plugin 插件 &#34;============================================================================== let g:NERDTreeGitStatusIndicatorMapCustom = { \ &#34;Modified&#34; : &#34;✹&#34;, \ &#34;Staged&#34; : &#34;✚&#34;, \ &#34;Untracked&#34; : &#34;✭&#34;, \ &#34;Renamed&#34; : &#34;➜&#34;, \ &#34;Unmerged&#34; : &#34;═&#34;, \ &#34;Deleted&#34; : &#34;✖&#34;, \ &#34;Dirty&#34; : &#34;✗&#34;, \ &#34;Clean&#34; : &#34;✔︎&#34;, \ 'Ignored' : '☒', \ &#34;Unknown&#34; : &#34;?&#34; \ } let g:NERDTreeGitStatusShowIgnored = 1 &#34;============================================================================== &#34; nerdtree-git-plugin 插件 &#34;============================================================================== &#34; [Buffers] Jump to the existing window if possible let g:fzf_buffers_jump = 1 nnoremap <leader>fl :Lines nnoremap <leader>fbl :BLines nnoremap <leader>ff :Files &#34;============================================================================== &#34; Valloric/YouCompleteMe 插件 &#34;============================================================================== &#34; make YCM compatible with UltiSnips (using supertab) let g:ycm_key_list_select_completion = ['<C-n>', '<space>'] let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>'] let g:SuperTabDefaultCompletionType = '<C-n>' &#34; better key bindings for UltiSnipsExpandTrigger let g:UltiSnipsExpandTrigger = &#34;<tab>&#34; let g:UltiSnipsJumpForwardTrigger = &#34;<tab>&#34; let g:UltiSnipsJumpBackwardTrigger = &#34;<s-tab>&#34; &#34;============================================================================== &#34; 支援更多 git &#34;============================================================================== &#34; GBrower gitlab let g:fugitive_gitlab_domains = ['https://gitlab.silkrode.com.tw'] let g:gitlab_api_keys = {'gitlab.silkrode.com.tw': '這個可能不能公開'} &#34;============================================================================== &#34; 其他插件配置 &#34;============================================================================== &#34; markdwon 的快捷键 map <silent> <F5> <Plug>MarkdownPreview map <silent> <F6> <Plug>StopMarkdownPreview &#34; tab 标签页切换快捷键 :nn <Leader>1 1gt :nn <Leader>2 2gt :nn <Leader>3 3gt :nn <Leader>4 4gt :nn <Leader>5 5gt :nn <Leader>6 6gt :nn <Leader>7 7gt :nn <Leader>8 8gt :nn <Leader>9 8gt :nn <Leader>0 :tablast<CR> 安裝相關插件 Plug - vim 套件管理工具 我們要用 Plug 來裝插件 https://github.com/junegunn/vim-plug"></head><body class="main-center theme-black" data-pages=62><header class=header><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=/ target><img class=rounded-circle src=https://blog.10oz.tw/avatar.jpg width=200 height=200></a><h2 id=name class="d-none d-md-block">XiaoXiao Notes</h2><h3 id=title class="d-none d-lg-block"></h3><small id=location class="text-muted d-none d-md-block"><i class="icon icon-map-marker"></i>Taiwan,Taipei</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=Search>
+<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick=return!1>
+<i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder="Type something..." x-webkit-speech>
+<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#main-navbar aria-controls=main-navbar aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button></div><nav id=main-navbar class="collapse navbar-collapse" role=navigation><ul class="navbar-nav main-nav"><li class="nav-item menu-item-home"><a class=nav-link href=/><i class="icon icon-home-fill"></i>
+<span class=menu-title>Home</span></a></li><li class="nav-item menu-item-archives"><a class=nav-link href=/posts/><i class="icon icon-archives-fill"></i>
+<span class=menu-title>Archives</span></a></li><li class="nav-item menu-item-tags"><a class=nav-link href=/tags/><i class="icon icon-tags"></i>
+<span class=menu-title>Tags</span></a></li><li class="nav-item menu-item-about"><a class=nav-link href=/about/><i class="icon icon-cup-fill"></i>
+<span class=menu-title>About</span></a></li></ul></nav></div></header><aside class=sidebar><div class=slimContent><div class=widget><h3 class=widget-title>Board</h3><div class=widget-body><div id=board><div class=content>這裡是<b>蕭蕭筆記書</b>。專門給金魚腦的我使用！
+有助於回憶過去曾經做過的事情</div></div></div></div><div class=widget><h3 class=widget-title>Tag Cloud</h3><div id=tag-cloud-list class=widget-body><a href=https://blog.10oz.tw/tags/apt/ class=tag-list-link rel=1>apt<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/argo/ class=tag-list-link rel=1>argo<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/artisan/ class=tag-list-link rel=1>artisan<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/aws/ class=tag-list-link rel=2>aws<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/blockchain/ class=tag-list-link rel=1>blockchain<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/buildx/ class=tag-list-link rel=1>buildx<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/casbin/ class=tag-list-link rel=1>casbin<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/cd/ class=tag-list-link rel=1>cd<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/chromedp/ class=tag-list-link rel=1>chromedp<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/chromium/ class=tag-list-link rel=1>chromium<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/crd/ class=tag-list-link rel=3>crd<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/de/ class=tag-list-link rel=1>de<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/di/ class=tag-list-link rel=1>di<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/docker/ class=tag-list-link rel=3>docker<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/ecr/ class=tag-list-link rel=1>ecr<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/elasticsearch/ class=tag-list-link rel=3>elasticsearch<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/eloquent/ class=tag-list-link rel=1>eloquent<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/es/ class=tag-list-link rel=1>es<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/ethereum/ class=tag-list-link rel=1>ethereum<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/flask/ class=tag-list-link rel=1>flask<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/future/ class=tag-list-link rel=1>future<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/geographic/ class=tag-list-link rel=1>geographic<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/geth/ class=tag-list-link rel=1>geth<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/gfw/ class=tag-list-link rel=1>gfw<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/git/ class=tag-list-link rel=1>git<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/github/ class=tag-list-link rel=1>github<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/gitlab/ class=tag-list-link rel=2>gitlab<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/golang/ class=tag-list-link rel=9>golang<span class=tag-list-count>9</span>
+</a><a href=https://blog.10oz.tw/tags/gomod/ class=tag-list-link rel=1>gomod<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/gql/ class=tag-list-link rel=1>gql<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/graphql/ class=tag-list-link rel=1>graphql<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/ha/ class=tag-list-link rel=1>ha<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/helm/ class=tag-list-link rel=1>helm<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/homebrew/ class=tag-list-link rel=1>homebrew<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/hugo/ class=tag-list-link rel=2>hugo<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/ilm/ class=tag-list-link rel=1>ilm<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/index/ class=tag-list-link rel=1>index<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/istio/ class=tag-list-link rel=1>istio<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/javascript/ class=tag-list-link rel=1>javascript<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/json/ class=tag-list-link rel=2>json<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/jwt/ class=tag-list-link rel=1>jwt<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/keycloak/ class=tag-list-link rel=1>keycloak<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/kind/ class=tag-list-link rel=1>kind<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/kops/ class=tag-list-link rel=1>kops<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/kubernetes/ class=tag-list-link rel=11>kubernetes<span class=tag-list-count>11</span>
+</a><a href=https://blog.10oz.tw/tags/laravel/ class=tag-list-link rel=8>laravel<span class=tag-list-count>8</span>
+</a><a href=https://blog.10oz.tw/tags/linux/ class=tag-list-link rel=3>linux<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/location/ class=tag-list-link rel=1>location<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/log/ class=tag-list-link rel=1>log<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/macos/ class=tag-list-link rel=1>macos<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/mongodb/ class=tag-list-link rel=1>mongodb<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/multi-arch/ class=tag-list-link rel=1>multi-arch<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/mysql/ class=tag-list-link rel=1>mysql<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/mysqlclient/ class=tag-list-link rel=1>mysqlclient<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/neovim/ class=tag-list-link rel=1>neovim<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/nix/ class=tag-list-link rel=1>nix<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/nixos/ class=tag-list-link rel=1>nixos<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/oauth/ class=tag-list-link rel=1>oauth<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/operator/ class=tag-list-link rel=1>operator<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/orm/ class=tag-list-link rel=1>orm<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/passport/ class=tag-list-link rel=1>passport<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/php/ class=tag-list-link rel=8>php<span class=tag-list-count>8</span>
+</a><a href=https://blog.10oz.tw/tags/pokemon/ class=tag-list-link rel=1>pokemon<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/pokesay/ class=tag-list-link rel=1>pokesay<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/postgres/ class=tag-list-link rel=1>postgres<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/pretty/ class=tag-list-link rel=1>pretty<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/python/ class=tag-list-link rel=4>python<span class=tag-list-count>4</span>
+</a><a href=https://blog.10oz.tw/tags/raycast/ class=tag-list-link rel=1>raycast<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/ruby/ class=tag-list-link rel=1>ruby<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/rust/ class=tag-list-link rel=2>rust<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/service-mesh/ class=tag-list-link rel=1>service-mesh<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/subgroup/ class=tag-list-link rel=1>subgroup<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/terraform/ class=tag-list-link rel=1>terraform<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/test/ class=tag-list-link rel=1>test<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/typescript/ class=tag-list-link rel=1>typescript<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/ubuntu/ class=tag-list-link rel=1>ubuntu<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vagrant/ class=tag-list-link rel=1>vagrant<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vim/ class=tag-list-link rel=3>vim<span class=tag-list-count>3</span>
+</a><a href=https://blog.10oz.tw/tags/vm/ class=tag-list-link rel=1>vm<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vpn/ class=tag-list-link rel=1>vpn<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vrrp/ class=tag-list-link rel=1>vrrp<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/vscode/ class=tag-list-link rel=2>vscode<span class=tag-list-count>2</span>
+</a><a href=https://blog.10oz.tw/tags/webassembly/ class=tag-list-link rel=1>webassembly<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/windows/ class=tag-list-link rel=1>windows<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/wire/ class=tag-list-link rel=1>wire<span class=tag-list-count>1</span>
+</a><a href=https://blog.10oz.tw/tags/wsl2/ class=tag-list-link rel=1>wsl2<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{document.readyState==="complete"&&tagCloud("#tag-cloud-list a",10,20)};function tagCloud(e,t,n){let i=0,o=0;const a=document.querySelectorAll(e);a.forEach(e=>{const t=Number(e.getAttribute("rel"));i<t&&(i=t),(o>t||o==0)&&(o=t)});const r=(n-t)/(i-o);a.forEach(e=>{const n=e.getAttribute("rel")-o;e.style.fontSize=`${t+n*r}px`})}</script></div><div class=widget><h3 class=widget-title>Recent Posts</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20240202-kubernetes-replicaset-selector/ class=title>ReplicaSet 的 selector 可以選到沒主人的 Pod</a></p><p class=item-date><time datetime="2024-02-02 02:27:00 +0800 CST" itemprop=datePublished>2024-02-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20230830-raycast/ class=title>macOS 生產力工具 - Raycast 真的很讚</a></p><p class=item-date><time datetime="2023-08-30 13:09:00 +0800 CST" itemprop=datePublished>2023-08-30</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20230817-how-to-create-elasticsearch-data-stream/ class=title>How to create an Elasticsearch Data Stream</a></p><p class=item-date><time datetime="2023-08-17 18:43:00 +0800 CST" itemprop=datePublished>2023-08-17</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20230612-github-permission-for-free-user/ class=title>GitHub Permission 免費方案權限實驗</a></p><p class=item-date><time datetime="2023-06-12 18:20:00 +0800 CST" itemprop=datePublished>2023-06-12</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://blog.10oz.tw/20230609-kubernetes-ha-keepalived-haproxy/ class=title>Kubernetes HA - Keepalived(VRRP) + HAProxy</a></p><p class=item-date><time datetime="2023-06-09 20:01:00 +0800 CST" itemprop=datePublished>2023-06-09</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>Catalogue</h4><nav id=toc class="js-toc toc"><nav id=TableOfContents><ul><li><a href=#設定開始>設定開始</a><ul><li><a href=#撰寫設定檔>撰寫設定檔</a></li><li><a href=#安裝相關插件>安裝相關插件</a></li></ul></li><li><a href=#使用者筆記>使用者筆記</a><ul><li><a href=#插件們>插件們</a></li><li><a href=#vim-基本常用指令>Vim 基本常用指令</a></li></ul></li><li><a href=#ref>Ref</a></li></ul></nav></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-"><div class=article-header><h1 itemprop=name><a class=article-title href=/20200926-wanna-install-vim/>我要裝 vim</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
+<a href=https://blog.10oz.tw/20200926-wanna-install-vim/ class=article-date><time datetime="2020-09-26 02:03:48 +0800 CST" itemprop=datePublished>2020-09-26</time>
+</a></span><span class=article-tag><i class="icon icon-tags"></i>&nbsp;
+<a class="article-tag-link label label-default" href=/tags/vim/>vim </a><a class="article-tag-link label label-default" href=/tags/golang/>golang </a></span><span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/20200926-wanna-install-vim/#comments class=article-comment-link>Comments</a></span>
+<span class="post-wordcount d-none d-sm-block" itemprop=wordCount>Word Count: 1813 words</span></div></div><div class="article-entry marked-body js-toc-content"><p>好文章推推，直接抄爆
+<a href=https://learnku.com/articles/24924>https://learnku.com/articles/24924</a></p><h2 id=設定開始>設定開始</h2><h3 id=撰寫設定檔>撰寫設定檔</h3><p>首先 <code>vim ~/.vimrc</code> 改成下面這模樣</p><pre><code class=language-vim>&quot;==============================================================================
 &quot; vim 内置配置 
 &quot;==============================================================================
 
@@ -998,196 +383,22 @@ map &lt;silent&gt; &lt;F6&gt; &lt;Plug&gt;StopMarkdownPreview
 :nn &lt;Leader&gt;8 8gt
 :nn &lt;Leader&gt;9 8gt
 :nn &lt;Leader&gt;0 :tablast&lt;CR&gt;
-</code></pre>
-<h3 id="安裝相關插件">安裝相關插件</h3>
-<h4 id="plug---vim-套件管理工具">Plug - vim 套件管理工具</h4>
-<p>我們要用 <code>Plug</code> 來裝插件 <a href="https://github.com/junegunn/vim-plug">https://github.com/junegunn/vim-plug</a></p>
-<p>unix 版本</p>
-<pre><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+</code></pre><h3 id=安裝相關插件>安裝相關插件</h3><h4 id=plug---vim-套件管理工具>Plug - vim 套件管理工具</h4><p>我們要用 <code>Plug</code> 來裝插件 <a href=https://github.com/junegunn/vim-plug>https://github.com/junegunn/vim-plug</a></p><p>unix 版本</p><pre><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-</code></pre>
-<p>然後輸入 <code>vim +PlugInstall</code> 開始安裝
-再來安裝 <code>vim +GoInstallBinaries</code> golang tools，雖然沒意外的話早就裝過惹呢XDD</p>
-<h4 id="你完成我---自動補齊工具">你完成我 - 自動補齊工具</h4>
-<p>YouCompleteMe 剛才已經用 Plug 下載下來了，不過還不能直接使用</p>
-<pre><code class="language-bash">cd .vim/plugged/YouCompleteMe
+</code></pre><p>然後輸入 <code>vim +PlugInstall</code> 開始安裝
+再來安裝 <code>vim +GoInstallBinaries</code> golang tools，雖然沒意外的話早就裝過惹呢XDD</p><h4 id=你完成我---自動補齊工具>你完成我 - 自動補齊工具</h4><p>YouCompleteMe 剛才已經用 Plug 下載下來了，不過還不能直接使用</p><pre><code class=language-bash>cd .vim/plugged/YouCompleteMe
 
 brew install cmake macvim # 可選: python mono go nodejs
 
 # 如果不指定 go 的話，他會安裝 C# Go JavaScript Rust Jaca
 python3 install.py --go-completer
-</code></pre>
-<h2 id="使用者筆記">使用者筆記</h2>
-<h3 id="插件們">插件們</h3>
-<p>雖然剛剛裝了滿滿的 plugin 但也要會用才行rrr 😂😂</p>
-<h4 id="nerdtree---左邊的-sidebar">NERDTree - 左邊的 Sidebar</h4>
-<ul>
-<li><code>C_w</code> + [上下左右] 切換到 [上下左右] 的分割視窗</li>
-<li><code>C_w</code> + <code>w</code> 切換到下一個分割視窗</li>
-<li>在 NERDTress 對檔案 <code>t</code> 開啟新分頁</li>
-<li>在 NERDTress 對檔案 <code>o</code> 開啟新分頁，並跳過去</li>
-<li>在 NERDTress 對資料夾 <code>o</code> 展開/縮合資料夾</li>
-<li>在 NERDTress 按下 <code>m</code> 會進入檔案管理模式，再來按 <code>a</code> 可以新增檔案</li>
-<li>切換到指定分頁 <code>&lt;Leader&gt;[1-9]</code> 或是上面有設定 <code>[1-9]gt</code></li>
-</ul>
-<h4 id="vim-fugitive-提供了很多在-vim-上面整合-git-的功能">vim-fugitive 提供了很多在 vim 上面整合 git 的功能</h4>
-<ul>
-<li><code>:Gdiffsplit</code> 水平分割 git diff 畫面 (上下)</li>
-<li><code>:Gvdiff</code> 垂直分割 git diff 畫面 (看左右好像比較習慣)</li>
-<li><code>:GBrowser</code> 直接在網頁(github, gitlab)上開啟目前的檔案</li>
-</ul>
-<h3 id="vim-基本常用指令">Vim 基本常用指令</h3>
-<ul>
-<li>多行修改: <code>C_V</code> 選取， <code>I</code> 進入修改模式</li>
-<li><code>C_d</code> 下滑一頁</li>
-<li><code>C_b</code> 上滑一頁</li>
-<li><code>:set syn=yaml</code> 設定語法高亮</li>
-</ul>
-<h2 id="ref">Ref</h2>
-<p><a href="https://learnku.com/articles/24924">https://learnku.com/articles/24924</a>
-<a href="https://github.com/ycm-core/YouCompleteMe">https://github.com/ycm-core/YouCompleteMe</a></p>
-
-    </div>
-    <div class="article-footer">
-
-    </div>
-  </article>
-<section id="comments">
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-</section>
-
-</div><nav class="bar bar-footer clearfix" data-stick-bottom>
-    <div class="bar-inner">
-        <ul class="pager pull-left">
-            <li class="prev">
-                <a href="https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/" title="新米 blockchain 混亂中"><i
-                        class="icon icon-angle-left"
-                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
-            </li>
-            <li class="next">
-                <a href="https://blog.10oz.tw/20201009-hello-graphql/"
-                    title="GraphQL 打招呼"><span>Newer&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
-            </li>
-            
-            <li class="toggle-toc">
-                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
-                    title="Catalogue" role="button">
-                    <span>[&nbsp;</span><span>Catalogue</span>
-                    <i class="text-collapsed icon icon-anchor"></i>
-                    <i class="text-in icon icon-close"></i>
-                    <span>]</span>
-                </a>
-            </li>
-        </ul>
-        <div class="bar-right">
-            <div class="share-component" data-sites="facebook,twitter"
-                data-mobile-sites="facebook,twitter"></div>
-        </div>
-    </div>
-</nav>
-
-
-</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-<ul class="social-links">
-    <li><a href="https://github.com/XiaoXiaoSN" target="_blank" title="github" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-github"></i></a></li>
-    <li><a href="https://blog.10oz.tw/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-rss"></i></a></li>
-</ul>
-  <div class="copyright">
-    &copy;2018  -
-    2023
-  </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-            showMathMenu: false, //disables context menu
-            tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-           }
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
-</script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/bash.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/diff.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/dockerfile.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/go.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/lua.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/vbscript-html.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/javascript.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/nix.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/php.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/protobuf.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/python.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/rust.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/sql.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/typescript.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/vim.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/10.7.3/languages/yaml.min.js" defer></script><script>
-    hljs.configure({
-        tabReplace: '    ', 
-        classPrefix: ''     
-        
-    })
-    hljs.highlightAll();
-</script>
-<script src="https://blog.10oz.tw/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
-<script src="https://blog.10oz.tw/js/plugin.min.738a460bf4317fac61717f1bca393e53d00973db9754d9f0a81c7312d5874840.js"></script>
-
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
-            },
-            ROOT_URL: 'https:\/\/blog.10oz.tw',
-            CONTENT_URL: 'https:\/\/blog.10oz.tw\/searchindex.json ',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script type="text/javascript" src="https://blog.10oz.tw/js/insight.min.6425a57e353334f164605c424b1d8c0781cd2325bb08722ab34cb974570d55300a5a62aa3fa37a28004c2dcc5131be364451672fd19a5b9ab1729cd1a9d7addf.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.3/tocbot.min.js"></script>
-<script>
-    tocbot.init({
-        
-        tocSelector: '.js-toc',
-        
-        contentSelector: '.js-toc-content',
-        
-        headingSelector: 'h1, h2, h3',
-        
-        hasInnerContainers: true,
-    });
-</script>
-
-<script>
-    var disqus_config = function () {
-        this.page.url = 'https:\/\/blog.10oz.tw\/20200926-wanna-install-vim\/';
-        this.page.identifier = 'xiaoxiaoblog-1';
-    };
-    (function () {
-        var d = document, s = d.createElement('script');
-        s.src = '//' + 'xiaoxiaoblog-1' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-
-  </body>
-</html>
+</code></pre><h2 id=使用者筆記>使用者筆記</h2><h3 id=插件們>插件們</h3><p>雖然剛剛裝了滿滿的 plugin 但也要會用才行rrr 😂😂</p><h4 id=nerdtree---左邊的-sidebar>NERDTree - 左邊的 Sidebar</h4><ul><li><code>C_w</code> + [上下左右] 切換到 [上下左右] 的分割視窗</li><li><code>C_w</code> + <code>w</code> 切換到下一個分割視窗</li><li>在 NERDTress 對檔案 <code>t</code> 開啟新分頁</li><li>在 NERDTress 對檔案 <code>o</code> 開啟新分頁，並跳過去</li><li>在 NERDTress 對資料夾 <code>o</code> 展開/縮合資料夾</li><li>在 NERDTress 按下 <code>m</code> 會進入檔案管理模式，再來按 <code>a</code> 可以新增檔案</li><li>切換到指定分頁 <code>&lt;Leader>[1-9]</code> 或是上面有設定 <code>[1-9]gt</code></li></ul><h4 id=vim-fugitive-提供了很多在-vim-上面整合-git-的功能>vim-fugitive 提供了很多在 vim 上面整合 git 的功能</h4><ul><li><code>:Gdiffsplit</code> 水平分割 git diff 畫面 (上下)</li><li><code>:Gvdiff</code> 垂直分割 git diff 畫面 (看左右好像比較習慣)</li><li><code>:GBrowser</code> 直接在網頁(github, gitlab)上開啟目前的檔案</li></ul><h3 id=vim-基本常用指令>Vim 基本常用指令</h3><ul><li>多行修改: <code>C_V</code> 選取， <code>I</code> 進入修改模式</li><li><code>C_d</code> 下滑一頁</li><li><code>C_b</code> 上滑一頁</li><li><code>:set syn=yaml</code> 設定語法高亮</li></ul><h2 id=ref>Ref</h2><p><a href=https://learnku.com/articles/24924>https://learnku.com/articles/24924</a>
+<a href=https://github.com/ycm-core/YouCompleteMe>https://github.com/ycm-core/YouCompleteMe</a></p></div><div class=article-footer></div></article><section id=comments><div id=disqus_thread><noscript>Please enable JavaScript to view the <a href=//disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class="bar-inner d-flex justify-content-between align-items-center"><ul class="pager m-0 d-flex align-items-center"><li class="prev me-2"><a href=https://blog.10oz.tw/20200919-blockchain-bitcoin-beginer/ title="新米 blockchain 混亂中" class="btn btn-outline-secondary btn-sm rounded-pill"><i class="icon icon-angle-left" aria-hidden=true></i>
+<span>&nbsp;Older</span></a></li><li class="next me-2"><a href=https://blog.10oz.tw/20201009-hello-graphql/ title="GraphQL 打招呼" class="btn btn-outline-secondary btn-sm rounded-pill"><span>Newer&nbsp;</span>
+<i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class="toggle-toc ms-2"><a class="toggle-btn collapsed btn btn-sm" data-toggle=collapse href=#collapseToc aria-expanded=false title=Catalogue role=button><span>[&nbsp;</span><span>Catalogue</span>
+<i class="text-collapsed icon icon-anchor"></i>
+<i class="text-in icon icon-close"></i>
+<span>]</span></a></li></ul><div class="d-flex align-items-center"><div class=share-component data-sites=facebook,twitter data-mobile-sites=facebook,twitter></div></div></div></nav></main><footer class=footer><ul class=social-links><li><a href=https://github.com/XiaoXiaoSN target=_blank title=github data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li><li><a href=https://blog.10oz.tw/index.xml target=_blank title=rss data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li></ul><div class=copyright>&copy;2018 -
+2026
+・
+<a href=https://blog.10oz.tw/privacy>Privacy Policy</a></div></footer><script>window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"],ignoreHtmlClass:"tex2jax_ignore",processHtmlClass:"tex2jax_process"},svg:{fontCache:"global"}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js integrity=sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/geopattern@1.2.3/geopattern.min.js defer></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/highlight.js@11.11.1></script><script>hljs.configure({tabReplace:"    ",classPrefix:""}),hljs.highlightAll()</script><script src=https://blog.10oz.tw/js/application.min.753afee4e6068144ff9138a9074d36e34c2ebf30cb3f0755289476c71d7339aca1d0a488941f015994e5cdeb27cc44e5.js integrity=sha384-dTr+5OYGgUT/kTipB00240wuvzDLPwdVKJR2xx1zOayh0KSIlB8BWZTlzesnzETl defer></script><script>(function(e){var t={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)"},ROOT_URL:"https://blog.10oz.tw/",CONTENT_URL:"https://blog.10oz.tw/searchindex.json"};e.INSIGHT_CONFIG=t})(window)</script><script type=text/javascript src=https://blog.10oz.tw/js/insight.min.fb5b734703efc9520777dc5f072db912f486074f205304a2dee7ac2a250d860f226795f3b849c1fb7ab13347d818e0a1.js integrity=sha384-+1tzRwPvyVIHd9xfBy25EvSGB08gUwSi3uesKiUNhg8iZ5XzuEnB+3qxM0fYGOCh defer></script><script src=https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.js></script><script>tocbot.init({tocSelector:".js-toc",contentSelector:".js-toc-content",headingSelector:"h1, h2, h3",hasInnerContainers:!0})</script><script>var disqus_config=function(){this.page.url="https://blog.10oz.tw/20200926-wanna-install-vim/",this.page.identifier="xiaoxiaoblog-1"};(function(){var e=document,t=e.createElement("script");t.src="//xiaoxiaoblog-1.disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-09FFP1WQY3"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-09FFP1WQY3")}</script></body></html>

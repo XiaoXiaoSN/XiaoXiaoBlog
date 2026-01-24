@@ -1,195 +1,299 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>wsl2 on XiaoXiao Notes</title>
-    <link>https://blog.10oz.tw/tags/wsl2/</link>
-    <description>Recent content in wsl2 on XiaoXiao Notes</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <copyright>MIT</copyright>
-    <lastBuildDate>Tue, 28 Jul 2020 10:29:08 +0800</lastBuildDate>
-    
-        <atom:link href="https://blog.10oz.tw/tags/wsl2/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Homebrew 自己寫配方一起來釀酒</title>
-      <link>https://blog.10oz.tw/20200811-homebrew-create-app/</link>
-      <pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200811-homebrew-create-app/</guid>
-      <description>不囉唆直接上圖 馬上試試 pokesay brew tap xiaoxiaosn/xiaoxiao brew install pokesay 起源 這個故事是這樣的，有一天發現了一個有趣的 command pokemonsay他是 cowsay 的改編版，它可以讓 pokemon 出現說你想要</description>
-    </item>
-    
-    <item>
-      <title>出發尋找 WSL2 的旅程</title>
-      <link>https://blog.10oz.tw/20200728-journey-in-wsl2/</link>
-      <pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200728-journey-in-wsl2/</guid>
-      <description>步驟說明時間 確認 Windows 版本 首先按一下 Windows 鍵輸入 winver 來確認目前版本，版本必須是 19041 或是 2004 才可以喔 如果版本不夠的話，更新器下載 &amp;raquo; https://www.microsoft.com/en-us/software-download/windows10 開啟環境設定 用系統管理員</description>
-    </item>
-    
-    <item>
-      <title>Golang 漂亮的輸出 JSON</title>
-      <link>https://blog.10oz.tw/20200229-golang-pretty-print/</link>
-      <pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200229-golang-pretty-print/</guid>
-      <description>偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！ 我需要排版！！趕快筆記一下 一、我有一個 struct stack overflow 上有重點！！ func prettyPrint(data interface{}) { jsonByte, err := json.MarshalIndent(data, &amp;quot;&amp;quot;, &amp;quot; &amp;quot;) if err != nil { fmt.Println(&amp;quot;&amp;quot;) }</description>
-    </item>
-    
-    <item>
-      <title>Golang 怎麼處理 JSON</title>
-      <link>https://blog.10oz.tw/20200228-golang-json-marshal/</link>
-      <pubDate>Fri, 28 Feb 2020 23:22:36 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200228-golang-json-marshal/</guid>
-      <description>json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！ 內文會分成</description>
-    </item>
-    
-    <item>
-      <title>製造一個 hugo 部落格</title>
-      <link>https://blog.10oz.tw/20200124-make-a-hugo-blog/</link>
-      <pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20200124-make-a-hugo-blog/</guid>
-      <description>步驟教學 一、開始之前 目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！ 所以我們需要: 一人份的 github 帳號 安裝 hugo 點我看教學</description>
-    </item>
-    
-    <item>
-      <title>筆記 Install php MongoDB driver on MacOS</title>
-      <link>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</link>
-      <pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</guid>
-      <description>** 2019.08 更新** https://www.php.net/manual/en/mongodb.installation.homebrew.php mac php72 請使用 pecl install mongodb 安裝 mongodb driver 因為 mongodb, xdebug 從 homebrew 被移除了 [time=Thu, Aug 15, 2019 7:59 PM] 問題描述 想在 Laravel 用 MongoDB composer require jenssegers/mongodb 錯誤： the requested PHP extension mongodb is missing from your system. =&amp;gt; 沒有裝 php 的擴展 解決</description>
-    </item>
-    
-    <item>
-      <title>Learning Elasticsearch</title>
-      <link>https://blog.10oz.tw/20190814-learning-elasticsearch/</link>
-      <pubDate>Wed, 14 Aug 2019 00:15:26 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190814-learning-elasticsearch/</guid>
-      <description>@elasticsearch version 6.8 STRUCTURE 可以這樣想像 Relational DB -&amp;gt; Databases -&amp;gt; Tables -&amp;gt; Rows -&amp;gt; Columns Elasticsearch -&amp;gt; Indices -&amp;gt; Types -&amp;gt; Documents -&amp;gt; Fields 不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義） Indices</description>
-    </item>
-    
-    <item>
-      <title>筆記 laravel test - 我們也來寫測試</title>
-      <link>https://blog.10oz.tw/20190703-laravel-testing/</link>
-      <pubDate>Wed, 03 Jul 2019 13:18:13 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190703-laravel-testing/</guid>
-      <description>laravel version: 5.8 [time=Wed, Jul 3, 2019 1:27 PM] 開始之前 test 的設定檔在 ./phpunit.xml ， &amp;lt;!-- phpunit.xml --&amp;gt; &amp;lt;phpunit&amp;gt; &amp;lt;php&amp;gt; &amp;lt;!-- laravel 環境設定檔案使用 .emv.testing --&amp;gt; &amp;lt;server name=&amp;quot;APP_ENV&amp;quot; value=&amp;quot;testing&amp;quot;/&amp;gt; &amp;lt;!-- 測試環境的資料庫連線設定，我們將使用 sqlite --&amp;gt; &amp;lt;server name=&amp;quot;DB_CONNECTION&amp;quot; value=&amp;quot;sqlite_for_testing&amp;quot;/&amp;gt; &amp;lt;env name=&amp;quot;DB_DATABASE&amp;quot; value=&amp;quot;:memory:&amp;quot;/&amp;gt; &amp;lt;/php&amp;gt; &amp;lt;/phpunit&amp;gt;</description>
-    </item>
-    
-    <item>
-      <title>筆記 artisan 的大紅色好刺眼啊啊啊啊</title>
-      <link>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</link>
-      <pubDate>Thu, 23 May 2019 02:51:38 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</guid>
-      <description>Laravel 5.8 $kernel = $app-&amp;gt;make(Illuminate\Contracts\Console\Kernel::class); $output = new Symfony\Component\Console\Output\ConsoleOutput; $output-&amp;gt;getFormatter() -&amp;gt;setStyle(&#39;error&#39;, new \Symfony\Component\Console\Formatter\OutputFormatterStyle(&#39;yellow&#39;)); $status = $kernel-&amp;gt;handle( $input = new Symfony\Component\Console\Input\ArgvInput, $output ); 修改的話在 line:37 可以帶三種參數 public function __construct( string $foreground = null, string $background = null, array $options = []){ /****/ } 三種參數可以參考 private static $availableForegroundColors = [ &#39;black&#39; =&amp;gt; [&#39;set&#39; =&amp;gt; 30,</description>
-    </item>
-    
-    <item>
-      <title>筆記 安裝 Golang 與他們的套件管理工具</title>
-      <link>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</link>
-      <pubDate>Wed, 01 May 2019 11:50:36 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</guid>
-      <description>從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔 在這之前的版本使用環境變數 GOMODULE111=true 來做管理 安裝 golang (on Mac) 1. 第一步當然是拿到 golnag 囉 brew install go 2. 環境設</description>
-    </item>
-    
-    <item>
-      <title>筆記 我是個 go module 的菜鳥</title>
-      <link>https://blog.10oz.tw/20190501-a-new-in-go-module/</link>
-      <pubDate>Wed, 01 May 2019 01:28:22 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190501-a-new-in-go-module/</guid>
-      <description>簡介 Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場) 他在 2018/3/20 提交，並於 2018/5/21 被接受 想使用他的話，要開個開關： 環境變數 GO111MODULE 控</description>
-    </item>
-    
-    <item>
-      <title>筆記 Laravel with Keycloak</title>
-      <link>https://blog.10oz.tw/20190424-laravel-with-keycloak/</link>
-      <pubDate>Wed, 24 Apr 2019 10:05:56 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190424-laravel-with-keycloak/</guid>
-      <description>laravel version: 5.8 一、安裝篇 裝這個，跟著他的步驟做 https://github.com/robsontenorio/laravel-keycloak-guard 二、使用篇 我們假設 Keycloak Server 有大大幫你開好了 (沒有請點我) 取得 Keycloak 金鑰 https://auth.leotekiot.com 預設帳號: admin 預設密碼: Pa55w0rd 登入後，依序</description>
-    </item>
-    
-    <item>
-      <title>筆記 Laravel Eloquent Model 的 relation</title>
-      <link>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</link>
-      <pubDate>Tue, 16 Apr 2019 20:35:16 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</guid>
-      <description>版本 Larael 5.7 範例模型 accounts CREATE TABLE `accounts` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `website_id` int(10) unsigned NOT NULL, `account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, `deleted_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`) ); websites CREATE TABLE `websites` ( `id` int(10) unsigned NOT</description>
-    </item>
-    
-    <item>
-      <title>筆記 Laravel API 權限 (Passport)</title>
-      <link>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</link>
-      <pubDate>Sun, 17 Feb 2019 09:46:31 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</guid>
-      <description>使用 JWT 版本 (2018/09 更新) 前面幾個步驟同官方安裝教學 步驟說明 1. composer 載回來 composer require laravel/passport 2. 開資料表 php artisan migrate 然後你會多 5 張表 (主要使用到 oauth_access_token) 3.創造 key php artisan passport:install 他會幫你的</description>
-    </item>
-    
-    <item>
-      <title>筆記 laravel 真新手時間</title>
-      <link>https://blog.10oz.tw/20190123-a-new-in-laravel/</link>
-      <pubDate>Wed, 23 Jan 2019 20:36:55 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190123-a-new-in-laravel/</guid>
-      <description>新手入門 結構介紹 我們現在在 laravel v5.7 一起來看一下 laravel 專案的結構吧 app 大部份的網頁後端主要程式碼 也就是說他很重要 (Model)放在外面的大寫開頭們～ 例如</description>
-    </item>
-    
-    <item>
-      <title>筆記 安裝 Laravel on MacOS</title>
-      <link>https://blog.10oz.tw/20190117-install-laravel-on-macos/</link>
-      <pubDate>Thu, 17 Jan 2019 12:03:16 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20190117-install-laravel-on-macos/</guid>
-      <description>Step by Step 安裝指南 事前準備 HomeBrew 首先安裝 HomeBrew，他是 Mac 上的套件管理工具 在終端機執行他： (裝過了可以跳過) /usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; ＊ Docker 安裝 Docker， 以</description>
-    </item>
-    
-    <item>
-      <title>筆記 自定義 flask 的 console log 之路</title>
-      <link>https://blog.10oz.tw/20181128-custom-flask-console-log/</link>
-      <pubDate>Wed, 28 Nov 2018 03:19:15 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20181128-custom-flask-console-log/</guid>
-      <description>需求 讓 console log 可以正確顯示來源 ip 而不是被 web server 轉發的 ip 實作修改 覆蓋掉 address_string 這個 function line:8 覆蓋掉 log function line:9 import logging # get werkzeug_logger werkzeug_logger = logging.getLogger(&#39;werkzeug&#39;) # Override the built-in werkzeug logging function in order to change the log line format. from werkzeug.serving import WSGIRequestHandler WSGIRequestHandler.address_string</description>
-    </item>
-    
-    <item>
-      <title>筆記 python: Error 24: too many open files</title>
-      <link>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</link>
-      <pubDate>Tue, 20 Nov 2018 03:19:29 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</guid>
-      <description>問題描述 同時開太多連線啦 環境 Ubuntu 16.04 解決方法 https://blog.csdn.net/qq_23926575/article/details/76619827 開啟這個檔案 sudo vim /etc/security/limits.conf 在最底下新增兩行 * soft nofile 10000 * hard nofile 10000 記得重開Server</description>
-    </item>
-    
-    <item>
-      <title>筆記 mysqlclient 安裝, error: python setup.py egg_info </title>
-      <link>https://blog.10oz.tw/20181117-install-mysqlclient/</link>
-      <pubDate>Sat, 17 Nov 2018 14:11:06 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20181117-install-mysqlclient/</guid>
-      <description>錯誤: 目標是成功執行它： pip3 install mysqlclient arios@AriosMac: pymysql_pool » pip3 install mysqlclient Collecting mysqlclient Using cached https://files.pythonhosted.org/packages/ec/fd/83329b9d3e14f7344d1cb31f128e6dbba70c5975c9e57896815dbb1988ad/mysqlclient-1.3.13.tar.gz Complete output from command python setup.py egg_info: /bin/sh: mysql_config: command not found Traceback (most recent call last): File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt; File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup.py&amp;quot;, line 18, in &amp;lt;module&amp;gt; metadata, options = get_config() File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;quot;, line 53, inget_config libs = mysql_config(&amp;quot;libs_r&amp;quot;) File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;quot;, line</description>
-    </item>
-    
-    <item>
-      <title>筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容</title>
-      <link>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</link>
-      <pubDate>Thu, 08 Nov 2018 12:04:17 +0800</pubDate>
-      
-      <guid>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</guid>
-      <description>問題 當你的函示庫底層使用 C語言 而不是純 python 編寫時 pylint 可能會無法正確的找到他，此問題可能出現在numpy或是本例的mysqlclient上 解決方法</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wsl2 on XiaoXiao Notes</title><link>https://blog.10oz.tw/tags/wsl2/</link><description>Recent content in Wsl2 on XiaoXiao Notes</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>MIT</copyright><lastBuildDate>Tue, 28 Jul 2020 10:29:08 +0800</lastBuildDate><atom:link href="https://blog.10oz.tw/tags/wsl2/index.xml" rel="self" type="application/rss+xml"/><item><title>已知用火 - git.io 短網址</title><link>https://blog.10oz.tw/20200831-known-fire-gitio/</link><pubDate>Mon, 31 Aug 2020 01:34:04 +0800</pubDate><guid>https://blog.10oz.tw/20200831-known-fire-gitio/</guid><description>&lt;h2 id="介紹"&gt;介紹&lt;/h2&gt;
+&lt;p&gt;GitHub 在 2018 年推出的短網址服務: &lt;a href="https://git.io"&gt;git.io&lt;/a&gt;&lt;br&gt;
+他可以把 GitHub 的網址縮短~&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/h1ow1UH.png" alt=""&gt;
+&lt;img src="https://i.imgur.com/QWxv1qU.png" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="with-fish"&gt;with fish&lt;/h2&gt;
+&lt;p&gt;其實會發現他的原因，是因為在尋找 fish 的 plugin&lt;br&gt;
+&lt;a href="https://github.com/jorgebucaran/gitio.fish"&gt;https://github.com/jorgebucaran/gitio.fish&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;fisher 是一個 fish 的套件管理工具，我們用它來安裝 fish 版 gitio&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fisher add jorgebucaran/gitio.fish
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;用這個工具的話可以自定義名稱喔！ 網頁版的 UI 好像就沒有這個選項 QQ&lt;br&gt;
+安裝完成後 &lt;code&gt;gitio key=url&lt;/code&gt; 就可以了&lt;/p&gt;</description></item><item><title>我們想在虛擬機上跑個 K8s</title><link>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</link><pubDate>Sun, 30 Aug 2020 21:38:12 +0800</pubDate><guid>https://blog.10oz.tw/20200830-run-kubernetes-on-vm/</guid><description>&lt;h2 id="環境"&gt;環境&lt;/h2&gt;
+&lt;p&gt;我們先用 macOS Catalina 10.15.2 來做筆記喔&lt;/p&gt;
+&lt;h2 id="1-虛擬機"&gt;1. 虛擬機&lt;/h2&gt;
+&lt;p&gt;一開始當然是虛擬機啦，讓我們用 vagrant 搭配 virtual box 吧～&lt;/p&gt;
+&lt;h3 id="11-安裝-vagrant-跟-virtual-box"&gt;1.1 安裝 vagrant 跟 virtual box&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-shell"&gt;brew cask install vagrant
+vagrant version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;vagrant 使用版本 2.2.10&lt;br&gt;
+支援的 virtual box 版本沒有到最新的 6， 我們到這邊下載舊版吧&lt;br&gt;
+&lt;a href="https://www.virtualbox.org/wiki/"&gt;https://www.virtualbox.org/wiki/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Docker 建立不同架構的 Image</title><link>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</link><pubDate>Fri, 14 Aug 2020 23:11:03 +0800</pubDate><guid>https://blog.10oz.tw/20200814-docker-mutli-arch-image/</guid><description>&lt;h2 id="問題起源"&gt;問題起源&lt;/h2&gt;
+&lt;p&gt;看看人家，一個 &lt;code&gt;latest&lt;/code&gt; 有這麼多種架構的版本
+羨慕耶 我也想要編一個給我的樹莓派
+&lt;img src="https://i.imgur.com/2f2SBiR.png" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="執行環境"&gt;執行環境&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt; » docker version
+Client: Docker Engine - Community
+Version: 19.03.12
+API version: 1.40
+Go version: go1.13.10
+Git commit: 48a66213fe
+Built: Mon Jun 22 15:41:33 2020
+OS/Arch: darwin/amd64
+Experimental: true
+Server: Docker Engine - Community
+Engine:
+Version: 19.03.12
+API version: 1.40 (minimum version 1.12)
+Go version: go1.13.10
+Git commit: 48a66213fe
+Built: Mon Jun 22 15:49:27 2020
+OS/Arch: linux/amd64
+Experimental: true
+containerd:
+Version: v1.2.13
+GitCommit: 7ad184331fa3e55e52b890ea95e65ba581ae3429
+runc:
+Version: 1.0.0-rc10
+GitCommit: dc9208a3303feef5b3839f4323d9beb36df0a9dd
+docker-init:
+Version: 0.18.0
+GitCommit: fec3683
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="開始正題-buildx-快速版"&gt;開始正題 (buildx 快速版)&lt;/h2&gt;
+&lt;p&gt;這是實驗性功能~
+Mac &amp;amp; Windows 請進，linux 先來這看看 &amp;gt; &lt;a href="https://github.com/docker/buildx"&gt;https://github.com/docker/buildx&lt;/a&gt; ，或是下滑懷舊版&lt;/p&gt;</description></item><item><title>Casbin 權限管理模組</title><link>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</link><pubDate>Thu, 13 Aug 2020 00:33:03 +0800</pubDate><guid>https://blog.10oz.tw/20200813-casbin-the-access-control-model/</guid><description>&lt;p&gt;&lt;a href="https://casbin.org/en/"&gt;&lt;i class="fa fa-home"&gt;&lt;/i&gt;&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://github.com/casbin/casbin"&gt;&lt;i class="fa fa-github"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="casbin-是什麼"&gt;Casbin 是什麼&lt;/h2&gt;
+&lt;p&gt;casbin 是一個權限控管的模組，可以定義不同的權限模型來管理使用者的權限，預設包含了很多知名的模型如 &lt;code&gt;RBAC&lt;/code&gt; &lt;code&gt;ABAC&lt;/code&gt;
+他雖然規則複雜但他卻支持許多語言，可以在不同的環境下使用，包含 Go, Java, Node.js, php, python, c#, c++, rust&lt;/p&gt;</description></item><item><title>Homebrew 自己寫配方一起來釀酒</title><link>https://blog.10oz.tw/20200811-homebrew-create-app/</link><pubDate>Tue, 11 Aug 2020 23:16:31 +0800</pubDate><guid>https://blog.10oz.tw/20200811-homebrew-create-app/</guid><description>&lt;h2 id="不囉唆直接上圖"&gt;不囉唆直接上圖&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/8csSu3h.png" alt=""&gt;
+馬上試試 pokesay&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sh"&gt;brew tap xiaoxiaosn/xiaoxiao
+brew install pokesay
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="起源"&gt;起源&lt;/h2&gt;
+&lt;p&gt;這個故事是這樣的，有一天發現了一個有趣的 command &lt;a href="https://github.com/possatti/pokemonsay"&gt;pokemonsay&lt;/a&gt;他是 &lt;a href="https://en.wikipedia.org/wiki/Cowsay"&gt;cowsay&lt;/a&gt; 的改編版，它可以讓 pokemon 出現說你想要他說的話 XDD&lt;br&gt;
+我用得很快樂的時候發現一件事很不快樂，當一行太多字的時候會換行&lt;br&gt;
+你看！都擠在一起了 R&lt;br&gt;
+&lt;img src="https://i.imgur.com/ZZlwdAQ.png" alt=""&gt;&lt;/p&gt;</description></item><item><title>出發尋找 WSL2 的旅程</title><link>https://blog.10oz.tw/20200728-journey-in-wsl2/</link><pubDate>Tue, 28 Jul 2020 10:29:08 +0800</pubDate><guid>https://blog.10oz.tw/20200728-journey-in-wsl2/</guid><description>&lt;h2 id="步驟說明時間"&gt;步驟說明時間&lt;/h2&gt;
+&lt;h3 id="確認-windows-版本"&gt;確認 Windows 版本&lt;/h3&gt;
+&lt;p&gt;首先按一下 Windows 鍵輸入 &lt;code&gt;winver&lt;/code&gt; 來確認目前版本，版本必須是 19041 或是 2004 才可以喔
+&lt;img src="https://i.imgur.com/tsFoWzJ.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;如果版本不夠的話，更新器下載 &amp;raquo;
+&lt;a href="https://www.microsoft.com/en-us/software-download/windows10"&gt;https://www.microsoft.com/en-us/software-download/windows10&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="開啟環境設定"&gt;開啟環境設定&lt;/h3&gt;
+&lt;p&gt;用系統管理員身分開啟 PowerShell 後，輸入指令開啟 Linux Subsystem 的支援和 HyperV 的虛擬機器平台
+用 HyperV 要記得到 BIOS 開啟虛擬機器的支援喔&lt;/p&gt;</description></item><item><title>Golang 漂亮的輸出 JSON</title><link>https://blog.10oz.tw/20200229-golang-pretty-print/</link><pubDate>Sat, 29 Feb 2020 16:18:09 +0800</pubDate><guid>https://blog.10oz.tw/20200229-golang-pretty-print/</guid><description>&lt;p&gt;偶爾在 debug 的時候，看到的都是一整行實在不太快樂呀！&lt;/p&gt;
+&lt;p&gt;我需要排版！！趕快筆記一下&lt;/p&gt;
+&lt;h2 id="一我有一個-struct"&gt;一、我有一個 struct&lt;/h2&gt;
+&lt;p&gt;stack overflow 上有重點！！
+&lt;img src="https://i.imgur.com/xGFhCHW.png" alt=""&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;func prettyPrint(data interface{}) {
+jsonByte, err := json.MarshalIndent(data, &amp;quot;&amp;quot;, &amp;quot; &amp;quot;)
+if err != nil {
+fmt.Println(&amp;quot;&amp;quot;)
+}
+fmt.Printf(&amp;quot;%s\n&amp;quot;, jsonByte)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="二我有一個-json-byte"&gt;二、我有一個 json byte&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-go"&gt;func prettyPrintByte(jsonByte []byte) {
+var buf bytes.Buffer
+err := json.Indent(&amp;amp;buf, jsonByte, &amp;quot;&amp;quot;, &amp;quot; &amp;quot;)
+if err == nil {
+jsonByte = buf.Bytes()
+}
+fmt.Printf(&amp;quot;%s\n&amp;quot;, jsonByte)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="參考"&gt;參考&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889"&gt;https://stackoverflow.com/questions/19038598/how-can-i-pretty-print-json-using-go/42426889&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Golang 怎麼處理 JSON</title><link>https://blog.10oz.tw/20200228-golang-json-marshal/</link><pubDate>Fri, 28 Feb 2020 23:22:36 +0800</pubDate><guid>https://blog.10oz.tw/20200228-golang-json-marshal/</guid><description>&lt;p&gt;json 格式簡單易讀，經常出現在各種 API、設定檔裡，golang 也有內建處理的 package，寫扣的時候也會經常遇到他喔，來筆記一下！
+內文會分成&lt;code&gt;常用處理json&lt;/code&gt;、&lt;code&gt;自定義處理 json&lt;/code&gt;和&lt;code&gt;多層處理&lt;/code&gt; 三個 part， GOGO&lt;/p&gt;</description></item><item><title>製造一個 hugo 部落格</title><link>https://blog.10oz.tw/20200124-make-a-hugo-blog/</link><pubDate>Fri, 24 Jan 2020 23:02:16 +0800</pubDate><guid>https://blog.10oz.tw/20200124-make-a-hugo-blog/</guid><description>&lt;h2 id="步驟教學"&gt;步驟教學&lt;/h2&gt;
+&lt;h3 id="一開始之前"&gt;一、開始之前&lt;/h3&gt;
+&lt;p&gt;目標是用 hugo 協助我們使用 markdown 輕鬆製造靜態網頁，再把這個靜態網頁利用 Github Page 部署出去！&lt;/p&gt;
+&lt;p&gt;所以我們需要:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一人份的 github 帳號&lt;/li&gt;
+&lt;li&gt;安裝 hugo &lt;a href="https://gohugo.io/getting-started/installing#quick-install"&gt;點我看教學&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;挑選喜歡的 hugo 模板 &lt;a href="https://themes.gohugo.io/tags/blog/"&gt;點我參觀&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class="language-sh"&gt;$ hugo version
+Hugo Static Site Generator v0.62.2/extended darwin/amd64 BuildDate: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="二開跑囉"&gt;二、開跑囉&lt;/h3&gt;
+&lt;p&gt;開啟一個新的 hugo 專案，這邊的 xiaoxiao 可以換成你喜歡的專案名字&lt;/p&gt;</description></item><item><title>筆記 Install php MongoDB driver on MacOS</title><link>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</link><pubDate>Thu, 15 Aug 2019 19:59:34 +0800</pubDate><guid>https://blog.10oz.tw/20190815-install-php-mongodb-driver-on-macos/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;** 2019.08 更新**
+&lt;a href="https://www.php.net/manual/en/mongodb.installation.homebrew.php"&gt;https://www.php.net/manual/en/mongodb.installation.homebrew.php&lt;/a&gt;
+mac php72 請使用 &lt;code&gt;pecl install mongodb&lt;/code&gt; 安裝 mongodb driver
+因為 mongodb, xdebug 從 homebrew 被移除了&lt;/p&gt;
+&lt;p&gt;[time=Thu, Aug 15, 2019 7:59 PM]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="問題描述"&gt;問題描述&lt;/h2&gt;
+&lt;p&gt;想在 &lt;code&gt;Laravel&lt;/code&gt; 用 &lt;code&gt;MongoDB&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sh"&gt;composer require jenssegers/mongodb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;錯誤：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;the requested PHP extension mongodb is missing from your system.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;=&amp;gt; 沒有裝 &lt;code&gt;php&lt;/code&gt; 的擴展&lt;/p&gt;
+&lt;h2 id="解決方案"&gt;解決方案&lt;/h2&gt;
+&lt;p&gt;先來個悲劇， &lt;code&gt;homebrew&lt;/code&gt; 拿掉 php-mongodb 的擴展了QQ&lt;/p&gt;</description></item><item><title>Learning Elasticsearch</title><link>https://blog.10oz.tw/20190814-learning-elasticsearch/</link><pubDate>Wed, 14 Aug 2019 00:15:26 +0800</pubDate><guid>https://blog.10oz.tw/20190814-learning-elasticsearch/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;@elasticsearch version 6.8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="structure"&gt;STRUCTURE&lt;/h2&gt;
+&lt;p&gt;可以這樣想像&lt;br&gt;
+Relational DB -&amp;gt; Databases -&amp;gt; Tables -&amp;gt; Rows -&amp;gt; Columns&lt;br&gt;
+Elasticsearch -&amp;gt; Indices -&amp;gt; Types -&amp;gt; Documents -&amp;gt; Fields&lt;/p&gt;
+&lt;p&gt;不過啊，type 要被人家丟掉了（現在是限制只能有一個 type，等同於這層沒意義）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Indices created in 6.x only allow a single-type per index.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;6.x 後建議 &lt;code&gt;type&lt;/code&gt; 使用 &lt;code&gt;_doc&lt;/code&gt;，&lt;br&gt;
+然後 8.x: &lt;code&gt;Specifying types in requests is no longer supported.&lt;/code&gt;&lt;/p&gt;</description></item><item><title>筆記 laravel test - 我們也來寫測試</title><link>https://blog.10oz.tw/20190703-laravel-testing/</link><pubDate>Wed, 03 Jul 2019 13:18:13 +0800</pubDate><guid>https://blog.10oz.tw/20190703-laravel-testing/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;laravel version: 5.8
+[time=Wed, Jul 3, 2019 1:27 PM]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="開始之前"&gt;開始之前&lt;/h2&gt;
+&lt;p&gt;test 的設定檔在 &lt;code&gt;./phpunit.xml&lt;/code&gt; ，&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;!-- phpunit.xml --&amp;gt;
+&amp;lt;phpunit&amp;gt;
+&amp;lt;php&amp;gt;
+&amp;lt;!-- laravel 環境設定檔案使用 .emv.testing --&amp;gt;
+&amp;lt;server name=&amp;quot;APP_ENV&amp;quot; value=&amp;quot;testing&amp;quot;/&amp;gt;
+&amp;lt;!-- 測試環境的資料庫連線設定，我們將使用 sqlite --&amp;gt;
+&amp;lt;server name=&amp;quot;DB_CONNECTION&amp;quot; value=&amp;quot;sqlite_for_testing&amp;quot;/&amp;gt;
+&amp;lt;env name=&amp;quot;DB_DATABASE&amp;quot; value=&amp;quot;:memory:&amp;quot;/&amp;gt;
+&amp;lt;/php&amp;gt;
+&amp;lt;/phpunit&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;php 也要加在 &lt;code&gt;Config/dataset.php&lt;/code&gt;&lt;/p&gt;</description></item><item><title>筆記 artisan 的大紅色好刺眼啊啊啊啊</title><link>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</link><pubDate>Thu, 23 May 2019 02:51:38 +0800</pubDate><guid>https://blog.10oz.tw/20190523-laravel-artisan-change-color-style/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Laravel 5.8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-php"&gt;$kernel = $app-&amp;gt;make(Illuminate\Contracts\Console\Kernel::class);
+$output = new Symfony\Component\Console\Output\ConsoleOutput;
+$output-&amp;gt;getFormatter()
+-&amp;gt;setStyle('error', new \Symfony\Component\Console\Formatter\OutputFormatterStyle('yellow'));
+$status = $kernel-&amp;gt;handle(
+$input = new Symfony\Component\Console\Input\ArgvInput,
+$output
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改的話在 line:37 可以帶三種參數&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-php"&gt;public function __construct(
+string $foreground = null,
+string $background = null,
+array $options = []){
+/****/
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;三種參數可以參考&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-php"&gt;private static $availableForegroundColors = [
+'black' =&amp;gt; ['set' =&amp;gt; 30, 'unset' =&amp;gt; 39],
+'red' =&amp;gt; ['set' =&amp;gt; 31, 'unset' =&amp;gt; 39],
+'green' =&amp;gt; ['set' =&amp;gt; 32, 'unset' =&amp;gt; 39],
+'yellow' =&amp;gt; ['set' =&amp;gt; 33, 'unset' =&amp;gt; 39],
+'blue' =&amp;gt; ['set' =&amp;gt; 34, 'unset' =&amp;gt; 39],
+'magenta' =&amp;gt; ['set' =&amp;gt; 35, 'unset' =&amp;gt; 39],
+'cyan' =&amp;gt; ['set' =&amp;gt; 36, 'unset' =&amp;gt; 39],
+'white' =&amp;gt; ['set' =&amp;gt; 37, 'unset' =&amp;gt; 39],
+'default' =&amp;gt; ['set' =&amp;gt; 39, 'unset' =&amp;gt; 39],
+];
+private static $availableBackgroundColors = [
+'black' =&amp;gt; ['set' =&amp;gt; 40, 'unset' =&amp;gt; 49],
+'red' =&amp;gt; ['set' =&amp;gt; 41, 'unset' =&amp;gt; 49],
+'green' =&amp;gt; ['set' =&amp;gt; 42, 'unset' =&amp;gt; 49],
+'yellow' =&amp;gt; ['set' =&amp;gt; 43, 'unset' =&amp;gt; 49],
+'blue' =&amp;gt; ['set' =&amp;gt; 44, 'unset' =&amp;gt; 49],
+'magenta' =&amp;gt; ['set' =&amp;gt; 45, 'unset' =&amp;gt; 49],
+'cyan' =&amp;gt; ['set' =&amp;gt; 46, 'unset' =&amp;gt; 49],
+'white' =&amp;gt; ['set' =&amp;gt; 47, 'unset' =&amp;gt; 49],
+'default' =&amp;gt; ['set' =&amp;gt; 49, 'unset' =&amp;gt; 49],
+];
+private static $availableOptions = [
+'bold' =&amp;gt; ['set' =&amp;gt; 1, 'unset' =&amp;gt; 22],
+'underscore' =&amp;gt; ['set' =&amp;gt; 4, 'unset' =&amp;gt; 24],
+'blink' =&amp;gt; ['set' =&amp;gt; 5, 'unset' =&amp;gt; 25],
+'reverse' =&amp;gt; ['set' =&amp;gt; 7, 'unset' =&amp;gt; 27],
+'conceal' =&amp;gt; ['set' =&amp;gt; 8, 'unset' =&amp;gt; 28],
+];
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>筆記 安裝 Golang 與他們的套件管理工具</title><link>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</link><pubDate>Wed, 01 May 2019 11:50:36 +0800</pubDate><guid>https://blog.10oz.tw/20190501-golang-getting-start-and-package-manager/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;從 golang 1.13 release(2019/09/03) 後，gomodule 變成預設，大家都用官方的 gomodule 了喔
+在這之前的版本使用環境變數 GOMODULE111=true 來做管理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="安裝-golang-on-mac"&gt;安裝 golang (on Mac)&lt;/h2&gt;
+&lt;h3 id="1-第一步當然是拿到-golang-囉"&gt;1. 第一步當然是拿到 golang 囉&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-sh"&gt;brew install go
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="2-環境設定"&gt;2. 環境設定&lt;/h3&gt;
+&lt;p&gt;試著在 terminal 輸入 &lt;code&gt;go env&lt;/code&gt;，能夠拿到 golang 用到的環境變數
+特別注意一下幾個環境變數&lt;/p&gt;</description></item><item><title>筆記 我是個 go module 的菜鳥</title><link>https://blog.10oz.tw/20190501-a-new-in-go-module/</link><pubDate>Wed, 01 May 2019 01:28:22 +0800</pubDate><guid>https://blog.10oz.tw/20190501-a-new-in-go-module/</guid><description>&lt;h2 id="簡介"&gt;簡介&lt;/h2&gt;
+&lt;p&gt;Golang 官方在 1.11 版推出的相依套件管理工具，還是在測試階段(會在1.13正式登場)
+他在 2018/3/20 提交，並於 2018/5/21 被接受
+想使用他的話，要開個開關：
+環境變數 &lt;code&gt;GO111MODULE&lt;/code&gt; 控制行為：&lt;/p&gt;</description></item><item><title>筆記 Laravel with Keycloak</title><link>https://blog.10oz.tw/20190424-laravel-with-keycloak/</link><pubDate>Wed, 24 Apr 2019 10:05:56 +0800</pubDate><guid>https://blog.10oz.tw/20190424-laravel-with-keycloak/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;laravel version: 5.8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="一安裝篇"&gt;一、安裝篇&lt;/h2&gt;
+&lt;p&gt;裝這個，跟著他的步驟做
+&lt;a href="https://github.com/robsontenorio/laravel-keycloak-guard"&gt;https://github.com/robsontenorio/laravel-keycloak-guard&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="二使用篇"&gt;二、使用篇&lt;/h2&gt;
+&lt;p&gt;我們假設 Keycloak Server 有大大幫你開好了 (沒有請點&lt;a href="https://github.com/jboss-dockerfiles/keycloak/blob/master/docker-compose-examples/keycloak-mysql.yml"&gt;我&lt;/a&gt;)&lt;/p&gt;
+&lt;h3 id="取得-keycloak-金鑰"&gt;取得 Keycloak 金鑰&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://auth.leotekiot.com"&gt;https://auth.leotekiot.com&lt;/a&gt;
+預設帳號: admin
+預設密碼: Pa55w0rd&lt;/p&gt;
+&lt;p&gt;登入後，依序操作得到金鑰
+Realm Setting &amp;gt; Keys &amp;gt; RS256 Public key
+&lt;img src="https://i.imgur.com/LvkG6ZO.png" alt=""&gt;&lt;/p&gt;</description></item><item><title>筆記 Laravel Eloquent Model 的 relation</title><link>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</link><pubDate>Tue, 16 Apr 2019 20:35:16 +0800</pubDate><guid>https://blog.10oz.tw/20190416-relation-of-laravel-eloquent-model/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;版本
+Larael 5.7&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="範例模型"&gt;範例模型&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;accounts&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE TABLE `accounts` (
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`website_id` int(10) unsigned NOT NULL,
+`account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`created_at` timestamp NULL DEFAULT NULL,
+`updated_at` timestamp NULL DEFAULT NULL,
+`deleted_at` timestamp NULL DEFAULT NULL,
+PRIMARY KEY (`id`)
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;websites&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;CREATE TABLE `websites` (
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`created_at` timestamp NULL DEFAULT NULL,
+`updated_at` timestamp NULL DEFAULT NULL,
+PRIMARY KEY (`id`)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;accounts&lt;/code&gt; table 底下有個 column &lt;code&gt;website_id&lt;/code&gt; 用來關聯 &lt;code&gt;websites&lt;/code&gt; 這張表。&lt;/p&gt;</description></item><item><title>筆記 Laravel API 權限 (Passport)</title><link>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</link><pubDate>Sun, 17 Feb 2019 09:46:31 +0800</pubDate><guid>https://blog.10oz.tw/20190217-laravel-api-permission-by-passport/</guid><description>&lt;h2 id="使用-jwt-版本-201809-更新"&gt;使用 JWT 版本 (2018/09 更新)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;前面幾個步驟同官方安裝教學&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="步驟說明"&gt;步驟說明&lt;/h3&gt;
+&lt;h5 id="1-composer-載回來"&gt;1. composer 載回來&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;composer require laravel/passport&lt;/code&gt;&lt;/p&gt;
+&lt;h5 id="2-開資料表"&gt;2. 開資料表&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;php artisan migrate&lt;/code&gt;
+然後你會多 5 張表 (主要使用到 &lt;code&gt;oauth_access_token&lt;/code&gt;)&lt;/p&gt;
+&lt;h5 id="3創造-key"&gt;3.創造 key&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;php artisan passport:install&lt;/code&gt;&lt;br&gt;
+他會幫你的 OAuth Server 準備一對 Key (storage/oauth-private.key, storage/outhpublic.key)&lt;br&gt;
+同時也準備 2 個 Client Key 在 &lt;code&gt;oauth_clients&lt;/code&gt; 資料表內&lt;/p&gt;</description></item><item><title>筆記 laravel 真新手時間</title><link>https://blog.10oz.tw/20190123-a-new-in-laravel/</link><pubDate>Wed, 23 Jan 2019 20:36:55 +0800</pubDate><guid>https://blog.10oz.tw/20190123-a-new-in-laravel/</guid><description>&lt;h2 id="新手入門"&gt;新手入門&lt;/h2&gt;
+&lt;h3 id="結構介紹"&gt;結構介紹&lt;/h3&gt;
+&lt;p&gt;我們現在在 laravel v5.7&lt;br&gt;
+一起來看一下 laravel 專案的結構吧&lt;/p&gt;
+&lt;h4 id="app"&gt;app&lt;/h4&gt;
+&lt;p&gt;大部份的網頁&lt;strong&gt;後端主要程式碼&lt;/strong&gt; 也就是說他很重要&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(Model)放在外面的大寫開頭們～&lt;br&gt;
+例如說 &lt;code&gt;User.php&lt;/code&gt; 就是，
+他們是 &lt;code&gt;Model&lt;/code&gt;，定義了資料庫的物件模式&lt;/p&gt;</description></item><item><title>筆記 安裝 Laravel on MacOS</title><link>https://blog.10oz.tw/20190117-install-laravel-on-macos/</link><pubDate>Thu, 17 Jan 2019 12:03:16 +0800</pubDate><guid>https://blog.10oz.tw/20190117-install-laravel-on-macos/</guid><description>&lt;h2 id="step-by-step-安裝指南"&gt;Step by Step 安裝指南&lt;/h2&gt;
+&lt;h3 id="事前準備"&gt;事前準備&lt;/h3&gt;
+&lt;h4 id="homebrew"&gt;HomeBrew&lt;/h4&gt;
+&lt;p&gt;首先安裝 &lt;a href="https://brew.sh/index_zh-tw"&gt;HomeBrew&lt;/a&gt;，他是 Mac 上的套件管理工具&lt;br&gt;
+在終端機執行他： (裝過了可以跳過)&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sh"&gt;/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="-docker"&gt;＊ Docker&lt;/h4&gt;
+&lt;p&gt;安裝 &lt;a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac"&gt;Docker&lt;/a&gt;， 以會需要他多多照顧&lt;br&gt;
+不想登入可以直接點 &lt;a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac"&gt;下載連結&lt;/a&gt; 下載 .dmg 並安裝&lt;/p&gt;</description></item></channel></rss>

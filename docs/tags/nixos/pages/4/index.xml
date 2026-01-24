@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nixos on XiaoXiao Notes</title><link>https://blog.10oz.tw/tags/nixos/</link><description>Recent content in Nixos on XiaoXiao Notes</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>MIT</copyright><lastBuildDate>Thu, 08 Jul 2021 03:13:00 +0800</lastBuildDate><atom:link href="https://blog.10oz.tw/tags/nixos/index.xml" rel="self" type="application/rss+xml"/><item><title>筆記 自定義 flask 的 console log 之路</title><link>https://blog.10oz.tw/20181128-custom-flask-console-log/</link><pubDate>Wed, 28 Nov 2018 03:19:15 +0800</pubDate><guid>https://blog.10oz.tw/20181128-custom-flask-console-log/</guid><description>&lt;h2 id="需求"&gt;需求&lt;/h2&gt;
+&lt;p&gt;讓 console log 可以正確顯示來源 ip
+而不是被 web server 轉發的 ip&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/2saUiKz.png" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="實作修改"&gt;實作修改&lt;/h2&gt;
+&lt;p&gt;覆蓋掉 address_string 這個 function &lt;code&gt;line:8&lt;/code&gt;
+覆蓋掉 log function &lt;code&gt;line:9&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-python="&gt;import logging
+# get werkzeug_logger
+werkzeug_logger = logging.getLogger('werkzeug')
+# Override the built-in werkzeug logging function in order to change the log line format.
+from werkzeug.serving import WSGIRequestHandler
+WSGIRequestHandler.address_string = lambda self: \
+self.headers.get('X-Forwarded-For') if self.headers.get('X-Forwarded-For') else self.client_address[0]
+WSGIRequestHandler.log = lambda self, type, message, *args: \
+getattr(werkzeug_logger, type)('%s %s' % (self.address_string(), message % args))
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>筆記 python: Error 24: too many open files</title><link>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</link><pubDate>Tue, 20 Nov 2018 03:19:29 +0800</pubDate><guid>https://blog.10oz.tw/20181120-python-error24-too-many-open-files/</guid><description>&lt;h2 id="問題描述"&gt;問題描述&lt;/h2&gt;
+&lt;p&gt;同時開太多連線啦&lt;/p&gt;
+&lt;h3 id="環境"&gt;環境&lt;/h3&gt;
+&lt;p&gt;Ubuntu 16.04&lt;/p&gt;
+&lt;h2 id="解決方法"&gt;解決方法&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://blog.csdn.net/qq_23926575/article/details/76619827"&gt;https://blog.csdn.net/qq_23926575/article/details/76619827&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;開啟這個檔案
+&lt;code&gt;sudo vim /etc/security/limits.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在最底下新增兩行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;* soft nofile 10000
+* hard nofile 10000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;記得重開Server&lt;/p&gt;</description></item><item><title>筆記 mysqlclient 安裝, error: python setup.py egg_info</title><link>https://blog.10oz.tw/20181117-install-mysqlclient/</link><pubDate>Sat, 17 Nov 2018 14:11:06 +0800</pubDate><guid>https://blog.10oz.tw/20181117-install-mysqlclient/</guid><description>&lt;h2 id="錯誤"&gt;錯誤:&lt;/h2&gt;
+&lt;p&gt;目標是成功執行它：&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sh"&gt;pip3 install mysqlclient
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="language-sh"&gt;arios@AriosMac: pymysql_pool » pip3 install mysqlclient
+Collecting mysqlclient
+Using cached https://files.pythonhosted.org/packages/ec/fd/83329b9d3e14f7344d1cb31f128e6dbba70c5975c9e57896815dbb1988ad/mysqlclient-1.3.13.tar.gz
+Complete output from command python setup.py egg_info:
+/bin/sh: mysql_config: command not found
+Traceback (most recent call last):
+File &amp;quot;&amp;lt;string&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup.py&amp;quot;, line 18, in &amp;lt;module&amp;gt;
+metadata, options = get_config()
+File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;quot;, line 53, inget_config
+libs = mysql_config(&amp;quot;libs_r&amp;quot;)
+File &amp;quot;/private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/setup_posix.py&amp;quot;, line 28, inmysql_config
+raise EnvironmentError(&amp;quot;%s not found&amp;quot; % (mysql_config.path,))
+OSError: mysql_config not found
+----------------------------------------
+Command &amp;quot;python setup.py egg_info&amp;quot; failed with error code 1 in /private/var/folders/xf/g7567kgs05vf5t8zfrnfh9th0000gn/T/pip-install-pqr5axvg/mysqlclient/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="解決方法"&gt;解決方法&lt;/h2&gt;
+&lt;p&gt;for ubuntu 16 LTS：&lt;/p&gt;</description></item><item><title>筆記 解決 VSCode 上 pylint 無法解析 c 函式庫的內容</title><link>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</link><pubDate>Thu, 08 Nov 2018 12:04:17 +0800</pubDate><guid>https://blog.10oz.tw/20181108-run-pylint-clib-on-vscode/</guid><description>&lt;h2 id="問題"&gt;問題&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/fczhIaz.png" alt=""&gt;
+當你的函示庫底層使用 &lt;strong&gt;C語言&lt;/strong&gt; 而不是純 python 編寫時
+pylint 可能會無法正確的找到他，此問題可能出現在&lt;code&gt;numpy&lt;/code&gt;或是本例的&lt;code&gt;mysqlclient&lt;/code&gt;上&lt;/p&gt;
+&lt;h2 id="解決方法"&gt;解決方法&lt;/h2&gt;
+&lt;p&gt;加入以下至白名單
+$&lt;code&gt;vim ~/.pylintrc&lt;/code&gt;&lt;/p&gt;</description></item></channel></rss>
